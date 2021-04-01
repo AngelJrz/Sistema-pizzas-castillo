@@ -1,0 +1,1982 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PizzasCastilloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArticuloVenta">
+          <Key>
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Foto" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consume">
+          <Key>
+            <PropertyRef Name="PlatilloCodigoBarra" />
+            <PropertyRef Name="ProductoCodigoBarra" />
+          </Key>
+          <Property Name="PlatilloCodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductoCodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Calle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="CodigoPostal" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NumeroInterior" Type="nvarchar" MaxLength="5" />
+          <Property Name="Referencias" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumeroExterior" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DireccionProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Calle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="CodigoPostal" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Efectivo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="NumeroEmpleado" />
+          </Key>
+          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Contrasenia" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SalarioQuincenal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstatusPedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstatusPedidoAProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GastoExtra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="100" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdTipoGasto" Type="int" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guarda">
+          <Key>
+            <PropertyRef Name="IdEfectivo" />
+            <PropertyRef Name="IdReporteCaja" />
+          </Key>
+          <Property Name="IdEfectivo" Type="int" Nullable="false" />
+          <Property Name="IdReporteCaja" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Indica">
+          <Key>
+            <PropertyRef Name="IdMerma" />
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="IdMerma" Type="int" Nullable="false" />
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Merma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Justificacion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdPedido" Type="int" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="IdMesa" />
+          </Key>
+          <Property Name="IdMesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="IdEstatusPedido" Type="int" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdTipoPedido" Type="int" Nullable="false" />
+          <Property Name="IdRepartidor" Type="int" />
+          <Property Name="IdMesa" Type="int" />
+        </EntityType>
+        <EntityType Name="PedidoAProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="CostoTotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="IdEstatusPedidoAProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Platillo">
+          <Key>
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="FechaRegisto" Type="datetime" Nullable="false" />
+          <Property Name="Receta" Type="text" Nullable="false" />
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="180" Nullable="false" />
+          <Property Name="PrecioCompra" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Restricciones" Type="nvarchar" MaxLength="180" />
+          <Property Name="IdTipoProducto" Type="int" Nullable="false" />
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="UnidadDeMedida" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dni" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NombreEncargado" Type="nvarchar" MaxLength="45" />
+          <Property Name="ListaDeProductos" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdDireccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Repartidor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+          <Property Name="EmpresaRepartidora" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reporta">
+          <Key>
+            <PropertyRef Name="IdReporte" />
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="IdReporte" Type="int" Nullable="false" />
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CantidadEnInventario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CantidadReal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ReporteCaja">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BalanceDiario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="TotalEntrada" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TotalSalida" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TotalEfectivoContado" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="255" />
+          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="EfectivoDiaSiguiente" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteInventario">
+          <Key>
+            <PropertyRef Name="IdReporte" />
+          </Key>
+          <Property Name="IdReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Solicita">
+          <Key>
+            <PropertyRef Name="IdPedidoDeProducto" />
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="IdPedidoDeProducto" Type="int" Nullable="false" />
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoGasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Direccion_Persona1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Efectivo_has_ReporteCaja_Efectivo1">
+          <End Role="Efectivo" Type="Self.Efectivo" Multiplicity="1" />
+          <End Role="Guarda" Type="Self.Guarda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Efectivo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guarda">
+              <PropertyRef Name="IdEfectivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Efectivo_has_ReporteCaja_ReporteCaja1">
+          <End Role="ReporteCaja" Type="Self.ReporteCaja" Multiplicity="1" />
+          <End Role="Guarda" Type="Self.Guarda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteCaja">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guarda">
+              <PropertyRef Name="IdReporteCaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Persona1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GastoExtra_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="GastoExtra" Type="Self.GastoExtra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="GastoExtra">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GastoExtra_TipoGasto1">
+          <End Role="TipoGasto" Type="Self.TipoGasto" Multiplicity="1" />
+          <End Role="GastoExtra" Type="Self.GastoExtra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoGasto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GastoExtra">
+              <PropertyRef Name="IdTipoGasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merma_has_Producto_Merma1">
+          <End Role="Merma" Type="Self.Merma" Multiplicity="1" />
+          <End Role="Indica" Type="Self.Indica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Indica">
+              <PropertyRef Name="IdMerma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merma_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Indica" Type="Self.Indica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Indica">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merma_Pedido1">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+          <End Role="Merma" Type="Self.Merma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merma">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_EstatusPedido1">
+          <End Role="EstatusPedido" Type="Self.EstatusPedido" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusPedido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdEstatusPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Mesa1">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="0..1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Persona1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Repartidor1">
+          <End Role="Repartidor" Type="Self.Repartidor" Multiplicity="0..1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repartidor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdRepartidor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_TipoPedido1">
+          <End Role="TipoPedido" Type="Self.TipoPedido" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPedido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdTipoPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoAProveedor_EstatusPedidoAProveedor1">
+          <End Role="EstatusPedidoAProveedor" Type="Self.EstatusPedidoAProveedor" Multiplicity="1" />
+          <End Role="PedidoAProveedor" Type="Self.PedidoAProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusPedidoAProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PedidoAProveedor">
+              <PropertyRef Name="IdEstatusPedidoAProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoDeProducto_has_Producto_PedidoDeProducto1">
+          <End Role="PedidoAProveedor" Type="Self.PedidoAProveedor" Multiplicity="1" />
+          <End Role="Solicita" Type="Self.Solicita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PedidoAProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Solicita">
+              <PropertyRef Name="IdPedidoDeProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoDeProducto_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Solicita" Type="Self.Solicita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Solicita">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoDeProducto_Proveedor1">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="PedidoAProveedor" Type="Self.PedidoAProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PedidoAProveedor">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platillo_ArticulaVenta1">
+          <End Role="ArticuloVenta" Type="Self.ArticuloVenta" Multiplicity="1" />
+          <End Role="Platillo" Type="Self.Platillo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ArticuloVenta">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Platillo">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platillo_has_Producto_Platillo1">
+          <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
+          <End Role="Consume" Type="Self.Consume" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platillo">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Consume">
+              <PropertyRef Name="PlatilloCodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platillo_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Consume" Type="Self.Consume" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Consume">
+              <PropertyRef Name="ProductoCodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_ArticulaVenta1">
+          <End Role="ArticuloVenta" Type="Self.ArticuloVenta" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ArticuloVenta">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_TipoProducto1">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdTipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedor_DireccionProveedor1">
+          <End Role="DireccionProveedor" Type="Self.DireccionProveedor" Multiplicity="1" />
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DireccionProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedor">
+              <PropertyRef Name="IdDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteCaja_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ReporteCaja" Type="Self.ReporteCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="ReporteCaja">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteInventario_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ReporteInventario" Type="Self.ReporteInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="ReporteInventario">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteInventario_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Reporta" Type="Self.Reporta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Reporta">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteInventario_has_Producto_ReporteInventario1">
+          <End Role="ReporteInventario" Type="Self.ReporteInventario" Multiplicity="1" />
+          <End Role="Reporta" Type="Self.Reporta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteInventario">
+              <PropertyRef Name="IdReporte" />
+            </Principal>
+            <Dependent Role="Reporta">
+              <PropertyRef Name="IdReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzasCastilloModelStoreContainer">
+          <EntitySet Name="ArticuloVenta" EntityType="Self.ArticuloVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consume" EntityType="Self.Consume" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DireccionProveedor" EntityType="Self.DireccionProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Efectivo" EntityType="Self.Efectivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstatusPedido" EntityType="Self.EstatusPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstatusPedidoAProveedor" EntityType="Self.EstatusPedidoAProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GastoExtra" EntityType="Self.GastoExtra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guarda" EntityType="Self.Guarda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Indica" EntityType="Self.Indica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Merma" EntityType="Self.Merma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesa" EntityType="Self.Mesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PedidoAProveedor" EntityType="Self.PedidoAProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platillo" EntityType="Self.Platillo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repartidor" EntityType="Self.Repartidor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporta" EntityType="Self.Reporta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteCaja" EntityType="Self.ReporteCaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteInventario" EntityType="Self.ReporteInventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Solicita" EntityType="Self.Solicita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoGasto" EntityType="Self.TipoGasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPedido" EntityType="Self.TipoPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Direccion_Persona1" Association="Self.FK_Direccion_Persona1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Efectivo_has_ReporteCaja_Efectivo1" Association="Self.FK_Efectivo_has_ReporteCaja_Efectivo1">
+            <End Role="Efectivo" EntitySet="Efectivo" />
+            <End Role="Guarda" EntitySet="Guarda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Efectivo_has_ReporteCaja_ReporteCaja1" Association="Self.FK_Efectivo_has_ReporteCaja_ReporteCaja1">
+            <End Role="ReporteCaja" EntitySet="ReporteCaja" />
+            <End Role="Guarda" EntitySet="Guarda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Persona1" Association="Self.FK_Empleado_Persona1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GastoExtra_Empleado1" Association="Self.FK_GastoExtra_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="GastoExtra" EntitySet="GastoExtra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GastoExtra_TipoGasto1" Association="Self.FK_GastoExtra_TipoGasto1">
+            <End Role="TipoGasto" EntitySet="TipoGasto" />
+            <End Role="GastoExtra" EntitySet="GastoExtra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merma_has_Producto_Merma1" Association="Self.FK_Merma_has_Producto_Merma1">
+            <End Role="Merma" EntitySet="Merma" />
+            <End Role="Indica" EntitySet="Indica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merma_has_Producto_Producto1" Association="Self.FK_Merma_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Indica" EntitySet="Indica" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merma_Pedido1" Association="Self.fk_Merma_Pedido1">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Merma" EntitySet="Merma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Empleado1" Association="Self.FK_Pedido_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_EstatusPedido1" Association="Self.FK_Pedido_EstatusPedido1">
+            <End Role="EstatusPedido" EntitySet="EstatusPedido" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Mesa1" Association="Self.FK_Pedido_Mesa1">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Persona1" Association="Self.FK_Pedido_Persona1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Repartidor1" Association="Self.FK_Pedido_Repartidor1">
+            <End Role="Repartidor" EntitySet="Repartidor" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_TipoPedido1" Association="Self.FK_Pedido_TipoPedido1">
+            <End Role="TipoPedido" EntitySet="TipoPedido" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoAProveedor_EstatusPedidoAProveedor1" Association="Self.FK_PedidoAProveedor_EstatusPedidoAProveedor1">
+            <End Role="EstatusPedidoAProveedor" EntitySet="EstatusPedidoAProveedor" />
+            <End Role="PedidoAProveedor" EntitySet="PedidoAProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoDeProducto_has_Producto_PedidoDeProducto1" Association="Self.FK_PedidoDeProducto_has_Producto_PedidoDeProducto1">
+            <End Role="PedidoAProveedor" EntitySet="PedidoAProveedor" />
+            <End Role="Solicita" EntitySet="Solicita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoDeProducto_has_Producto_Producto1" Association="Self.FK_PedidoDeProducto_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Solicita" EntitySet="Solicita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoDeProducto_Proveedor1" Association="Self.FK_PedidoDeProducto_Proveedor1">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="PedidoAProveedor" EntitySet="PedidoAProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoUsuario" Association="Self.FK_Persona_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platillo_ArticulaVenta1" Association="Self.FK_Platillo_ArticulaVenta1">
+            <End Role="ArticuloVenta" EntitySet="ArticuloVenta" />
+            <End Role="Platillo" EntitySet="Platillo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platillo_has_Producto_Platillo1" Association="Self.FK_Platillo_has_Producto_Platillo1">
+            <End Role="Platillo" EntitySet="Platillo" />
+            <End Role="Consume" EntitySet="Consume" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platillo_has_Producto_Producto1" Association="Self.FK_Platillo_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Consume" EntitySet="Consume" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_ArticulaVenta1" Association="Self.FK_Producto_ArticulaVenta1">
+            <End Role="ArticuloVenta" EntitySet="ArticuloVenta" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_TipoProducto1" Association="Self.FK_Producto_TipoProducto1">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedor_DireccionProveedor1" Association="Self.FK_Proveedor_DireccionProveedor1">
+            <End Role="DireccionProveedor" EntitySet="DireccionProveedor" />
+            <End Role="Proveedor" EntitySet="Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteCaja_Empleado1" Association="Self.FK_ReporteCaja_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ReporteCaja" EntitySet="ReporteCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteInventario_Empleado1" Association="Self.FK_ReporteInventario_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ReporteInventario" EntitySet="ReporteInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteInventario_has_Producto_Producto1" Association="Self.FK_ReporteInventario_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Reporta" EntitySet="Reporta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteInventario_has_Producto_ReporteInventario1" Association="Self.FK_ReporteInventario_has_Producto_ReporteInventario1">
+            <End Role="ReporteInventario" EntitySet="ReporteInventario" />
+            <End Role="Reporta" EntitySet="Reporta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PizzasCastilloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ArticuloVenta">
+          <Key>
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Foto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Platillo" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Consume">
+          <Key>
+            <PropertyRef Name="PlatilloCodigoBarra" />
+            <PropertyRef Name="ProductoCodigoBarra" />
+          </Key>
+          <Property Name="PlatilloCodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductoCodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo_has_Producto_Platillo1" FromRole="Consume" ToRole="Platillo" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Platillo_has_Producto_Producto1" FromRole="Consume" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroInterior" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Referencias" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroExterior" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Direccion_Persona1" FromRole="Direccion" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="DireccionProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Proveedor_DireccionProveedor1" FromRole="DireccionProveedor" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Efectivo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Guarda" Relationship="Self.FK_Efectivo_has_ReporteCaja_Efectivo1" FromRole="Efectivo" ToRole="Guarda" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="NumeroEmpleado" />
+          </Key>
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contrasenia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalarioQuincenal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Empleado_Persona1" FromRole="Empleado" ToRole="Persona" />
+          <NavigationProperty Name="GastoExtra" Relationship="Self.FK_GastoExtra_Empleado1" FromRole="Empleado" ToRole="GastoExtra" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Empleado1" FromRole="Empleado" ToRole="Pedido" />
+          <NavigationProperty Name="ReporteCaja" Relationship="Self.FK_ReporteCaja_Empleado1" FromRole="Empleado" ToRole="ReporteCaja" />
+          <NavigationProperty Name="ReporteInventario" Relationship="Self.FK_ReporteInventario_Empleado1" FromRole="Empleado" ToRole="ReporteInventario" />
+        </EntityType>
+        <EntityType Name="EstatusPedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_EstatusPedido1" FromRole="EstatusPedido" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="EstatusPedidoAProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoAProveedor_EstatusPedidoAProveedor1" FromRole="EstatusPedidoAProveedor" ToRole="PedidoAProveedor" />
+        </EntityType>
+        <EntityType Name="GastoExtra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdTipoGasto" Type="Int32" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_GastoExtra_Empleado1" FromRole="GastoExtra" ToRole="Empleado" />
+          <NavigationProperty Name="TipoGasto" Relationship="Self.FK_GastoExtra_TipoGasto1" FromRole="GastoExtra" ToRole="TipoGasto" />
+        </EntityType>
+        <EntityType Name="Guarda">
+          <Key>
+            <PropertyRef Name="IdEfectivo" />
+            <PropertyRef Name="IdReporteCaja" />
+          </Key>
+          <Property Name="IdEfectivo" Type="Int32" Nullable="false" />
+          <Property Name="IdReporteCaja" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Efectivo" Relationship="Self.FK_Efectivo_has_ReporteCaja_Efectivo1" FromRole="Guarda" ToRole="Efectivo" />
+          <NavigationProperty Name="ReporteCaja" Relationship="Self.FK_Efectivo_has_ReporteCaja_ReporteCaja1" FromRole="Guarda" ToRole="ReporteCaja" />
+        </EntityType>
+        <EntityType Name="Indica">
+          <Key>
+            <PropertyRef Name="IdMerma" />
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="IdMerma" Type="Int32" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Merma" Relationship="Self.FK_Merma_has_Producto_Merma1" FromRole="Indica" ToRole="Merma" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Merma_has_Producto_Producto1" FromRole="Indica" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Merma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Justificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPedido" Type="Int32" />
+          <NavigationProperty Name="Indica" Relationship="Self.FK_Merma_has_Producto_Merma1" FromRole="Merma" ToRole="Indica" />
+          <NavigationProperty Name="Pedido" Relationship="Self.fk_Merma_Pedido1" FromRole="Merma" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="IdMesa" />
+          </Key>
+          <Property Name="IdMesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Mesa1" FromRole="Mesa" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="IdEstatusPedido" Type="Int32" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdTipoPedido" Type="Int32" Nullable="false" />
+          <Property Name="IdRepartidor" Type="Int32" />
+          <Property Name="IdMesa" Type="Int32" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Pedido_Empleado1" FromRole="Pedido" ToRole="Empleado" />
+          <NavigationProperty Name="EstatusPedido" Relationship="Self.FK_Pedido_EstatusPedido1" FromRole="Pedido" ToRole="EstatusPedido" />
+          <NavigationProperty Name="Merma" Relationship="Self.fk_Merma_Pedido1" FromRole="Pedido" ToRole="Merma" />
+          <NavigationProperty Name="Mesa" Relationship="Self.FK_Pedido_Mesa1" FromRole="Pedido" ToRole="Mesa" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Pedido_Persona1" FromRole="Pedido" ToRole="Persona" />
+          <NavigationProperty Name="Repartidor" Relationship="Self.FK_Pedido_Repartidor1" FromRole="Pedido" ToRole="Repartidor" />
+          <NavigationProperty Name="TipoPedido" Relationship="Self.FK_Pedido_TipoPedido1" FromRole="Pedido" ToRole="TipoPedido" />
+        </EntityType>
+        <EntityType Name="PedidoAProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CostoTotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="IdEstatusPedidoAProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EstatusPedidoAProveedor" Relationship="Self.FK_PedidoAProveedor_EstatusPedidoAProveedor1" FromRole="PedidoAProveedor" ToRole="EstatusPedidoAProveedor" />
+          <NavigationProperty Name="Solicita" Relationship="Self.FK_PedidoDeProducto_has_Producto_PedidoDeProducto1" FromRole="PedidoAProveedor" ToRole="Solicita" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK_PedidoDeProducto_Proveedor1" FromRole="PedidoAProveedor" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Persona1" FromRole="Persona" ToRole="Direccion" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Persona1" FromRole="Persona" ToRole="Empleado" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Persona1" FromRole="Persona" ToRole="Pedido" />
+          <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_Persona_TipoUsuario" FromRole="Persona" ToRole="TipoUsuario" />
+        </EntityType>
+        <EntityType Name="Platillo">
+          <Key>
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="FechaRegisto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Receta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ArticuloVenta" Relationship="Self.FK_Platillo_ArticulaVenta1" FromRole="Platillo" ToRole="ArticuloVenta" />
+          <NavigationProperty Name="Consume" Relationship="Self.FK_Platillo_has_Producto_Platillo1" FromRole="Platillo" ToRole="Consume" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="180" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrecioCompra" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Restricciones" Type="String" MaxLength="180" FixedLength="false" Unicode="true" />
+          <Property Name="IdTipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnidadDeMedida" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ArticuloVenta" Relationship="Self.FK_Producto_ArticulaVenta1" FromRole="Producto" ToRole="ArticuloVenta" />
+          <NavigationProperty Name="Consume" Relationship="Self.FK_Platillo_has_Producto_Producto1" FromRole="Producto" ToRole="Consume" />
+          <NavigationProperty Name="Indica" Relationship="Self.FK_Merma_has_Producto_Producto1" FromRole="Producto" ToRole="Indica" />
+          <NavigationProperty Name="Solicita" Relationship="Self.FK_PedidoDeProducto_has_Producto_Producto1" FromRole="Producto" ToRole="Solicita" />
+          <NavigationProperty Name="TipoProducto" Relationship="Self.FK_Producto_TipoProducto1" FromRole="Producto" ToRole="TipoProducto" />
+          <NavigationProperty Name="Reporta" Relationship="Self.FK_ReporteInventario_has_Producto_Producto1" FromRole="Producto" ToRole="Reporta" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dni" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreEncargado" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="ListaDeProductos" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdDireccion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DireccionProveedor" Relationship="Self.FK_Proveedor_DireccionProveedor1" FromRole="Proveedor" ToRole="DireccionProveedor" />
+          <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoDeProducto_Proveedor1" FromRole="Proveedor" ToRole="PedidoAProveedor" />
+        </EntityType>
+        <EntityType Name="Repartidor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <Property Name="EmpresaRepartidora" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Repartidor1" FromRole="Repartidor" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Reporta">
+          <Key>
+            <PropertyRef Name="IdReporte" />
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="IdReporte" Type="Int32" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CantidadEnInventario" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CantidadReal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_ReporteInventario_has_Producto_Producto1" FromRole="Reporta" ToRole="Producto" />
+          <NavigationProperty Name="ReporteInventario" Relationship="Self.FK_ReporteInventario_has_Producto_ReporteInventario1" FromRole="Reporta" ToRole="ReporteInventario" />
+        </EntityType>
+        <EntityType Name="ReporteCaja">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BalanceDiario" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalEntrada" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TotalSalida" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TotalEfectivoContado" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EfectivoDiaSiguiente" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_ReporteCaja_Empleado1" FromRole="ReporteCaja" ToRole="Empleado" />
+          <NavigationProperty Name="Guarda" Relationship="Self.FK_Efectivo_has_ReporteCaja_ReporteCaja1" FromRole="ReporteCaja" ToRole="Guarda" />
+        </EntityType>
+        <EntityType Name="ReporteInventario">
+          <Key>
+            <PropertyRef Name="IdReporte" />
+          </Key>
+          <Property Name="IdReporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_ReporteInventario_Empleado1" FromRole="ReporteInventario" ToRole="Empleado" />
+          <NavigationProperty Name="Reporta" Relationship="Self.FK_ReporteInventario_has_Producto_ReporteInventario1" FromRole="ReporteInventario" ToRole="Reporta" />
+        </EntityType>
+        <EntityType Name="Solicita">
+          <Key>
+            <PropertyRef Name="IdPedidoDeProducto" />
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="IdPedidoDeProducto" Type="Int32" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoDeProducto_has_Producto_PedidoDeProducto1" FromRole="Solicita" ToRole="PedidoAProveedor" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_PedidoDeProducto_has_Producto_Producto1" FromRole="Solicita" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="TipoGasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GastoExtra" Relationship="Self.FK_GastoExtra_TipoGasto1" FromRole="TipoGasto" ToRole="GastoExtra" />
+        </EntityType>
+        <EntityType Name="TipoPedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_TipoPedido1" FromRole="TipoPedido" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_TipoProducto1" FromRole="TipoProducto" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_TipoUsuario" FromRole="TipoUsuario" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK_Platillo_ArticulaVenta1">
+          <End Role="ArticuloVenta" Type="Self.ArticuloVenta" Multiplicity="1" />
+          <End Role="Platillo" Type="Self.Platillo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ArticuloVenta">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Platillo">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_ArticulaVenta1">
+          <End Role="ArticuloVenta" Type="Self.ArticuloVenta" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ArticuloVenta">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platillo_has_Producto_Platillo1">
+          <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
+          <End Role="Consume" Type="Self.Consume" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platillo">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Consume">
+              <PropertyRef Name="PlatilloCodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platillo_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Consume" Type="Self.Consume" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Consume">
+              <PropertyRef Name="ProductoCodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Persona1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedor_DireccionProveedor1">
+          <End Role="DireccionProveedor" Type="Self.DireccionProveedor" Multiplicity="1" />
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DireccionProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedor">
+              <PropertyRef Name="IdDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Efectivo_has_ReporteCaja_Efectivo1">
+          <End Role="Efectivo" Type="Self.Efectivo" Multiplicity="1" />
+          <End Role="Guarda" Type="Self.Guarda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Efectivo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guarda">
+              <PropertyRef Name="IdEfectivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Persona1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GastoExtra_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="GastoExtra" Type="Self.GastoExtra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="GastoExtra">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteCaja_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ReporteCaja" Type="Self.ReporteCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="ReporteCaja">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteInventario_Empleado1">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ReporteInventario" Type="Self.ReporteInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="ReporteInventario">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_EstatusPedido1">
+          <End Role="EstatusPedido" Type="Self.EstatusPedido" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusPedido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdEstatusPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoAProveedor_EstatusPedidoAProveedor1">
+          <End Role="EstatusPedidoAProveedor" Type="Self.EstatusPedidoAProveedor" Multiplicity="1" />
+          <End Role="PedidoAProveedor" Type="Self.PedidoAProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusPedidoAProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PedidoAProveedor">
+              <PropertyRef Name="IdEstatusPedidoAProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GastoExtra_TipoGasto1">
+          <End Role="TipoGasto" Type="Self.TipoGasto" Multiplicity="1" />
+          <End Role="GastoExtra" Type="Self.GastoExtra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoGasto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GastoExtra">
+              <PropertyRef Name="IdTipoGasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Efectivo_has_ReporteCaja_ReporteCaja1">
+          <End Role="ReporteCaja" Type="Self.ReporteCaja" Multiplicity="1" />
+          <End Role="Guarda" Type="Self.Guarda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteCaja">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guarda">
+              <PropertyRef Name="IdReporteCaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merma_has_Producto_Merma1">
+          <End Role="Merma" Type="Self.Merma" Multiplicity="1" />
+          <End Role="Indica" Type="Self.Indica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Indica">
+              <PropertyRef Name="IdMerma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merma_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Indica" Type="Self.Indica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Indica">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merma_Pedido1">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+          <End Role="Merma" Type="Self.Merma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merma">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Mesa1">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="0..1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="IdMesa" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Persona1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Repartidor1">
+          <End Role="Repartidor" Type="Self.Repartidor" Multiplicity="0..1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repartidor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdRepartidor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_TipoPedido1">
+          <End Role="TipoPedido" Type="Self.TipoPedido" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPedido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdTipoPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoDeProducto_has_Producto_PedidoDeProducto1">
+          <End Role="PedidoAProveedor" Type="Self.PedidoAProveedor" Multiplicity="1" />
+          <End Role="Solicita" Type="Self.Solicita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PedidoAProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Solicita">
+              <PropertyRef Name="IdPedidoDeProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoDeProducto_Proveedor1">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="PedidoAProveedor" Type="Self.PedidoAProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PedidoAProveedor">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PedidoDeProducto_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Solicita" Type="Self.Solicita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Solicita">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_TipoProducto1">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdTipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteInventario_has_Producto_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Reporta" Type="Self.Reporta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Reporta">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteInventario_has_Producto_ReporteInventario1">
+          <End Role="ReporteInventario" Type="Self.ReporteInventario" Multiplicity="1" />
+          <End Role="Reporta" Type="Self.Reporta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteInventario">
+              <PropertyRef Name="IdReporte" />
+            </Principal>
+            <Dependent Role="Reporta">
+              <PropertyRef Name="IdReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzasCastilloBDConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArticuloVenta" EntityType="Self.ArticuloVenta" />
+          <EntitySet Name="Consume" EntityType="Self.Consume" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+          <EntitySet Name="DireccionProveedor" EntityType="Self.DireccionProveedor" />
+          <EntitySet Name="Efectivo" EntityType="Self.Efectivo" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="EstatusPedido" EntityType="Self.EstatusPedido" />
+          <EntitySet Name="EstatusPedidoAProveedor" EntityType="Self.EstatusPedidoAProveedor" />
+          <EntitySet Name="GastoExtra" EntityType="Self.GastoExtra" />
+          <EntitySet Name="Guarda" EntityType="Self.Guarda" />
+          <EntitySet Name="Indica" EntityType="Self.Indica" />
+          <EntitySet Name="Merma" EntityType="Self.Merma" />
+          <EntitySet Name="Mesa" EntityType="Self.Mesa" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="PedidoAProveedor" EntityType="Self.PedidoAProveedor" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <EntitySet Name="Platillo" EntityType="Self.Platillo" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+          <EntitySet Name="Repartidor" EntityType="Self.Repartidor" />
+          <EntitySet Name="Reporta" EntityType="Self.Reporta" />
+          <EntitySet Name="ReporteCaja" EntityType="Self.ReporteCaja" />
+          <EntitySet Name="ReporteInventario" EntityType="Self.ReporteInventario" />
+          <EntitySet Name="Solicita" EntityType="Self.Solicita" />
+          <EntitySet Name="TipoGasto" EntityType="Self.TipoGasto" />
+          <EntitySet Name="TipoPedido" EntityType="Self.TipoPedido" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+          <AssociationSet Name="FK_Platillo_ArticulaVenta1" Association="Self.FK_Platillo_ArticulaVenta1">
+            <End Role="ArticuloVenta" EntitySet="ArticuloVenta" />
+            <End Role="Platillo" EntitySet="Platillo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_ArticulaVenta1" Association="Self.FK_Producto_ArticulaVenta1">
+            <End Role="ArticuloVenta" EntitySet="ArticuloVenta" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platillo_has_Producto_Platillo1" Association="Self.FK_Platillo_has_Producto_Platillo1">
+            <End Role="Platillo" EntitySet="Platillo" />
+            <End Role="Consume" EntitySet="Consume" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platillo_has_Producto_Producto1" Association="Self.FK_Platillo_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Consume" EntitySet="Consume" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Persona1" Association="Self.FK_Direccion_Persona1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedor_DireccionProveedor1" Association="Self.FK_Proveedor_DireccionProveedor1">
+            <End Role="DireccionProveedor" EntitySet="DireccionProveedor" />
+            <End Role="Proveedor" EntitySet="Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Efectivo_has_ReporteCaja_Efectivo1" Association="Self.FK_Efectivo_has_ReporteCaja_Efectivo1">
+            <End Role="Efectivo" EntitySet="Efectivo" />
+            <End Role="Guarda" EntitySet="Guarda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Persona1" Association="Self.FK_Empleado_Persona1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GastoExtra_Empleado1" Association="Self.FK_GastoExtra_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="GastoExtra" EntitySet="GastoExtra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Empleado1" Association="Self.FK_Pedido_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteCaja_Empleado1" Association="Self.FK_ReporteCaja_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ReporteCaja" EntitySet="ReporteCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteInventario_Empleado1" Association="Self.FK_ReporteInventario_Empleado1">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ReporteInventario" EntitySet="ReporteInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_EstatusPedido1" Association="Self.FK_Pedido_EstatusPedido1">
+            <End Role="EstatusPedido" EntitySet="EstatusPedido" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoAProveedor_EstatusPedidoAProveedor1" Association="Self.FK_PedidoAProveedor_EstatusPedidoAProveedor1">
+            <End Role="EstatusPedidoAProveedor" EntitySet="EstatusPedidoAProveedor" />
+            <End Role="PedidoAProveedor" EntitySet="PedidoAProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GastoExtra_TipoGasto1" Association="Self.FK_GastoExtra_TipoGasto1">
+            <End Role="TipoGasto" EntitySet="TipoGasto" />
+            <End Role="GastoExtra" EntitySet="GastoExtra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Efectivo_has_ReporteCaja_ReporteCaja1" Association="Self.FK_Efectivo_has_ReporteCaja_ReporteCaja1">
+            <End Role="ReporteCaja" EntitySet="ReporteCaja" />
+            <End Role="Guarda" EntitySet="Guarda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merma_has_Producto_Merma1" Association="Self.FK_Merma_has_Producto_Merma1">
+            <End Role="Merma" EntitySet="Merma" />
+            <End Role="Indica" EntitySet="Indica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merma_has_Producto_Producto1" Association="Self.FK_Merma_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Indica" EntitySet="Indica" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merma_Pedido1" Association="Self.fk_Merma_Pedido1">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Merma" EntitySet="Merma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Mesa1" Association="Self.FK_Pedido_Mesa1">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Persona1" Association="Self.FK_Pedido_Persona1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Repartidor1" Association="Self.FK_Pedido_Repartidor1">
+            <End Role="Repartidor" EntitySet="Repartidor" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_TipoPedido1" Association="Self.FK_Pedido_TipoPedido1">
+            <End Role="TipoPedido" EntitySet="TipoPedido" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoDeProducto_has_Producto_PedidoDeProducto1" Association="Self.FK_PedidoDeProducto_has_Producto_PedidoDeProducto1">
+            <End Role="PedidoAProveedor" EntitySet="PedidoAProveedor" />
+            <End Role="Solicita" EntitySet="Solicita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoDeProducto_Proveedor1" Association="Self.FK_PedidoDeProducto_Proveedor1">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="PedidoAProveedor" EntitySet="PedidoAProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoUsuario" Association="Self.FK_Persona_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PedidoDeProducto_has_Producto_Producto1" Association="Self.FK_PedidoDeProducto_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Solicita" EntitySet="Solicita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_TipoProducto1" Association="Self.FK_Producto_TipoProducto1">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteInventario_has_Producto_Producto1" Association="Self.FK_ReporteInventario_has_Producto_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Reporta" EntitySet="Reporta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteInventario_has_Producto_ReporteInventario1" Association="Self.FK_ReporteInventario_has_Producto_ReporteInventario1">
+            <End Role="ReporteInventario" EntitySet="ReporteInventario" />
+            <End Role="Reporta" EntitySet="Reporta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PizzasCastilloModelStoreContainer" CdmEntityContainer="PizzasCastilloBDConnection">
+          <EntitySetMapping Name="ArticuloVenta">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.ArticuloVenta">
+              <MappingFragment StoreEntitySet="ArticuloVenta">
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consume">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Consume">
+              <MappingFragment StoreEntitySet="Consume">
+                <ScalarProperty Name="PlatilloCodigoBarra" ColumnName="PlatilloCodigoBarra" />
+                <ScalarProperty Name="ProductoCodigoBarra" ColumnName="ProductoCodigoBarra" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="NumeroInterior" ColumnName="NumeroInterior" />
+                <ScalarProperty Name="Referencias" ColumnName="Referencias" />
+                <ScalarProperty Name="NumeroExterior" ColumnName="NumeroExterior" />
+                <ScalarProperty Name="EntidadFederativa" ColumnName="EntidadFederativa" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DireccionProveedor">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.DireccionProveedor">
+              <MappingFragment StoreEntitySet="DireccionProveedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="EntidadFederativa" ColumnName="EntidadFederativa" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Efectivo">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Efectivo">
+              <MappingFragment StoreEntitySet="Efectivo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="SalarioQuincenal" ColumnName="SalarioQuincenal" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstatusPedido">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.EstatusPedido">
+              <MappingFragment StoreEntitySet="EstatusPedido">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstatusPedidoAProveedor">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.EstatusPedidoAProveedor">
+              <MappingFragment StoreEntitySet="EstatusPedidoAProveedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GastoExtra">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.GastoExtra">
+              <MappingFragment StoreEntitySet="GastoExtra">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdTipoGasto" ColumnName="IdTipoGasto" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guarda">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Guarda">
+              <MappingFragment StoreEntitySet="Guarda">
+                <ScalarProperty Name="IdEfectivo" ColumnName="IdEfectivo" />
+                <ScalarProperty Name="IdReporteCaja" ColumnName="IdReporteCaja" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Indica">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Indica">
+              <MappingFragment StoreEntitySet="Indica">
+                <ScalarProperty Name="IdMerma" ColumnName="IdMerma" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Merma">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Merma">
+              <MappingFragment StoreEntitySet="Merma">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Justificacion" ColumnName="Justificacion" />
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesa">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Mesa">
+              <MappingFragment StoreEntitySet="Mesa">
+                <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdEstatusPedido" ColumnName="IdEstatusPedido" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="IdTipoPedido" ColumnName="IdTipoPedido" />
+                <ScalarProperty Name="IdRepartidor" ColumnName="IdRepartidor" />
+                <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PedidoAProveedor">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.PedidoAProveedor">
+              <MappingFragment StoreEntitySet="PedidoAProveedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdEstatusPedidoAProveedor" ColumnName="IdEstatusPedidoAProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platillo">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Platillo">
+              <MappingFragment StoreEntitySet="Platillo">
+                <ScalarProperty Name="FechaRegisto" ColumnName="FechaRegisto" />
+                <ScalarProperty Name="Receta" ColumnName="Receta" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PrecioCompra" ColumnName="PrecioCompra" />
+                <ScalarProperty Name="Restricciones" ColumnName="Restricciones" />
+                <ScalarProperty Name="IdTipoProducto" ColumnName="IdTipoProducto" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="UnidadDeMedida" ColumnName="UnidadDeMedida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="NombreEncargado" ColumnName="NombreEncargado" />
+                <ScalarProperty Name="ListaDeProductos" ColumnName="ListaDeProductos" />
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repartidor">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Repartidor">
+              <MappingFragment StoreEntitySet="Repartidor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="EmpresaRepartidora" ColumnName="EmpresaRepartidora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporta">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Reporta">
+              <MappingFragment StoreEntitySet="Reporta">
+                <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="CantidadEnInventario" ColumnName="CantidadEnInventario" />
+                <ScalarProperty Name="CantidadReal" ColumnName="CantidadReal" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteCaja">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.ReporteCaja">
+              <MappingFragment StoreEntitySet="ReporteCaja">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BalanceDiario" ColumnName="BalanceDiario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="TotalEntrada" ColumnName="TotalEntrada" />
+                <ScalarProperty Name="TotalSalida" ColumnName="TotalSalida" />
+                <ScalarProperty Name="TotalEfectivoContado" ColumnName="TotalEfectivoContado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="EfectivoDiaSiguiente" ColumnName="EfectivoDiaSiguiente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteInventario">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.ReporteInventario">
+              <MappingFragment StoreEntitySet="ReporteInventario">
+                <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solicita">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.Solicita">
+              <MappingFragment StoreEntitySet="Solicita">
+                <ScalarProperty Name="IdPedidoDeProducto" ColumnName="IdPedidoDeProducto" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoGasto">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoGasto">
+              <MappingFragment StoreEntitySet="TipoGasto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPedido">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoPedido">
+              <MappingFragment StoreEntitySet="TipoPedido">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoProducto">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoProducto">
+              <MappingFragment StoreEntitySet="TipoProducto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuario">
+            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -43,5 +43,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entidades\" />
+    <Folder Include="Enumeraciones\" />
+    <Folder Include="Excepciones\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

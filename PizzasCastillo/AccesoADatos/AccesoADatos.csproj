@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +50,138 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticuloVenta.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consume.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Direccion.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DireccionProveedor.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Efectivo.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empleado.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstatusPedido.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstatusPedidoAProveedor.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GastoExtra.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Guarda.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Indica.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merma.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mesa.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PedidoAProveedor.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persona.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PizzasCastillo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PizzasCastillo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PizzasCastillo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PizzasCastillo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Platillo.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Producto.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repartidor.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reporta.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteCaja.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteInventario.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Solicita.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoGasto.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoPedido.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoProducto.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoUsuario.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="PizzasCastillo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PizzasCastillo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="PizzasCastillo.edmx.diagram">
+      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PizzasCastillo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PizzasCastillo.Context.cs</LastGenOutput>
+      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+    </Content>
+    <Content Include="PizzasCastillo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+      <LastGenOutput>PizzasCastillo.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ControladoresDeDatos\" />
+    <Folder Include="Excepciones\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
