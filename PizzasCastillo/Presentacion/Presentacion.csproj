@@ -117,6 +117,7 @@
   <ItemGroup>
     <Folder Include="Paginas\Cocina\" />
     <Folder Include="Paginas\Finanza\" />
+    <Folder Include="Paginas\Pedido\" />
     <Folder Include="Paginas\Producto\" />
     <Folder Include="Paginas\Usuario\" />
   </ItemGroup>
