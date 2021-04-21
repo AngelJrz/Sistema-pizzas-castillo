@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Presentacion"
-             StartupUri="Ventanas/VentanaPrincipal.xaml">
+             StartupUri="Ventanas/Login.xaml">
     <Application.Resources>
 
 
@@ -87,6 +87,40 @@
                         <Setter Property="HorizontalAlignment" Value="Center"/>
                         <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
                     </Style>
+
+                    <Style x:Key="TituloStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
+                        <Setter Property="Foreground" Value="{StaticResource Gris}"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+
+                    <Style x:Key="TituloCamposStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Foreground" Value="{StaticResource Gris}"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+
+                    <ControlTemplate x:Key="InputControlTemplate" TargetType="{x:Type TextBoxBase}">
+                        <Border Background="White" 
+                            x:Name="Bd"
+                            BorderThickness="1" BorderBrush="#7E7E7E" 
+                            CornerRadius="10" Height="30">
+
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="Center"
+                                          FontFamily="Segoe UI" FontSize="20"/>
+                        </Border>
+                    </ControlTemplate>
+
+                    <ControlTemplate x:Key="PasswordControlTemplate" TargetType="PasswordBox">
+                        <Border Background="White" 
+                            x:Name="Bd"
+                            BorderThickness="1" BorderBrush="#7E7E7E" 
+                            CornerRadius="10" Height="30">
+
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="Center"
+                                          FontFamily="Segoe UI" FontSize="20"/>
+                        </Border>
+                    </ControlTemplate>
 
                 </ResourceDictionary>
                 
