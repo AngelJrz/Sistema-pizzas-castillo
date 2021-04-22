@@ -24,5 +24,15 @@ namespace Presentacion.Paginas.Finanza
         {
             InitializeComponent();
         }
+
+        private void ClickRegistrar(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClickCancelar(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -24,5 +24,15 @@ namespace Presentacion.Paginas.Finanza
         {
             InitializeComponent();
         }
+
+        private void ClickCancelar(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClickGuardarCorte(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

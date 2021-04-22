@@ -9,6 +9,31 @@
       Title="TiposDeGasto">
 
     <Grid>
-        
+        <TextBlock  Style="{StaticResource TituloStyle}" HorizontalAlignment="Left"  Margin="288,35,0,0" TextWrapping="Wrap" Text="Tipos de salidas" VerticalAlignment="Top" Height="37" Width="230" FontSize="30" />
+
+        <TextBlock Style="{StaticResource TituloCamposStyle}"  Margin="38,90,600,322.6" TextWrapping="Wrap" Text="Registrar tipo" Height="37" FontSize="20" />
+        <TextBlock Style="{StaticResource TituloCamposStyle}"  Margin="38,127,486,285.6" TextWrapping="Wrap" Text="Nombre de nuevo gasto" Height="37" FontSize="15" />
+        <TextBox x:Name="nombreNuevoTipo" Template="{StaticResource InputControlTemplate}" Margin="38,164,158,255.6"/>
+        <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar" Margin="647,164,41,255.6" Height="Auto" Width="Auto" Click="RegistrarNuevoTipo"/>
+
+        <Button Style="{StaticResource BotonSecundarioStyle}" Content="Salir" Margin="353,386,335,20.6" Height="Auto" Width="Auto" Click="ClickSalir"/>
+
+        <TextBlock Style="{StaticResource TituloCamposStyle}"  Margin="38,213,600,199.6" TextWrapping="Wrap" Text="Lista de tipos" Height="37" FontSize="20" />
+
+        <DataGrid Name="tablaDeTipos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" Margin="38,255,41,68.6" FontFamily="Se">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn MinWidth="500" IsReadOnly="True" Header="Tipo de gasto" Binding="{Binding Name}"/>
+
+                <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Modificar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickModificar"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

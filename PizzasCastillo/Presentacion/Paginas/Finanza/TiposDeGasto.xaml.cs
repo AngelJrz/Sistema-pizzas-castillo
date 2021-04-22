@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,5 +25,33 @@ namespace Presentacion.Paginas.Finanza
         {
             InitializeComponent();
         }
+
+        private void RegistrarNuevoTipo(object sender, RoutedEventArgs e)
+        {
+            if (!nombreNuevoTipo.Text.Trim().Equals(""))
+            {
+                MessageBoxResult opscionSeleccionada = MessageBox.Show("Estas seguro de registrar el nuevo tipo?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (opscionSeleccionada == MessageBoxResult.Yes)
+                {
+                    MessageBox.Show("se registro nuevo tipo", "Exito");
+                }
+            }
+            else
+            {
+                MessageBox.Show("El campo esta incompleto", "Error");
+            }
+        }
+
+        private void ClickSalir(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClickModificar(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Diste un click", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
     }
 }

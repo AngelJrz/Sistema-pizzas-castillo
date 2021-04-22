@@ -7,8 +7,26 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RegistrarGastoExtra">
-
     <Grid>
-        
+        <TextBlock  Style="{StaticResource TituloStyle}" HorizontalAlignment="Left"  Margin="288,35,0,0" TextWrapping="Wrap" Text="Registrar Gasto" VerticalAlignment="Top" Height="37" Width="230" FontSize="30" />
+
+        <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right" Margin="178,90,460,322.6" TextWrapping="Wrap" Text="Autorizado por:" Height="37" FontSize="20" />
+        <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right" Margin="178,132,460,280.6" TextWrapping="Wrap" Text="Tipo de gasto:" Height="37" Width="162" FontSize="20" />
+        <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right" Margin="193,174,460,238.6" TextWrapping="Wrap" Text="Concepto:" Height="37" Width="147" FontSize="20" />
+        <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right" Margin="193,279,460,133.6" TextWrapping="Wrap" Text="Total:" Height="37" Width="147" FontSize="20" />
+
+        <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar" Margin="288,377,400,29.6" Height="Auto" Width="Auto" Click="ClickRegistrar"/>
+        <Button Style="{StaticResource BotonSecundarioStyle}" Content="Cancelar" Margin="427,377,261,29.6" Height="Auto" Width="Auto" Click="ClickCancelar"/>
+
+        <TextBox x:Name="autorizadoPor" Template="{StaticResource InputControlTemplate}" Margin="361,90,241,322.6"/>
+
+        <ComboBox Name="tipoDeGasto" Margin="361,137,241,287.6">
+            <ComboBoxItem IsSelected="True">ComboBox Item #1</ComboBoxItem>
+            <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
+            <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+        </ComboBox>
+
+        <TextBox x:Name="conceptoDeGasto" Template="{StaticResource InputControlTemplate}" Margin="361,177,241,242.6"/>
+        <TextBox x:Name="total" Template="{StaticResource InputControlTemplate}" Margin="361,279,241,133.6"/>
     </Grid>
 </Page>
