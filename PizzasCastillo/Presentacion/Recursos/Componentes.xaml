@@ -148,4 +148,10 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ContenidoDialogoMensaje" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource Gris}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>
