@@ -70,6 +70,15 @@
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
+      <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Usuario\RegistroDeUsuario.xaml.cs">
+      <DependentUpon>RegistroDeUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
     </Compile>
@@ -109,6 +118,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Usuario\ListaDeUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\RegistroDeUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recursos\Colores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recursos\Componentes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\VentanaPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,7 +148,6 @@
     <Folder Include="Paginas\Finanza\" />
     <Folder Include="Paginas\Pedido\" />
     <Folder Include="Paginas\Producto\" />
-    <Folder Include="Paginas\Usuario\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

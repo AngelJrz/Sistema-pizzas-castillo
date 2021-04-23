@@ -1,0 +1,151 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:local="clr-namespace:Presentacion.Recursos">
+    <Style x:Key="BotonPrincipalStyle" TargetType="Button">
+        <Setter Property="Width" Value="130"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" TextBlock.Foreground="{StaticResource Gris}" 
+                                            TextBlock.FontWeight="Bold" TextBlock.FontSize="16" Background="{StaticResource BotonPrincipal}" CornerRadius="10" >
+                        <ContentPresenter x:Name="contentPresenter" 
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                              Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="Center"
+                                              />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="#D1FAFF"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BotonSecundarioStyle" TargetType="Button">
+        <Setter Property="Width" Value="130"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" TextBlock.Foreground="{StaticResource Blanco}" 
+                                            TextBlock.FontWeight="Bold" TextBlock.FontSize="16" Background="{StaticResource BotonSecundario}" CornerRadius="10" >
+                        <ContentPresenter x:Name="contentPresenter" 
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                              Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="Center"
+                                              />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource BotonSecundarioHover}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NombreUsuarioStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource Blanco}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+    </Style>
+
+    <Style x:Key="TipoUsuarioStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignSubtitle1TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource Blanco}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+    </Style>
+
+    <Style x:Key="TituloStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource Gris}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="TituloCamposStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource Gris}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <ControlTemplate x:Key="InputControlTemplate" TargetType="{x:Type TextBoxBase}">
+        <Border Background="White" 
+                            x:Name="Bd"
+                            BorderThickness="1" BorderBrush="#7E7E7E" 
+                            CornerRadius="10" Height="30">
+
+            <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="Center"
+                                          FontFamily="Segoe UI" FontSize="20"/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="PasswordControlTemplate" TargetType="PasswordBox">
+        <Border Background="White" 
+                            x:Name="Bd"
+                            BorderThickness="1" BorderBrush="#7E7E7E" 
+                            CornerRadius="10" Height="30">
+
+            <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="Center"
+                                          FontFamily="Segoe UI" FontSize="20"/>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="TituloPaginasStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline4TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource Gris}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="ComboboxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFilledComboBox}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="TextBlock.FontSize" Value="14"/>
+        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="materialDesign:HintAssist.IsFloating" Value="False"/>
+    </Style>
+
+    <Style x:Key="DataGridDefaultStyle" TargetType="DataGrid">
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+    </Style>
+
+    <Style x:Key="IconoBoton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" Background="Transparent" CornerRadius="10" >
+                        <ContentPresenter x:Name="contentPresenter" 
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                              Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="Center"
+                                              />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="Transparent"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptured" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource GrisClaro}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
