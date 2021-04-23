@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Presentacion.Recursos">
+    
+    <Brush x:Key="AzulCastillo">#5B6AF5</Brush>
+    <Brush x:Key="ColorSecundario">#63B1FF</Brush>
+    <Brush x:Key="AzulCastilloLight">#F3F8FF</Brush>
+    <Brush x:Key="Gris">#7E7E7E</Brush>
+    <Brush x:Key="BotonPrincipal">#A4D1FF</Brush>
+    <Brush x:Key="BotonSecundario">#6860DE</Brush>
+    <Brush x:Key="BotonSecundarioHover">#776FEE</Brush>
+    <Brush x:Key="Alert">#FF0000</Brush>
+    <Brush x:Key="Blanco">#FFF</Brush>
+    <Brush x:Key="GrisClaro">#E1E1E1</Brush>
+</ResourceDictionary>
