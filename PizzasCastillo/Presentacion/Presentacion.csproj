@@ -73,6 +73,9 @@
     <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
       <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Usuario\RegistroCliente.xaml.cs">
+      <DependentUpon>RegistroCliente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Usuario\RegistroDeUsuario.xaml.cs">
       <DependentUpon>RegistroDeUsuario.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Usuario\ListaDeUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\RegistroCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
