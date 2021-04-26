@@ -70,6 +70,21 @@
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Producto\ActualizaciónDeRegistro.xaml.cs">
+      <DependentUpon>ActualizaciónDeRegistro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Producto\DetallesDeProducto.xaml.cs">
+      <DependentUpon>DetallesDeProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Producto\GeneraciónDeReporteInventario.xaml.cs">
+      <DependentUpon>GeneraciónDeReporteInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Producto\Inicio-Gerente-Productos.xaml.cs">
+      <DependentUpon>Inicio-Gerente-Productos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Producto\RegistroDeProducto.xaml.cs">
+      <DependentUpon>RegistroDeProducto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
       <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
     </Compile>
@@ -118,6 +133,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Producto\ActualizaciónDeRegistro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Producto\DetallesDeProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Producto\GeneraciónDeReporteInventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Producto\Inicio-Gerente-Productos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Producto\RegistroDeProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Usuario\ListaDeUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,7 +182,6 @@
     <Folder Include="Paginas\Cocina\" />
     <Folder Include="Paginas\Finanza\" />
     <Folder Include="Paginas\Pedido\" />
-    <Folder Include="Paginas\Producto\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

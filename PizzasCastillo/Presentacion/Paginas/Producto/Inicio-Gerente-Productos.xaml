@@ -1,18 +1,17 @@
-﻿<Page x:Class="Presentacion.Paginas.Usuario.ListaDeUsuarios"
+﻿<Page x:Class="Presentacion.Paginas.Producto.Inicio_Gerente_Productos"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Presentacion.Paginas.Usuario"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Presentacion.Paginas.Producto"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
-      Height="Auto" Width="Auto"
-      Title="ListaDeUsuarios">
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Inicio_Gerente_Productos">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
         <StackPanel>
-            <TextBlock Text="Realizar búsqueda" Style="{StaticResource TituloPaginasStyle}"
+            <TextBlock Text="Tabla de Productos en Inventario" TextAlignment="Center" Style="{StaticResource TituloPaginasStyle}"
                        Margin="80,30,0,0"/>
 
             <Grid Width="900" Margin="0,30,0,0">
@@ -27,9 +26,9 @@
                                HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <ComboBox x:Name="TipoBusqueda" Style="{StaticResource ComboboxStyle}"
                                      HorizontalAlignment="Center" Width="180">
-                        <ComboBoxItem>No. Empleado</ComboBoxItem>
+                        <ComboBoxItem>Código de Barra</ComboBoxItem>
                         <ComboBoxItem IsSelected="True">Nombre</ComboBoxItem>
-                        <ComboBoxItem>Teléfono</ComboBoxItem>
+                        <ComboBoxItem>Nombre</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
 
@@ -47,10 +46,7 @@
                 </StackPanel>
             </Grid>
 
-            <Button Content="Registrar usuario" HorizontalAlignment="Center" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" Margin="0,30,0,0" Click="IrARegistrarUsuario"/>
-
-            <TextBlock Text="Lista de usuarios" Style="{StaticResource TituloStyle}"
+            <TextBlock Text="Lista de Productos" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
 
             <DataGrid x:Name="ListaUsuarios" HorizontalAlignment="Center" Width="1000"
@@ -58,7 +54,7 @@
                       Margin="0,20,0,20" CanUserSortColumns="True" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="No. Empleado" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Código de Barra" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -76,7 +72,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding NumeroEmpledado}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding CodigoBarra}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -103,7 +99,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Teléfono" Width="150" MinWidth="150" MaxWidth="150" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Cantidad" Width="150" MinWidth="150" MaxWidth="150" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -120,12 +116,12 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Telefono}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Cantidad}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Tipo usuario" Width="150" MinWidth="150" MaxWidth="150" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Unidad de Medida" Width="150" MinWidth="150" MaxWidth="150" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -142,7 +138,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding TipoUsuario}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding UnidadDeMedida}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -207,6 +203,11 @@
                                         <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
+
+                                    <Button Style="{StaticResource IconoBoton}" Click="VerificarExistencia" Grid.Column="2">
+                                        <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+                                    </Button>
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -214,9 +215,14 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Content="Administrar tipos de usuario" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
+                <Button Content="Registrar Producto Nuevo" Style="{StaticResource BotonSecundarioStyle}"
+                    Width="250" HorizontalAlignment="Center" Margin="0,0,40,0">
+                </Button>
+                <Button Content="Generar Reporte de Inventario" Style="{StaticResource BotonSecundarioStyle}"
+                    Width="250" HorizontalAlignment="Center" Margin="40,0,0,0">
+                </Button>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>
-
