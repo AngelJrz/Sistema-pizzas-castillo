@@ -17,8 +17,9 @@ namespace AccesoADatos
         public string CodigoBarra { get; set; }
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
-        public string Foto { get; set; }
+        public byte[] Foto { get; set; }
         public int Estatus { get; set; }
+        public bool EsPlatillo { get; set; }
     
         public virtual Platillo Platillo { get; set; }
         public virtual Producto Producto { get; set; }
