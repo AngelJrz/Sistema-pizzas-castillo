@@ -1,0 +1,45 @@
+﻿<Page x:Class="Presentacion.Paginas.Cocina.ListaPedidoMermas"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Presentacion.Paginas.Cocina"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ListaPedidoMermas">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
+        <StackPanel>
+
+            <TextBlock Text="Lista De Pedidos" Style="{StaticResource TituloPaginasStyle}" Margin="80,30,0,0"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="100,10,100,0" CornerRadius="20">
+                <StackPanel  Orientation="Horizontal" Name="Pedido" >
+                    <StackPanel >
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}" />
+                            <TextBlock x:Name="NombreText" Style="{StaticResource TituloCamposStyle}" Width="150" HorizontalAlignment="Left" Height="57" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}" />
+                            <TextBlock x:Name="CantidadText" Style="{StaticResource TituloCamposStyle}" Width="150" HorizontalAlignment="Left" Height="57" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Precio:" Style="{StaticResource TituloCamposStyle}" />
+                            <TextBlock x:Name="PrecioText" Style="{StaticResource TituloCamposStyle}" Width="150" HorizontalAlignment="Left" Height="57" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Width="250">
+                        <Image></Image>
+                    </StackPanel>
+                    <StackPanel>
+                        <Button  Width="130" Style="{StaticResource BotonSecundarioStyle}" Content="Generar Merma" Height="40"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

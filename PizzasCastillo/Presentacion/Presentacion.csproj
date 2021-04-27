@@ -67,11 +67,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Paginas\Cocina\Lista Pedidos.xaml.cs">
+      <DependentUpon>Lista Pedidos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\ListaPedidoMermas.xaml.cs">
+      <DependentUpon>ListaPedidoMermas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\RegistroPlatillo.xaml.cs">
+      <DependentUpon>RegistroPlatillo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
-      <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Usuario\RegistroDeUsuario.xaml.cs">
       <DependentUpon>RegistroDeUsuario.xaml</DependentUpon>
@@ -114,11 +120,19 @@
     <Resource Include="Imagenes\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Paginas\Inicio.xaml">
+    <Page Include="Paginas\Cocina\Lista Pedidos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\Usuario\ListaDeUsuarios.xaml">
+    <Page Include="Paginas\Cocina\ListaPedidoMermas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\RegistroPlatillo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Inicio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,7 +158,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Paginas\Cocina\" />
     <Folder Include="Paginas\Finanza\" />
     <Folder Include="Paginas\Pedido\" />
     <Folder Include="Paginas\Producto\" />
