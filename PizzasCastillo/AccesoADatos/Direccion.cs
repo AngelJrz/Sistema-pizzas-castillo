@@ -23,6 +23,7 @@ namespace AccesoADatos
         public string NumeroExterior { get; set; }
         public string EntidadFederativa { get; set; }
         public int IdPersona { get; set; }
+        public string Colonia { get; set; }
     
         public virtual Persona Persona { get; set; }
     }
