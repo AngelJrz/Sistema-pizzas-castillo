@@ -4,24 +4,25 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PizzasCastilloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PizzasCastilloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ArticuloVenta">
           <Key>
             <PropertyRef Name="CodigoBarra" />
           </Key>
-          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="CodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Foto" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
+          <Property Name="EsPlatillo" Type="bit" Nullable="false" />
+          <Property Name="Foto" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Consume">
           <Key>
             <PropertyRef Name="PlatilloCodigoBarra" />
             <PropertyRef Name="ProductoCodigoBarra" />
           </Key>
-          <Property Name="PlatilloCodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ProductoCodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="PlatilloCodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductoCodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Direccion">
@@ -29,13 +30,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Calle" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Ciudad" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="CodigoPostal" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="NumeroInterior" Type="nvarchar" MaxLength="5" />
-          <Property Name="Referencias" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="NumeroExterior" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="EntidadFederativa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NumeroInterior" Type="varchar" MaxLength="5" />
+          <Property Name="Referencias" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumeroExterior" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IdPersona" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DireccionProveedor">
@@ -43,11 +45,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Calle" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Ciudad" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="CodigoPostal" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="EntidadFederativa" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Numero" Type="nvarchar" MaxLength="5" />
+          <Property Name="Calle" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="Efectivo">
           <Key>
@@ -55,15 +57,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Tipo" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="NumeroEmpleado" />
           </Key>
-          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Contrasenia" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Contrasenia" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="SalarioQuincenal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="IdPersona" Type="int" Nullable="false" />
@@ -73,7 +75,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EstatusPedidoAProveedor">
@@ -81,7 +83,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GastoExtra">
@@ -89,10 +91,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Comentario" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comentario" Type="varchar" MaxLength="100" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="IdTipoGasto" Type="int" Nullable="false" />
-          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Guarda">
           <Key>
@@ -109,7 +111,7 @@
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="IdMerma" Type="int" Nullable="false" />
-          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Merma">
@@ -118,7 +120,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
-          <Property Name="Justificacion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Justificacion" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="IdPedido" Type="int" />
         </EntityType>
         <EntityType Name="Mesa">
@@ -137,7 +139,7 @@
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="IdPersona" Type="int" Nullable="false" />
           <Property Name="IdEstatusPedido" Type="int" Nullable="false" />
-          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="IdTipoPedido" Type="int" Nullable="false" />
           <Property Name="IdRepartidor" Type="int" />
           <Property Name="IdMesa" Type="int" />
@@ -158,10 +160,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombres" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Apellidos" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Telefono" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="Estatus" Type="int" />
           <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
         </EntityType>
@@ -171,31 +173,31 @@
           </Key>
           <Property Name="FechaRegisto" Type="datetime" Nullable="false" />
           <Property Name="Receta" Type="text" Nullable="false" />
-          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="180" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="180" Nullable="false" />
           <Property Name="PrecioCompra" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Restricciones" Type="nvarchar" MaxLength="180" />
+          <Property Name="Restricciones" Type="varchar" MaxLength="180" />
           <Property Name="IdTipoProducto" Type="int" Nullable="false" />
-          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="UnidadDeMedida" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="UnidadDeMedida" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Dni" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
-          <Property Name="Telefono" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="NombreEncargado" Type="nvarchar" MaxLength="45" />
-          <Property Name="ListaDeProductos" Type="nvarchar" MaxLength="100" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dni" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NombreEncargado" Type="varchar" MaxLength="45" />
+          <Property Name="ListaDeProductos" Type="varchar" MaxLength="100" />
           <Property Name="IdDireccion" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Repartidor">
@@ -203,10 +205,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="Telefono" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
-          <Property Name="EmpresaRepartidora" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="EmpresaRepartidora" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="Reporta">
           <Key>
@@ -214,10 +216,10 @@
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="IdReporte" Type="int" Nullable="false" />
-          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="CantidadEnInventario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="CantidadReal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Comentario" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comentario" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ReporteCaja">
           <Key>
@@ -229,8 +231,8 @@
           <Property Name="TotalEntrada" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TotalSalida" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TotalEfectivoContado" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Observaciones" Type="nvarchar" MaxLength="255" />
-          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="255" />
+          <Property Name="NumeroEmpleado" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="EfectivoDiaSiguiente" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="ReporteInventario">
@@ -239,8 +241,8 @@
           </Key>
           <Property Name="IdReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="NumeroEmpleado" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Solicita">
           <Key>
@@ -248,7 +250,7 @@
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="IdPedidoDeProducto" Type="int" Nullable="false" />
-          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CodigoBarra" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
@@ -257,7 +259,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoPedido">
@@ -265,7 +267,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoProducto">
@@ -273,7 +275,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoUsuario">
@@ -281,7 +283,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Direccion_Persona1">
@@ -794,8 +796,7 @@
             <End Role="Reporta" EntitySet="Reporta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PizzasCastilloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -803,21 +804,22 @@
           <Key>
             <PropertyRef Name="CodigoBarra" />
           </Key>
-          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Foto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Platillo" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Producto" />
+          <Property Name="EsPlatillo" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Consume">
           <Key>
             <PropertyRef Name="PlatilloCodigoBarra" />
             <PropertyRef Name="ProductoCodigoBarra" />
           </Key>
-          <Property Name="PlatilloCodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductoCodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlatilloCodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductoCodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo_has_Producto_Platillo1" FromRole="Consume" ToRole="Platillo" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Platillo_has_Producto_Producto1" FromRole="Consume" ToRole="Producto" />
@@ -827,26 +829,27 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Ciudad" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NumeroInterior" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Referencias" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NumeroExterior" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EntidadFederativa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroInterior" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Referencias" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroExterior" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Direccion_Persona1" FromRole="Direccion" ToRole="Persona" />
+          <Property Name="Colonia" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DireccionProveedor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Ciudad" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EntidadFederativa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EntidadFederativa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Proveedor" Relationship="Self.FK_Proveedor_DireccionProveedor1" FromRole="DireccionProveedor" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Efectivo">
@@ -855,16 +858,16 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Tipo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Guarda" Relationship="Self.FK_Efectivo_has_ReporteCaja_Efectivo1" FromRole="Efectivo" ToRole="Guarda" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="NumeroEmpleado" />
           </Key>
-          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Contrasenia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasenia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SalarioQuincenal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
@@ -879,7 +882,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_EstatusPedido1" FromRole="EstatusPedido" ToRole="Pedido" />
         </EntityType>
@@ -888,7 +891,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoAProveedor_EstatusPedidoAProveedor1" FromRole="EstatusPedidoAProveedor" ToRole="PedidoAProveedor" />
         </EntityType>
@@ -897,10 +900,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="IdTipoGasto" Type="Int32" Nullable="false" />
-          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_GastoExtra_Empleado1" FromRole="GastoExtra" ToRole="Empleado" />
           <NavigationProperty Name="TipoGasto" Relationship="Self.FK_GastoExtra_TipoGasto1" FromRole="GastoExtra" ToRole="TipoGasto" />
         </EntityType>
@@ -921,7 +924,7 @@
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="IdMerma" Type="Int32" Nullable="false" />
-          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="Merma" Relationship="Self.FK_Merma_has_Producto_Merma1" FromRole="Indica" ToRole="Merma" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Merma_has_Producto_Producto1" FromRole="Indica" ToRole="Producto" />
@@ -932,7 +935,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Justificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Justificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdPedido" Type="Int32" />
           <NavigationProperty Name="Indica" Relationship="Self.FK_Merma_has_Producto_Merma1" FromRole="Merma" ToRole="Indica" />
           <NavigationProperty Name="Pedido" Relationship="Self.fk_Merma_Pedido1" FromRole="Merma" ToRole="Pedido" />
@@ -954,7 +957,7 @@
           <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
           <Property Name="IdEstatusPedido" Type="Int32" Nullable="false" />
-          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdTipoPedido" Type="Int32" Nullable="false" />
           <Property Name="IdRepartidor" Type="Int32" />
           <Property Name="IdMesa" Type="Int32" />
@@ -985,10 +988,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombres" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Apellidos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" />
           <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Persona1" FromRole="Persona" ToRole="Direccion" />
@@ -1002,7 +1005,7 @@
           </Key>
           <Property Name="FechaRegisto" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Receta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ArticuloVenta" Relationship="Self.FK_Platillo_ArticulaVenta1" FromRole="Platillo" ToRole="ArticuloVenta" />
           <NavigationProperty Name="Consume" Relationship="Self.FK_Platillo_has_Producto_Platillo1" FromRole="Platillo" ToRole="Consume" />
         </EntityType>
@@ -1011,12 +1014,12 @@
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="180" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PrecioCompra" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Restricciones" Type="String" MaxLength="180" FixedLength="false" Unicode="true" />
+          <Property Name="Restricciones" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
           <Property Name="IdTipoProducto" Type="Int32" Nullable="false" />
-          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UnidadDeMedida" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UnidadDeMedida" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ArticuloVenta" Relationship="Self.FK_Producto_ArticulaVenta1" FromRole="Producto" ToRole="ArticuloVenta" />
           <NavigationProperty Name="Consume" Relationship="Self.FK_Platillo_has_Producto_Producto1" FromRole="Producto" ToRole="Consume" />
           <NavigationProperty Name="Indica" Relationship="Self.FK_Merma_has_Producto_Producto1" FromRole="Producto" ToRole="Indica" />
@@ -1029,12 +1032,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Dni" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NombreEncargado" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="ListaDeProductos" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dni" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreEncargado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ListaDeProductos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IdDireccion" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DireccionProveedor" Relationship="Self.FK_Proveedor_DireccionProveedor1" FromRole="Proveedor" ToRole="DireccionProveedor" />
           <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoDeProducto_Proveedor1" FromRole="Proveedor" ToRole="PedidoAProveedor" />
@@ -1044,10 +1047,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
-          <Property Name="EmpresaRepartidora" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmpresaRepartidora" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Repartidor1" FromRole="Repartidor" ToRole="Pedido" />
         </EntityType>
         <EntityType Name="Reporta">
@@ -1056,10 +1059,10 @@
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="IdReporte" Type="Int32" Nullable="false" />
-          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CantidadEnInventario" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="CantidadReal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_ReporteInventario_has_Producto_Producto1" FromRole="Reporta" ToRole="Producto" />
           <NavigationProperty Name="ReporteInventario" Relationship="Self.FK_ReporteInventario_has_Producto_ReporteInventario1" FromRole="Reporta" ToRole="ReporteInventario" />
         </EntityType>
@@ -1073,8 +1076,8 @@
           <Property Name="TotalEntrada" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TotalSalida" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TotalEfectivoContado" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EfectivoDiaSiguiente" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_ReporteCaja_Empleado1" FromRole="ReporteCaja" ToRole="Empleado" />
           <NavigationProperty Name="Guarda" Relationship="Self.FK_Efectivo_has_ReporteCaja_ReporteCaja1" FromRole="ReporteCaja" ToRole="Guarda" />
@@ -1085,8 +1088,8 @@
           </Key>
           <Property Name="IdReporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_ReporteInventario_Empleado1" FromRole="ReporteInventario" ToRole="Empleado" />
           <NavigationProperty Name="Reporta" Relationship="Self.FK_ReporteInventario_has_Producto_ReporteInventario1" FromRole="ReporteInventario" ToRole="Reporta" />
         </EntityType>
@@ -1096,7 +1099,7 @@
             <PropertyRef Name="CodigoBarra" />
           </Key>
           <Property Name="IdPedidoDeProducto" Type="Int32" Nullable="false" />
-          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoDeProducto_has_Producto_PedidoDeProducto1" FromRole="Solicita" ToRole="PedidoAProveedor" />
@@ -1107,7 +1110,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GastoExtra" Relationship="Self.FK_GastoExtra_TipoGasto1" FromRole="TipoGasto" ToRole="GastoExtra" />
         </EntityType>
@@ -1116,7 +1119,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_TipoPedido1" FromRole="TipoPedido" ToRole="Pedido" />
         </EntityType>
@@ -1125,7 +1128,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_TipoProducto1" FromRole="TipoProducto" ToRole="Producto" />
         </EntityType>
@@ -1134,7 +1137,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_TipoUsuario" FromRole="TipoUsuario" ToRole="Persona" />
         </EntityType>
@@ -1657,6 +1660,7 @@
           <EntitySetMapping Name="ArticuloVenta">
             <EntityTypeMapping TypeName="PizzasCastilloModel.ArticuloVenta">
               <MappingFragment StoreEntitySet="ArticuloVenta">
+                <ScalarProperty Name="EsPlatillo" ColumnName="EsPlatillo" />
                 <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
@@ -1677,6 +1681,7 @@
           <EntitySetMapping Name="Direccion">
             <EntityTypeMapping TypeName="PizzasCastilloModel.Direccion">
               <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />

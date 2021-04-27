@@ -82,23 +82,34 @@
         <Border Background="White" 
                             x:Name="Bd"
                             BorderThickness="1" BorderBrush="#7E7E7E" 
-                            CornerRadius="10" Height="30">
+                            CornerRadius="10" Height="{TemplateBinding Height}">
 
             <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="Center"
                                           FontFamily="Segoe UI" FontSize="20"/>
         </Border>
     </ControlTemplate>
+
+    <Style x:Key="InputDefaultStyle" TargetType="TextBox">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Template" Value="{StaticResource InputControlTemplate}"/>
+    </Style>
 
     <ControlTemplate x:Key="PasswordControlTemplate" TargetType="PasswordBox">
         <Border Background="White" 
                             x:Name="Bd"
                             BorderThickness="1" BorderBrush="#7E7E7E" 
-                            CornerRadius="10" Height="30">
+                            CornerRadius="10" Height="{TemplateBinding Height}">
 
             <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="Center"
                                           FontFamily="Segoe UI" FontSize="20"/>
         </Border>
     </ControlTemplate>
+
+    <Style x:Name="PasswordDefaultStyle" TargetType="PasswordBox">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Template" Value="{StaticResource PasswordControlTemplate}"/>
+    </Style>
 
     <Style x:Key="TituloPaginasStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline4TextBlock}">
         <Setter Property="Foreground" Value="{StaticResource Gris}"/>
@@ -147,5 +158,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="ContenidoDialogoMensaje" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource Gris}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextAlignment" Value="Center"/>
     </Style>
 </ResourceDictionary>
