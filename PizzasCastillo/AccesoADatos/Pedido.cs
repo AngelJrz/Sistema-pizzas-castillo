@@ -18,6 +18,7 @@ namespace AccesoADatos
         public Pedido()
         {
             this.Merma = new ObservableCollection<Merma>();
+            this.Contiene = new ObservableCollection<Contiene>();
         }
     
         public int Id { get; set; }
@@ -38,5 +39,7 @@ namespace AccesoADatos
         public virtual Persona Persona { get; set; }
         public virtual Repartidor Repartidor { get; set; }
         public virtual TipoPedido TipoPedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ObservableCollection<Contiene> Contiene { get; set; }
     }
 }
