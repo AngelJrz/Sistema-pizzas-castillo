@@ -206,7 +206,8 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-
+            <Button Content="Regresar" Style="{StaticResource BotonSecundarioStyle}"
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0"/>
         </StackPanel>
        
 
