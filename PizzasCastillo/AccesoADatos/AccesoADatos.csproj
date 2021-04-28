@@ -56,6 +56,9 @@
     <Compile Include="Consume.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Contiene.cs">
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Direccion.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
