@@ -5,10 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Presentacion.Paginas.Finanza"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800" Background="White"
       Title="ListaPedidosPendientes">
 
     <Grid>
+        <TextBlock  Style="{StaticResource TituloStyle}" HorizontalAlignment="Left"  Margin="260,34,0,0" TextWrapping="Wrap" Text="Pedidos pendientes" VerticalAlignment="Top" Height="37" Width="282" FontSize="30" />
         
+        <DataGrid Name="tablaDePedidos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" Margin="124,122,118,118.6" FontFamily="Se">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn MinWidth="200" IsReadOnly="True" Header="Proveedor" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Estatus" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Total" Binding="{Binding Name}"/>
+
+                <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Confirmar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickConfirmar"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Style="{StaticResource BotonSecundarioStyle}" Content="Regresar" Margin="353,386,335,20.6" Height="Auto" Width="Auto" Click="ClickSalir"/>
     </Grid>
 </Page>

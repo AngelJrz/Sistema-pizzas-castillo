@@ -16,16 +16,16 @@ using System.Windows.Shapes;
 namespace Presentacion.Paginas.Finanza
 {
     /// <summary>
-    /// Lógica de interacción para CrearPedido.xaml
+    /// Lógica de interacción para ConfirmarEntrega.xaml
     /// </summary>
-    public partial class CrearPedido : Page
+    public partial class ConfirmarEntrega : Page
     {
-        public CrearPedido()
+        public ConfirmarEntrega()
         {
             InitializeComponent();
         }
 
-        private void ClickConfirmar(object sender, RoutedEventArgs e)
+        private void ClickRegistrar(object sender, RoutedEventArgs e)
         {
 
         }

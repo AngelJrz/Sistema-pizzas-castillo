@@ -24,5 +24,15 @@ namespace Presentacion.Paginas.Finanza
         {
             InitializeComponent();
         }
+
+        private void ClickSalir(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClickConfirmar(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Diste un click", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }
