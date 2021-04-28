@@ -23,7 +23,7 @@
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
                     <Label Content="*" Foreground="{StaticResource Alert}" />
-                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}" />
+                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}" Margin="0,10,10,0"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" >
                     <TextBox x:Name="NombreText" Template="{StaticResource InputControlTemplate}" MaxLength="60" Width="400" HorizontalAlignment="Left" Height="57"/>
@@ -68,7 +68,7 @@
             <TextBlock Text="Receta" Style="{StaticResource TituloPaginasStyle}" Margin="0,30,0,0"/>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,-600,0">
-                <TextBox Text="Recetas" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="50" Width="100" />
+                <TextBox Text="Recetas" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="300" Width="1000" />
             </StackPanel>
 
 
