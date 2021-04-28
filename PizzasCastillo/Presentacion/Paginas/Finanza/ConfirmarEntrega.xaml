@@ -8,10 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800" Background="White"
       Title="ConfirmarEntrega">
 
-    <Grid>
-        <TextBlock  Style="{StaticResource TituloStyle}" HorizontalAlignment="Left"  Margin="267,30,0,0" TextWrapping="Wrap" Text="Entrega de pedido" VerticalAlignment="Top" Height="37" Width="262" FontSize="30" />
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock  Style="{StaticResource TituloStyle}" Margin="0,20,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Entrega de pedido" VerticalAlignment="Top"/>
 
-        <DataGrid Name="tablaDeProductos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" Margin="156,122,140,118.6" FontFamily="Se">
+        <DataGrid Name="tablaDeProductos" Height="550" Margin="0,20,0,0" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" FontFamily="Se">
             <DataGrid.Columns>
 
                 <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Producto" Binding="{Binding Name}"/>
@@ -30,7 +30,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar en inventario" Margin="231,383,376,23.6" Height="Auto" Width="Auto" Click="ClickRegistrar"/>
-        <Button Style="{StaticResource BotonSecundarioStyle}" Content="Cancelar" Margin="447,383,241,23.6" Height="Auto" Width="Auto"  Click="ClickCancelar"/>
-    </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar en inventario"  Click="ClickRegistrar" Width="190"/>
+            <Button Style="{StaticResource BotonSecundarioStyle}" Content="Cancelar" Click="ClickCancelar" Margin="15,0,0,0"/>
+        </StackPanel>
+    </StackPanel>
 </Page>

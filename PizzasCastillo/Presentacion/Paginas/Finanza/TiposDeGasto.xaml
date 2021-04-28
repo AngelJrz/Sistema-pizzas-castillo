@@ -8,19 +8,19 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TiposDeGasto">
 
-    <Grid>
-        <TextBlock  Style="{StaticResource TituloStyle}" HorizontalAlignment="Left"  Margin="288,35,0,0" TextWrapping="Wrap" Text="Tipos de salidas" VerticalAlignment="Top" Height="37" Width="230" FontSize="30" />
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock Margin="0,20,0,0" HorizontalAlignment="Center"  Style="{StaticResource TituloStyle}"  TextWrapping="Wrap" Text="Tipos de salidas"  Height="37" Width="230" FontSize="30" />
 
-        <TextBlock Style="{StaticResource TituloCamposStyle}"  Margin="38,90,600,322.6" TextWrapping="Wrap" Text="Registrar tipo" Height="37" FontSize="20" />
-        <TextBlock Style="{StaticResource TituloCamposStyle}"  Margin="38,127,486,285.6" TextWrapping="Wrap" Text="Nombre de nuevo gasto" Height="37" FontSize="15" />
-        <TextBox x:Name="nombreNuevoTipo" Template="{StaticResource InputControlTemplate}" Margin="38,164,158,255.6"/>
-        <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar" Margin="647,164,41,255.6" Height="Auto" Width="Auto" Click="RegistrarNuevoTipo"/>
+        <TextBlock Style="{StaticResource TituloCamposStyle}" TextWrapping="Wrap" Text="Registrar tipo"  FontSize="20" Margin="20,15,0,0"/>
+        <TextBlock Style="{StaticResource TituloCamposStyle}" TextWrapping="Wrap" Text="Nombre de nuevo gasto"  FontSize="15" Margin="20,0,0,0" />
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="nombreNuevoTipo" Template="{StaticResource InputControlTemplate}" Width="600" Margin="20,0,0,0"/>
+            <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar" Click="RegistrarNuevoTipo" Margin="20,0,0,0"/>
+        </StackPanel>
 
-        <Button Style="{StaticResource BotonSecundarioStyle}" Content="Salir" Margin="353,386,335,20.6" Height="Auto" Width="Auto" Click="ClickSalir"/>
+        <TextBlock Style="{StaticResource TituloCamposStyle}" TextWrapping="Wrap" Text="Lista de tipos" Height="37" FontSize="20" Margin="20,0,0,0"/>
 
-        <TextBlock Style="{StaticResource TituloCamposStyle}"  Margin="38,213,600,199.6" TextWrapping="Wrap" Text="Lista de tipos" Height="37" FontSize="20" />
-
-        <DataGrid Name="tablaDeTipos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" Margin="38,255,41,68.6" FontFamily="Se">
+        <DataGrid Height="300"  Margin="20" Name="tablaDeTipos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" FontFamily="Se">
             <DataGrid.Columns>
 
                 <DataGridTextColumn MinWidth="500" IsReadOnly="True" Header="Tipo de gasto" Binding="{Binding Name}"/>
@@ -35,5 +35,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+
+        <Button Style="{StaticResource BotonSecundarioStyle}" Content="Salir"  Click="ClickSalir"/>
+    </StackPanel>
 </Page>

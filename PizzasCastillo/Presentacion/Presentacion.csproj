@@ -76,11 +76,17 @@
     <Compile Include="Paginas\Finanza\CrearPedido.xaml.cs">
       <DependentUpon>CrearPedido.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Finanza\EditarProveedor.xaml.cs">
+      <DependentUpon>EditarProveedor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Finanza\ListaPedidosPendientes.xaml.cs">
       <DependentUpon>ListaPedidosPendientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Finanza\RegistrarGastoExtra.xaml.cs">
       <DependentUpon>RegistrarGastoExtra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Finanza\RegistrarProveedor.xaml.cs">
+      <DependentUpon>RegistrarProveedor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Finanza\TiposDeGasto.xaml.cs">
       <DependentUpon>TiposDeGasto.xaml</DependentUpon>
@@ -135,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Finanza\EditarProveedor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Paginas\Finanza\ListaPedidosPendientes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +152,10 @@
     <Page Include="Paginas\Finanza\RegistrarGastoExtra.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Finanza\RegistrarProveedor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Paginas\Finanza\TiposDeGasto.xaml">
       <SubType>Designer</SubType>

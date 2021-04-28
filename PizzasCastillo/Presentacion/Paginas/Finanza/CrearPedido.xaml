@@ -9,15 +9,42 @@
       Title="CrearPedido">
 
     <StackPanel>
-        <Image HorizontalAlignment="Center" Width="300" Height="auto"/>
-        <ComboBox HorizontalAlignment="Center" Width="120">
+        <Image HorizontalAlignment="Center" Margin="0,20,0,0" Width="500" Height="auto" Source="C:\Users\Angel\Desktop\Exportacion\3.jpg"/>
+        <ComboBox HorizontalAlignment="Center" Width="120" Margin="0,20,0,20">
             <ComboBoxItem IsSelected="True">Item #1</ComboBoxItem>
             <ComboBoxItem>Item #2</ComboBoxItem>
             <ComboBoxItem>Item #3</ComboBoxItem>
         </ComboBox>
 
-        <Button HorizontalAlignment="Right" Style="{StaticResource BotonPrincipalStyle}" Content="Confirmar" Margin="0,0,10,0" Click="ClickConfirmar"/>
-        <Button HorizontalAlignment="Right" Style="{StaticResource BotonSecundarioStyle}" Content="Cancelar" Margin="0,10,10,0" Click="ClickCancelar"/>
+        <DataGrid Height="280" HorizontalAlignment="Center" Name="tablaDePedidos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false"  FontFamily="Se">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn MinWidth="200" IsReadOnly="True" Header="Producto" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Precio" Binding="{Binding Name}"/>
+
+                <DataGridTemplateColumn  Header="Cantidad" Width ="100" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Width="90"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Agregar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickConfirmar"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button HorizontalAlignment="Right" Style="{StaticResource BotonPrincipalStyle}" Content="Confirmar" Click="ClickConfirmar"/>
+            <Button HorizontalAlignment="Right" Style="{StaticResource BotonSecundarioStyle}" Margin="30,0,0,0" Content="Cancelar" Click="ClickCancelar"/>
+        </StackPanel>
 
     </StackPanel>
 </Page>
