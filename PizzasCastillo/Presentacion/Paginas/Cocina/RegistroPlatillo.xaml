@@ -68,7 +68,7 @@
             <TextBlock Text="Receta" Style="{StaticResource TituloPaginasStyle}" Margin="0,30,0,0"/>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,-600,0">
-                <TextBox Text="Recetas" Template="{StaticResource InputControlTemplate}" TextWrapping="Wrap" Height="50" Width="1000" />
+                <TextBox Text="Recetas" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="50" Width="100" />
             </StackPanel>
 
 
