@@ -24,5 +24,39 @@ namespace Presentacion.Paginas.Producto
         {
             InitializeComponent();
         }
+        private void BuscarEnter(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+        private void ConsultarProducto(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ValidarExistencias(object sender, RoutedEventArgs e)
+        {
+
+        }
+       
+
+    }
+
+
+
+    public class Producto
+    {
+        public string codigoDeBarras {get;set;}
+        public string estatus { get; set; }
+        public string foto { get; set; }
+        public string nombre { get; set; }
+        public float presio { get; set; }
+        public string descripcion { get; set; }
+        public float preciounitario { get; set; }
+        public string restricciones { get; set; }
+        public string Tipo { get; set; }
+        public string unidadDeMedida { get; set; }
     }
 }
