@@ -18,11 +18,26 @@ namespace Presentacion.Paginas.Pedido
     /// <summary>
     /// Lógica de interacción para RegistrarPedido.xaml
     /// </summary>
-    public partial class RegistrarPedido : Page
+    public partial class RegistrarPedidoBuscarUsuario : Page
     {
-        public RegistrarPedido()
+        public RegistrarPedidoBuscarUsuario()
         {
             InitializeComponent();
         }
+
+        private void BuscarEnter(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void UsarClienteSinRegistro(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void UsarUsuarioPedido(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }

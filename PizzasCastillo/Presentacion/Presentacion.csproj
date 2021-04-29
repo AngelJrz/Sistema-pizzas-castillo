@@ -79,8 +79,14 @@
     <Compile Include="Paginas\Pedido\RegistrarEntrega.xaml.cs">
       <DependentUpon>RegistrarEntrega.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Pedido\RegistrarPedido.xaml.cs">
-      <DependentUpon>RegistrarPedido.xaml</DependentUpon>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml.cs">
+      <DependentUpon>RegistrarPedidoArticulos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml.cs">
+      <DependentUpon>RegistrarPedidoBuscarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoDatos.xaml.cs">
+      <DependentUpon>RegistrarPedidoDatos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Producto\ValidarExistenciaProducto.xaml.cs">
       <DependentUpon>ValidarExistenciaProducto.xaml</DependentUpon>
@@ -160,7 +166,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\Pedido\RegistrarPedido.xaml">
+    <Page Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoDatos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

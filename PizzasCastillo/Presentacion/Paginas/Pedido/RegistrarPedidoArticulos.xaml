@@ -1,17 +1,15 @@
-﻿<Page x:Class="Presentacion.Paginas.Producto.ValidarExistenciaProducto"
+﻿<Page x:Class="Presentacion.Paginas.Pedido.RegistrarPedidoArticulos"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Presentacion.Paginas.Producto"
+      xmlns:local="clr-namespace:Presentacion.Paginas.Pedido"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1000"
       Height="Auto" Width="Auto"
-      
-      Title="ValidarExistenciaProducto">
-
-
+      Title="RegistrarPedidoArticulos">
+    
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
         <StackPanel Height="473">
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
@@ -24,9 +22,9 @@
                 </Grid.ColumnDefinitions>
 
 
-               
-                            
-                    <StackPanel Grid.Column="0">
+
+
+                <StackPanel Grid.Column="0">
                     <TextBlock Text="Búsqueda:" Style="{StaticResource TituloCamposStyle}"
                                        HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
@@ -63,7 +61,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding foto}" HorizontalAlignment="Center" Width="50" Height="50"/>
-                                
+
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -114,7 +112,7 @@
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                        
+
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Descripcion" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
@@ -184,18 +182,15 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="5"/>
                                         <ColumnDefinition Width="5"/>
-                                        
+
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource IconoBoton}" Click="ConsultarProducto" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource Gris}" 
-                                                                 Width="25" Height="25"/>
-                                        
-                                        
-                                    </Button>
-                                    <Button Style="{StaticResource IconoBoton}" Click="ValidarExistencias" Grid.Column="1">
+                                    <Button Style="{StaticResource IconoBoton}" Click="AgregarProductoPedido" Grid.Column="0">
                                         <materialDesign:PackIcon Kind="Check" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
+
+
                                     </Button>
+                                 
 
                                 </Grid>
                             </DataTemplate>
@@ -206,12 +201,11 @@
 
                 </DataGrid.Columns>
             </DataGrid>
-
-            <Button Content="Regresar" Style="{StaticResource BotonSecundarioStyle}"
+            <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonSecundarioStyle}"
                     Width="250" HorizontalAlignment="Center" Margin="0,50,0,0"/>
         </StackPanel>
-       
 
 
-    </ScrollViewer>  
+
+    </ScrollViewer>
 </Page>
