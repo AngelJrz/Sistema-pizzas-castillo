@@ -70,6 +70,27 @@
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Pedido\EditarPedido.xaml.cs">
+      <DependentUpon>EditarPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\GenerarCuentaPedido.xaml.cs">
+      <DependentUpon>GenerarCuentaPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarEntrega.xaml.cs">
+      <DependentUpon>RegistrarEntrega.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml.cs">
+      <DependentUpon>RegistrarPedidoArticulos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml.cs">
+      <DependentUpon>RegistrarPedidoBuscarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoDatos.xaml.cs">
+      <DependentUpon>RegistrarPedidoDatos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Producto\ValidarExistenciaProducto.xaml.cs">
+      <DependentUpon>ValidarExistenciaProducto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
       <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
     </Compile>
@@ -133,6 +154,34 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Pedido\EditarPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\GenerarCuentaPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarEntrega.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoDatos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Producto\ValidarExistenciaProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Usuario\ListaDeUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,10 +230,6 @@
   <ItemGroup>
     <Folder Include="Paginas\Cocina\" />
     <Folder Include="Paginas\Finanza\" />
-    <Folder Include="Paginas\Pedido\" />
-    <Folder Include="Paginas\Producto\" />
-    <Folder Include="Paginas\Usuario\" />
-    <Folder Include="Ventanas\Usuario\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
