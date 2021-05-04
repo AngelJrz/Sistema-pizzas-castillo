@@ -186,11 +186,5 @@
     <Folder Include="ControladoresDeDatos\" />
     <Folder Include="Excepciones\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dominio\Dominio.csproj">
-      <Project>{a299bd87-2998-4aa0-8adc-192b97a4643d}</Project>
-      <Name>Dominio</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
