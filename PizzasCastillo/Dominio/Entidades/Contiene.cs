@@ -11,5 +11,29 @@ namespace Dominio.Entidades
         public int Cantidad { get; set; }
         public decimal Total { get; set; }
         public ArticuloVenta ArticuloVenta { get; set; }
+
+        public static Contiene Clone(AccesoADatos.Contiene contiene)
+        {
+            return new Contiene
+            {
+                Cantidad = contiene.Cantidad,
+                Total = contiene.Total,
+                ArticuloVenta = ArticuloVenta.Clone(contiene.ArticuloVenta)
+            };
+        }
+
+        public static List<Contiene> CloneList(List<AccesoADatos.Contiene> contiene)
+        {
+            List<Contiene> list = new List<Contiene>();
+            contiene.ToList().ForEach(c => list.Add(
+                new Contiene
+                {
+                    Cantidad = c.Cantidad,
+                    Total = c.Total,
+                    ArticuloVenta = ArticuloVenta.Clone(c.ArticuloVenta)
+                }
+                ));
+            return list;
+        }
     }
 }

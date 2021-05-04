@@ -19,7 +19,12 @@ namespace Dominio.Entidades
         {
             return new ArticuloVenta 
             {
-                CodigoBarra = articuloVenta.CodigoBarra
+                CodigoBarra = articuloVenta.CodigoBarra,
+                Nombre = articuloVenta.Nombre,
+                Precio = articuloVenta.Precio,
+                Foto = articuloVenta.Foto,
+                Estatus = articuloVenta.Estatus,
+                EsPlatillo = articuloVenta.EsPlatillo
             };
         }
     }

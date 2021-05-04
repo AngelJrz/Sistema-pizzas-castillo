@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace Dominio.Enumeraciones
 {
-    public enum Efectivo
+    public class Efectivo
     {
-        Mil = 1,
-        Quinientos = 2,
-        Doscientos = 3,
-        Cien = 4,
-        Cincuenta = 5,
-        Veinte = 6,
-        Diez = 7,
-        Cinco = 8,
-        Dos = 9,
-        Uno = 10,
-        CincuentaCentavo = 11
+        public int Id { get; set; }
+        public decimal Valor { get; set; }
+        public string Tipo { get; set; }
+
+        public static Efectivo Clone(AccesoADatos.Efectivo tipo)
+        {
+            return new Efectivo
+            {
+                Id = tipo.Id,
+                Valor = tipo.Valor,
+                Tipo = tipo.Tipo
+            };
+        }
     }
 }
