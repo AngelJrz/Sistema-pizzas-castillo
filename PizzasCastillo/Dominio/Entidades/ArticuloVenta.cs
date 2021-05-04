@@ -14,5 +14,13 @@ namespace Dominio.Entidades
         public byte[] Foto { get; set; }
         public int Estatus { get; set; }
         public bool EsPlatillo { get; set; }
+
+        public static ArticuloVenta Clone(AccesoADatos.ArticuloVenta articuloVenta)
+        {
+            return new ArticuloVenta 
+            {
+                CodigoBarra = articuloVenta.CodigoBarra
+            };
+        }
     }
 }
