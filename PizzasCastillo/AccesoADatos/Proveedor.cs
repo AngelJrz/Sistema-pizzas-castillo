@@ -26,7 +26,7 @@ namespace AccesoADatos
         public string Email { get; set; }
         public string Telefono { get; set; }
         public string NombreEncargado { get; set; }
-        public string ListaDeProductos { get; set; }
+        public byte[] ListaDeProductos { get; set; }
         public int IdDireccion { get; set; }
     
         public virtual DireccionProveedor DireccionProveedor { get; set; }
