@@ -208,8 +208,8 @@
           <Property Name="Email" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="NombreEncargado" Type="varchar" MaxLength="45" />
-          <Property Name="ListaDeProductos" Type="varchar" MaxLength="100" />
           <Property Name="IdDireccion" Type="int" Nullable="false" />
+          <Property Name="ListaDeProductos" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Repartidor">
           <Key>
@@ -1084,7 +1084,7 @@
           <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NombreEncargado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="ListaDeProductos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ListaDeProductos" Type="String" MaxLength="Max" FixedLength="false" />
           <Property Name="IdDireccion" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DireccionProveedor" Relationship="Self.FK_Proveedor_DireccionProveedor1" FromRole="Proveedor" ToRole="DireccionProveedor" />
           <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoDeProducto_Proveedor1" FromRole="Proveedor" ToRole="PedidoAProveedor" />
