@@ -15,7 +15,7 @@ namespace Dominio.Entidades
         public string Telefono { get; set; }
         public string Email { get; set; }
         public int Estatus { get; set; }
-        public TipoUsuario TipoUsuario { get; set; }
+        public Tipo TipoUsuario { get; set; }
         public List<Direccion> Direcciones { get; set; }
 
         public string NombreCompleto
@@ -23,5 +23,19 @@ namespace Dominio.Entidades
             get { return Nombres + " " + Apellidos; }
         }
 
+        public static Persona Clone(AccesoADatos.Persona persona)
+        {
+            return new Persona
+            {
+                Id = persona.Id,
+                Nombres = persona.Nombres,
+                Apellidos = persona.Apellidos,
+                Telefono = persona.Telefono,
+                Email = persona.Email,
+                Estatus = (int)persona.Estatus,
+                TipoUsuario = Tipo.Clone(persona.TipoUsuario),
+                Direcciones = Entidades.Direccion.CloneList(persona.Direccion.ToList())
+            };
+        }
     }
 }

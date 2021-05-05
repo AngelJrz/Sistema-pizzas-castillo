@@ -16,5 +16,21 @@ namespace Dominio.Entidades
         public string NombreEncargado { get; set; }
         public string ListaDeProductos { get; set; }
         public DireccionProveedor Direccion { get; set; }
+        public static Proveedor Clone(AccesoADatos.Proveedor proveedor)
+        {
+            return new Proveedor
+            {
+                Id = proveedor.Id,
+                Nombre = proveedor.Nombre,
+                Dni = proveedor.Dni,
+                Email = proveedor.Email,
+                Telefono = proveedor.Telefono,
+                NombreEncargado = proveedor.NombreEncargado,
+                //XDDDDDDDDDDDDDDDDD
+                Direccion = DireccionProveedor.Clone(proveedor.DireccionProveedor)
+            };
+        }
     }
+
+
 }

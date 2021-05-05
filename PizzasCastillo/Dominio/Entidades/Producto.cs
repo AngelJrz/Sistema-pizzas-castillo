@@ -13,7 +13,7 @@ namespace Dominio.Entidades
         public string Descripcion { get; set; }
         public decimal PrecioCompra { get; set; }
         public string Restricciones { get; set; }
-        public TipoProducto Tipo { get; set; }
+        public Tipo Tipo { get; set; }
         public string UnidadDeMedida { get; set; }
 
         public static Producto Clone(AccesoADatos.Producto producto)
@@ -24,7 +24,7 @@ namespace Dominio.Entidades
                 Descripcion = producto.Descripcion,
                 PrecioCompra = producto.PrecioCompra,
                 Restricciones = producto.Restricciones,
-                Tipo = TipoProducto.Clone(producto.TipoProducto),
+                Tipo = Tipo.Clone(producto.TipoProducto),
                 UnidadDeMedida = producto.UnidadDeMedida
             };
         }

@@ -18,5 +18,22 @@ namespace Dominio.Entidades
         public decimal EfectivoDiaSiguiente { get; set; }
         public Empleado GeneradoPor { get; set; }
         public List<Guarda> Guarda { get; set; }
+
+        public static ReporteCaja Clone(AccesoADatos.ReporteCaja reporteCaja)
+        {
+            return new ReporteCaja
+            {
+                Id = reporteCaja.Id,
+                BalanceDiario = reporteCaja.BalanceDiario,
+                Fecha = reporteCaja.Fecha,
+                TotalEntrada = reporteCaja.TotalEntrada,
+                TotalSalida = reporteCaja.TotalSalida,
+                TotalEfectivoContado = reporteCaja.TotalEfectivoContado,
+                Observaciones = reporteCaja.Observaciones,
+                EfectivoDiaSiguiente = reporteCaja.EfectivoDiaSiguiente,
+                GeneradoPor = Empleado.Clone(reporteCaja.Empleado),
+                Guarda = Entidades.Guarda.CloneList(reporteCaja.Guarda.ToList())
+            };
+        }
     }
 }
