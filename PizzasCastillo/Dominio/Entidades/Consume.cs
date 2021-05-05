@@ -10,5 +10,14 @@ namespace Dominio.Entidades
     {
         public Producto Producto { get; set; }
         public decimal Cantidad { get; set; }
+
+        public static Consume Clone(AccesoADatos.Consume consume)
+        {
+            return new Consume
+            {
+                Producto = Producto.Clone(consume.Producto),
+                Cantidad = consume.Cantidad
+            };
+        }
     }
 }
