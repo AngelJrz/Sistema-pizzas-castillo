@@ -65,12 +65,7 @@
     <Compile Include="Entidades\ReporteInventario.cs" />
     <Compile Include="Entidades\Solicita.cs" />
     <Compile Include="Enumeraciones\Efectivo.cs" />
-    <Compile Include="Enumeraciones\EstatusPedido.cs" />
-    <Compile Include="Enumeraciones\EstatusPedidoAProveedor.cs" />
-    <Compile Include="Enumeraciones\TipoGasto.cs" />
-    <Compile Include="Enumeraciones\TipoPedido.cs" />
-    <Compile Include="Enumeraciones\TipoProducto.cs" />
-    <Compile Include="Enumeraciones\TipoUsuario.cs" />
+    <Compile Include="Enumeraciones\Tipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
