@@ -10,14 +10,14 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class DireccionProveedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DireccionProveedor()
         {
-            this.Proveedor = new ObservableCollection<Proveedor>();
+            this.Proveedor = new HashSet<Proveedor>();
         }
     
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace AccesoADatos
         public string Numero { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Proveedor> Proveedor { get; set; }
+        public virtual ICollection<Proveedor> Proveedor { get; set; }
     }
 }

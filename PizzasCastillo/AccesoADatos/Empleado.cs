@@ -10,17 +10,17 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Empleado
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empleado()
         {
-            this.GastoExtra = new ObservableCollection<GastoExtra>();
-            this.Pedido = new ObservableCollection<Pedido>();
-            this.ReporteCaja = new ObservableCollection<ReporteCaja>();
-            this.ReporteInventario = new ObservableCollection<ReporteInventario>();
+            this.GastoExtra = new HashSet<GastoExtra>();
+            this.Pedido = new HashSet<Pedido>();
+            this.ReporteCaja = new HashSet<ReporteCaja>();
+            this.ReporteInventario = new HashSet<ReporteInventario>();
         }
     
         public string NumeroEmpleado { get; set; }
@@ -32,12 +32,12 @@ namespace AccesoADatos
     
         public virtual Persona Persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<GastoExtra> GastoExtra { get; set; }
+        public virtual ICollection<GastoExtra> GastoExtra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Pedido> Pedido { get; set; }
+        public virtual ICollection<Pedido> Pedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<ReporteCaja> ReporteCaja { get; set; }
+        public virtual ICollection<ReporteCaja> ReporteCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<ReporteInventario> ReporteInventario { get; set; }
+        public virtual ICollection<ReporteInventario> ReporteInventario { get; set; }
     }
 }
