@@ -84,7 +84,7 @@
                             BorderThickness="1" BorderBrush="#7E7E7E" 
                             CornerRadius="10" Height="{TemplateBinding Height}">
 
-            <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="Center"
+            <ScrollViewer x:Name="PART_ContentHost" Margin="3" VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                           FontFamily="Segoe UI" FontSize="20"/>
         </Border>
     </ControlTemplate>
@@ -92,6 +92,7 @@
     <Style x:Key="InputDefaultStyle" TargetType="TextBox">
         <Setter Property="Height" Value="30"/>
         <Setter Property="Template" Value="{StaticResource InputControlTemplate}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <ControlTemplate x:Key="PasswordControlTemplate" TargetType="PasswordBox">

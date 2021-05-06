@@ -10,17 +10,17 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Producto()
         {
-            this.Consume = new ObservableCollection<Consume>();
-            this.Indica = new ObservableCollection<Indica>();
-            this.Solicita = new ObservableCollection<Solicita>();
-            this.Reporta = new ObservableCollection<Reporta>();
+            this.Consume = new HashSet<Consume>();
+            this.Indica = new HashSet<Indica>();
+            this.Solicita = new HashSet<Solicita>();
+            this.Reporta = new HashSet<Reporta>();
         }
     
         public decimal Cantidad { get; set; }
@@ -33,13 +33,13 @@ namespace AccesoADatos
     
         public virtual ArticuloVenta ArticuloVenta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Consume> Consume { get; set; }
+        public virtual ICollection<Consume> Consume { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Indica> Indica { get; set; }
+        public virtual ICollection<Indica> Indica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Solicita> Solicita { get; set; }
+        public virtual ICollection<Solicita> Solicita { get; set; }
         public virtual TipoProducto TipoProducto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Reporta> Reporta { get; set; }
+        public virtual ICollection<Reporta> Reporta { get; set; }
     }
 }

@@ -50,23 +50,23 @@ namespace Presentacion.Paginas.Usuario
 
         private void ConsultarUsuario(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void EditarUsuario(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void EliminarUsuario(object sender, RoutedEventArgs e)
         {
             Empleado empleadoSeleccionado = (Empleado)ListaUsuarios.SelectedItem;
-            Confirmacion dialogoConfirmacion = new Confirmacion("Dar de baja usuario", 
+            Confirmacion dialogoConfirmacion = new Confirmacion("Dar de baja usuario",
                 $"¿Seguro desea dar de baja al usuario con No. Empleado {empleadoSeleccionado.NumeroEmpledado} seleccionado?");
 
             if (dialogoConfirmacion.ShowDialog() == true)
             {
-                
+
             }
         }
 
@@ -74,7 +74,7 @@ namespace Presentacion.Paginas.Usuario
         {
             if (e.Key == Key.Enter)
             {
-                
+
             }
         }
 

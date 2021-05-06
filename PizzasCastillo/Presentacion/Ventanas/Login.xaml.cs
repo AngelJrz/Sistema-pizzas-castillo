@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,8 @@ namespace Presentacion.Ventanas
         {
             if (e.Key == Key.Enter)
             {
-                
+                Process.Start("osk.exe");
+                ((TextBox)sender).Focus();
             }
         }
     }

@@ -44,7 +44,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=usuarioText}">
-                            <TextBox x:Name="usuarioText" Template="{StaticResource InputControlTemplate}"
+                            <TextBox x:Name="usuarioText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30"  KeyDown="ControlarTeclaEnter"/>
                         </StackPanel>
                     </Grid>

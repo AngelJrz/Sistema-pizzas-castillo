@@ -10,7 +10,7 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class GastoExtra
     {
@@ -19,6 +19,7 @@ namespace AccesoADatos
         public decimal Total { get; set; }
         public int IdTipoGasto { get; set; }
         public string NumeroEmpleado { get; set; }
+        public System.DateTime Fecha { get; set; }
     
         public virtual Empleado Empleado { get; set; }
         public virtual TipoGasto TipoGasto { get; set; }

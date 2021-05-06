@@ -10,14 +10,14 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Merma
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Merma()
         {
-            this.Indica = new ObservableCollection<Indica>();
+            this.Indica = new HashSet<Indica>();
         }
     
         public int Id { get; set; }
@@ -26,7 +26,7 @@ namespace AccesoADatos
         public Nullable<int> IdPedido { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Indica> Indica { get; set; }
+        public virtual ICollection<Indica> Indica { get; set; }
         public virtual Pedido Pedido { get; set; }
     }
 }

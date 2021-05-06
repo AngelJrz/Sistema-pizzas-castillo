@@ -10,12 +10,13 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Direccion
     {
         public int Id { get; set; }
         public string Calle { get; set; }
+        public string Colonia { get; set; }
         public string Ciudad { get; set; }
         public string CodigoPostal { get; set; }
         public string NumeroInterior { get; set; }
@@ -23,7 +24,6 @@ namespace AccesoADatos
         public string NumeroExterior { get; set; }
         public string EntidadFederativa { get; set; }
         public int IdPersona { get; set; }
-        public string Colonia { get; set; }
     
         public virtual Persona Persona { get; set; }
     }
