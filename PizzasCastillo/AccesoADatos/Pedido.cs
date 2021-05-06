@@ -10,15 +10,15 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Pedido
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pedido()
         {
-            this.Merma = new ObservableCollection<Merma>();
-            this.Contiene = new ObservableCollection<Contiene>();
+            this.Contiene = new HashSet<Contiene>();
+            this.Merma = new HashSet<Merma>();
         }
     
         public int Id { get; set; }
@@ -31,15 +31,15 @@ namespace AccesoADatos
         public Nullable<int> IdRepartidor { get; set; }
         public Nullable<int> IdMesa { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contiene> Contiene { get; set; }
         public virtual Empleado Empleado { get; set; }
         public virtual EstatusPedido EstatusPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Merma> Merma { get; set; }
+        public virtual ICollection<Merma> Merma { get; set; }
         public virtual Mesa Mesa { get; set; }
         public virtual Persona Persona { get; set; }
         public virtual Repartidor Repartidor { get; set; }
         public virtual TipoPedido TipoPedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Contiene> Contiene { get; set; }
     }
 }

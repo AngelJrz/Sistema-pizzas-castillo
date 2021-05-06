@@ -1,0 +1,112 @@
+﻿<Page x:Class="Presentacion.Paginas.Cocina.RegistroPlatillo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Presentacion.Paginas.Cocina"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Height="Auto" Width="Auto"
+      Title="RegistroPlatillo">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
+        <StackPanel Margin="80,0,0,0">
+
+            <TextBlock Text="Registro del Platillo" Style="{StaticResource TituloPaginasStyle}" Margin="0,30,0,0"/>
+
+            <Grid Margin="0,10,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" >
+                    <Label Content="*" Foreground="{StaticResource Alert}" />
+                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}" Margin="0,0,10,0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" >
+                    <TextBox x:Name="NombreText" Style="{StaticResource InputDefaultStyle}" MaxLength="60" Width="400" HorizontalAlignment="Left" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0,10,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                    <Label Content="*" Foreground="{StaticResource Alert}" />
+                    <TextBlock Text="Precio venta:" Style="{StaticResource TituloCamposStyle}"  />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="PrecioText" Style="{StaticResource InputDefaultStyle}" MaxLength="3" Width="100" HorizontalAlignment="Left" />
+                    <TextBlock Text="$ MXN" Style="{StaticResource TituloCamposStyle}" Margin="10,0,0,0" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0,10,0,10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="0" >
+                    <Label Content="*" Foreground="{StaticResource Alert}" />
+                    <TextBlock Text="Imagen:" Style="{StaticResource TituloCamposStyle}" />
+                    <Button Height="30" HorizontalAlignment="Left"  Name="botonImagen" VerticalAlignment="Bottom" Style="{StaticResource BotonSecundarioStyle}"
+                       Width="175" Click="agregarImagen" Content="Agregar Foto" Margin="30,0,0,0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="-200,38,0,0">
+                    <Image Name="imgPhoto" Stretch="Fill" Grid.Column="3" MinWidth="500" MaxWidth="500" MaxHeight="300" MinHeight="300"/>
+
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="Receta" Style="{StaticResource TituloPaginasStyle}" Margin="0,30,0,0"/>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,10">
+                <TextBox Text="Recetas" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="300" Width="1000"  VerticalAlignment="Top"/>
+            </StackPanel>
+
+
+
+            <TextBlock Text="Ingredientes" Style="{StaticResource TituloPaginasStyle}" Margin="0,0,0,30"/>
+
+            <StackPanel x:Name="ListaPedidos" Margin="-100,0,0,0">
+                
+                <Border BorderBrush="Black" BorderThickness="1" Width="580"  Height="100" CornerRadius="15">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Label Content="*" Foreground="{StaticResource Alert}" />
+                            <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"  />
+                            <ComboBox x:Name="NombreComobobox" Style="{StaticResource ComboboxStyle}"  Width="350" HorizontalAlignment="Left" Height="35" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Label Content="*" Foreground="{StaticResource Alert}"/>
+                            <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}"  />
+                            <TextBox x:Name="PrecASDText" Template="{StaticResource InputControlTemplate}"  Width="100" HorizontalAlignment="Left" Height="57" />
+                            <Label Content="*" Foreground="{StaticResource Alert}"/>
+                            <TextBlock Text="Medida:" Style="{StaticResource TituloCamposStyle}"  />
+                            <TextBox x:Name="PrecASText" Template="{StaticResource InputControlTemplate}"  Width="100" HorizontalAlignment="Left" Height="57"/>
+                            <Button x:Name="EliminarBoton" Margin="10,0,0,0" Width="200" Height="40" Content="Eliminar Ingrediente" Style="{StaticResource BotonSecundarioStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+            </StackPanel>
+
+            <Button Style="{StaticResource BotonSecundarioStyle}" Margin="0,100,0,0" Content="Agregar ingrediente" Width="200"/>
+            <Grid Margin="180,100,0,0">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+                    <Button Style="{StaticResource BotonPrincipalStyle}" Content="Cancelar" Width="200"/>
+                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Continuar" Width="200" Margin="300,0,0,0"/>
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

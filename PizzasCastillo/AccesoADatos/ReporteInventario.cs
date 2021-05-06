@@ -10,14 +10,14 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class ReporteInventario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ReporteInventario()
         {
-            this.Reporta = new ObservableCollection<Reporta>();
+            this.Reporta = new HashSet<Reporta>();
         }
     
         public int IdReporte { get; set; }
@@ -27,6 +27,6 @@ namespace AccesoADatos
     
         public virtual Empleado Empleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Reporta> Reporta { get; set; }
+        public virtual ICollection<Reporta> Reporta { get; set; }
     }
 }

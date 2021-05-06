@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PizzasCastilloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PizzasCastillo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ArticuloVenta">
           <Key>
             <PropertyRef Name="CodigoBarra" />
@@ -14,7 +14,7 @@
           <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Estatus" Type="int" Nullable="false" />
           <Property Name="EsPlatillo" Type="bit" Nullable="false" />
-          <Property Name="Foto" Type="varbinary(max)" />
+          <Property Name="Foto" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Consume">
           <Key>
@@ -209,7 +209,7 @@
           <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="NombreEncargado" Type="varchar" MaxLength="45" />
           <Property Name="IdDireccion" Type="int" Nullable="false" />
-          <Property Name="ListaDeProductos" Type="varbinary(max)" />
+          <Property Name="ListaDeProductos" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Repartidor">
           <Key>
@@ -681,7 +681,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PizzasCastilloModelStoreContainer">
+        <EntityContainer Name="PizzasCastilloStoreContainer">
           <EntitySet Name="ArticuloVenta" EntityType="Self.ArticuloVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consume" EntityType="Self.Consume" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contiene" EntityType="Self.Contiene" Schema="dbo" store:Type="Tables" />
@@ -840,10 +840,11 @@
             <End Role="Reporta" EntitySet="Reporta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PizzasCastilloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PizzasCastillo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ArticuloVenta">
           <Key>
             <PropertyRef Name="CodigoBarra" />
@@ -851,12 +852,12 @@
           <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" />
           <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <Property Name="EsPlatillo" Type="Boolean" Nullable="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Contiene" Relationship="Self.FK_ArticuloVenta" FromRole="ArticuloVenta" ToRole="Contiene" />
           <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Platillo" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Producto" />
-          <Property Name="EsPlatillo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Contiene" Relationship="PizzasCastilloModel.FK_ArticuloVenta" FromRole="ArticuloVenta" ToRole="Contiene" />
         </EntityType>
         <EntityType Name="Consume">
           <Key>
@@ -869,12 +870,25 @@
           <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo_has_Producto_Platillo1" FromRole="Consume" ToRole="Platillo" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Platillo_has_Producto_Producto1" FromRole="Consume" ToRole="Producto" />
         </EntityType>
+        <EntityType Name="Contiene">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+            <PropertyRef Name="CodigoBarra" />
+          </Key>
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="ArticuloVenta" Relationship="Self.FK_ArticuloVenta" FromRole="Contiene" ToRole="ArticuloVenta" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Producto" FromRole="Contiene" ToRole="Pedido" />
+        </EntityType>
         <EntityType Name="Direccion">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Colonia" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ciudad" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NumeroInterior" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -883,7 +897,6 @@
           <Property Name="EntidadFederativa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Direccion_Persona1" FromRole="Direccion" ToRole="Persona" />
-          <Property Name="Colonia" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DireccionProveedor">
           <Key>
@@ -949,9 +962,9 @@
           <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="IdTipoGasto" Type="Int32" Nullable="false" />
           <Property Name="NumeroEmpleado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_GastoExtra_Empleado1" FromRole="GastoExtra" ToRole="Empleado" />
           <NavigationProperty Name="TipoGasto" Relationship="Self.FK_GastoExtra_TipoGasto1" FromRole="GastoExtra" ToRole="TipoGasto" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Guarda">
           <Key>
@@ -1007,6 +1020,7 @@
           <Property Name="IdTipoPedido" Type="Int32" Nullable="false" />
           <Property Name="IdRepartidor" Type="Int32" />
           <Property Name="IdMesa" Type="Int32" />
+          <NavigationProperty Name="Contiene" Relationship="Self.FK_Producto" FromRole="Pedido" ToRole="Contiene" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_Pedido_Empleado1" FromRole="Pedido" ToRole="Empleado" />
           <NavigationProperty Name="EstatusPedido" Relationship="Self.FK_Pedido_EstatusPedido1" FromRole="Pedido" ToRole="EstatusPedido" />
           <NavigationProperty Name="Merma" Relationship="Self.fk_Merma_Pedido1" FromRole="Pedido" ToRole="Merma" />
@@ -1014,7 +1028,6 @@
           <NavigationProperty Name="Persona" Relationship="Self.FK_Pedido_Persona1" FromRole="Pedido" ToRole="Persona" />
           <NavigationProperty Name="Repartidor" Relationship="Self.FK_Pedido_Repartidor1" FromRole="Pedido" ToRole="Repartidor" />
           <NavigationProperty Name="TipoPedido" Relationship="Self.FK_Pedido_TipoPedido1" FromRole="Pedido" ToRole="TipoPedido" />
-          <NavigationProperty Name="Contiene" Relationship="PizzasCastilloModel.FK_Producto" FromRole="Pedido" ToRole="Contiene" />
         </EntityType>
         <EntityType Name="PedidoAProveedor">
           <Key>
@@ -1084,8 +1097,8 @@
           <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NombreEncargado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="ListaDeProductos" Type="String" MaxLength="Max" FixedLength="false" />
           <Property Name="IdDireccion" Type="Int32" Nullable="false" />
+          <Property Name="ListaDeProductos" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="DireccionProveedor" Relationship="Self.FK_Proveedor_DireccionProveedor1" FromRole="Proveedor" ToRole="DireccionProveedor" />
           <NavigationProperty Name="PedidoAProveedor" Relationship="Self.FK_PedidoDeProducto_Proveedor1" FromRole="Proveedor" ToRole="PedidoAProveedor" />
         </EntityType>
@@ -1188,6 +1201,18 @@
           <Property Name="Estatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_TipoUsuario" FromRole="TipoUsuario" ToRole="Persona" />
         </EntityType>
+        <Association Name="FK_ArticuloVenta">
+          <End Role="ArticuloVenta" Type="Self.ArticuloVenta" Multiplicity="1" />
+          <End Role="Contiene" Type="Self.Contiene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticuloVenta">
+              <PropertyRef Name="CodigoBarra" />
+            </Principal>
+            <Dependent Role="Contiene">
+              <PropertyRef Name="CodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Platillo_ArticulaVenta1">
           <End Role="ArticuloVenta" Type="Self.ArticuloVenta" Multiplicity="1" />
           <End Role="Platillo" Type="Self.Platillo" Multiplicity="0..1" />
@@ -1233,6 +1258,18 @@
             </Principal>
             <Dependent Role="Consume">
               <PropertyRef Name="ProductoCodigoBarra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="Contiene" Type="Self.Contiene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contiene">
+              <PropertyRef Name="IdPedido" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1548,9 +1585,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PizzasCastilloBDConnection" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PizzasBDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ArticuloVenta" EntityType="Self.ArticuloVenta" />
           <EntitySet Name="Consume" EntityType="Self.Consume" />
+          <EntitySet Name="Contiene" EntityType="Self.Contiene" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" />
           <EntitySet Name="DireccionProveedor" EntityType="Self.DireccionProveedor" />
           <EntitySet Name="Efectivo" EntityType="Self.Efectivo" />
@@ -1577,6 +1615,10 @@
           <EntitySet Name="TipoPedido" EntityType="Self.TipoPedido" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+          <AssociationSet Name="FK_ArticuloVenta" Association="Self.FK_ArticuloVenta">
+            <End Role="ArticuloVenta" EntitySet="ArticuloVenta" />
+            <End Role="Contiene" EntitySet="Contiene" />
+          </AssociationSet>
           <AssociationSet Name="FK_Platillo_ArticulaVenta1" Association="Self.FK_Platillo_ArticulaVenta1">
             <End Role="ArticuloVenta" EntitySet="ArticuloVenta" />
             <End Role="Platillo" EntitySet="Platillo" />
@@ -1592,6 +1634,10 @@
           <AssociationSet Name="FK_Platillo_has_Producto_Producto1" Association="Self.FK_Platillo_has_Producto_Producto1">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Consume" EntitySet="Consume" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto" Association="Self.FK_Producto">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Contiene" EntitySet="Contiene" />
           </AssociationSet>
           <AssociationSet Name="FK_Direccion_Persona1" Association="Self.FK_Direccion_Persona1">
             <End Role="Persona" EntitySet="Persona" />
@@ -1697,72 +1743,27 @@
             <End Role="ReporteInventario" EntitySet="ReporteInventario" />
             <End Role="Reporta" EntitySet="Reporta" />
           </AssociationSet>
-          <EntitySet Name="Contiene" EntityType="PizzasCastilloModel.Contiene" />
-          <AssociationSet Name="FK_ArticuloVenta" Association="PizzasCastilloModel.FK_ArticuloVenta">
-            <End Role="ArticuloVenta" EntitySet="ArticuloVenta" />
-            <End Role="Contiene" EntitySet="Contiene" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Producto" Association="PizzasCastilloModel.FK_Producto">
-            <End Role="Pedido" EntitySet="Pedido" />
-            <End Role="Contiene" EntitySet="Contiene" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Contiene">
-          <Key>
-            <PropertyRef Name="IdPedido" />
-            <PropertyRef Name="CodigoBarra" />
-          </Key>
-          <Property Name="IdPedido" Type="Int32" Nullable="false" />
-          <Property Name="CodigoBarra" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <NavigationProperty Name="ArticuloVenta" Relationship="PizzasCastilloModel.FK_ArticuloVenta" FromRole="Contiene" ToRole="ArticuloVenta" />
-          <NavigationProperty Name="Pedido" Relationship="PizzasCastilloModel.FK_Producto" FromRole="Contiene" ToRole="Pedido" />
-        </EntityType>
-        <Association Name="FK_ArticuloVenta">
-          <End Type="PizzasCastilloModel.ArticuloVenta" Role="ArticuloVenta" Multiplicity="1" />
-          <End Type="PizzasCastilloModel.Contiene" Role="Contiene" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ArticuloVenta">
-              <PropertyRef Name="CodigoBarra" />
-            </Principal>
-            <Dependent Role="Contiene">
-              <PropertyRef Name="CodigoBarra" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Producto">
-          <End Type="PizzasCastilloModel.Pedido" Role="Pedido" Multiplicity="1" />
-          <End Type="PizzasCastilloModel.Contiene" Role="Contiene" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pedido">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Contiene">
-              <PropertyRef Name="IdPedido" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PizzasCastilloModelStoreContainer" CdmEntityContainer="PizzasCastilloBDConnection">
+        <EntityContainerMapping StorageEntityContainer="PizzasCastilloStoreContainer" CdmEntityContainer="PizzasBDEntities">
           <EntitySetMapping Name="ArticuloVenta">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.ArticuloVenta">
+            <EntityTypeMapping TypeName="PizzasCastillo.ArticuloVenta">
               <MappingFragment StoreEntitySet="ArticuloVenta">
-                <ScalarProperty Name="EsPlatillo" ColumnName="EsPlatillo" />
                 <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Foto" ColumnName="Foto" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="EsPlatillo" ColumnName="EsPlatillo" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Consume">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Consume">
+            <EntityTypeMapping TypeName="PizzasCastillo.Consume">
               <MappingFragment StoreEntitySet="Consume">
                 <ScalarProperty Name="PlatilloCodigoBarra" ColumnName="PlatilloCodigoBarra" />
                 <ScalarProperty Name="ProductoCodigoBarra" ColumnName="ProductoCodigoBarra" />
@@ -1770,12 +1771,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Contiene">
+            <EntityTypeMapping TypeName="PizzasCastillo.Contiene">
+              <MappingFragment StoreEntitySet="Contiene">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Direccion">
+            <EntityTypeMapping TypeName="PizzasCastillo.Direccion">
               <MappingFragment StoreEntitySet="Direccion">
-                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="NumeroInterior" ColumnName="NumeroInterior" />
@@ -1787,7 +1798,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DireccionProveedor">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.DireccionProveedor">
+            <EntityTypeMapping TypeName="PizzasCastillo.DireccionProveedor">
               <MappingFragment StoreEntitySet="DireccionProveedor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
@@ -1799,7 +1810,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Efectivo">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Efectivo">
+            <EntityTypeMapping TypeName="PizzasCastillo.Efectivo">
               <MappingFragment StoreEntitySet="Efectivo">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
@@ -1808,7 +1819,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Empleado">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Empleado">
+            <EntityTypeMapping TypeName="PizzasCastillo.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
                 <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -1820,7 +1831,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EstatusPedido">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.EstatusPedido">
+            <EntityTypeMapping TypeName="PizzasCastillo.EstatusPedido">
               <MappingFragment StoreEntitySet="EstatusPedido">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1829,7 +1840,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EstatusPedidoAProveedor">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.EstatusPedidoAProveedor">
+            <EntityTypeMapping TypeName="PizzasCastillo.EstatusPedidoAProveedor">
               <MappingFragment StoreEntitySet="EstatusPedidoAProveedor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1838,19 +1849,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GastoExtra">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.GastoExtra">
+            <EntityTypeMapping TypeName="PizzasCastillo.GastoExtra">
               <MappingFragment StoreEntitySet="GastoExtra">
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="IdTipoGasto" ColumnName="IdTipoGasto" />
                 <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Guarda">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Guarda">
+            <EntityTypeMapping TypeName="PizzasCastillo.Guarda">
               <MappingFragment StoreEntitySet="Guarda">
                 <ScalarProperty Name="IdEfectivo" ColumnName="IdEfectivo" />
                 <ScalarProperty Name="IdReporteCaja" ColumnName="IdReporteCaja" />
@@ -1859,7 +1870,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Indica">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Indica">
+            <EntityTypeMapping TypeName="PizzasCastillo.Indica">
               <MappingFragment StoreEntitySet="Indica">
                 <ScalarProperty Name="IdMerma" ColumnName="IdMerma" />
                 <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
@@ -1868,7 +1879,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Merma">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Merma">
+            <EntityTypeMapping TypeName="PizzasCastillo.Merma">
               <MappingFragment StoreEntitySet="Merma">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -1878,7 +1889,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mesa">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Mesa">
+            <EntityTypeMapping TypeName="PizzasCastillo.Mesa">
               <MappingFragment StoreEntitySet="Mesa">
                 <ScalarProperty Name="IdMesa" ColumnName="IdMesa" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
@@ -1886,7 +1897,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pedido">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Pedido">
+            <EntityTypeMapping TypeName="PizzasCastillo.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -1901,7 +1912,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PedidoAProveedor">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.PedidoAProveedor">
+            <EntityTypeMapping TypeName="PizzasCastillo.PedidoAProveedor">
               <MappingFragment StoreEntitySet="PedidoAProveedor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1913,7 +1924,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Persona">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Persona">
+            <EntityTypeMapping TypeName="PizzasCastillo.Persona">
               <MappingFragment StoreEntitySet="Persona">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -1926,7 +1937,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Platillo">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Platillo">
+            <EntityTypeMapping TypeName="PizzasCastillo.Platillo">
               <MappingFragment StoreEntitySet="Platillo">
                 <ScalarProperty Name="FechaRegisto" ColumnName="FechaRegisto" />
                 <ScalarProperty Name="Receta" ColumnName="Receta" />
@@ -1935,7 +1946,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Producto">
+            <EntityTypeMapping TypeName="PizzasCastillo.Producto">
               <MappingFragment StoreEntitySet="Producto">
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -1948,7 +1959,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Proveedor">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Proveedor">
+            <EntityTypeMapping TypeName="PizzasCastillo.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1956,13 +1967,13 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="NombreEncargado" ColumnName="NombreEncargado" />
-                <ScalarProperty Name="ListaDeProductos" ColumnName="ListaDeProductos" />
                 <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="ListaDeProductos" ColumnName="ListaDeProductos" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Repartidor">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Repartidor">
+            <EntityTypeMapping TypeName="PizzasCastillo.Repartidor">
               <MappingFragment StoreEntitySet="Repartidor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1973,7 +1984,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reporta">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Reporta">
+            <EntityTypeMapping TypeName="PizzasCastillo.Reporta">
               <MappingFragment StoreEntitySet="Reporta">
                 <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
                 <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
@@ -1984,7 +1995,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReporteCaja">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.ReporteCaja">
+            <EntityTypeMapping TypeName="PizzasCastillo.ReporteCaja">
               <MappingFragment StoreEntitySet="ReporteCaja">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="BalanceDiario" ColumnName="BalanceDiario" />
@@ -1999,7 +2010,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReporteInventario">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.ReporteInventario">
+            <EntityTypeMapping TypeName="PizzasCastillo.ReporteInventario">
               <MappingFragment StoreEntitySet="ReporteInventario">
                 <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -2009,7 +2020,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Solicita">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Solicita">
+            <EntityTypeMapping TypeName="PizzasCastillo.Solicita">
               <MappingFragment StoreEntitySet="Solicita">
                 <ScalarProperty Name="IdPedidoDeProducto" ColumnName="IdPedidoDeProducto" />
                 <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
@@ -2019,7 +2030,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoGasto">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoGasto">
+            <EntityTypeMapping TypeName="PizzasCastillo.TipoGasto">
               <MappingFragment StoreEntitySet="TipoGasto">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -2028,7 +2039,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoPedido">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoPedido">
+            <EntityTypeMapping TypeName="PizzasCastillo.TipoPedido">
               <MappingFragment StoreEntitySet="TipoPedido">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -2037,7 +2048,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoProducto">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoProducto">
+            <EntityTypeMapping TypeName="PizzasCastillo.TipoProducto">
               <MappingFragment StoreEntitySet="TipoProducto">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -2046,21 +2057,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoUsuario">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.TipoUsuario">
+            <EntityTypeMapping TypeName="PizzasCastillo.TipoUsuario">
               <MappingFragment StoreEntitySet="TipoUsuario">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contiene">
-            <EntityTypeMapping TypeName="PizzasCastilloModel.Contiene">
-              <MappingFragment StoreEntitySet="Contiene">
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
-                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

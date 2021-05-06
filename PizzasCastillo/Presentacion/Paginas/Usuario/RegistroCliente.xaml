@@ -92,14 +92,14 @@
 
             <!--DIRECCIÓN-->
             <TextBlock Text="Dirección:" Style="{StaticResource TituloStyle}"
-                       Margin="110,30,0,0"/>
+                       Margin="110,10,0,0"/>
             <Canvas Margin="60,0,0,10">
                 <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
                       StrokeThickness="0.5"/>
             </Canvas>
 
             <!--LADO IZQUIERDO-->
-            <Grid Width="1070" Margin="0,20,0,0">
+            <Grid Width="1070" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="5*"/>
@@ -184,6 +184,26 @@
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
+
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                            <Label Content="*" Foreground="{StaticResource Alert}"/>
+                            <TextBlock Text="Estado:" Style="{StaticResource TituloCamposStyle}"
+                                       TextWrapping="WrapWithOverflow"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                                VerticalAlignment="Center">
+                            <ComboBox x:Name="ListaEstados" Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding estadosLista}"
+                                      Width="200" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </Grid>
+                    
                 </StackPanel>
 
                 <!--LADO DERECHO-->
@@ -225,26 +245,9 @@
                         </StackPanel>
                     </Grid>
 
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Estado:" Style="{StaticResource TituloCamposStyle}"
-                                       TextWrapping="WrapWithOverflow"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
-                            <ComboBox x:Name="ListaEstidadesFederativas" Style="{StaticResource ComboboxStyle}"
-                                      Width="200" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Margin="0,10,0,0">
+                    <Grid Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.3*"/>
                             <ColumnDefinition Width="*"/>
@@ -258,8 +261,8 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="ReferenciasText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" 
+                            <TextBox x:Name="ReferenciasText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="400" Width="400" Height="100" VerticalAlignment="Top" TextWrapping="Wrap" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -267,7 +270,7 @@
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,30">
                 <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0"/>
-                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0"/>
+                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="RegistrarCliente"/>
             </StackPanel>
         </StackPanel>
     </Grid>

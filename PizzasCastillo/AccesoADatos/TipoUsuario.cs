@@ -10,14 +10,14 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class TipoUsuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoUsuario()
         {
-            this.Persona = new ObservableCollection<Persona>();
+            this.Persona = new HashSet<Persona>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace AccesoADatos
         public int Estatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Persona> Persona { get; set; }
+        public virtual ICollection<Persona> Persona { get; set; }
     }
 }
