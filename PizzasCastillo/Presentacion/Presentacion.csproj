@@ -104,6 +104,7 @@
     <Compile Include="Paginas\Usuario\TiposUsuario.xaml.cs">
       <DependentUpon>TiposUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recursos\Singleton.cs" />
     <Compile Include="Ventanas\Confirmacion.xaml.cs">
       <DependentUpon>Confirmacion.xaml</DependentUpon>
     </Compile>
@@ -231,8 +232,6 @@
   <ItemGroup>
     <Folder Include="Paginas\Cocina\" />
     <Folder Include="Paginas\Finanza\" />
-    <Folder Include="Paginas\Pedido\" />
-    <Folder Include="Paginas\Producto\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
