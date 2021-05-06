@@ -10,14 +10,14 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Proveedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Proveedor()
         {
-            this.PedidoAProveedor = new ObservableCollection<PedidoAProveedor>();
+            this.PedidoAProveedor = new HashSet<PedidoAProveedor>();
         }
     
         public int Id { get; set; }
@@ -26,11 +26,11 @@ namespace AccesoADatos
         public string Email { get; set; }
         public string Telefono { get; set; }
         public string NombreEncargado { get; set; }
-        public byte[] ListaDeProductos { get; set; }
         public int IdDireccion { get; set; }
+        public byte[] ListaDeProductos { get; set; }
     
         public virtual DireccionProveedor DireccionProveedor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<PedidoAProveedor> PedidoAProveedor { get; set; }
+        public virtual ICollection<PedidoAProveedor> PedidoAProveedor { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace AccesoADatos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PizzasCastilloBDConnection : DbContext
+    public partial class PizzasBDEntities : DbContext
     {
-        public PizzasCastilloBDConnection()
-            : base("name=PizzasCastilloBDConnection")
+        public PizzasBDEntities()
+            : base("name=PizzasBDEntities")
         {
         }
     
@@ -27,6 +27,7 @@ namespace AccesoADatos
     
         public virtual DbSet<ArticuloVenta> ArticuloVenta { get; set; }
         public virtual DbSet<Consume> Consume { get; set; }
+        public virtual DbSet<Contiene> Contiene { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<DireccionProveedor> DireccionProveedor { get; set; }
         public virtual DbSet<Efectivo> Efectivo { get; set; }
@@ -53,6 +54,5 @@ namespace AccesoADatos
         public virtual DbSet<TipoPedido> TipoPedido { get; set; }
         public virtual DbSet<TipoProducto> TipoProducto { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
-        public virtual DbSet<Contiene> Contiene { get; set; }
     }
 }

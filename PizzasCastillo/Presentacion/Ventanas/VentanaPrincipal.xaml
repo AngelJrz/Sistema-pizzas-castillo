@@ -44,7 +44,7 @@
             </StackPanel>
 
             <Frame x:Name="PaginaFrame" Grid.Row="1" NavigationUIVisibility="Hidden" 
-                   Source="/Paginas/Cocina/RegistroPlatillo.xaml"/>
+                   Source="/Paginas/Usuario/RegistroCliente.xaml"/>
 
         </Grid>
         
