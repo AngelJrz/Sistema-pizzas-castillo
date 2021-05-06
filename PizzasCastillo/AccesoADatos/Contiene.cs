@@ -12,16 +12,14 @@ namespace AccesoADatos
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class GastoExtra
+    public partial class Contiene
     {
-        public int Id { get; set; }
-        public string Comentario { get; set; }
+        public int IdPedido { get; set; }
+        public string CodigoBarra { get; set; }
+        public int Cantidad { get; set; }
         public decimal Total { get; set; }
-        public int IdTipoGasto { get; set; }
-        public string NumeroEmpleado { get; set; }
-        public System.DateTime Fecha { get; set; }
     
-        public virtual Empleado Empleado { get; set; }
-        public virtual TipoGasto TipoGasto { get; set; }
+        public virtual ArticuloVenta ArticuloVenta { get; set; }
+        public virtual Pedido Pedido { get; set; }
     }
 }

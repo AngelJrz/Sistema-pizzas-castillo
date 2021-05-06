@@ -1,0 +1,83 @@
+﻿<Window x:Class="Presentacion.Ventanas.Usuario.EditarTipoUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentacion.Ventanas.Usuario"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Editar tipo usuario" Height="450" Width="800" Icon="../../Imagenes/logo.png">
+    <Grid Background="{StaticResource AzulCastilloLight}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="{StaticResource AzulCastillo}">
+            <Image Source="/Imagenes/logo.png" HorizontalAlignment="Center" Margin="0,130,0,0"
+                   Width="150" Height="150"/>
+        </StackPanel>
+
+        
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Editar tipo usuario" Style="{StaticResource TituloPaginasStyle}"
+                       Margin="80,30,0,0" Grid.Row="0"/>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Grid VerticalAlignment="Center" Margin="100,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Label Content="*" Foreground="{StaticResource Alert}"/>
+                        <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                        <TextBox x:Name="NombreText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="30" Width="300" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid VerticalAlignment="Center" Margin="100,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                        <Label Content="*" Foreground="{StaticResource Alert}"/>
+                        <TextBlock Text="Estatus:" Style="{StaticResource TituloCamposStyle}"
+                                       TextWrapping="WrapWithOverflow"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                                VerticalAlignment="Center">
+                        <ComboBox x:Name="ListaTiposUsuario" Style="{StaticResource ComboboxStyle}"
+                                      Width="200" HorizontalAlignment="Left">
+                            <ComboBoxItem IsSelected="True">Activo</ComboBoxItem>
+                            <ComboBoxItem>No activo</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+                <Button Content="Cancelar" IsCancel="True" Style="{StaticResource BotonPrincipalStyle}"
+                    VerticalAlignment="Center" Margin="0,0,30,0"/>
+
+                <Button Content="Actualizar" IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
+                    Margin="30,0,0,0" Click="ActualizarClic"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -44,13 +44,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\ArticuloVenta.cs" />
+    <Compile Include="Entidades\Caja.cs" />
+    <Compile Include="Entidades\Consume.cs" />
+    <Compile Include="Entidades\Contiene.cs" />
+    <Compile Include="Entidades\Direccion.cs" />
+    <Compile Include="Entidades\DireccionProveedor.cs" />
+    <Compile Include="Entidades\Empleado.cs" />
+    <Compile Include="Entidades\GastoExtra.cs" />
+    <Compile Include="Entidades\Guarda.cs" />
+    <Compile Include="Entidades\Indica.cs" />
+    <Compile Include="Entidades\Merma.cs" />
+    <Compile Include="Entidades\Mesa.cs" />
+    <Compile Include="Entidades\Pedido.cs" />
+    <Compile Include="Entidades\PedidoAProveedor.cs" />
+    <Compile Include="Entidades\Persona.cs" />
+    <Compile Include="Entidades\Platillo.cs" />
+    <Compile Include="Entidades\Producto.cs" />
+    <Compile Include="Entidades\Proveedor.cs" />
+    <Compile Include="Entidades\Repartidor.cs" />
+    <Compile Include="Entidades\Reporta.cs" />
+    <Compile Include="Entidades\ReporteCaja.cs" />
+    <Compile Include="Entidades\ReporteInventario.cs" />
+    <Compile Include="Entidades\Solicita.cs" />
+    <Compile Include="Enumeraciones\Efectivo.cs" />
+    <Compile Include="Enumeraciones\Tipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entidades\" />
-    <Folder Include="Enumeraciones\" />
     <Folder Include="Excepciones\" />
+    <Folder Include="Logica\" />
     <Folder Include="Utilerias\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccesoADatos\AccesoADatos.csproj">
+      <Project>{0fe7715f-65d4-4561-ae1e-965563b25265}</Project>
+      <Name>AccesoADatos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

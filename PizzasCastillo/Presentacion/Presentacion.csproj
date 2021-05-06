@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -93,6 +94,51 @@
     </Compile>
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\EditarPedido.xaml.cs">
+      <DependentUpon>EditarPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\GenerarCuentaPedido.xaml.cs">
+      <DependentUpon>GenerarCuentaPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarEntrega.xaml.cs">
+      <DependentUpon>RegistrarEntrega.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml.cs">
+      <DependentUpon>RegistrarPedidoArticulos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml.cs">
+      <DependentUpon>RegistrarPedidoBuscarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoDatos.xaml.cs">
+      <DependentUpon>RegistrarPedidoDatos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Producto\ValidarExistenciaProducto.xaml.cs">
+      <DependentUpon>ValidarExistenciaProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
+      <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Usuario\RegistroCliente.xaml.cs">
+      <DependentUpon>RegistroCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Usuario\RegistroDeUsuario.xaml.cs">
+      <DependentUpon>RegistroDeUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Usuario\TiposUsuario.xaml.cs">
+      <DependentUpon>TiposUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Confirmacion.xaml.cs">
+      <DependentUpon>Confirmacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuario\EditarTipoUsuario.xaml.cs">
+      <DependentUpon>EditarTipoUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuario\RegistroTipoUsuario.xaml.cs">
+      <DependentUpon>RegistroTipoUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
@@ -165,6 +211,74 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Pedido\EditarPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\GenerarCuentaPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarEntrega.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoDatos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Producto\ValidarExistenciaProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\ListaDeUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\RegistroCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\RegistroDeUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\TiposUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recursos\Colores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recursos\Componentes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Confirmacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Usuario\EditarTipoUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Usuario\RegistroTipoUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\VentanaPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,7 +288,6 @@
     <Folder Include="Paginas\Cocina\" />
     <Folder Include="Paginas\Pedido\" />
     <Folder Include="Paginas\Producto\" />
-    <Folder Include="Paginas\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\billete.png" />

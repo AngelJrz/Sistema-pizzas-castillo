@@ -53,5 +53,6 @@ namespace AccesoADatos
         public virtual DbSet<TipoPedido> TipoPedido { get; set; }
         public virtual DbSet<TipoProducto> TipoProducto { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public virtual DbSet<Contiene> Contiene { get; set; }
     }
 }
