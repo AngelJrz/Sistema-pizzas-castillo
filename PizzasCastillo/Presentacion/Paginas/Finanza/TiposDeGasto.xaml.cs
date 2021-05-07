@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Dominio.Logica;
+using Dominio.Enumeraciones;
+using Presentacion.Ventanas;
 
 namespace Presentacion.Paginas.Finanza
 {
@@ -21,9 +14,11 @@ namespace Presentacion.Paginas.Finanza
     /// </summary>
     public partial class TiposDeGasto : Page
     {
+        private Tipo tipoSeleccionado;
         public TiposDeGasto()
         {
             InitializeComponent();
+            ActualizarTablaDeTipos();
         }
 
         private void RegistrarNuevoTipo(object sender, RoutedEventArgs e)
@@ -34,7 +29,21 @@ namespace Presentacion.Paginas.Finanza
 
                 if (opscionSeleccionada == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("se registro nuevo tipo", "Exito");
+                    TipoDeGastoController controlador = new TipoDeGastoController();
+                    Tipo nuevoTipo = new Tipo()
+                    {
+                        Nombre = nombreNuevoTipo.Text
+                    };
+
+                    if (controlador.GuardarNuevoTipoDeGasto(nuevoTipo))
+                    {
+                        MessageBox.Show("Se registro correctamente", "Exito");
+                        ActualizarTablaDeTipos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error al registrar el nuevo tipo", "Error");
+                    }  
                 }
             }
             else
@@ -45,13 +54,49 @@ namespace Presentacion.Paginas.Finanza
 
         private void ClickSalir(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void ClickModificar(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Diste un click", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Warning);
+            var dialog = new InputDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                if (!dialog.ResponseText.Trim().Equals(""))
+                {
+                    TipoDeGastoController controlador = new TipoDeGastoController();
+                    tipoSeleccionado = (Tipo)tablaDeTipos.SelectedItem;
+
+                    if (controlador.ModificarTiposDeGasto(tipoSeleccionado.Id, dialog.ResponseText))
+                    {
+                        MessageBox.Show("Actualizacion terminada");
+                        ActualizarTablaDeTipos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingresa la informacion solicitada");
+                }
+            }
         }
 
+        private void ActualizarTablaDeTipos()
+        {
+            TipoDeGastoController gastoControlador = new TipoDeGastoController();
+            List<Tipo> listaDeTipos = gastoControlador.ObtenerTiposDeGasto();
+
+            if (listaDeTipos.Count == 0)
+            {
+                MessageBox.Show("No existen tipos de gasto actualmente", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                tablaDeTipos.ItemsSource = new ObservableCollection<Tipo>(listaDeTipos);
+            }
+        }
     }
 }

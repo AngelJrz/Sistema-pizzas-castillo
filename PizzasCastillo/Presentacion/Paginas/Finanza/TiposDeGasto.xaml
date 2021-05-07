@@ -14,16 +14,16 @@
         <TextBlock Style="{StaticResource TituloCamposStyle}" TextWrapping="Wrap" Text="Registrar tipo"  FontSize="20" Margin="20,15,0,0"/>
         <TextBlock Style="{StaticResource TituloCamposStyle}" TextWrapping="Wrap" Text="Nombre de nuevo gasto"  FontSize="15" Margin="20,0,0,0" />
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="nombreNuevoTipo" Template="{StaticResource InputControlTemplate}" Width="600" Margin="20,0,0,0"/>
+            <TextBox x:Name="nombreNuevoTipo" MaxLength="30" Template="{StaticResource InputControlTemplate}" Width="600" Margin="20,0,0,0"/>
             <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar" Click="RegistrarNuevoTipo" Margin="20,0,0,0"/>
         </StackPanel>
 
         <TextBlock Style="{StaticResource TituloCamposStyle}" TextWrapping="Wrap" Text="Lista de tipos" Height="37" FontSize="20" Margin="20,0,0,0"/>
 
-        <DataGrid Height="300"  Margin="20" Name="tablaDeTipos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" FontFamily="Se">
+        <DataGrid CanUserAddRows="False" Height="300" Margin="20" Name="tablaDeTipos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" FontFamily="Se">
             <DataGrid.Columns>
 
-                <DataGridTextColumn MinWidth="500" IsReadOnly="True" Header="Tipo de gasto" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="500" IsReadOnly="True" Header="Tipo de gasto" Binding="{Binding Nombre}"/>
 
                 <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
                     <DataGridTemplateColumn.CellTemplate>
@@ -32,7 +32,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
 
