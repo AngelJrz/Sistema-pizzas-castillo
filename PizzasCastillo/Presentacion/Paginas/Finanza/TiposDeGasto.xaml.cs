@@ -59,7 +59,7 @@ namespace Presentacion.Paginas.Finanza
 
         private void ClickModificar(object sender, RoutedEventArgs e)
         {
-            var dialog = new InputDialog();
+            var dialog = new InputDialog("Ingresa el nuevo nombre prueba");
             if (dialog.ShowDialog() == true)
             {
                 if (!dialog.ResponseText.Trim().Equals(""))

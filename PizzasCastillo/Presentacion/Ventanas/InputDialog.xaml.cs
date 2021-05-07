@@ -19,9 +19,10 @@ namespace Presentacion.Ventanas
     /// </summary>
     public partial class InputDialog : Window
     {
-        public InputDialog()
+        public InputDialog(string titulo)
         {
             InitializeComponent();
+            tituloVentana.Text = titulo;
         }
         public string ResponseText
         {
