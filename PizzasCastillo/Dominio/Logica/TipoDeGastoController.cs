@@ -19,21 +19,15 @@ namespace Dominio.Logica
 
         public List<Tipo> ObtenerTiposDeGasto()
         {
-            List<Tipo> listaDeTiposRetorno = new List<Tipo>();
-            List<AccesoADatos.TipoGasto> listaDeTiposBD;
             TipoDeGastoDAO tipoGastoDAO = new TipoDeGastoDAO();
+            List<Tipo> listaDeTiposRetorno = new List<Tipo>();
 
+            List<AccesoADatos.TipoGasto> listaDeTiposBD;
             listaDeTiposBD = tipoGastoDAO.ObtenerTiposDeGastos();
+
             foreach (AccesoADatos.TipoGasto tipoGasto in listaDeTiposBD)
             {
-                Tipo tipoLista = new Tipo()
-                {
-                    Id = tipoGasto.Id,
-                    Nombre = tipoGasto.Nombre,
-                    Estatus = tipoGasto.Estatus
-                };
-
-                listaDeTiposRetorno.Add(tipoLista);
+                listaDeTiposRetorno.Add(Tipo.Clone(tipoGasto));
             }
 
             return listaDeTiposRetorno;
