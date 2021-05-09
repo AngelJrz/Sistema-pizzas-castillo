@@ -26,7 +26,6 @@ namespace Dominio.Entidades
                 Email = proveedor.Email,
                 Telefono = proveedor.Telefono,
                 NombreEncargado = proveedor.NombreEncargado,
-                //XDDDDDDDDDDDDDDDDD
                 Direccion = DireccionProveedor.Clone(proveedor.DireccionProveedor)
             };
         }

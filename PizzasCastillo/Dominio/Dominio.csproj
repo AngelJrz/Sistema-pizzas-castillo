@@ -70,7 +70,10 @@
     <Compile Include="Enumeraciones\Efectivo.cs" />
     <Compile Include="Enumeraciones\Tipo.cs" />
     <Compile Include="Logica\ClienteController.cs" />
+    <Compile Include="Logica\DireccionController.cs" />
+    <Compile Include="Logica\ProveedorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilerias\GenericValidatorText.cs" />
     <Compile Include="Utilerias\ValidadorDireccion.cs" />
     <Compile Include="Utilerias\ValidadorPersonas.cs" />
   </ItemGroup>
