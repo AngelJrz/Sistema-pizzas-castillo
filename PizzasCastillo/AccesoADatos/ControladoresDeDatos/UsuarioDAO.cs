@@ -10,7 +10,7 @@ namespace AccesoADatos.ControladoresDeDatos
 {
     public class UsuarioDAO
     {
-        private PizzasCastilloBDConnection _connection;
+        private PizzasBDEntities _connection;
         private List<Persona> _empleados;
         private const int ACTIVO = 1;
         private const int NINGUN_CAMBIO_REALIZADO = 0;
@@ -18,7 +18,7 @@ namespace AccesoADatos.ControladoresDeDatos
 
         public UsuarioDAO()
         {
-            _connection = new PizzasCastilloBDConnection();
+            _connection = new PizzasBDEntities();
             _resultado = 0;
         }
 

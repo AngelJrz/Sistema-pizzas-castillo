@@ -24,28 +24,28 @@ namespace Presentacion.Paginas.Usuario
         public ListaDeUsuarios()
         {
             InitializeComponent();
-            List<Empleado> empleados = new List<Empleado>()
-            {
-                new Empleado
-                {
-                    Nombre = "Roberto Perez Perez",
-                    NumeroEmpledado = "GER0001",
-                    Telefono = "2281122343",
-                    TipoUsuario = "Gerente",
-                    Estatus = "Activo"
-                },
+            //List<Empleado> empleados = new List<Empleado>()
+            //{
+            //    new Empleado
+            //    {
+            //        Nombre = "Roberto Perez Perez",
+            //        NumeroEmpledado = "GER0001",
+            //        Telefono = "2281122343",
+            //        TipoUsuario = "Gerente",
+            //        Estatus = "Activo"
+            //    },
 
-                new Empleado
-                {
-                    Nombre = "Bertha Carolina Hermida Altamirano",
-                    NumeroEmpledado = "CAJ0001",
-                    Telefono = "2281122344",
-                    TipoUsuario = "Encargado de caja",
-                    Estatus = "Activo"
-                }
-            };
+            //    new Empleado
+            //    {
+            //        Nombre = "Bertha Carolina Hermida Altamirano",
+            //        NumeroEmpledado = "CAJ0001",
+            //        Telefono = "2281122344",
+            //        TipoUsuario = "Encargado de caja",
+            //        Estatus = "Activo"
+            //    }
+            //};
 
-            ListaUsuarios.ItemsSource = empleados;
+            //ListaUsuarios.ItemsSource = empleados;
         }
 
         private void ConsultarUsuario(object sender, RoutedEventArgs e)
@@ -60,14 +60,14 @@ namespace Presentacion.Paginas.Usuario
 
         private void EliminarUsuario(object sender, RoutedEventArgs e)
         {
-            Empleado empleadoSeleccionado = (Empleado)ListaUsuarios.SelectedItem;
-            Confirmacion dialogoConfirmacion = new Confirmacion("Dar de baja usuario",
-                $"¿Seguro desea dar de baja al usuario con No. Empleado {empleadoSeleccionado.NumeroEmpledado} seleccionado?");
+            //Empleado empleadoSeleccionado = (Empleado)ListaUsuarios.SelectedItem;
+            //Confirmacion dialogoConfirmacion = new Confirmacion("Dar de baja usuario",
+            //    $"¿Seguro desea dar de baja al usuario con No. Empleado {empleadoSeleccionado.NumeroEmpledado} seleccionado?");
 
-            if (dialogoConfirmacion.ShowDialog() == true)
-            {
+            //if (dialogoConfirmacion.ShowDialog() == true)
+            //{
 
-            }
+            //}
         }
 
         private void BuscarEnter(object sender, KeyEventArgs e)
@@ -84,12 +84,12 @@ namespace Presentacion.Paginas.Usuario
         }
     }
 
-    public class Empleado
-    {
-        public string NumeroEmpledado { get; set; }
-        public string Nombre { get; set; }
-        public string Telefono { get; set; }
-        public string TipoUsuario { get; set; }
-        public string Estatus { get; set; }
-    }
+    //public class Empleado
+    //{
+    //    public string NumeroEmpledado { get; set; }
+    //    public string Nombre { get; set; }
+    //    public string Telefono { get; set; }
+    //    public string TipoUsuario { get; set; }
+    //    public string Estatus { get; set; }
+    //}
 }

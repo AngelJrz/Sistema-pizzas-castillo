@@ -24,5 +24,17 @@ namespace Dominio.Entidades
                 FechaRegistro = empleado.FechaRegistro
             };
         }
+
+        public static AccesoADatos.Empleado CloneToEntityDB(Empleado empleado)
+        {
+            return new AccesoADatos.Empleado
+            {
+                NumeroEmpleado = empleado.NumeroEmpleado,
+                Username = empleado.Username,
+                Contrasenia = empleado.Contrasenia,
+                SalarioQuincenal = empleado.SalarioQuincenal,
+                FechaRegistro = empleado.FechaRegistro
+            };
+        }
     }
 }

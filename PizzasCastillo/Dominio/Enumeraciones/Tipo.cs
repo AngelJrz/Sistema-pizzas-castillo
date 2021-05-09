@@ -52,6 +52,16 @@ namespace Dominio.Enumeraciones
             };
         }
 
+        public static AccesoADatos.TipoUsuario CloneToEntityDB(Tipo tipoUsuario)
+        {
+            return new AccesoADatos.TipoUsuario
+            {
+                Nombre = tipoUsuario.Nombre,
+                Estatus = tipoUsuario.Estatus,
+                Id = tipoUsuario.Id
+            };
+        }
+
         public static Tipo Clone(AccesoADatos.EstatusPedido tipo)
         {
             return new Tipo
@@ -70,6 +80,46 @@ namespace Dominio.Enumeraciones
                 Nombre = tipo.Nombre,
                 Estatus = tipo.Estatus
             };
+        }
+
+        public static List<Tipo> CloneList(List<AccesoADatos.TipoUsuario> tiposUsuario)
+        {
+            List<Tipo> list = new List<Tipo>();
+            tiposUsuario.ToList().ForEach(tipoUsuario => list.Add(
+                new Tipo
+                {
+                    Nombre = tipoUsuario.Nombre,
+                    Id = tipoUsuario.Id,
+                    Estatus = tipoUsuario.Estatus
+                }
+            ));
+            return list;
+        }
+
+        public string ObtenerEtiquetaTipoEmpleado()
+        {
+            string etiqueta = "";
+
+            switch (Nombre)
+            {
+                case "Gerente":
+                    etiqueta = "GER";
+                    break;
+                case "Encargado de caja":
+                    etiqueta = "CAJ";
+                    break;
+                case "Contador":
+                    etiqueta = "CON";
+                    break;
+                case "Mesero":
+                    etiqueta = "MES";
+                    break;
+                case "Cocinero":
+                    etiqueta = "COC";
+                    break;
+            }
+
+            return etiqueta;
         }
     }
 }

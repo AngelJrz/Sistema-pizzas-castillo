@@ -62,6 +62,8 @@
     <Compile Include="ControladoresDeDatos\ClienteDAO.cs" />
     <Compile Include="ControladoresDeDatos\DireccionDAO.cs" />
     <Compile Include="ControladoresDeDatos\TipoDeGastoDAO.cs" />
+    <Compile Include="ControladoresDeDatos\TipoUsuarioDAO.cs" />
+    <Compile Include="ControladoresDeDatos\UsuarioDAO.cs" />
     <Compile Include="Direccion.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
@@ -189,8 +191,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Excepciones\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

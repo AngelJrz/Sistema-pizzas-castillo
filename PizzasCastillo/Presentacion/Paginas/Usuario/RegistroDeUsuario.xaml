@@ -35,7 +35,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="NombresText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                                     MaxLength="150" Width="400" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -52,7 +52,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="ApellidosText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                                     MaxLength="200" Width="400" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -69,7 +69,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                                     MaxLength="80" Width="400" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -86,7 +86,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="TelefonoText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" HorizontalAlignment="Left"/>
+                                     MaxLength="10" Width="200" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -120,7 +120,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CalleText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" 
+                                     MaxLength="150" Width="400" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -140,7 +140,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoExteriorText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
+                                     MaxLength="5" Width="200" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -160,7 +160,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CodigoPostalText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
+                                     MaxLength="5" Width="200" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -180,7 +180,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CiudadText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
+                                     MaxLength="60" Width="200" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -202,7 +202,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="ColoniaText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" 
+                                     MaxLength="150" Width="400" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -214,7 +214,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
+                            <Label Content="*" Foreground="{StaticResource Alert}" Visibility="Hidden"/>
                             <TextBlock Text="No. Int:" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
@@ -222,7 +222,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoInteriorText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
+                                     MaxLength="5" Width="200" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -252,7 +252,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Top">
                             <Label Content="*" Foreground="{StaticResource Alert}"/>
                             <TextBlock Text="Referencias:" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
@@ -261,7 +261,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="ReferenciasText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" 
+                                     MaxLength="200" Width="400" Height="80"
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -292,7 +292,7 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                     <ComboBox x:Name="ListaTiposUsuario" Style="{StaticResource ComboboxStyle}"
-                                      Width="200" HorizontalAlignment="Left"/>
+                                      Width="200" HorizontalAlignment="Left" DisplayMemberPath="Nombre"/>
                 </StackPanel>
             </Grid>
 
@@ -343,7 +343,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="SalarioText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" HorizontalAlignment="Left" ToolTip="Hola"/>
+                                     MaxLength="8" Width="200" HorizontalAlignment="Left" ToolTip="Hola"/>
                 </StackPanel>
             </Grid>
 
@@ -352,7 +352,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
                 <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0"/>
-                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0"/>
+                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="Registrar_Clic"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
