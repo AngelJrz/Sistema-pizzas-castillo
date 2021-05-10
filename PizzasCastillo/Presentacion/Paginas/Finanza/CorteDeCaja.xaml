@@ -19,17 +19,17 @@
 
             <Rectangle Grid.Column="0" Fill="#E8FFE7" HorizontalAlignment="Left" Height="69" Stroke="Black" Width="205"/>
             <TextBlock Grid.Column="0" Style="{StaticResource TituloCamposStyle}" TextAlignment="center" TextWrapping="Wrap" Text="Ingresos" Grid.ColumnSpan="2" Margin="0,5,204.6,34.8"  />
-            <TextBlock Grid.Column="0" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0,39,204.6,-0.2"/>
+            <TextBlock x:Name="ingresosDelDia" Text="500" Grid.Column="0" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0,39,204.6,-0.2"/>
 
             <Rectangle Grid.Column="1" Fill="#FFE7E7" HorizontalAlignment="Left" Height="69"  Stroke="Black" Width="205"/>
             <TextBlock Grid.Column="1" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center"  TextWrapping="Wrap" Text="Egresos" Grid.ColumnSpan="2" Margin="0.2,4,204.4,34.8" />
-            <TextBlock Grid.Column="1" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center"  TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0.2,40,204.4,-0.2"  />
+            <TextBlock x:Name="egresosDelDia" Text="250" Grid.Column="1" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center"  TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0.2,40,204.4,-0.2"  />
 
             <Rectangle Grid.Column="2" Fill="#FFFFE7" HorizontalAlignment="Left" Height="69"  Stroke="Black"  Width="205"/>
             <TextBlock Grid.Column="2" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Text="Balance del día" Margin="0.4,4,-0.6,34.8"/>
-            <TextBlock Grid.Column="2" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Margin="0.4,39,-0.6,-0.2"  />
+            <TextBlock x:Name="balanceDiario" Grid.Column="2" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Margin="0.4,39,-0.6,-0.2"  />
         </Grid>
-        <TextBlock Style="{StaticResource TituloCamposStyle}" Margin="0,20,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="Ingresa la cantidad de efectivo que se encuentra en caja"/>
+        <TextBlock Style="{StaticResource TituloCamposStyle}" Margin="0,20,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="Ingresa la cantidad de efectivo que se encuentra en caja (Unicamente numeros enteros)"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -54,12 +54,12 @@
             <TextBlock Grid.Column="4" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Text="$50"/>
             <TextBlock Grid.Column="5" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Text="$20"/>
 
-            <TextBox Grid.Column="0" Margin="21,99,21.4,0.4" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="1" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="2" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="3" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="4" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="5" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoBilleteMil" TextAlignment="Center" Grid.Column="0" Margin="21,99,21.4,0" Width="60" Template="{StaticResource InputControlTemplate}" Height="25" VerticalAlignment="Top"/>
+            <TextBox x:Name="campoBilleteQuinientos" TextAlignment="Center" Grid.Column="1" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoBilleteDoscientos" TextAlignment="Center" Grid.Column="2" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoBilleteCien" TextAlignment="Center" Grid.Column="3" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoBilleteCincuenta" TextAlignment="Center" Grid.Column="4" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoBilleteVeinte" TextAlignment="Center" Grid.Column="5" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
         </Grid>
         <Grid Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
@@ -82,16 +82,20 @@
             <TextBlock Grid.Column="3" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Text="$1"/>
             <TextBlock Grid.Column="4" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Text="$.50"/>
 
-            <TextBox Grid.Column="0" Margin="0,100,0,0" Width="60"  Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="1" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="2" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="3" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
-            <TextBox Grid.Column="4" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoMonedaDiez" TextAlignment="Center" Grid.Column="0" Margin="0,100,0,0" Width="60"  Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoMonedaCinco" TextAlignment="Center" Grid.Column="1" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoMonedaDos" TextAlignment="Center" Grid.Column="2" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoMonedaUno" TextAlignment="Center" Grid.Column="3" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
+            <TextBox x:Name="campoMonedaCentavo" TextAlignment="Center" Grid.Column="4" Margin="0,100,0,0" Width="60" Template="{StaticResource InputControlTemplate}"/>
 
         </Grid>
-        <StackPanel Margin="0,50,0,0" Orientation="Horizontal" HorizontalAlignment="Center"> 
+        <StackPanel Margin="0,50,0,0" Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource TituloCamposStyle}"  TextAlignment="Left" Text="Comentarios (Opcional):"/>
+            <TextBox x:Name="comentariosInput" Text="Sin comentarios" Width="600" Margin="0,20,0,0"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="0,50,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Style="{StaticResource BotonPrincipalStyle}" Content="Guardar corte" Click="ClickGuardarCorte"/>
             <Button Style="{StaticResource BotonSecundarioStyle}" Margin="30,0,0,0" Content="Cancelar" Click="ClickCancelar"/>
         </StackPanel>
-       </StackPanel>
+    </StackPanel>
 </Page>
