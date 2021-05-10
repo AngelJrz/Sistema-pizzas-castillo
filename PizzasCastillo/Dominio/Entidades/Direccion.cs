@@ -17,5 +17,40 @@ namespace Dominio.Entidades
         public string NumeroExterior { get; set; }
         public string EntidadFederativa { get; set; }
         public string Colonia { get; set; }
+
+        public static Direccion Clone(AccesoADatos.Direccion direccion)
+        {
+            return new Direccion
+            {
+                Id = direccion.Id,
+                Calle = direccion.Calle,
+                Ciudad = direccion.Ciudad,
+                CodigoPostal = direccion.CodigoPostal,
+                NumeroInterior = direccion.NumeroInterior,
+                Referencias = direccion.Referencias,
+                NumeroExterior = direccion.NumeroExterior,
+                EntidadFederativa = direccion.EntidadFederativa,
+                Colonia = direccion.Colonia
+            };
+        }
+        public static List<Direccion> CloneList(List<AccesoADatos.Direccion> direcciones)
+        {
+            List<Direccion> list = new List<Direccion>();
+            direcciones.ToList().ForEach(direccion => list.Add(
+                new Direccion
+                {
+                    Id = direccion.Id,
+                    Calle = direccion.Calle,
+                    Ciudad = direccion.Ciudad,
+                    CodigoPostal = direccion.CodigoPostal,
+                    NumeroInterior = direccion.NumeroInterior,
+                    Referencias = direccion.Referencias,
+                    NumeroExterior = direccion.NumeroExterior,
+                    EntidadFederativa = direccion.EntidadFederativa,
+                    Colonia = direccion.Colonia
+                }
+            ));
+            return list;
+        }
     }
 }

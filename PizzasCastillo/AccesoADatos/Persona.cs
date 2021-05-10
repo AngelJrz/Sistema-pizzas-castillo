@@ -10,16 +10,16 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Persona
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Persona()
         {
-            this.Direccion = new ObservableCollection<Direccion>();
-            this.Empleado = new ObservableCollection<Empleado>();
-            this.Pedido = new ObservableCollection<Pedido>();
+            this.Direccion = new HashSet<Direccion>();
+            this.Empleado = new HashSet<Empleado>();
+            this.Pedido = new HashSet<Pedido>();
         }
     
         public int Id { get; set; }
@@ -31,11 +31,11 @@ namespace AccesoADatos
         public int IdTipoUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Direccion> Direccion { get; set; }
+        public virtual ICollection<Direccion> Direccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Empleado> Empleado { get; set; }
+        public virtual ICollection<Empleado> Empleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Pedido> Pedido { get; set; }
+        public virtual ICollection<Pedido> Pedido { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }
     }
 }

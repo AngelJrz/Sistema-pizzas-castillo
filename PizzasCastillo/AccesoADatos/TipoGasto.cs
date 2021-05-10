@@ -10,14 +10,14 @@
 namespace AccesoADatos
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class TipoGasto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoGasto()
         {
-            this.GastoExtra = new ObservableCollection<GastoExtra>();
+            this.GastoExtra = new HashSet<GastoExtra>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace AccesoADatos
         public int Estatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<GastoExtra> GastoExtra { get; set; }
+        public virtual ICollection<GastoExtra> GastoExtra { get; set; }
     }
 }

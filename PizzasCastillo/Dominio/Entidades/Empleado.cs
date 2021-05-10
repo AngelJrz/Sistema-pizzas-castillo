@@ -13,5 +13,16 @@ namespace Dominio.Entidades
         public string Contrasenia { get; set; }
         public decimal SalarioQuincenal { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public static Empleado Clone(AccesoADatos.Empleado empleado)
+        {
+            return new Empleado
+            {
+                NumeroEmpleado = empleado.NumeroEmpleado,
+                Username = empleado.Username,
+                Contrasenia = empleado.Contrasenia,
+                SalarioQuincenal = empleado.SalarioQuincenal,
+                FechaRegistro = empleado.FechaRegistro
+            };
+        }
     }
 }

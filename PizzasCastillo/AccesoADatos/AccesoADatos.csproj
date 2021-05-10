@@ -59,6 +59,9 @@
     <Compile Include="Contiene.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
+    <Compile Include="ControladoresDeDatos\ClienteDAO.cs" />
+    <Compile Include="ControladoresDeDatos\DireccionDAO.cs" />
+    <Compile Include="ControladoresDeDatos\TipoDeGastoDAO.cs" />
     <Compile Include="Direccion.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
@@ -102,18 +105,18 @@
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
     <Compile Include="PizzasCastillo.Context.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>PizzasCastillo.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="PizzasCastillo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="PizzasCastillo.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Platillo.cs">
@@ -155,36 +158,33 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="PizzasCastillo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PizzasCastillo.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="PizzasCastillo.edmx.diagram">
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PizzasCastillo.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PizzasCastillo.Context.cs</LastGenOutput>
-      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
-    </Content>
-    <Content Include="PizzasCastillo.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
-      <LastGenOutput>PizzasCastillo.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ControladoresDeDatos\" />
     <Folder Include="Excepciones\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PizzasCastillo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+      <LastGenOutput>PizzasCastillo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="PizzasCastillo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PizzasCastillo.cs</LastGenOutput>
+      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

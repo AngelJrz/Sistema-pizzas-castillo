@@ -13,7 +13,19 @@ namespace Dominio.Entidades
         public string Comentario { get; set; }
         public decimal Total { get; set; }
         public DateTime Fecha { get; set; }
-        public TipoGasto Tipo { get; set; }
+        public Tipo Tipo { get; set; }
         public Empleado RegistradoPor { get; set; }
+        public static GastoExtra Clone(AccesoADatos.GastoExtra gasto)
+        {
+            return new GastoExtra
+            {
+                Id = gasto.Id,
+                Comentario = gasto.Comentario,
+                Total = gasto.Total,
+                Fecha = gasto.Fecha,
+                Tipo = Tipo.Clone(gasto.TipoGasto),
+                RegistradoPor = Empleado.Clone(gasto.Empleado)
+            };
+        }
     }
 }
