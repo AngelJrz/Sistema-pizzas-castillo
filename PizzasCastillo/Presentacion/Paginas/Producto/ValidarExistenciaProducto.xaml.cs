@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dominio.Logica;
 
 namespace Presentacion.Paginas.Producto
 {
@@ -20,15 +21,21 @@ namespace Presentacion.Paginas.Producto
     /// </summary>
     public partial class ValidarExistenciaProducto : Page
     {
+        
         public ValidarExistenciaProducto()
         {
             InitializeComponent();
+            ProductoController controller = new ProductoController();
+            ListaProductos.ItemsSource = controller.ObtenerProductos();
         }
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
+            ProductoController controller = new ProductoController();
+            ListaProductos.ItemsSource=controller.BuscarProductosNombre(BusquedaText.Text);
 
         }
 
+      
 
 
         private void ConsultarProducto(object sender, RoutedEventArgs e)
@@ -38,25 +45,30 @@ namespace Presentacion.Paginas.Producto
 
         private void ValidarExistencias(object sender, RoutedEventArgs e)
         {
+            AccesoADatos.Producto productoSeleccionado = (AccesoADatos.Producto)ListaProductos.SelectedItem;
+            ProductoController controller = new ProductoController();
+             AccesoADatos.Producto productoValidar = controller.BuscarProductoID(productoSeleccionado.CodigoBarra);
+
+            ValidarExistencias(productoValidar);
 
         }
-       
 
+        public static void ValidarExistencias(AccesoADatos.Producto producto) {
+            if (producto.Cantidad == 0 || producto.Cantidad < 0)
+            {
+                MessageBox.Show("ya no hay existencia de este producto");
+            }
+            else {
+                MessageBox.Show("Aun hay existen " + producto.Cantidad + " de este producto");
+            }
+
+        
+        }
+
+      
     }
 
 
 
-    public class Producto
-    {
-        public string codigoDeBarras {get;set;}
-        public string estatus { get; set; }
-        public string foto { get; set; }
-        public string nombre { get; set; }
-        public float presio { get; set; }
-        public string descripcion { get; set; }
-        public float preciounitario { get; set; }
-        public string restricciones { get; set; }
-        public string Tipo { get; set; }
-        public string unidadDeMedida { get; set; }
-    }
+   
 }

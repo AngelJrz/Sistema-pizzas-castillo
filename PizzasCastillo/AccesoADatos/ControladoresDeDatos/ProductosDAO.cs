@@ -15,30 +15,51 @@ namespace AccesoADatos.ControladoresDeDatos
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
 
+        private Producto productoEncontrado;
+        private List<Producto> _productos;
 
 
 
-        public bool RegistrarProducto(Producto productoAregistrar)
+
+       
+
+        public List<Producto> ObtenerListaProductos()
+        {
+            _productos = _connection.Producto.ToList();
+
+            return _productos;
+        }
+
+
+
+        public Producto ObtenerProductosID(string codigoBarras)
         {
             try
             {
+                productoEncontrado = (Producto)_connection.Producto
+                .Where(p => p.CodigoBarra == codigoBarras);
 
-                _connection.Entry(productoAregistrar).State= EntityState.Added;
-                _connection.SaveChangesAsync();
             }
-            catch (DbUpdateException)
-            {
+            catch (Exception){
 
                 throw;
             }
+            return productoEncontrado;
 
-            if (_resultado == SIN_CAMBIOS)
-            {
-                return false;
-            }
+        }
 
-            return true;
+
+        public List<Producto> ObtenerProductosNombre(string nombre) {
+
+             _productos = _connection.Producto
+                    .Where(lista => lista.ArticuloVenta.Nombre.Contains(nombre)).ToList();
+
+                    return _productos;
         }
 
     }
+
+
+
+
 }
