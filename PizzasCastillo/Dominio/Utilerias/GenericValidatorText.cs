@@ -4,10 +4,6 @@ namespace Dominio.Utilerias
 {
     public static class GenericValidatorText
     {
-        private const int MINIMUM_LENGHT = 10;
-        private const int MINIMUM_LENGHT_MENSUAL_REPORT = 200;
-        private const int MINIMUM_LENGHT_PARTIAL_REPORT = 200;
-        private const int MINIMUM_LENGHT_OBSERVATIONS_REPORT = 7;
 
         public static bool IsUserName(string userName)
         {

@@ -69,7 +69,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}"
-                     TextChanged="IsEmail" MaxLength="40" Width="400" HorizontalAlignment="Left"/>
+                     MaxLength="40" Width="400" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 

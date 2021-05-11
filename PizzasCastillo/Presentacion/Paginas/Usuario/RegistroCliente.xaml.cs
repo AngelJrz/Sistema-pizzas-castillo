@@ -109,7 +109,7 @@ namespace Presentacion.Paginas.Usuario
             }
             else
             {
-                InteraccionUsuario ventana = new InteraccionUsuario("Error de registro","Uno o mas campos estan incorrectos,verificar bien");
+                InteraccionUsuario ventana = new InteraccionUsuario("Error de campos","Uno o mas campos estan incorrectos,verificar bien");
                 ventana.Show();
             }
         }
@@ -118,7 +118,7 @@ namespace Presentacion.Paginas.Usuario
         {
             ValidadorPersonas validadorP = new ValidadorPersonas();
             ValidadorDireccion validadorD = new ValidadorDireccion();
-            if (validadorD.Validar(direccion) == true)
+            if (validadorD.Validar(direccion) == true && GenericValidatorText.IsEmail(EmailText.Text))
             {
                 return validadorP.Validar(persona);
             }
@@ -133,18 +133,6 @@ namespace Presentacion.Paginas.Usuario
             string number = ((TextBox)sender).Text;
 
             if (GenericValidatorText.IsANumber(number))
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = false;
-            }
-        }
-
-        private void IsEmail(object sender, RoutedEventArgs e)
-        {
-            if (GenericValidatorText.IsEmail(EmailText.Text))
             {
                 e.Handled = true;
             }

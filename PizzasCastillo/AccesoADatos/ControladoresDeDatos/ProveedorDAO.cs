@@ -10,37 +10,38 @@ namespace AccesoADatos.ControladoresDeDatos
 {
     public class ProveedorDAO
     {
-        private PizzasBDEntities _connection;
-        private List<Proveedor> _proveedores;
-        private const int ACTIVO = 1;
+        private readonly PizzasBDEntities connection;
+        private List<Proveedor> proveedores;
         private const int SIN_CAMBIOS = 0;
-        private int _resultado;
+        private int resultado;
 
         public ProveedorDAO()
         {
-            _connection = new PizzasBDEntities();
-            _resultado = 0;
+            connection = new PizzasBDEntities();
+            resultado = 0;
         }
 
-        public List<Proveedor> ObtenerProveedoresNombre(Proveedor proveedor)
+        public List<Proveedor> ObtenerProveedores()
         {
-            _proveedores = _connection.Proveedor
-            .Where(provedorio => provedorio.Nombre == proveedor.Nombre)
-                .Include("Proveedor")
-                .ToList();
+            try
+            {
+                proveedores = connection.Proveedor.ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
 
-            return _proveedores;
+
+            return proveedores;
         }
 
         public bool RegistrarProveedor(Proveedor proveedor)
         {
             try
             {
-                DireccionDAO direccionDAO = new DireccionDAO();
-                List<DireccionProveedor> direcciones = direccionDAO.ObtenerDireccionesProveedor();
-                proveedor.DireccionProveedor = direcciones.Last();
-                _connection.Entry(proveedor).State = EntityState.Added;
-                _resultado = _connection.SaveChanges();
+                connection.Entry(proveedor).State = EntityState.Added;
+                resultado = connection.SaveChanges();
             }
             catch (DbUpdateException)
             {
@@ -48,11 +49,43 @@ namespace AccesoADatos.ControladoresDeDatos
                 throw;
             }
 
-            if (_resultado == SIN_CAMBIOS)
+            if (resultado == SIN_CAMBIOS)
             {
                 return false;
             }
 
+            return true;
+        }
+
+        public bool ActualizarProovedor(Proveedor proveedor)
+        {
+            try
+            {
+                var proveedorDB = connection.Proveedor.Where(p => p.Id == proveedor.Id).First();
+                if (proveedorDB != null)
+                {
+                    proveedorDB.Nombre = proveedor.Nombre;
+                    proveedorDB.NombreEncargado = proveedor.NombreEncargado;
+                    proveedorDB.ListaDeProductos = proveedor.ListaDeProductos;
+                    proveedorDB.Telefono = proveedor.Telefono;
+                    proveedorDB.Dni = proveedor.Dni;
+                    proveedorDB.Email = proveedor.Email;
+                    proveedorDB.DireccionProveedor.Ciudad = proveedor.DireccionProveedor.Ciudad;
+                    proveedorDB.DireccionProveedor.Calle = proveedor.DireccionProveedor.Calle;
+                    proveedorDB.DireccionProveedor.CodigoPostal = proveedor.DireccionProveedor.CodigoPostal;
+                    proveedorDB.DireccionProveedor.EntidadFederativa = proveedor.DireccionProveedor.EntidadFederativa;
+                    proveedorDB.DireccionProveedor.Numero = proveedor.DireccionProveedor.Numero;
+                    resultado = connection.SaveChanges();
+                }
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
+            if (resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
             return true;
         }
 

@@ -9,7 +9,9 @@
       d:DesignHeight="450" d:DesignWidth="1000"
       Height="Auto" Width="Auto"
       Title="RegistroPlatillo">
-
+    <Page.Resources>
+        <local:ByteToImageConverter x:Name="binaryConverter" x:Key="byteToImageConverter"/>
+    </Page.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
         <StackPanel Margin="80,0,0,0">
 
@@ -73,30 +75,28 @@
 
 
 
-            <TextBlock Text="Ingredientes" Style="{StaticResource TituloPaginasStyle}" Margin="0,0,0,30"/>
+            <TextBlock Text="Ingredientes" Style="{StaticResource TituloPaginasStyle}" Margin="0,0,00,30"/>
+            <Image x:Name="fotoLoca" Source="{Binding}"/>
 
-            <StackPanel x:Name="ListaPedidos" Margin="-100,0,0,0">
-                
-                <Border BorderBrush="Black" BorderThickness="1" Width="580"  Height="100" CornerRadius="15">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Label Content="*" Foreground="{StaticResource Alert}" />
-                            <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"  />
-                            <ComboBox x:Name="NombreComobobox" Style="{StaticResource ComboboxStyle}"  Width="350" HorizontalAlignment="Left" Height="35" />
-                        </StackPanel>
+            <StackPanel x:Name="ListaPedidos" Margin="0,0,200,0">
 
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}"  />
-                            <TextBox x:Name="PrecASDText" Template="{StaticResource InputControlTemplate}"  Width="100" HorizontalAlignment="Left" Height="57" />
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Medida:" Style="{StaticResource TituloCamposStyle}"  />
-                            <TextBox x:Name="PrecASText" Template="{StaticResource InputControlTemplate}"  Width="100" HorizontalAlignment="Left" Height="57"/>
-                            <Button x:Name="EliminarBoton" Margin="10,0,0,0" Width="200" Height="40" Content="Eliminar Ingrediente" Style="{StaticResource BotonSecundarioStyle}"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-                
+                <ListView x:Name="proveedorList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="Black" BorderThickness="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding ListaDeProductos,Converter={StaticResource byteToImageConverter}}"/>
+                                <Label Content="{Binding Telefono}"/>
+                                <Label Content="{Binding Nombre}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+
             </StackPanel>
 
             <Button Style="{StaticResource BotonSecundarioStyle}" Margin="0,100,0,0" Content="Agregar ingrediente" Width="200"/>

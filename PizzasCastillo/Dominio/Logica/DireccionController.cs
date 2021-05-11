@@ -32,23 +32,5 @@ namespace Dominio.Logica
             };
         }
 
-        private AccesoADatos.DireccionProveedor CloneDireccionProveedor(DireccionProveedor direccion)
-        {
-            return new AccesoADatos.DireccionProveedor
-            {
-                Calle = direccion.Calle,
-                Ciudad = direccion.Ciudad,
-                CodigoPostal = direccion.CodigoPostal,
-                EntidadFederativa = direccion.EntidadFederativa,
-                Numero = direccion.Numero
-            };
-        }
-
-        public bool GuardarDireccionProveedor(DireccionProveedor direccion)
-        {
-            DireccionDAO direccionDAO = new DireccionDAO();
-
-            return direccionDAO.RegistrarDireccionProveedor(CloneDireccionProveedor(direccion));
-        }
     }
 }

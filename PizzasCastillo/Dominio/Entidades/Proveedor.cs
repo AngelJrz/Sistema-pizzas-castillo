@@ -26,8 +26,29 @@ namespace Dominio.Entidades
                 Email = proveedor.Email,
                 Telefono = proveedor.Telefono,
                 NombreEncargado = proveedor.NombreEncargado,
+                ListaDeProductos = BitConverter.ToString(proveedor.ListaDeProductos),
                 Direccion = DireccionProveedor.Clone(proveedor.DireccionProveedor)
             };
+        }
+
+        public static List<Proveedor> CloneList(List<AccesoADatos.Proveedor> proveedores)
+        {
+            List<Proveedor> listaProveedores = new List<Proveedor>();
+            proveedores.ToList().ForEach(proveedor => listaProveedores.Add(
+               new Proveedor
+               {
+                   Id = proveedor.Id,
+                   Nombre = proveedor.Nombre,
+                   Dni = proveedor.Dni,
+                   Email = proveedor.Email,
+                   Telefono = proveedor.Telefono,
+                   NombreEncargado = proveedor.NombreEncargado,
+                   ListaDeProductos = BitConverter.ToString(proveedor.ListaDeProductos),
+                   Direccion = DireccionProveedor.Clone(proveedor.DireccionProveedor)
+               }
+               ));
+
+            return listaProveedores;
         }
     }
 

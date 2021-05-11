@@ -11,10 +11,9 @@ namespace AccesoADatos.ControladoresDeDatos
     public class DireccionDAO
     {
 
-        private PizzasBDEntities _connection;
+        private readonly PizzasBDEntities _connection;
         private List<Direccion> _direcciones;
         private List<DireccionProveedor> _direccionesProveedor;
-        private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
 
@@ -62,27 +61,6 @@ namespace AccesoADatos.ControladoresDeDatos
             .ToList();
 
             return _direccionesProveedor;
-        }
-
-        public bool RegistrarDireccionProveedor(DireccionProveedor direccion)
-        {
-            try
-            {
-                _connection.Entry(direccion).State = EntityState.Added;
-                _resultado = _connection.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-
-                throw;
-            }
-
-            if (_resultado == SIN_CAMBIOS)
-            {
-                return false;
-            }
-
-            return true;
         }
 
     }
