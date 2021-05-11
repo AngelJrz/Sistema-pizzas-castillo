@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AccesoADatos.ControladoresDeDatos
 {
-   public  class PedidosDAO
+    public class ProductosContienePedidoDAO
     {
         private PizzasBDEntities _connection;
         private List<Pedido> _pedidos;
@@ -16,11 +15,17 @@ namespace AccesoADatos.ControladoresDeDatos
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
 
-        public bool RegistrarPedido(Pedido pedido)
+        public bool RegistrarProductosPedido (int idpedido,ArticuloVenta articuloDelPedido,int cantidad, int total)
         {
             try
             {
-                _connection.Pedido.Add(pedido);
+                Contiene contiene = new Contiene();
+                contiene.CodigoBarra = articuloDelPedido.CodigoBarra;
+                contiene.Cantidad = cantidad;
+                contiene.IdPedido = idpedido;
+                contiene.Total = total;
+                
+                _connection.Contiene.Add(contiene);
                 _resultado = _connection.SaveChanges();
             }
             catch (DbUpdateException)
