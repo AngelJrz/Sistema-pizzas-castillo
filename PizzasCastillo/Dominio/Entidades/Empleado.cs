@@ -36,5 +36,17 @@ namespace Dominio.Entidades
                 FechaRegistro = empleado.FechaRegistro
             };
         }
+
+        public void SetInformacionPersonal(Persona persona)
+        {
+            Id = persona.Id;
+            Nombres = persona.Nombres;
+            Apellidos = persona.Apellidos;
+            Telefono = persona.Telefono;
+            Email = persona.Email;
+            Direcciones = persona.Direcciones;
+            TipoUsuario = persona.TipoUsuario;
+            Estatus = persona.Estatus;
+        }
     }
 }

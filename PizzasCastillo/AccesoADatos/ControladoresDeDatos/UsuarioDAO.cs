@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AccesoADatos.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -24,10 +26,22 @@ namespace AccesoADatos.ControladoresDeDatos
 
         public List<Persona> ObtenerEmpleadosActivos()
         {
-            _empleados = _connection.Persona
+            try
+            {
+                _empleados = _connection.Persona
                 .Where(persona => persona.Estatus == ACTIVO)
                 .Include("Empleado")
                 .ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (EntityException ex)
+            {
+                throw new ConexionFallidaException(ex);
+            }
+            
 
             return _empleados;
         }
@@ -52,6 +66,35 @@ namespace AccesoADatos.ControladoresDeDatos
             }
 
             return true;
+        }
+
+        public Empleado ObtenerEmpleado(string username)
+        {
+            Empleado empleadoBuscado;
+
+            try
+            {
+                //empleadoBuscado = _connection.Persona
+                //.Include(empleado => empleado.Empleado)
+                //.Where(persona => persona.Estatus == 1)
+                //.Where(persona => persona.Empleado.Any(empleado => empleado.Username.Equals(username)));
+                empleadoBuscado = _connection.Empleado
+                    .Where(empleado => empleado.Username.Equals(username))
+                    .Where(empleado => empleado.Persona.Estatus == 1)
+                    .Include(empleado => empleado.Persona)
+                    .FirstOrDefault();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch(EntityException ex)
+            {
+                throw new ConexionFallidaException(ex);
+            }
+            
+
+            return empleadoBuscado;
         }
     }
 }

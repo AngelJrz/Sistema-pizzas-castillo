@@ -1,4 +1,5 @@
 ﻿using AccesoADatos.ControladoresDeDatos;
+using AccesoADatos.Excepciones;
 using Dominio.Entidades;
 using Dominio.Enumeraciones;
 using Dominio.Utilerias;
@@ -12,6 +13,13 @@ namespace Dominio.Logica
 {
     public class EmpleadoController
     {
+        private UsuarioDAO usuarioDAO;
+
+        public EmpleadoController()
+        {
+            usuarioDAO = new UsuarioDAO();
+        }
+
         public bool RegistrarEmpleado(Empleado empleado)
         {
             empleado.NumeroEmpleado = GenerarNumeroEmpleado(empleado.TipoUsuario);
@@ -23,7 +31,6 @@ namespace Dominio.Logica
             AccesoADatos.Persona empleadoARegistrar = Persona.CloneToEntityDB(empleado);
             empleadoARegistrar.Empleado.Add(Empleado.CloneToEntityDB(empleado));
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
             bool seRegistro;
             try
             {
@@ -47,6 +54,39 @@ namespace Dominio.Logica
 
             numeroEmpleado += nuevoNumeroDeEmpleado.ToString("0000");
             return numeroEmpleado;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns>El empleado que inició sesión o null si no se encontró.</returns>
+        public Empleado IniciarSesion(string username, string password)
+        {
+            Empleado empleado;
+            AccesoADatos.Empleado empleadoBd;
+
+            try
+            {
+                empleadoBd = usuarioDAO.ObtenerEmpleado(username);
+            }
+            catch (ConexionFallidaException)
+            {
+                throw;
+            } 
+
+            if (empleadoBd == null)
+                return null;
+
+            if (!AdministradorHash.CompararHash(password, empleadoBd.Contrasenia))
+                return null;
+
+            Persona personaInfo = Persona.Clone(empleadoBd.Persona);
+            empleado = Empleado.Clone(empleadoBd);
+            empleado.SetInformacionPersonal(personaInfo);
+
+            return empleado;
         }
     }
 }
