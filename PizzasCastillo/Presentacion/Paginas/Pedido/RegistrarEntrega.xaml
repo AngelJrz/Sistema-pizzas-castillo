@@ -34,7 +34,7 @@
                     <TextBlock Text="Estatus: " Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <ComboBox x:Name="ComboEstatus" Template="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}"
+                    <ComboBox x:Name="ComboEstatus" Style="{StaticResource ComboboxStyle}"
                               Width="400" HorizontalAlignment="Left">
                         <ComboBoxItem Content="En espera" Height="100" Width="100"/>
                         <ComboBoxItem Content="En preparacion" Height="100" Width="100"/>
@@ -74,10 +74,9 @@
                     <TextBlock Text="Tipo:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <ComboBox x:Name="ComboTipo" Template="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}"
+                    <ComboBox x:Name="ComboTipo" Style="{StaticResource ComboboxStyle}"
                               Width="400" HorizontalAlignment="Left">
-                        <ComboBoxItem Content="A Domicilio" Height="100" Width="100"/>
-                        <ComboBoxItem Content="En sucursal" Height="100" Width="100"/>
+                   
                     </ComboBox>
 
 

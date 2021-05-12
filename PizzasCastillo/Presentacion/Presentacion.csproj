@@ -325,6 +325,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\AccesoADatos\AccesoADatos.csproj">
+      <Project>{0FE7715F-65D4-4561-AE1E-965563B25265}</Project>
+      <Name>AccesoADatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
       <Project>{a299bd87-2998-4aa0-8adc-192b97a4643d}</Project>
       <Name>Dominio</Name>

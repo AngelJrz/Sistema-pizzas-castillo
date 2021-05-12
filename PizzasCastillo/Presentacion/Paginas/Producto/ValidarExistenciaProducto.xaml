@@ -35,7 +35,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
-                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Click="BuscarEnter"/>
                 </StackPanel>
             </Grid>
             <TextBlock Text="Lista de Productos" Style="{StaticResource TituloStyle}"
@@ -43,7 +43,7 @@
             <DataGrid x:Name="ListaProductos" HorizontalAlignment="Center" Width="1000"
                       AutoGenerateColumns="False" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                       Margin="0,20,0,20" CanUserSortColumns="true" AlternatingRowBackground="{StaticResource ColorSecundario}"
-                      GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
+                      GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Imagen" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
@@ -62,7 +62,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding foto}" HorizontalAlignment="Center" Width="50" Height="50"/>
+                                <Image Source="{Binding ArticuloVenta.Foto}" HorizontalAlignment="Center" Width="50" Height="50"/>
                                 
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -87,7 +87,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding CodigoDeBarras}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding CodigoDeBarra}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -110,7 +110,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding ArticuloVenta.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -134,7 +134,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding descripcion}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Descripcion}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -158,7 +158,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding presio}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding PrecioCompra}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
