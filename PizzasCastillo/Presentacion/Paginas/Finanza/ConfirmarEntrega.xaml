@@ -1,0 +1,38 @@
+﻿<Page x:Class="Presentacion.Paginas.Finanza.ConfirmarEntrega"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Presentacion.Paginas.Finanza"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" Background="White"
+      Title="ConfirmarEntrega">
+
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock  Style="{StaticResource TituloStyle}" Margin="0,20,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Entrega de pedido" VerticalAlignment="Top"/>
+
+        <DataGrid Name="tablaDeProductos" Height="550" Margin="0,20,0,0" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" FontFamily="Se">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Producto" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Cantidad" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Medida" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Precio" Binding="{Binding Name}"/>
+
+                <DataGridTemplateColumn  Header="Entregado" Width ="100" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Width="90"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Style="{StaticResource BotonPrincipalStyle}" Content="Registrar en inventario"  Click="ClickRegistrar" Width="190"/>
+            <Button Style="{StaticResource BotonSecundarioStyle}" Content="Cancelar" Click="ClickCancelar" Margin="15,0,0,0"/>
+        </StackPanel>
+    </StackPanel>
+</Page>
