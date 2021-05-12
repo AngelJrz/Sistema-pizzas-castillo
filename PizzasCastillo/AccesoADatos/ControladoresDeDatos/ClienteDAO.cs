@@ -16,6 +16,7 @@ namespace AccesoADatos.ControladoresDeDatos
         private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
+        private Persona _persona;
 
         public ClienteDAO()
         {
@@ -55,6 +56,22 @@ namespace AccesoADatos.ControladoresDeDatos
 
             return true;
         }
+
+
+        public List<Persona> ObtenerClienteNombre(string nombre)
+        {
+            try
+            {
+
+
+                return _connection.Persona.Where(p => p.Nombres.Contains(nombre)).ToList();
+            }
+            catch(Exception) {
+                return _clientes;
+            
+            
+            }
+            }
 
     }
 }

@@ -43,7 +43,7 @@
 
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
-                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Click="BuscarEnter"/>
                 </StackPanel>
             </Grid>
 
@@ -55,7 +55,7 @@
             <DataGrid x:Name="ListaUsuarios" HorizontalAlignment="Center" Width="1000"
                       AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       Margin="0,20,0,20" CanUserSortColumns="True" AlternatingRowBackground="{StaticResource ColorSecundario}"
-                      GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
+                      GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Identificador Cliente" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
