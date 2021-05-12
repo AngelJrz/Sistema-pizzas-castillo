@@ -36,5 +36,32 @@ namespace AccesoADatos.ControladoresDeDatos
 
             return true;
         }
+
+
+
+
+        public bool ActualizarPedido(Pedido pedido) {
+
+            try
+            {
+                Pedido pedidoEncontrado = (Pedido)_connection.Pedido.Where(p => p.Id == pedido.Id);
+                pedidoEncontrado = pedido;
+                _connection.Pedido.Add(pedidoEncontrado);
+
+
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+            }
+
+            if (_resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
