@@ -39,7 +39,7 @@
                     <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombreText}">
                     <TextBox x:Name="NombreText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30" Width="300" HorizontalAlignment="Left"/>
                 </StackPanel>

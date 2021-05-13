@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentacion.Recursos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace Presentacion.Ventanas
     /// </summary>
     public partial class VentanaPrincipal : Window
     {
-        public VentanaPrincipal()
+        private Singleton _sesion;
+        public VentanaPrincipal(Singleton sesion)
         {
             InitializeComponent();
+            _sesion = sesion;
         }
     }
 }

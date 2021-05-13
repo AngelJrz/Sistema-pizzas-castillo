@@ -22,6 +22,7 @@ namespace Dominio.Logica
 
         public bool RegistrarEmpleado(Empleado empleado)
         {
+            //Si existe usuario --> return UsuarioYaExiste
             empleado.NumeroEmpleado = GenerarNumeroEmpleado(empleado.TipoUsuario);
             empleado.FechaRegistro = DateTime.Now;
 

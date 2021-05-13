@@ -10,7 +10,12 @@ namespace Dominio.Enumeraciones
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int Estatus { get; set; }
+        public int Estatus { get; set; } = 1;
+        public string Status
+        {
+            get { return Estatus == 1 ? "Activo" : "No Activo"; }
+            set { }
+        }
 
         public static Tipo Clone(AccesoADatos.TipoGasto tipo)
         {
@@ -57,8 +62,7 @@ namespace Dominio.Enumeraciones
             return new AccesoADatos.TipoUsuario
             {
                 Nombre = tipoUsuario.Nombre,
-                Estatus = tipoUsuario.Estatus,
-                Id = tipoUsuario.Id
+                Estatus = tipoUsuario.Estatus
             };
         }
 

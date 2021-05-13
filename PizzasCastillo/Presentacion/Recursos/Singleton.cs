@@ -9,11 +9,11 @@ namespace Presentacion.Recursos
     public class Singleton
     {
         private static Singleton _instancia;
-        public HashSet<object> Recursos { get; set; }
+        public Dictionary<string, object> Recursos { get; set; }
 
         private Singleton() 
         {
-            Recursos = new HashSet<object>();
+            Recursos = new Dictionary<string, object>();
         }
 
         public static Singleton ObtenerInstancia()

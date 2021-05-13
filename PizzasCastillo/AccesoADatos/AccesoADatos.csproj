@@ -83,6 +83,7 @@
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
     <Compile Include="Excepciones\ConexionFallidaException.cs" />
+    <Compile Include="Excepciones\ModificacionDBFallidaException.cs" />
     <Compile Include="GastoExtra.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>

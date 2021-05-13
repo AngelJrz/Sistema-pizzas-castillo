@@ -26,9 +26,12 @@ namespace Presentacion.Ventanas
     {
         private readonly Thread verificadorDeBloqueoDeAcceso;
         private Process _teclado;
+        private Singleton _sesion;
+
         public Login()
         {
             InitializeComponent();
+            _sesion = Singleton.ObtenerInstancia();
             //Properties.Settings.Default.UltimoBloqueoDeAcceso = DateTime.Now.AddMinutes(-5);
             verificadorDeBloqueoDeAcceso = new Thread(new ThreadStart(VerificarBloqueoDeAcceso));
             verificadorDeBloqueoDeAcceso.Start();
@@ -118,7 +121,7 @@ namespace Presentacion.Ventanas
             }
 
             ReiniciarIntentosDeInicioSesion();
-            Singleton.ObtenerInstancia().Recursos.Add(empleado);
+            _sesion.Recursos.Add("Empleado", empleado);
 
             //switch (empleado.TipoUsuario.Nombre)
             //{
@@ -139,7 +142,7 @@ namespace Presentacion.Ventanas
             //        break;
             //}
 
-            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(_sesion);
             ventanaPrincipal.Show();
             this.Close();
 
