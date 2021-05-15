@@ -73,13 +73,11 @@
     <Compile Include="Enumeraciones\Efectivo.cs" />
     <Compile Include="Enumeraciones\Tipo.cs" />
     <Compile Include="Logica\ClienteController.cs" />
-
+    <Compile Include="Logica\EstatusPedidoController.cs" />
     <Compile Include="Logica\PedidoController.cs" />
     <Compile Include="Logica\PedidoProductosController.cs" />
     <Compile Include="Logica\ProductoController.cs" />
-
     <Compile Include="Logica\TipoDeGastoController.cs" />
-
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilerias\ValidadorDireccion.cs" />
     <Compile Include="Utilerias\ValidadorPersonas.cs" />

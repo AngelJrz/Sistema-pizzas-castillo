@@ -16,7 +16,7 @@ namespace AccesoADatos.ControladoresDeDatos
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
 
-        public bool RegistrarPedido(Pedido pedido)
+        public int RegistrarPedido(Pedido pedido)
         {
             try
             {
@@ -29,12 +29,9 @@ namespace AccesoADatos.ControladoresDeDatos
                 throw;
             }
 
-            if (_resultado == SIN_CAMBIOS)
-            {
-                return false;
-            }
+           
 
-            return true;
+            return pedido.Id;
         }
 
 

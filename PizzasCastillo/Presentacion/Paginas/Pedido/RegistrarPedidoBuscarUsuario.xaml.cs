@@ -21,12 +21,15 @@ namespace Presentacion.Paginas.Pedido
     /// </summary>
     public partial class RegistrarPedidoBuscarUsuario : Page
     {
-        public RegistrarPedidoBuscarUsuario()
+        private Dominio.Entidades.Empleado _empleadoEnSesion;
+        public RegistrarPedidoBuscarUsuario(Dominio.Entidades.Empleado empleadoEnSesion)
         {
+            //Arreglar la sesion con la clase singleton
             InitializeComponent();
             ClienteController controller = new ClienteController();
             
             ListaUsuarios.ItemsSource= controller.ObtenerClientes();
+            _empleadoEnSesion = empleadoEnSesion;
 
         }
 
@@ -40,13 +43,24 @@ namespace Presentacion.Paginas.Pedido
         }
         private void UsarClienteSinRegistro(object sender, RoutedEventArgs e)
         {
+            
             NavigationService.Navigate(new Usuario.RegistroCliente());
         }
         private void UsarUsuarioPedido(object sender, RoutedEventArgs e)
         {
+            Dominio.Entidades.Pedido nuevoPedido = new Dominio.Entidades.Pedido();
+
+            Dominio.Entidades.Persona clienteseleccionado = (Dominio.Entidades.Persona)ListaUsuarios.SelectedItem;
+            nuevoPedido.SolicitadoPor = clienteseleccionado;
+            nuevoPedido.RegistradoPor = _empleadoEnSesion;
+            nuevoPedido.Fecha = DateTime.Now;
+            NavigationService.Navigate(new Pedido.RegistrarPedidoArticulos(nuevoPedido));
+
 
         }
 
+
        
+
     }
 }

@@ -202,7 +202,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="GuardarArticulosPedido"/>
         </StackPanel>
 
 

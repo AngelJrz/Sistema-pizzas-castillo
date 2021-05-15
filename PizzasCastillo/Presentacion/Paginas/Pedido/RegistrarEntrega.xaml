@@ -82,8 +82,11 @@
 
 
                 </StackPanel>
+                
 
             </Grid>
+            
+            
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.1*"/>

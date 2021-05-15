@@ -90,6 +90,8 @@ public partial class PizzasBDEntities : DbContext
 
     public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
 
+    public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+
 }
 
 }

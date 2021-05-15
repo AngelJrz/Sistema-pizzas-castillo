@@ -113,7 +113,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <Button Content="Guardar Pedido" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,25,0,0"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,25,0,0" Click="GuardarPedido"/>
 
                 </StackPanel>
             </Grid>

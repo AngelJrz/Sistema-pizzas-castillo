@@ -66,6 +66,7 @@
         <AssociationConnector Association="PizzasCastillo.FK_Producto_TipoProducto1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzasCastillo.FK_ReporteInventario_has_Producto_Producto1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzasCastillo.FK_ReporteInventario_has_Producto_ReporteInventario1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PizzasCastillo.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

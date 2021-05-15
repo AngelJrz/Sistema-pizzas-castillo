@@ -15,31 +15,13 @@ namespace AccesoADatos.ControladoresDeDatos
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
 
-        public bool RegistrarProductosPedido (int idpedido,ArticuloVenta articuloDelPedido,int cantidad, int total)
+        public void RegistrarProductosPedido (List<Contiene> productosContiene)
         {
-            try
-            {
-                Contiene contiene = new Contiene();
-                contiene.CodigoBarra = articuloDelPedido.CodigoBarra;
-                contiene.Cantidad = cantidad;
-                contiene.IdPedido = idpedido;
-                contiene.Total = total;
-                
-                _connection.Contiene.Add(contiene);
-                _resultado = _connection.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
+            foreach (Contiene contieneNuevo in productosContiene)
 
-                throw;
-            }
-
-            if (_resultado == SIN_CAMBIOS)
-            {
-                return false;
-            }
-
-            return true;
+                _connection.Contiene.Add(contieneNuevo);
+            _connection.SaveChanges();
+             
         }
     }
 }
