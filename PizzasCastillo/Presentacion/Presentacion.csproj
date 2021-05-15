@@ -136,6 +136,9 @@
     <Compile Include="Paginas\Producto\ValidarExistenciaProducto.xaml.cs">
       <DependentUpon>ValidarExistenciaProducto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Usuario\EditarUsuario.xaml.cs">
+      <DependentUpon>EditarUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
       <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
     </Compile>
@@ -272,6 +275,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Producto\ValidarExistenciaProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\EditarUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

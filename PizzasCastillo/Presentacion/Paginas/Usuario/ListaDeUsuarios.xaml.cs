@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dominio.Entidades;
 using Presentacion.Ventanas;
 
 namespace Presentacion.Paginas.Usuario
@@ -55,7 +56,9 @@ namespace Presentacion.Paginas.Usuario
 
         private void EditarUsuario(object sender, RoutedEventArgs e)
         {
+            Empleado empleadoSeleccionado = ListaUsuarios.SelectedItem as Empleado;
 
+            NavigationService.Navigate(new EditarUsuario() { DataContext = empleadoSeleccionado });
         }
 
         private void EliminarUsuario(object sender, RoutedEventArgs e)

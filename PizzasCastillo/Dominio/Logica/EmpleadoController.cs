@@ -20,9 +20,11 @@ namespace Dominio.Logica
             usuarioDAO = new UsuarioDAO();
         }
 
-        public bool RegistrarEmpleado(Empleado empleado)
+        public ResultadoRegistroEmpleado RegistrarEmpleado(Empleado empleado)
         {
-            //Si existe usuario --> return UsuarioYaExiste
+            if (usuarioDAO.ObtenerEmpleado(empleado.Username) != null)
+                return ResultadoRegistroEmpleado.UsuarioYaExiste;
+
             empleado.NumeroEmpleado = GenerarNumeroEmpleado(empleado.TipoUsuario);
             empleado.FechaRegistro = DateTime.Now;
 
@@ -39,11 +41,13 @@ namespace Dominio.Logica
             }
             catch (Exception)
             {
-
                 throw;
             }
 
-            return seRegistro;
+            if (seRegistro == false)
+                return ResultadoRegistroEmpleado.RegistroFallido;
+
+            return ResultadoRegistroEmpleado.RegistroExitoso;
         }
 
         private string GenerarNumeroEmpleado(Tipo tipoUsuario)
@@ -88,6 +92,13 @@ namespace Dominio.Logica
             empleado.SetInformacionPersonal(personaInfo);
 
             return empleado;
+        }
+
+        public List<Empleado> ObtenerEmpleadosActivo()
+        {
+            List<Empleado> empleados = null;
+
+            return empleados;
         }
     }
 }

@@ -107,13 +107,26 @@ namespace Presentacion.Paginas.Usuario
             if (EstaInformacionCorrecta(empleado))
             {
                 EmpleadoController empleadoController = new EmpleadoController();
+                ResultadoRegistroEmpleado resultado;
+                try
+                {
+                    resultado = empleadoController.RegistrarEmpleado(empleado);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un error al intentar registrar el usuario. Por favor intente más tarde.");
+                    return;
+                }
+                
 
-                bool seRegistro = empleadoController.RegistrarEmpleado(empleado);
-
-                if (seRegistro)
+                if (resultado == ResultadoRegistroEmpleado.RegistroExitoso)
                 {
                     MessageBox.Show("Se registró el empleado");
                     LimpiarCampos();
+                }
+                else if (resultado == ResultadoRegistroEmpleado.UsuarioYaExiste)
+                {
+                    MessageBox.Show("El username ingresado ya pertenece a otro empleado. Verifique la información e intente de nuevo");
                 }
                 else
                 {
