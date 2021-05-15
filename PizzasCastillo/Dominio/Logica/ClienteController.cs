@@ -28,5 +28,19 @@ namespace Dominio.Logica
                 Estatus = 1,
             };
         }
+
+        public List<AccesoADatos.Persona> ObtenerClientes() {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            return clienteDAO.ObtenerClientes();
+
+        }
+        public List<AccesoADatos.Persona> ObtenerClientesNombre(string nombre)
+        {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            return clienteDAO.ObtenerClienteNombre(nombre);
+
+        }
+
+
     }
 }

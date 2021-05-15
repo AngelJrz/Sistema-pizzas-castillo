@@ -64,7 +64,13 @@
     <Compile Include="ControladoresDeDatos\EfectivoDAO.cs" />
     <Compile Include="ControladoresDeDatos\GastoExtraDAO.cs" />
     <Compile Include="ControladoresDeDatos\ReporteDeCajaDAO.cs" />
+
+    <Compile Include="ControladoresDeDatos\PedidosDAO.cs" />
+    <Compile Include="ControladoresDeDatos\ProductosContienePedidoDAO.cs" />
+    <Compile Include="ControladoresDeDatos\ProductosDAO.cs" />
+
     <Compile Include="ControladoresDeDatos\TipoDeGastoDAO.cs" />
+
     <Compile Include="Direccion.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>

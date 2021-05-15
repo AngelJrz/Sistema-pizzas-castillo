@@ -24,5 +24,16 @@ namespace Presentacion.Paginas.Pedido
         {
             InitializeComponent();
         }
+
+
+
+        private void BuscarEnter(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void AgregarProductoPedido(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

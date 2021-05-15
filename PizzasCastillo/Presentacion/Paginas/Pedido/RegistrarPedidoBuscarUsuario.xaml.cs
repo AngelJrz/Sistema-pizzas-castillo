@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dominio.Logica;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -23,21 +24,29 @@ namespace Presentacion.Paginas.Pedido
         public RegistrarPedidoBuscarUsuario()
         {
             InitializeComponent();
+            ClienteController controller = new ClienteController();
+            
+            ListaUsuarios.ItemsSource= controller.ObtenerClientes();
+
         }
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
+            ClienteController controller = new ClienteController();
+
+            ListaUsuarios.ItemsSource = controller.ObtenerClientesNombre(BusquedaText.Text);
+
 
         }
         private void UsarClienteSinRegistro(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Usuario.RegistroCliente());
         }
         private void UsarUsuarioPedido(object sender, RoutedEventArgs e)
         {
 
         }
 
-
+       
     }
 }
