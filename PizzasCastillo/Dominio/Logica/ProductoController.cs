@@ -53,17 +53,18 @@ namespace Dominio.Logica
 
             return ResultadoRegistroProducto.RegistroExitoso;
         }
-       
+
         //public AccesoADatos.Producto BuscarProductoID(string codigo)
         //{
         //    ProductosDAO productoDAO = new ProductosDAO();
 
         //     return productoDAO.ObtenerProductosID(codigo);
-            
+
         //}
         //public List<Producto> ObtenerProductos()
         //{
-        //    return productoDAO.ObtenerProductos();
+        //    productoDAO.ObtenerListaProductos();
+        //    return productoDAO.ObtenerListaProductos();
         //}
 
         //public List<AccesoADatos.Producto> BuscarProductosNombre(string nombre)

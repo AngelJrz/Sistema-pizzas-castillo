@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Presentacion.Paginas.Producto"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
+      d:DesignHeight="1000" d:DesignWidth="1100"
       Title="RegistroDeProducto">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
@@ -22,8 +22,8 @@
                       StrokeThickness="0.5"/>
             </Canvas>
             <Button Content="Capturar código" HorizontalAlignment="Center" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" Margin="0,5,1150,0" Click="CapturarCodigo"/>
-            <StackPanel Margin="1250,-200,0,0" Height="286" Width="620">
+                    Width="150" Margin="10,5,700,0" Click="CapturarCodigo"/>
+            <StackPanel Margin="550,-200,0,0" Height="283" Width="586">
                 <TextBlock Text="Imagen Subida:" TextAlignment="Center" Style="{StaticResource TituloCamposStyle}" Margin="0,20,475,0"/>
                 <Image x:Name="imagenProducto" Height="200" Width="200" Margin="0,-30,100,0"/>
                 <TextBlock Text="Foto:" TextAlignment="Right" Style="{StaticResource TituloCamposStyle}" Margin="0,20,475,0"/>
@@ -45,7 +45,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                    <TextBlock Text="{Binding CodigoBarra}" Style="{StaticResource TituloCamposStyle}"
+                    <TextBlock x:Name="codigoText" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
                 </StackPanel>
             </Grid>

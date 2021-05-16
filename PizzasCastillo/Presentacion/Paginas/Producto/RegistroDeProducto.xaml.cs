@@ -142,7 +142,12 @@ namespace Presentacion.Paginas.Producto
         private void CapturarCodigo(object sender, RoutedEventArgs e)
         {
             RegistroCodigoBarra registroCodigoVentana = new RegistroCodigoBarra();
-            codigoBarra = registroCodigoVentana.codigoIngresado;
+
+            if (registroCodigoVentana.ShowDialog() == true)
+            {
+                codigoBarra = registroCodigoVentana.codigoIngresado;
+                codigoText.Text = registroCodigoVentana.codigoIngresado;
+            }   
         }
 
         private void SubirFoto(object sender, RoutedEventArgs e)
