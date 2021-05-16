@@ -94,6 +94,9 @@
     <Compile Include="Paginas\Finanza\ListaPedidosPendientes.xaml.cs">
       <DependentUpon>ListaPedidosPendientes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Finanza\ListaProveedores.xaml.cs">
+      <DependentUpon>ListaProveedores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Finanza\RegistrarGastoExtra.xaml.cs">
       <DependentUpon>RegistrarGastoExtra.xaml</DependentUpon>
     </Compile>
@@ -148,8 +151,12 @@
     <Compile Include="Paginas\Usuario\TiposUsuario.xaml.cs">
       <DependentUpon>TiposUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recursos\RecursosGlobales.cs" />
     <Compile Include="Ventanas\Confirmacion.xaml.cs">
       <DependentUpon>Confirmacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\InteraccionUsuario.xaml.cs">
+      <DependentUpon>InteraccionUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
@@ -159,6 +166,9 @@
     </Compile>
     <Compile Include="Ventanas\Usuario\EditarTipoUsuario.xaml.cs">
       <DependentUpon>EditarTipoUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Usuario\ProductoPopUp.xaml.cs">
+      <DependentUpon>ProductoPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Usuario\RegistroTipoUsuario.xaml.cs">
       <DependentUpon>RegistroTipoUsuario.xaml</DependentUpon>
@@ -215,6 +225,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Paginas\Finanza\ListaPedidosPendientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Finanza\ListaProveedores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -302,6 +316,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\InteraccionUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\InputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -311,6 +329,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Usuario\EditarTipoUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Usuario\ProductoPopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -52,7 +52,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="ApellidosText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                                     MaxLength="50" Width="400" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -69,7 +69,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                     MaxLength="40" Width="400" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -86,7 +86,7 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="TelefonoText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" HorizontalAlignment="Left"/>
+                           TextCompositionManager.PreviewTextInput="IsTelephoneNumber"  MaxLength="10" Width="200" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -140,8 +140,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoExteriorText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                                     MaxLength="3" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
 
@@ -160,8 +159,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CodigoPostalText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                                     MaxLength="5" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
 
@@ -180,7 +178,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CiudadText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
+                                     MaxLength="20" Width="200" 
                                  HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -240,8 +238,7 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoInteriorText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                                     MaxLength="3" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
 

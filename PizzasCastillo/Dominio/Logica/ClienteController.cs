@@ -29,6 +29,7 @@ namespace Dominio.Logica
             };
         }
 
+<<<<<<< HEAD
         public List<AccesoADatos.Persona> ObtenerClientes() {
             ClienteDAO clienteDAO = new ClienteDAO();
             return clienteDAO.ObtenerClientes();
@@ -42,5 +43,8 @@ namespace Dominio.Logica
         }
 
 
+=======
+        
+>>>>>>> ModuloCocina
     }
 }

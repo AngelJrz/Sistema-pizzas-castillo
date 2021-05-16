@@ -28,5 +28,8 @@ namespace Dominio.Entidades
                 UnidadDeMedida = producto.UnidadDeMedida
             };
         }
+
+
+
     }
 }

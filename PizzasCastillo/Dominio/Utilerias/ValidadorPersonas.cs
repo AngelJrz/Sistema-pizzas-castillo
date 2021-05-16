@@ -13,9 +13,9 @@ namespace Dominio.Utilerias
     {
         public ValidadorPersonas()
         {
-            RuleFor(x => x.Nombres).NotEmpty().MaximumLength(100);
-            RuleFor(x => x.Apellidos).NotEmpty().MaximumLength(100);
-            RuleFor(x => x.Email).NotEmpty().MaximumLength(100);
+            RuleFor(x => x.Nombres).NotEmpty().MaximumLength(50).NotNull();
+            RuleFor(x => x.Apellidos).NotEmpty().MaximumLength(50).NotNull();
+            RuleFor(x => x.Email).NotEmpty().MaximumLength(100).NotNull();
             RuleFor(x => x.Telefono).NotNull().NotEmpty().MaximumLength(10);
             RuleFor(x => x.Direcciones.Count).NotEmpty().NotNull().NotEqual(0);
         }

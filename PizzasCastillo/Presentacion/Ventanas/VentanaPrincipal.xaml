@@ -44,8 +44,12 @@
             </StackPanel>
 
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
+<<<<<<< HEAD
                    Source="/Paginas/Finanza/CorteDeCaja.xaml"/>
 
+=======
+                   Source="/Paginas/Cocina/RegistroPlatillo.xaml"/>
+>>>>>>> ModuloCocina
 
         </Grid>
         

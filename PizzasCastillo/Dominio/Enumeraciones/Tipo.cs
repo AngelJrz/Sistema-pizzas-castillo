@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccesoADatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,6 +63,7 @@ namespace Dominio.Enumeraciones
             };
         }
 
+
         public static Tipo Clone(AccesoADatos.EstatusPedidoAProveedor tipo)
         {
             return new Tipo
@@ -71,5 +73,6 @@ namespace Dominio.Enumeraciones
                 Estatus = tipo.Estatus
             };
         }
+
     }
 }
