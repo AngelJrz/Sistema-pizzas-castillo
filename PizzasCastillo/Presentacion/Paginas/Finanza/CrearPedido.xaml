@@ -7,44 +7,47 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" Width="auto" Height="auto" d:DesignWidth="800" Background="White"
       Title="CrearPedido">
+    
+    <Page.Resources>
+        <local:ByteToImageConverter x:Name="convertidorImagen" x:Key="convertidorRutaImagen"/>
+    </Page.Resources>
 
-    <StackPanel>
-        <Image HorizontalAlignment="Center" Margin="0,20,0,0" Width="500" Height="auto" Source="C:\Users\Angel\Desktop\Exportacion\3.jpg"/>
-        <ComboBox HorizontalAlignment="Center" Width="120" Margin="0,20,0,20">
-            <ComboBoxItem IsSelected="True">Item #1</ComboBoxItem>
-            <ComboBoxItem>Item #2</ComboBoxItem>
-            <ComboBoxItem>Item #3</ComboBoxItem>
-        </ComboBox>
+    <ScrollViewer>
+        <StackPanel>
+            <Image HorizontalAlignment="Center" Margin="0,20,0,0" Width="300" Height="400" Source="{Binding ElementName = comboBoxProveedores,Path = SelectedValue.NombreArchivo,Converter={StaticResource convertidorRutaImagen}}"/>
+            <ComboBox Name="comboBoxProveedores" HorizontalAlignment="Center" Width="120" Margin="0,20,0,20" SelectedItem="{Binding Nombre}" DisplayMemberPath="Nombre" SelectionChanged="comboBoxProveedores_SelectionChanged">
+            </ComboBox>
 
-        <DataGrid Height="280" HorizontalAlignment="Center" Name="tablaDePedidos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false"  FontFamily="Se">
-            <DataGrid.Columns>
+            <DataGrid Height="280" HorizontalAlignment="Center" Name="tablaDePedidos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false"  FontFamily="Se">
+                <DataGrid.Columns>
 
-                <DataGridTextColumn MinWidth="200" IsReadOnly="True" Header="Producto" Binding="{Binding Name}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Precio" Binding="{Binding Name}"/>
+                    <DataGridTextColumn MinWidth="200" IsReadOnly="True" Header="Producto" Binding="{Binding Name}"/>
+                    <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Precio" Binding="{Binding Name}"/>
 
-                <DataGridTemplateColumn  Header="Cantidad" Width ="100" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBox Width="90"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  Header="Cantidad" Width ="100" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="90"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Agregar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickConfirmar"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Agregar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickConfirmar"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-            </DataGrid.Columns>
-        </DataGrid>
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button HorizontalAlignment="Right" Style="{StaticResource BotonPrincipalStyle}" Content="Confirmar" Click="ClickConfirmar"/>
-            <Button HorizontalAlignment="Right" Style="{StaticResource BotonSecundarioStyle}" Margin="30,0,0,0" Content="Cancelar" Click="ClickCancelar"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button HorizontalAlignment="Right" Style="{StaticResource BotonPrincipalStyle}" Content="Confirmar" Click="ClickConfirmar"/>
+                <Button HorizontalAlignment="Right" Style="{StaticResource BotonSecundarioStyle}" Margin="30,0,0,0" Content="Cancelar" Click="ClickCancelar"/>
+            </StackPanel>
+
         </StackPanel>
-
-    </StackPanel>
+    </ScrollViewer>
 </Page>

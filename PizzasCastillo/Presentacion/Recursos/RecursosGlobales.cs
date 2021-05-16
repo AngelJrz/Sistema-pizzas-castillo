@@ -9,7 +9,7 @@ namespace Presentacion.Recursos
 {
     public static class RecursosGlobales
     {
-        public static string RUTA_IMAGENES = "D:/ProyectosVisualStudio/Sistema-pizzas-castillo/PizzasCastillo/Presentacion/Recursos/Imagenes/";
+        public static string RUTA_IMAGENES = "C:\\Users\\Angel\\Desktop\\Exportacion\\pizzas\\";
         public const string LLAVE_EMPLEADO = "";
 
     }
