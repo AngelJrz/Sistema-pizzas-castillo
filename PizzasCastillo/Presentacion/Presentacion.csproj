@@ -99,11 +99,18 @@
     <Compile Include="Paginas\Usuario\TiposUsuario.xaml.cs">
       <DependentUpon>TiposUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recursos\RecursosGlobales.cs" />
     <Compile Include="Ventanas\Confirmacion.xaml.cs">
       <DependentUpon>Confirmacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\InteraccionUsuario.xaml.cs">
+      <DependentUpon>InteraccionUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\Producto\RegistroCodigoBarra.xaml.cs">
+      <DependentUpon>RegistroCodigoBarra.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Usuario\EditarTipoUsuario.xaml.cs">
       <DependentUpon>EditarTipoUsuario.xaml</DependentUpon>
@@ -198,7 +205,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ventanas\InteraccionUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Producto\RegistroCodigoBarra.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +234,7 @@
     <Folder Include="Paginas\Cocina\" />
     <Folder Include="Paginas\Finanza\" />
     <Folder Include="Paginas\Pedido\" />
+    <Folder Include="Recursos\Imagenes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoADatos\AccesoADatos.csproj">

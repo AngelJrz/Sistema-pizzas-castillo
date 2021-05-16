@@ -25,7 +25,7 @@
                     Width="150" Margin="0,5,1150,0" Click="CapturarCodigo"/>
             <StackPanel Margin="1250,-200,0,0" Height="286" Width="620">
                 <TextBlock Text="Imagen Subida:" TextAlignment="Center" Style="{StaticResource TituloCamposStyle}" Margin="0,20,475,0"/>
-                <Image x:Name="imagenProducto" Height="200" Width="200" Margin="0,-30,100,0" Source="/Imagenes/logo.png" />
+                <Image x:Name="imagenProducto" Height="200" Width="200" Margin="0,-30,100,0"/>
                 <TextBlock Text="Foto:" TextAlignment="Right" Style="{StaticResource TituloCamposStyle}" Margin="0,20,475,0"/>
                 <Button Name="botonImagen" Content="Agregar Foto" HorizontalAlignment="Right" Style="{StaticResource BotonSecundarioStyle}"
                     Width="150" Margin="0,-40,300,0" Click="SubirFoto"/>

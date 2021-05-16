@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Dominio.Entidades;
 using FluentValidation;
 using FluentValidation.Results;
@@ -7,9 +8,10 @@ namespace Dominio.Utilerias
 {
     public class ValidadorProducto : AbstractValidator<Producto>
     {
+        private ValidationResult result;
         public ValidadorProducto()
         {
-            RuleFor(x => x.CodigoBarra).NotEmpty().MaximumLength(150);
+            RuleFor(x => x.CodigoBarra).NotEmpty().MaximumLength(10);
             RuleFor(x => x.Nombre).NotEmpty().MaximumLength(80);
             RuleFor(x => x.Precio).NotNull().NotEmpty().GreaterThan(0);
             RuleFor(x => x.Cantidad).NotNull().NotEmpty().GreaterThan(0);
@@ -33,6 +35,21 @@ namespace Dominio.Utilerias
             {
                 return true;
             }
+        }
+
+        public List<string> ObtenerPropiedadesIncorrectas()
+        {
+            List<string> propiedadesIncorrectas = new List<string>();
+
+            if (result != null)
+            {
+                foreach (var error in result.Errors)
+                {
+                    propiedadesIncorrectas.Add(error.PropertyName);
+                }
+            }
+
+            return propiedadesIncorrectas;
         }
     }
 }

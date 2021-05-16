@@ -95,5 +95,22 @@ namespace Dominio.Enumeraciones
             ));
             return list;
         }
+
+        public string ObtenerEtiquetaTipoProducto()
+        {
+            string etiqueta = "";
+
+            switch (Nombre)
+            {
+                case "Final":
+                    etiqueta = "FIN";
+                    break;
+                case "Insumo":
+                    etiqueta = "INS";
+                    break;
+            }
+
+            return etiqueta;
+        }
     }
 }

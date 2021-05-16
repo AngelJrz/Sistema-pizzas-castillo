@@ -5,76 +5,89 @@ using System.Text;
 using System.Threading.Tasks;
 using AccesoADatos.ControladoresDeDatos;
 using Dominio.Entidades;
+using Dominio.Enumeraciones;
 
 namespace Dominio.Logica
 {
-    class ProductoController
+    public class ProductoController
     {
         private const int DISPONIBLE = 1;
+        private ProductoDAO productoDAO;
 
-        public bool GuardarProducto(Producto producto)
+        public ProductoController()
         {
-            ProductoDAO productoDAO = new ProductoDAO();
-            bool seGuardoArticulo = productoDAO.RegistrarArticulo(CloneRegisterArticulo(producto));
-            bool seGuardoProducto = productoDAO.RegistrarProducto(CloneRegisterProducto(producto));
-            if(seGuardoArticulo && seGuardoProducto)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            productoDAO = new ProductoDAO();
         }
 
-        private AccesoADatos.Producto CloneRegisterProducto(Producto producto)
+        public ResultadoRegistroProducto GuardarProducto(Producto producto)
         {
-            return new AccesoADatos.Producto
+            if (productoDAO.ObtenerProducto(producto.CodigoBarra) != null)
             {
-                CodigoBarra = producto.CodigoBarra,
-                Cantidad = producto.Cantidad,
-                Descripcion = producto.Descripcion,
-                PrecioCompra = producto.PrecioCompra,
-                Restricciones = producto.Restricciones,
-                IdTipoProducto = producto.Tipo.Id,
-                UnidadDeMedida = producto.UnidadDeMedida
-            };
-        }
+                return ResultadoRegistroProducto.CodigoBarraDuplicado;
+            }
+                
+            if(producto.CodigoBarra == null)
+            {
+                producto.CodigoBarra = AutogenerarCodigoBarra(producto.Nombre, producto.Tipo);
+            }
+                
+            producto.EsPlatillo = false;
+            producto.Estatus = DISPONIBLE;
 
-        private AccesoADatos.ArticuloVenta CloneRegisterArticulo(Producto producto)
-        {
-            return new AccesoADatos.ArticuloVenta
+            AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
+            productoNuevo.Producto = Producto.CloneToDBEntity(producto);
+
+            bool seGuardo;
+
+            try
             {
-                CodigoBarra = producto.CodigoBarra,
-                Nombre = producto.Nombre,
-                Precio = producto.Precio,
-                Foto = producto.Foto,
-                Estatus = DISPONIBLE,
-                EsPlatillo = false,
-            };
+                seGuardo = productoDAO.RegistrarArticulo(productoNuevo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (seGuardo == false)
+                return ResultadoRegistroProducto.RegistroFallido;
+
+            return ResultadoRegistroProducto.RegistroExitoso;
         }
        
-        public AccesoADatos.Producto BuscarProductoID(string codigo)
-        {
-            ProductosDAO productoDAO = new ProductosDAO();
+        //public AccesoADatos.Producto BuscarProductoID(string codigo)
+        //{
+        //    ProductosDAO productoDAO = new ProductosDAO();
 
-             return productoDAO.ObtenerProductosID(codigo);
+        //     return productoDAO.ObtenerProductosID(codigo);
             
-        }
-        public List<AccesoADatos.Producto> ObtenerProductos()
+        //}
+        //public List<Producto> ObtenerProductos()
+        //{
+        //    return productoDAO.ObtenerProductos();
+        //}
+
+        //public List<AccesoADatos.Producto> BuscarProductosNombre(string nombre)
+        //{
+        //    ProductosDAO productoDAO = new ProductosDAO();
+        //    return productoDAO.ObtenerProductosNombre(nombre);
+        //}
+
+        //public List<AccesoADatos.Producto> BuscarProductosCodigo(string codigo)
+        //{
+
+        //    return productoDAO.ObtenerProductosCodigo(nombre);
+
+        //}
+
+        private string AutogenerarCodigoBarra(string nombre, Tipo tipo)
         {
-            ProductosDAO productoDAO = new ProductosDAO();
+            Random azar = new Random();
 
-            return productoDAO.ObtenerListaProductos();
-
-        }
-
-        public List<AccesoADatos.Producto> BuscarProductosNombre(string nombre)
-        {
-            ProductosDAO productoDAO = new ProductosDAO();
-
-            return productoDAO.ObtenerProductosNombre(nombre);
-
+            string inicio = tipo.ObtenerEtiquetaTipoProducto();
+            string codigoGenerado = String.Concat(inicio, nombre.Substring(0, 3).ToUpper());
+            codigoGenerado = codigoGenerado + "-" + azar.Next(100,999);
+            
+            return codigoGenerado;
         }
     }
 }

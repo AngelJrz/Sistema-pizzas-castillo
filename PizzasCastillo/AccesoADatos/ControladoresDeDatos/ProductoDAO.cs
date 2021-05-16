@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core;
+using AccesoADatos.Excepciones;
 
 namespace AccesoADatos.ControladoresDeDatos
 {
@@ -20,25 +22,26 @@ namespace AccesoADatos.ControladoresDeDatos
             resultado = 0;
         }
 
-        public List<ArticuloVenta> ObtenerProductos()
+        public List<ArticuloVenta> ObtenerListaProductos()
         {
             listaProductos = conexion.ArticuloVenta
                 .Where(producto => producto.EsPlatillo == false)
+                .Include(producto => producto.Producto)
                 .ToList();
 
             return listaProductos;
         }
 
-        public ArticuloVenta ObtenerProducto(string codigoBarra)
+        public Producto ObtenerProducto(string codigoBarra)
         {
-            ArticuloVenta articuloProducto;
+            Producto articuloProducto;
 
             try
             {
-                articuloProducto = conexion.ArticuloVenta
-                    .Where(producto => producto.Username.Equals(username))
-                    .Where(empleado => empleado.Persona.Estatus == 1)
-                    .Include(empleado => empleado.Persona)
+                articuloProducto = conexion.Producto
+                    .Where(producto => producto.CodigoBarra.Equals(codigoBarra))
+                    .Where(producto => producto.ArticuloVenta.EsPlatillo == false)
+                    .Include(producto => producto.ArticuloVenta)
                     .FirstOrDefault();
             }
             catch (ArgumentNullException)
@@ -50,8 +53,7 @@ namespace AccesoADatos.ControladoresDeDatos
                 throw new ConexionFallidaException(ex);
             }
 
-
-            return empleadoBuscado;
+            return articuloProducto;
         }
 
         public bool RegistrarArticulo(ArticuloVenta articuloProducto)

@@ -28,5 +28,29 @@ namespace Dominio.Entidades
                 UnidadDeMedida = producto.UnidadDeMedida
             };
         }
+
+        public static AccesoADatos.Producto CloneToDBEntity(Producto producto)
+        {
+            return new AccesoADatos.Producto
+            {
+                CodigoBarra = producto.CodigoBarra,
+                Cantidad = producto.Cantidad,
+                Descripcion = producto.Descripcion,
+                PrecioCompra = producto.PrecioCompra,
+                Restricciones = producto.Restricciones,
+                IdTipoProducto = producto.Tipo.Id,
+                UnidadDeMedida = producto.UnidadDeMedida
+            };
+        }
+
+        public void SetDatosArticulo(ArticuloVenta articulo)
+        {
+            CodigoBarra = articulo.CodigoBarra;
+            Nombre = articulo.Nombre;
+            Precio = articulo.Precio;
+            Foto = articulo.Foto;
+            Estatus = articulo.Estatus;
+            EsPlatillo = false;
+        }
     }
 }

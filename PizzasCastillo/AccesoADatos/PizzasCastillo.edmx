@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PizzasCastillo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PizzasCastillo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ArticuloVenta">
           <Key>
             <PropertyRef Name="CodigoBarra" />
@@ -15,6 +15,7 @@
           <Property Name="Estatus" Type="int" Nullable="false" />
           <Property Name="EsPlatillo" Type="bit" Nullable="false" />
           <Property Name="Foto" Type="varbinary(max)" Nullable="false" />
+          <Property Name="NombreFoto" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Consume">
           <Key>
@@ -840,8 +841,7 @@
             <End Role="Reporta" EntitySet="Reporta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PizzasCastillo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -858,6 +858,7 @@
           <NavigationProperty Name="Contiene" Relationship="Self.FK_ArticuloVenta" FromRole="ArticuloVenta" ToRole="Contiene" />
           <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Platillo" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_ArticulaVenta1" FromRole="ArticuloVenta" ToRole="Producto" />
+          <Property Name="NombreFoto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Consume">
           <Key>
@@ -1753,6 +1754,7 @@
           <EntitySetMapping Name="ArticuloVenta">
             <EntityTypeMapping TypeName="PizzasCastillo.ArticuloVenta">
               <MappingFragment StoreEntitySet="ArticuloVenta">
+                <ScalarProperty Name="NombreFoto" ColumnName="NombreFoto" />
                 <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />

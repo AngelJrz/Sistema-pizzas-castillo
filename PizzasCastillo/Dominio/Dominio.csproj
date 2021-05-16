@@ -71,6 +71,7 @@
     <Compile Include="Entidades\ReporteInventario.cs" />
     <Compile Include="Entidades\Solicita.cs" />
     <Compile Include="Enumeraciones\Efectivo.cs" />
+    <Compile Include="Enumeraciones\ResultadoRegistroProducto.cs" />
     <Compile Include="Enumeraciones\Tipo.cs" />
     <Compile Include="Logica\ClienteController.cs" />
     <Compile Include="Logica\ProductoController.cs" />
@@ -79,7 +80,7 @@
     <Compile Include="Logica\PedidoController.cs" />
     <Compile Include="Logica\PedidoProductosController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilerias\ConvertidorImagen.cs" />
+    <Compile Include="Utilerias\ValidadorArticuloVenta.cs" />
     <Compile Include="Utilerias\ValidadorDireccion.cs" />
     <Compile Include="Utilerias\ValidadorPersonas.cs" />
     <Compile Include="Utilerias\ValidadorProducto.cs" />
