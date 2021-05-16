@@ -46,6 +46,7 @@
             <Frame x:Name="PaginaFrame" Grid.Row="1" NavigationUIVisibility="Hidden" 
                    Source="/Paginas/Producto/Inicio_Gerente_Productos.xaml"/>
 
+
         </Grid>
         
     </Grid>

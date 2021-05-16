@@ -1,4 +1,9 @@
-﻿using AccesoADatos.ControladoresDeDatos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AccesoADatos.ControladoresDeDatos;
 using Dominio.Entidades;
 
 namespace Dominio.Logica
@@ -6,6 +11,7 @@ namespace Dominio.Logica
     class ProductoController
     {
         private const int DISPONIBLE = 1;
+
         public bool GuardarProducto(Producto producto)
         {
             ProductoDAO productoDAO = new ProductoDAO();
@@ -46,6 +52,29 @@ namespace Dominio.Logica
                 Estatus = DISPONIBLE,
                 EsPlatillo = false,
             };
+        }
+       
+        public AccesoADatos.Producto BuscarProductoID(string codigo)
+        {
+            ProductosDAO productoDAO = new ProductosDAO();
+
+             return productoDAO.ObtenerProductosID(codigo);
+            
+        }
+        public List<AccesoADatos.Producto> ObtenerProductos()
+        {
+            ProductosDAO productoDAO = new ProductosDAO();
+
+            return productoDAO.ObtenerListaProductos();
+
+        }
+
+        public List<AccesoADatos.Producto> BuscarProductosNombre(string nombre)
+        {
+            ProductosDAO productoDAO = new ProductosDAO();
+
+            return productoDAO.ObtenerProductosNombre(nombre);
+
         }
     }
 }
