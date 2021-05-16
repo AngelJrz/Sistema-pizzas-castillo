@@ -139,8 +139,9 @@ namespace Presentacion.Paginas.Finanza
                     Email = EmailText.Text,
                     Telefono = TelefonoText.Text,
                     NombreEncargado = ApellidosText.Text,
-                    ListaDeProductos = BitConverter.ToString(archivo),
-                    Direccion = direccion
+                    ListaDeProductos = archivo,
+                    Direccion = direccion,
+                    NombreArchivo = openFileDialog.SafeFileName
                 };
 
                 if (ValidarCampos(proveedor, direccion))
@@ -153,6 +154,11 @@ namespace Presentacion.Paginas.Finanza
                         InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el proveedor y su direccion con exito");
                         ventana.Show();
                         //REGRESA PAGINA
+                    }
+                    else
+                    {
+                        InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "A ocurrido un error de registro");
+                        ventana.Show();
                     }
                 }
                 else

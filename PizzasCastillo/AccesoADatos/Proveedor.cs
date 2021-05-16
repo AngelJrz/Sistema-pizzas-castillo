@@ -28,6 +28,7 @@ namespace AccesoADatos
         public string NombreEncargado { get; set; }
         public int IdDireccion { get; set; }
         public byte[] ListaDeProductos { get; set; }
+        public string NombreArchivo { get; set; }
     
         public virtual DireccionProveedor DireccionProveedor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

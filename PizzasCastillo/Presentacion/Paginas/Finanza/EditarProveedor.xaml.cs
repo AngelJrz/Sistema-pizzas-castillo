@@ -19,7 +19,7 @@ namespace Presentacion.Paginas.Finanza
     {
         private OpenFileDialog openFileDialog = new OpenFileDialog();
         private readonly List<string> estadosLista;
-        private string archivo;
+        private byte[] archivo;
         private const string MENSAJE_ARCHIVO = "Ya se tiene guardado un archivo si desea actualizarlo seleecione la opcion";
         private int idP;
         public EditarProveedor(Proveedor proveedorSeleccionado)
@@ -153,7 +153,7 @@ namespace Presentacion.Paginas.Finanza
                 if (rutaArchivo.Text != MENSAJE_ARCHIVO )
                 {
 
-                    byte[] archivo = null;
+                    byte[] archivoNuevo = null;
                     Stream stream = openFileDialog.OpenFile();
                     using (MemoryStream ms = new MemoryStream())
                     {
@@ -161,7 +161,7 @@ namespace Presentacion.Paginas.Finanza
                         archivo = ms.ToArray();
                     }
 
-                    proveedor.ListaDeProductos = BitConverter.ToString(archivo);
+                    proveedor.ListaDeProductos = archivoNuevo;
                 }
                 else
                 {

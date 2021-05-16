@@ -28,5 +28,7 @@ namespace Dominio.Logica
                 Estatus = 1,
             };
         }
+
+        
     }
 }

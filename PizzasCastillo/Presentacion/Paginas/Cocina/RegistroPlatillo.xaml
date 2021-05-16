@@ -10,7 +10,7 @@
       Height="Auto" Width="Auto"
       Title="RegistroPlatillo">
     <Page.Resources>
-        <local:ByteToImageConverter x:Name="binaryConverter" x:Key="byteToImageConverter"/>
+        <local:ByteToImageConverter x:Name="convertidorImagen" x:Key="convertidorRutaImagen"/>
     </Page.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
         <StackPanel Margin="80,0,0,0">
@@ -67,43 +67,58 @@
                 </StackPanel>
             </Grid>
 
-            <TextBlock Text="Receta" Style="{StaticResource TituloPaginasStyle}" Margin="0,30,0,0"/>
+            <TextBlock Text="Receta(redacte la receta del platillo)" Style="{StaticResource TituloPaginasStyle}" Margin="0,30,0,0"/>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,10">
-                <TextBox Text="Recetas" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="300" Width="1000"  VerticalAlignment="Top"/>
+                <TextBox x:Name="recetaText" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="300" Width="1000"  VerticalAlignment="Top"/>
             </StackPanel>
 
 
 
             <TextBlock Text="Ingredientes" Style="{StaticResource TituloPaginasStyle}" Margin="0,0,00,30"/>
-            <Image x:Name="fotoLoca" Source="{Binding}"/>
+            
+            <StackPanel x:Name="ListaPedidos" Margin="0,0,200,0" Orientation="Horizontal">
 
-            <StackPanel x:Name="ListaPedidos" Margin="0,0,200,0">
-
-                <ListView x:Name="proveedorList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="Black" BorderThickness="1">
-                    <ListView.ItemTemplate>
+                <ListBox x:Name="productoList"  Margin="200,0,00,0" Background="White" >
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <Image Source="{Binding ListaDeProductos,Converter={StaticResource byteToImageConverter}}"/>
-                                <Label Content="{Binding Telefono}"/>
-                                <Label Content="{Binding Nombre}"/>
-                            </StackPanel>
+                            <Border BorderBrush="Black" BorderThickness="1.5" CornerRadius="10" Height="200" Background="White">
+                                <Grid Width="600" Margin="50,0,0,0"  HorizontalAlignment="Left"  >
+                                
+                                <StackPanel Orientation="Horizontal" >
+                                        <Image Source="{Binding NombreFoto,Converter={StaticResource convertidorRutaImagen}}" Width="150" Height="150" Margin="-30,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="150,-50,0,0">
+                                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"  Margin="00,0,10,0" />
+                                        <TextBox x:Name="nombresBox" Text="{Binding Nombre}" Style="{StaticResource InputDefaultStyle}"  Width="300" IsEnabled="False"/>
+                                </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="150,40,0,0" >
+                                        <TextBlock Text="Cantidad" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
+                                        <TextBox Style="{StaticResource InputDefaultStyle}" Text="{Binding CantidadLocal}" TextWrapping="Wrap" IsEnabled="False" Width="100" />
+                                        <TextBlock Text="Medida" Style="{StaticResource TituloCamposStyle}"  Margin="30,0,10,0"/>
+                                        <TextBox Style="{StaticResource InputDefaultStyle}" IsEnabled="False" Text="{Binding Producto.UnidadDeMedida}" Width="100"/>
+                                    </StackPanel>
+                                    <Button Content="Eliminar" Name="eliminar" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="Eliminar" Margin="300,135,0,0" />
+                                    <Button Content="Editar" Name="editar" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="Editar" Margin="420,135,0,0" />
+                                </Grid>
+                          </Border>
+                            
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ItemsPanel>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                            <WrapPanel IsItemsHost="True" Orientation="Vertical"  />
                         </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
+                    </ListBox.ItemsPanel>
+                </ListBox>
 
             </StackPanel>
 
-            <Button Style="{StaticResource BotonSecundarioStyle}" Margin="0,100,0,0" Content="Agregar ingrediente" Width="200"/>
+            <Button Style="{StaticResource BotonSecundarioStyle}" Margin="-130,30,0,0" Content="Agregar ingrediente" Width="200" Click="Agregar"/>
             <Grid Margin="180,100,0,0">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
-                    <Button Style="{StaticResource BotonPrincipalStyle}" Content="Cancelar" Width="200"/>
-                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Continuar" Width="200" Margin="300,0,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                    <Button Style="{StaticResource BotonPrincipalStyle}" Content="Cancelar" Width="200" Click="Cancelar"  Margin="0,50,0,50"/>
+                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Registrar" Width="200" Margin="300,50,0,50" Click="Registrar" />
                 </StackPanel>
             </Grid>
 

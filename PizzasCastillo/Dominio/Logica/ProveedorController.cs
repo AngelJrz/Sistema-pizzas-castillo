@@ -26,7 +26,7 @@ namespace Dominio.Logica
                 Email = proveedor.Email,
                 Telefono = proveedor.Telefono,
                 NombreEncargado = proveedor.NombreEncargado,
-                ListaDeProductos = Encoding.ASCII.GetBytes(proveedor.ListaDeProductos),
+                ListaDeProductos = proveedor.ListaDeProductos,
                 DireccionProveedor = new AccesoADatos.DireccionProveedor
                 {
                     Calle = proveedor.Direccion.Calle,
@@ -34,7 +34,8 @@ namespace Dominio.Logica
                     CodigoPostal = proveedor.Direccion.CodigoPostal,
                     EntidadFederativa = proveedor.Direccion.EntidadFederativa,
                     Numero = proveedor.Direccion.Numero,
-                }
+                },
+                NombreArchivo = proveedor.NombreArchivo
             };
         }
 

@@ -8,6 +8,7 @@ namespace Dominio.Entidades
 {
     public class Consume
     {
+        public Platillo Platillo { get; set; }
         public Producto Producto { get; set; }
         public decimal Cantidad { get; set; }
 
