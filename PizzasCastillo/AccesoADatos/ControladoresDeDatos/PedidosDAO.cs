@@ -11,7 +11,8 @@ namespace AccesoADatos.ControladoresDeDatos
    public  class PedidosDAO
     {
         private PizzasBDEntities _connection;
-        private List<Pedido> _pedidos;
+        private List<Pedido> _pedidos = null;
+        private Pedido _pedidoEncontrado;
         private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
@@ -60,5 +61,38 @@ namespace AccesoADatos.ControladoresDeDatos
 
             return true;
         }
+
+
+
+        public List<Pedido> ObtenerPedidos() {
+            try
+            {
+
+
+                _pedidos = _connection.Pedido.ToList();
+                return _pedidos;
+            }
+            catch (Exception) {
+                return _pedidos;
+            }
+        }
+
+
+        public Pedido ObtenerPedidoPorID(int id)
+        {
+            try
+            {
+
+
+                _pedidoEncontrado = _connection.Pedido.Where(x=>x.Id==id).FirstOrDefault();
+                return _pedidoEncontrado;
+            }
+            catch (Exception)
+            {
+                return _pedidoEncontrado;
+            }
+        }
+
+
     }
 }

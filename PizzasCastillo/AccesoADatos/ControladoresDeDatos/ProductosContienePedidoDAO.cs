@@ -18,10 +18,31 @@ namespace AccesoADatos.ControladoresDeDatos
         public void RegistrarProductosPedido (List<Contiene> productosContiene)
         {
             foreach (Contiene contieneNuevo in productosContiene)
+            {
 
                 _connection.Contiene.Add(contieneNuevo);
-            _connection.SaveChanges();
-             
+                _connection.SaveChanges();
+            }
+        }
+
+
+        public void EliminarArticuloPedido(string idarticulo, int idpedido)
+        {
+
+            try
+            {
+                Contiene articuloEliminar = new Contiene();
+                articuloEliminar.CodigoBarra = idarticulo;
+                articuloEliminar.IdPedido = idpedido;
+                _connection.Contiene.Remove(articuloEliminar);
+                _connection.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+
+
         }
     }
 }
