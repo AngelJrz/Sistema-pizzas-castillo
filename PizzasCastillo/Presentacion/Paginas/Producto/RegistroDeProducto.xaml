@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Presentacion.Paginas.Producto"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="RegistroDeProducto">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
@@ -65,7 +65,7 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                     <ComboBox x:Name="ListaTiposProducto" Style="{StaticResource ComboboxStyle}"
-                                      Width="255" HorizontalAlignment="Left"/>
+                                      Width="255" HorizontalAlignment="Left" DisplayMemberPath="Nombre"/>
                 </StackPanel>
             </Grid>
 
@@ -167,7 +167,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="descripcionText" Template="{StaticResource InputControlTemplate}"
-                                         Height="150" Width="1000" HorizontalAlignment="Left"/>
+                             Height="100" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"/>
                 </StackPanel>
             </Grid>
 
@@ -184,7 +184,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="restriccionesText" Template="{StaticResource InputControlTemplate}"
-                                         Height="150" Width="1000" HorizontalAlignment="Left"/>
+                             Height="100" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"/>
                 </StackPanel>
             </Grid>
 

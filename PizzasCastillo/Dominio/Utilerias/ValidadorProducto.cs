@@ -11,7 +11,7 @@ namespace Dominio.Utilerias
         private ValidationResult result;
         public ValidadorProducto()
         {
-            RuleFor(x => x.CodigoBarra).NotEmpty().MaximumLength(10);
+            RuleFor(x => x.CodigoBarra).MaximumLength(10);
             RuleFor(x => x.Nombre).NotEmpty().MaximumLength(80);
             RuleFor(x => x.Precio).NotNull().NotEmpty().GreaterThan(0);
             RuleFor(x => x.Cantidad).NotNull().NotEmpty().GreaterThan(0);

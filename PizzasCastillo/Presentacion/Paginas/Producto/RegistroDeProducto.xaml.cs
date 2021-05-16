@@ -102,7 +102,7 @@ namespace Presentacion.Paginas.Producto
 
                     if (resultado == ResultadoRegistroProducto.RegistroExitoso)
                     {
-                        MessageBox.Show("Se registró el empleado");
+                        MessageBox.Show("Se registró el producto");
                         NavigationService.Navigate(new Inicio_Gerente_Productos());
                     }
                     else if (resultado == ResultadoRegistroProducto.CodigoBarraDuplicado)
