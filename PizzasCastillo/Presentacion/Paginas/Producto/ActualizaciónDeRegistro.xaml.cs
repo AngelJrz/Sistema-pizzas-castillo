@@ -24,5 +24,20 @@ namespace Presentacion.Paginas.Producto
         {
             InitializeComponent();
         }
+
+        private void Cancelar(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ActualizarProducto(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubirFoto(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

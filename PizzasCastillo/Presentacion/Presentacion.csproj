@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0" />
     <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -45,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -79,8 +81,8 @@
     <Compile Include="Paginas\Producto\GeneraciónDeReporteInventario.xaml.cs">
       <DependentUpon>GeneraciónDeReporteInventario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Producto\Inicio-Gerente-Productos.xaml.cs">
-      <DependentUpon>Inicio-Gerente-Productos.xaml</DependentUpon>
+    <Compile Include="Paginas\Producto\Inicio_Gerente_Productos.xaml.cs">
+      <DependentUpon>Inicio_Gerente_Productos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Producto\RegistroDeProducto.xaml.cs">
       <DependentUpon>RegistroDeProducto.xaml</DependentUpon>
@@ -160,7 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\Producto\Inicio-Gerente-Productos.xaml">
+    <Page Include="Paginas\Producto\Inicio_Gerente_Productos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

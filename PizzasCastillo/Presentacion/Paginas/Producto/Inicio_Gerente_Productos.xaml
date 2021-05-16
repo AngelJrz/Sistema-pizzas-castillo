@@ -189,23 +189,23 @@
                                         <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource IconoBoton}" Click="ConsultarUsuario" Grid.Column="0">
+                                    <Button Style="{StaticResource IconoBoton}" Click="ConsultarProducto"  Grid.Column="0">
                                         <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EditarUsuario" Grid.Column="1">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EditarProducto" Grid.Column="1">
                                         <materialDesign:PackIcon Kind="UserEdit" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarUsuario" Grid.Column="2">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarProducto" Grid.Column="2">
                                         <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
 
                                     <Button Style="{StaticResource IconoBoton}" Click="VerificarExistencia" Grid.Column="2">
-                                        <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
+                                        <materialDesign:PackIcon Kind="Check" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
                                 </Grid>
@@ -217,10 +217,10 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
                 <Button Content="Registrar Producto Nuevo" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,0,40,0">
+                    Width="250" HorizontalAlignment="Center" Margin="0,0,40,0" Click="RegistrarProducto">
                 </Button>
                 <Button Content="Generar Reporte de Inventario" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="40,0,0,0">
+                    Width="250" HorizontalAlignment="Center" Margin="40,0,0,0" Click="GenerarReporteInventario">
                 </Button>
             </StackPanel>
         </StackPanel>
