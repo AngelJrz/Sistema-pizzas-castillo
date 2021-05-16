@@ -49,7 +49,7 @@
             <TextBlock Text="Lista de Productos" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
 
-            <DataGrid x:Name="ListaUsuarios" HorizontalAlignment="Center" Width="1000"
+            <DataGrid x:Name="tablaDeProductos" HorizontalAlignment="Center" Width="1000"
                       AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       Margin="0,20,0,20" CanUserSortColumns="True" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">

@@ -61,26 +61,49 @@ namespace Dominio.Logica
         //     return productoDAO.ObtenerProductosID(codigo);
 
         //}
-        //public List<Producto> ObtenerProductos()
-        //{
-        //    productoDAO.ObtenerListaProductos();
-        //    return productoDAO.ObtenerListaProductos();
-        //}
+        public List<Producto> ObtenerProductos()
+        {
+            List<Producto> listaProcutos = new List<Producto>();
+            List<AccesoADatos.ArticuloVenta> productosBD = productoDAO.ObtenerListaProductos();
+            foreach(AccesoADatos.ArticuloVenta productoEntity in productosBD)
+            {
+                Producto productoConsultado = new Producto
+                {
+                    CodigoBarra = productoEntity.CodigoBarra,
+                    Nombre = productoEntity.Nombre,
+                    Precio = productoEntity.Precio,
+                    Foto = productoEntity.Foto,
+                    Estatus = productoEntity.Estatus,
+                    EsPlatillo = productoEntity.EsPlatillo,
+                    NombreFoto = productoEntity.NombreFoto,
+                    Cantidad = productoEntity.Producto.Cantidad,
+                    Descripcion = productoEntity.Producto.Descripcion,
+                    PrecioCompra = productoEntity.Producto.PrecioCompra,
+                    Restricciones = productoEntity.Producto.Restricciones,
+                    Tipo = Tipo.Clone(productoEntity.Producto.TipoProducto),
+                    UnidadDeMedida = productoEntity.Producto.UnidadDeMedida
+                };
 
-        //public List<AccesoADatos.Producto> BuscarProductosNombre(string nombre)
-        //{
-        //    ProductosDAO productoDAO = new ProductosDAO();
-        //    return productoDAO.ObtenerProductosNombre(nombre);
-        //}
+                listaProcutos.Add(productoConsultado);
+            }
 
-        //public List<AccesoADatos.Producto> BuscarProductosCodigo(string codigo)
-        //{
+            return listaProcutos;
+        }
 
-        //    return productoDAO.ObtenerProductosCodigo(nombre);
+    //public List<AccesoADatos.Producto> BuscarProductosNombre(string nombre)
+    //{
+    //    ProductosDAO productoDAO = new ProductosDAO();
+    //    return productoDAO.ObtenerProductosNombre(nombre);
+    //}
 
-        //}
+    //public List<AccesoADatos.Producto> BuscarProductosCodigo(string codigo)
+    //{
 
-        private string AutogenerarCodigoBarra(string nombre, Tipo tipo)
+    //    return productoDAO.ObtenerProductosCodigo(nombre);
+
+    //}
+
+    private string AutogenerarCodigoBarra(string nombre, Tipo tipo)
         {
             Random azar = new Random();
 
