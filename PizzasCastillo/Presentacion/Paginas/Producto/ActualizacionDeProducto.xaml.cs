@@ -57,6 +57,9 @@ namespace Presentacion.Paginas.Producto
             producto = productoSeleccionado;
 
             this.DataContext = producto;
+            if (producto.Estatus == DISPONIBLE)
+                estatusText.Text = "Disponible";
+            else estatusText.Text = "Inactivo";
 
             ListaTiposProducto.Text = producto.Tipo.Nombre;
         }
@@ -68,64 +71,72 @@ namespace Presentacion.Paginas.Producto
 
         private void ActualizarProducto(object sender, RoutedEventArgs e)
         {
-            decimal.TryParse(precioVentaText.Text, out decimal precio);
-            decimal.TryParse(precioUnitarioText.Text, out decimal precioCompra);
-            decimal.TryParse(cantidadText.Text, out decimal cantidad);
-
-            Dominio.Entidades.Producto productoCambiado = new Dominio.Entidades.Producto
+            if(producto.Estatus == DISPONIBLE)
             {
-                CodigoBarra = codigoText.Text,
-                Nombre = NombreText.Text,
-                Precio = precio,
-                Foto = foto,
-                Estatus = DISPONIBLE,
-                EsPlatillo = false,
-                NombreFoto = nombreFoto,
-                Cantidad = cantidad,
-                Descripcion = descripcionText.Text,
-                PrecioCompra = precioCompra,
-                Restricciones = restriccionesText.Text,
-                Tipo = ListaTiposProducto.SelectedItem as Tipo,
-                UnidadDeMedida = unidadMedidaText.Text
-            };
+                decimal.TryParse(precioVentaText.Text, out decimal precio);
+                decimal.TryParse(precioUnitarioText.Text, out decimal precioCompra);
+                decimal.TryParse(cantidadText.Text, out decimal cantidad);
 
-            if (EstaInformacionCorrecta(productoCambiado))
-            {
-                ProductoController productoController = new ProductoController();
-                bool resultado = false;
-                try
+                Dominio.Entidades.Producto productoCambiado = new Dominio.Entidades.Producto
                 {
-                    resultado = productoController.ActualizarProducto(productoCambiado);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Ocurrió un error al intentar actualizar el producto. Por favor intente más tarde.");
-                    return;
-                }
+                    CodigoBarra = codigoText.Text,
+                    Nombre = NombreText.Text,
+                    Precio = precio,
+                    Foto = foto,
+                    Estatus = producto.Estatus,
+                    EsPlatillo = false,
+                    NombreFoto = nombreFoto,
+                    Cantidad = cantidad,
+                    Descripcion = descripcionText.Text,
+                    PrecioCompra = precioCompra,
+                    Restricciones = restriccionesText.Text,
+                    Tipo = ListaTiposProducto.SelectedItem as Tipo,
+                    UnidadDeMedida = unidadMedidaText.Text
+                };
 
-                if (resultado)
+                if (EstaInformacionCorrecta(productoCambiado))
                 {
-                    MessageBox.Show("Se actualizo el producto");
-                    NavigationService.Navigate(new Inicio_Gerente_Productos());
+                    ProductoController productoController = new ProductoController();
+                    bool resultado = false;
+                    try
+                    {
+                        resultado = productoController.ActualizarProducto(productoCambiado);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un error al intentar actualizar el producto. Por favor intente más tarde.");
+                        return;
+                    }
+
+                    if (resultado)
+                    {
+                        MessageBox.Show("Se actualizo el producto");
+                        NavigationService.Navigate(new Inicio_Gerente_Productos());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrió un error, intenté más tarde");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Ocurrió un error, intenté más tarde");
+                    List<string> camposIncorecctos = validadorProducto.ObtenerPropiedadesIncorrectas();
+                    string mensaje = "Los siguientes campos están incorrectos: ";
+                    foreach (var campos in camposIncorecctos)
+                    {
+                        mensaje += campos + ", ";
+                    }
+
+                    mensaje += "por favor verifique la información.";
+
+                    MessageBox.Show(mensaje);
                 }
             }
             else
             {
-                List<string> camposIncorecctos = validadorProducto.ObtenerPropiedadesIncorrectas();
-                string mensaje = "Los siguientes campos están incorrectos: ";
-                foreach (var campos in camposIncorecctos)
-                {
-                    mensaje += campos + ", ";
-                }
-
-                mensaje += "por favor verifique la información.";
-
-                MessageBox.Show(mensaje);
+                MessageBox.Show("eRROR: No se puede actualizar un producto con estatus :No Disponible");
             }
+            
         }
 
         private bool EstaInformacionCorrecta(Dominio.Entidades.Producto producto)

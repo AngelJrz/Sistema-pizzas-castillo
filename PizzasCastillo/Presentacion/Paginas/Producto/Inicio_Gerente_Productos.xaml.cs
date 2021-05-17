@@ -51,7 +51,8 @@ namespace Presentacion.Paginas.Producto
 
         private void ConsultarProducto(object sender, RoutedEventArgs e)
         {
-
+            productoSeleccionado = (Dominio.Entidades.Producto)tablaDeProductos.SelectedItem;
+            NavigationService.Navigate(new DetallesDeProducto(productoSeleccionado));
         }
 
         private void EditarProducto(object sender, RoutedEventArgs e)
@@ -62,12 +63,26 @@ namespace Presentacion.Paginas.Producto
 
         private void EliminarProducto(object sender, RoutedEventArgs e)
         {
+            bool seElimino = false;
 
+            productoSeleccionado = (Dominio.Entidades.Producto)tablaDeProductos.SelectedItem;
+            ProductoController productoController = new ProductoController();
+
+            seElimino = productoController.EliminarProducto(productoSeleccionado);
+
+            if (seElimino)
+            {
+                MessageBox.Show("Eliminación Exitosa");
+            }
+            else
+            {
+                MessageBox.Show("Ocurrió un error, intenté más tarde");
+            }
         }
 
         private void VerificarExistencia(object sender, RoutedEventArgs e)
         {
-
+            //NavigationService.Navigate(new ValidarExistenciaProducto());
         }
 
         private void RegistrarProducto(object sender, RoutedEventArgs e)
@@ -77,7 +92,7 @@ namespace Presentacion.Paginas.Producto
 
         private void GenerarReporteInventario(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new GeneraciónDeReporteInventario());
         }
     }
 }

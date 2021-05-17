@@ -157,11 +157,22 @@
                                 <Setter Property="BorderThickness" Value="1"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
-
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Estatus}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
-                                           FontSize="14"/>
+                                <TextBlock TextWrapping="WrapWithOverflow">
+                                    <TextBlock.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Estatus}" Value="1">
+                                                    <Setter Property="TextBlock.Text" Value="Disponible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Estatus}" Value="2">
+                                                    <Setter Property="TextBlock.Text" Value="Inactivo"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -188,6 +199,7 @@
                                         <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
                                     <Button Style="{StaticResource IconoBoton}" Click="ConsultarProducto"  Grid.Column="0">
                                         <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource Gris}" 
@@ -204,7 +216,7 @@
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="VerificarExistencia" Grid.Column="2">
+                                    <Button Style="{StaticResource IconoBoton}" Click="VerificarExistencia" Grid.Column="3">
                                         <materialDesign:PackIcon Kind="Check" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>

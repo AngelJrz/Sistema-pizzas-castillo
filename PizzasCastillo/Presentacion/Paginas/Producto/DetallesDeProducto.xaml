@@ -5,13 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Presentacion.Paginas.Producto"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
+      d:DesignHeight="1000" d:DesignWidth="1100"
       Title="DetallesDeProducto">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
-        <StackPanel>
-            <TextBlock Text="Detalles De Producto" Style="{StaticResource TituloPaginasStyle}"
-                       Margin="80,30,0,0"/>
+        <StackPanel Width="1100">
+            <TextBlock Text="Detalles de roducto" Style="{StaticResource TituloPaginasStyle}"
+                       Margin="80,30,630,0"/>
 
             <!--DATOS DE PRODUCTO-->
             <TextBlock Text="Datos de Producto:" Style="{StaticResource TituloStyle}"
@@ -20,14 +20,13 @@
                 <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
                       StrokeThickness="0.5"/>
             </Canvas>
-
-            <StackPanel Margin="1250,-150,0,0" Height="276" Width="620">
-                <TextBlock Text="Imagen Actual:" TextAlignment="Center" Style="{StaticResource TituloCamposStyle}" Margin="0,20,475,0"/>
-                <Image x:Name="imagenProducto" Height="200" Width="200" Margin="0,-30,100,0" />
+            <StackPanel Margin="750,-150,0,0" Height="270">
+                <TextBlock Text="Imagen Subida:" TextAlignment="Center" Style="{StaticResource TituloCamposStyle}" Margin="0,5,10,0" Height="25"/>
+                <Image x:Name="imagenProducto" Height="160" Width="200" Margin="75,0" />
             </StackPanel>
 
 
-            <Grid Margin="130,-200,0,0" Height="30">
+            <Grid Margin="130,-50,250,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
@@ -40,41 +39,26 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                    <TextBlock Text="{Binding CodigoBarra}" Style="{StaticResource TituloCamposStyle}"
+                    <TextBlock x:Name="codigoText" Text="{Binding CodigoBarra}" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
                 </StackPanel>
             </Grid>
 
-            <Grid Margin="130,-100,0,0" Height="30">
+            <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Tipo de Prodcuto:" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Text="Tipo de Prodcuto:" Style="{StaticResource TituloCamposStyle}"
+                                       TextWrapping="WrapWithOverflow"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=ListaTiposProducto}"
+                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                    <TextBlock Text="{Binding TipoProducto.Nombre}" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
-            </Grid>
-
-            <Grid Margin="130,-10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Nombre}" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock x:Name="ListaTiposProducto" Style="{StaticResource TituloCamposStyle}"
+                                      Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -85,12 +69,28 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
+                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="NombreText" Style="{StaticResource TituloCamposStyle}"
+                             Text="{Binding Nombre}" Width="255" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="130,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <TextBlock Text="Precio Venta:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Precio}" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock x:Name="precioVentaText" Style="{StaticResource TituloCamposStyle}"
+                             Text="{Binding Precio}" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -101,12 +101,12 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
                     <TextBlock Text="Precio Unitario de Compra:" Style="{StaticResource TituloCamposStyle}" VerticalAlignment="Top"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding PrecioCompra}" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock x:Name="precioUnitarioText" Style="{StaticResource TituloCamposStyle}"
+                             Text="{Binding PrecioCompra}" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
                 </StackPanel>
             </Grid>
 
@@ -117,12 +117,12 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
                     <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock x:Name="cantidadText" Text="{Binding Cantidad}" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Style="{StaticResource TituloCamposStyle}"
+                               Text="{Binding Cantidad}" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -133,12 +133,12 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
                     <TextBlock Text="Unidad de Medida:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding UnidadDeMedida}" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock x:Name="unidadMedidaText" Style="{StaticResource TituloCamposStyle}"
+                             Text="{Binding UnidadDeMedida}" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -149,12 +149,12 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
                     <TextBlock Text="Estatus:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Estatus}" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock x:Name="estatusText" Text="{Binding Estatus}" Style="{StaticResource TituloCamposStyle}"
+                               Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -165,13 +165,12 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
                     <TextBlock Text="Descripción:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding PrecioCompra}" Style="{StaticResource TituloCamposStyle}"
-                               TextAlignment="Left" TextWrapping="WrapWithOverflow" Margin="10,0,561,0"/>
+                    <TextBlock x:Name="descripcionText" Text="{Binding Descripcion}" Style="{StaticResource TituloCamposStyle}"
+                             Height="100" Width="500" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -182,19 +181,19 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
                     <TextBlock Text="Restricciones:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Restricciones}" Style="{StaticResource TituloCamposStyle}"
-                               TextAlignment="Left" TextWrapping="WrapWithOverflow" Margin="10,0,561,0"/>
+                    <TextBlock x:Name="restriccionesText" Text="{Binding Restricciones}" Style="{StaticResource TituloCamposStyle}"
+                             Height="100" Width="500" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Regresar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0"/>
+                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Regresar"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>
+
