@@ -32,6 +32,28 @@ namespace AccesoADatos.ControladoresDeDatos
             return listaProductos;
         }
 
+        public List<ArticuloVenta> ObtenerProductosPorNombre(string nombre)
+        {
+            listaProductos = conexion.ArticuloVenta
+                .Where(producto => producto.EsPlatillo == false)
+                .Where(producto => producto.Nombre.Contains(nombre))
+                .Include(producto => producto.Producto)
+                .ToList();
+
+            return listaProductos;
+        }
+
+        public List<ArticuloVenta> ObtenerProductosPorCodigo(string codigo)
+        {
+            listaProductos = conexion.ArticuloVenta
+                .Where(producto => producto.EsPlatillo == false)
+                .Where(producto => producto.CodigoBarra.Contains(codigo))
+                .Include(producto => producto.Producto)
+                .ToList();
+
+            return listaProductos;
+        }
+
         public Producto ObtenerProducto(string codigoBarra)
         {
             Producto articuloProducto;
@@ -55,6 +77,8 @@ namespace AccesoADatos.ControladoresDeDatos
 
             return articuloProducto;
         }
+
+
 
         public bool RegistrarArticulo(ArticuloVenta articuloProducto)
         {

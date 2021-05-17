@@ -131,20 +131,65 @@ namespace Dominio.Logica
             return listaProcutos;
         }
 
-    //public List<AccesoADatos.Producto> BuscarProductosNombre(string nombre)
-    //{
-    //    ProductosDAO productoDAO = new ProductosDAO();
-    //    return productoDAO.ObtenerProductosNombre(nombre);
-    //}
+        public List<Producto> BuscarProductosPorNombre(string nombre)
+        {
+            List<Producto> listaProcutos = new List<Producto>();
+            List<AccesoADatos.ArticuloVenta> productosBD = productoDAO.ObtenerProductosPorNombre(nombre);
+            foreach (AccesoADatos.ArticuloVenta productoEntity in productosBD)
+            {
+                Producto productoConsultado = new Producto
+                {
+                    CodigoBarra = productoEntity.CodigoBarra,
+                    Nombre = productoEntity.Nombre,
+                    Precio = productoEntity.Precio,
+                    Foto = productoEntity.Foto,
+                    Estatus = productoEntity.Estatus,
+                    EsPlatillo = productoEntity.EsPlatillo,
+                    NombreFoto = productoEntity.NombreFoto,
+                    Cantidad = productoEntity.Producto.Cantidad,
+                    Descripcion = productoEntity.Producto.Descripcion,
+                    PrecioCompra = productoEntity.Producto.PrecioCompra,
+                    Restricciones = productoEntity.Producto.Restricciones,
+                    Tipo = Tipo.Clone(productoEntity.Producto.TipoProducto),
+                    UnidadDeMedida = productoEntity.Producto.UnidadDeMedida
+                };
 
-    //public List<AccesoADatos.Producto> BuscarProductosCodigo(string codigo)
-    //{
+                listaProcutos.Add(productoConsultado);
+            }
 
-    //    return productoDAO.ObtenerProductosCodigo(nombre);
+            return listaProcutos;
+        }
 
-    //}
+        public List<Producto> BuscarProductosPorCodigo(string codigo)
+        {
+            List<Producto> listaProcutos = new List<Producto>();
+            List<AccesoADatos.ArticuloVenta> productosBD = productoDAO.ObtenerProductosPorCodigo(codigo);
+            foreach (AccesoADatos.ArticuloVenta productoEntity in productosBD)
+            {
+                Producto productoConsultado = new Producto
+                {
+                    CodigoBarra = productoEntity.CodigoBarra,
+                    Nombre = productoEntity.Nombre,
+                    Precio = productoEntity.Precio,
+                    Foto = productoEntity.Foto,
+                    Estatus = productoEntity.Estatus,
+                    EsPlatillo = productoEntity.EsPlatillo,
+                    NombreFoto = productoEntity.NombreFoto,
+                    Cantidad = productoEntity.Producto.Cantidad,
+                    Descripcion = productoEntity.Producto.Descripcion,
+                    PrecioCompra = productoEntity.Producto.PrecioCompra,
+                    Restricciones = productoEntity.Producto.Restricciones,
+                    Tipo = Tipo.Clone(productoEntity.Producto.TipoProducto),
+                    UnidadDeMedida = productoEntity.Producto.UnidadDeMedida
+                };
 
-    private string AutogenerarCodigoBarra(string nombre, Tipo tipo)
+                listaProcutos.Add(productoConsultado);
+            }
+
+            return listaProcutos;
+        }
+
+        private string AutogenerarCodigoBarra(string nombre, Tipo tipo)
         {
             Random azar = new Random();
 

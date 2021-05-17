@@ -23,12 +23,21 @@ namespace Presentacion.Paginas.Producto
     /// </summary>
     public partial class Inicio_Gerente_Productos : Page
     {
-        private readonly ObservableCollection<Dominio.Entidades.Producto> productos = null;
+        private ObservableCollection<Dominio.Entidades.Producto> productos = null;
         private Dominio.Entidades.Producto productoSeleccionado;
+        private readonly List<string> filtrosLista;
 
         public Inicio_Gerente_Productos()
         {
             InitializeComponent();
+
+            filtrosLista = new List<string>
+            {
+                "Código de Barra",
+                "Nombre"
+            };
+
+            TipoBusqueda.ItemsSource = filtrosLista;
 
             ProductoController productoController = new ProductoController();
             List<Dominio.Entidades.Producto> listaDeProductos = productoController.ObtenerProductos();
@@ -46,7 +55,31 @@ namespace Presentacion.Paginas.Producto
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
+            string busqueda = BusquedaText.Text;
+            ProductoController productoController = new ProductoController();
+            List<Dominio.Entidades.Producto> listaDeProductos = new List<Dominio.Entidades.Producto>();
+            string filtroSeleccionado = (string)TipoBusqueda.SelectedItem;
 
+            if (String.IsNullOrWhiteSpace(busqueda) || TipoBusqueda.SelectedItem == null)
+            {
+                listaDeProductos = productoController.ObtenerProductos();
+            }
+            else
+            {
+                if (filtroSeleccionado.Equals("Código de Barra"))
+                {
+                    listaDeProductos = productoController.BuscarProductosPorCodigo(busqueda);
+                }
+                else
+                {
+                    if (filtroSeleccionado.Equals("Nombre"))
+                    {
+                        listaDeProductos = productoController.BuscarProductosPorNombre(busqueda);                    }
+                }
+            }
+
+            productos = new ObservableCollection<Dominio.Entidades.Producto>(listaDeProductos);
+            tablaDeProductos.ItemsSource = productos;
         }
 
         private void ConsultarProducto(object sender, RoutedEventArgs e)
