@@ -1,12 +1,13 @@
 ﻿using Dominio.Entidades;
 using Dominio.Logica;
+using Dominio.Utilerias;
 using Microsoft.Win32;
 using Presentacion.Ventanas;
+using Presentacion.Ventanas.Usuario;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.IO;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,37 +20,56 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Globalization;
-using System.Collections.ObjectModel;
-using Presentacion.Ventanas.Usuario;
-using Dominio.Utilerias;
 
 namespace Presentacion.Paginas.Cocina
 {
     /// <summary>
-    /// Lógica de interacción para RegistroPlatillo.xaml
+    /// Lógica de interacción para EditarPlatillo.xaml
     /// </summary>
-    public partial class RegistroPlatillo : Page
+    public partial class EditarPlatillo : Page
     {
         byte[] foto;
         string nombreFoto;
+        string codigoBarra;
         ObservableCollection<ArticuloVenta> productos;
         private ProductoPopUp productoPopUP;
-        private List<ArticuloVenta> productosList;
+        private List<ArticuloVenta> insumosList;
 
-        public RegistroPlatillo()
+        public EditarPlatillo(ArticuloVenta platilloEdicion)
         {
             InitializeComponent();
-            ArticuloVentaController articuloController = new ArticuloVentaController();
-            productosList = articuloController.ObtenerProductos();
-
+            ArticuloVentaController ventaController = new ArticuloVentaController();
             productos = new ObservableCollection<ArticuloVenta>();
+            insumosList = ventaController.ObtenerProductos();
+            foreach (Consume consume in platilloEdicion.Platillo.Consume)
+            {
+                ArticuloVenta producto = new ArticuloVenta();
+                producto = ventaController.ObtenerProducto(consume.Producto.CodigoBarra);
+                producto.CantidadLocal = consume.Cantidad;
+                productos.Add(producto);
+            }
+
             productoList.ItemsSource = productos;
 
-            foreach (ArticuloVenta p in productosList)
+            foreach (ArticuloVenta p in productos)
             {
-                File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto,p.Foto);
+                try 
+                {
+                    File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
+                }
+                catch(System.IO.IOException)
+                {
+
+                }
             }
+
+            NombreText.Text = platilloEdicion.Nombre;
+            PrecioText.Text = platilloEdicion.Precio.ToString();
+            imgPhoto.Source = new BitmapImage(new Uri(Recursos.RecursosGlobales.RUTA_IMAGENES + platilloEdicion.NombreFoto)); ;
+            recetaText.Text = platilloEdicion.Platillo.Receta;
+            foto = platilloEdicion.Foto;
+            nombreFoto = platilloEdicion.NombreFoto;
+            codigoBarra = platilloEdicion.CodigoBarra;
         }
 
 
@@ -71,7 +91,6 @@ namespace Presentacion.Paginas.Cocina
                 else
                 {
                     imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
-                    botonImagen.Content = "Cambiar foto";
                     Stream stream = op.OpenFile();
                     using (MemoryStream ms = new MemoryStream())
                     {
@@ -80,19 +99,19 @@ namespace Presentacion.Paginas.Cocina
                     }
                 }
             }
-        }   
+        }
 
 
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            ListBoxItem selectedItem= (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
+            ListBoxItem selectedItem = (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
             selectedItem.IsSelected = true;
             productos.Remove((ArticuloVenta)productoList.SelectedItem);
         }
 
         private void Agregar(object sender, RoutedEventArgs e)
         {
-            productoPopUP = new ProductoPopUp(true,productosList, new ArticuloVenta());
+            productoPopUP = new ProductoPopUp(true, insumosList, new ArticuloVenta());
             productoPopUP.RegistroExitoso += new EventHandler(NuevoInsumo);
             productoPopUP.ShowDialog();
         }
@@ -117,7 +136,7 @@ namespace Presentacion.Paginas.Cocina
         }
         private void Cancelar(object sender, RoutedEventArgs e)
         {
-            //Regresar
+            NavigationService.GoBack();
         }
 
         private void IsTelephoneNumber(object sender, TextCompositionEventArgs e)
@@ -153,7 +172,7 @@ namespace Presentacion.Paginas.Cocina
         {
             ListBoxItem selectedItem = (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
             selectedItem.IsSelected = true;
-            productoPopUP = new ProductoPopUp(false, productosList, (ArticuloVenta)productoList.SelectedItem);
+            productoPopUP = new ProductoPopUp(false, insumosList, (ArticuloVenta)productoList.SelectedItem);
             productoPopUP.RegistroExitoso += new EventHandler(ActualizarInsumo);
             productoPopUP.ShowDialog();
         }
@@ -167,13 +186,14 @@ namespace Presentacion.Paginas.Cocina
             }
             else
             {
-                try
-                {
+                //try
+                //{
                     List<Consume> consumePlatillo = new List<Consume>();
                     Consume consumeNew;
 
                     ArticuloVenta nuevoPlatillo = new ArticuloVenta
                     {
+                        CodigoBarra = codigoBarra,
                         Nombre = NombreText.Text,
                         Precio = Convert.ToDecimal(PrecioText.Text),
                         Foto = foto,
@@ -202,7 +222,7 @@ namespace Presentacion.Paginas.Cocina
                     if (validadorArticulo.Validar(nuevoPlatillo))
                     {
                         ArticuloVentaController articuloVentaController = new ArticuloVentaController();
-                        bool guardado = articuloVentaController.GuardarPlatilloVenta(nuevoPlatillo);
+                        bool guardado = articuloVentaController.ActualizarPlatilloVenta(nuevoPlatillo);
                         if (guardado)
                         {
                             InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo con exito");
@@ -222,41 +242,14 @@ namespace Presentacion.Paginas.Cocina
                         ventana.Show();
 
                     }
-                }
+                /*}
                 catch (Exception ex)
                 {
                     InteraccionUsuario ventana = new InteraccionUsuario("Error de Campos", "Uno o mas campos estan vacios, verificar porfavor");
                     ventana.Show();
-                }
+                }*/
             }
         }
-    }
 
-    public class ByteToImageConverter : IValueConverter
-    {
-        public String ConvertidorRutaImagen(string nombreArchivo)
-        {
-            if (string.IsNullOrWhiteSpace(nombreArchivo)) 
-            {
-                return null;
-            }
-            return Recursos.RecursosGlobales.RUTA_IMAGENES + nombreArchivo;
-        }
-
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            string img = "";
-            if (value != null)
-            {
-                img = this.ConvertidorRutaImagen(value.ToString());
-            }
-            return img;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return null;
-        }
     }
 }

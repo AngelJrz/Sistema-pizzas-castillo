@@ -20,6 +20,7 @@ namespace Dominio.Entidades
         {
             return new Producto
             {
+                CodigoBarra = producto.CodigoBarra,
                 Cantidad = producto.Cantidad,
                 Descripcion = producto.Descripcion,
                 PrecioCompra = producto.PrecioCompra,
@@ -29,7 +30,18 @@ namespace Dominio.Entidades
             };
         }
 
-
-
+        public static AccesoADatos.Producto CloneDA(Producto producto)
+        {
+            return new AccesoADatos.Producto
+            {
+                CodigoBarra = producto.CodigoBarra,
+                Cantidad = producto.Cantidad,
+                Descripcion = producto.Descripcion,
+                PrecioCompra = producto.PrecioCompra,
+                Restricciones = producto.Restricciones,
+                TipoProducto = Tipo.CloneDA(producto.Tipo),
+                UnidadDeMedida = producto.UnidadDeMedida
+            };
+        }
     }
 }

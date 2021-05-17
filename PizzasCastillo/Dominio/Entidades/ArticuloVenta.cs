@@ -78,5 +78,31 @@ namespace Dominio.Entidades
 
             return listaProductos;
         }
+        public static List<ArticuloVenta> CloneListPlatillo(List<AccesoADatos.ArticuloVenta> productos)
+        {
+            List<ArticuloVenta> listaProductos = new List<ArticuloVenta>();
+            productos.ToList().ForEach(articuloVenta => listaProductos.Add(
+               new ArticuloVenta
+               {
+                   CodigoBarra = articuloVenta.CodigoBarra,
+                   Nombre = articuloVenta.Nombre,
+                   Precio = articuloVenta.Precio,
+                   Foto = articuloVenta.Foto,
+                   Estatus = articuloVenta.Estatus,
+                   EsPlatillo = articuloVenta.EsPlatillo,
+                   NombreFoto = articuloVenta.NombreFoto,
+                   Platillo = new Platillo
+                   {
+                       FechaRegisto = articuloVenta.Platillo.FechaRegisto,
+                       Receta = articuloVenta.Platillo.Receta,
+                       CodigoBarra = articuloVenta.Platillo.CodigoBarra,
+                       Consume = Consume.CloneList(articuloVenta.Platillo.Consume.ToList())
+                   },
+                   
+               }
+               ));
+
+            return listaProductos;
+        }
     }
 }

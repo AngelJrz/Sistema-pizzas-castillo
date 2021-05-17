@@ -79,6 +79,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Paginas\Cocina\EditarPlatillo.xaml.cs">
+      <DependentUpon>EditarPlatillo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\GeneracionMermaIngredientes.xaml.cs">
+      <DependentUpon>GeneracionMermaIngredientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\ListaPlatillos.xaml.cs">
+      <DependentUpon>ListaPlatillos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Finanza\ConfirmarEntrega.xaml.cs">
       <DependentUpon>ConfirmarEntrega.xaml</DependentUpon>
     </Compile>
@@ -208,6 +217,18 @@
     <Resource Include="Imagenes\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Paginas\Cocina\EditarPlatillo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\GeneracionMermaIngredientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\ListaPlatillos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Finanza\ConfirmarEntrega.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

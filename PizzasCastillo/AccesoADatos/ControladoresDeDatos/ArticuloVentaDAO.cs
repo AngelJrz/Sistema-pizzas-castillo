@@ -12,6 +12,7 @@ namespace AccesoADatos.ControladoresDeDatos
     {
         private readonly PizzasBDEntities connection;
         private List<ArticuloVenta> articulosVenta;
+        private ArticuloVenta articuloVenta;
         private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;
         private int resultado;
@@ -53,6 +54,19 @@ namespace AccesoADatos.ControladoresDeDatos
             return articulosVenta;
         }
 
+        public ArticuloVenta ObtenerProducto(string id)
+        {
+            try
+            {
+                articuloVenta = connection.ArticuloVenta.Find(id);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            return articuloVenta;
+        }
+
         public bool RegistrarArticuloVenta(ArticuloVenta articuloVenta)
         {
             try
@@ -71,6 +85,40 @@ namespace AccesoADatos.ControladoresDeDatos
                 return false;
             }
 
+            return true;
+        }
+
+        public bool ActualizarArticuloVenta(ArticuloVenta articuloVenta)
+        {
+            try
+            {
+                var articuloVentaBD = connection.ArticuloVenta.Where(p => p.CodigoBarra == articuloVenta.CodigoBarra).Include("Platillo").First();
+                if (articuloVentaBD != null)
+                {
+                    articuloVentaBD.Nombre = articuloVenta.Nombre;
+                    articuloVentaBD.NombreFoto = articuloVenta.NombreFoto;
+                    articuloVentaBD.Precio = articuloVenta.Precio;
+                    articuloVentaBD.Foto = articuloVenta.Foto;
+                    articuloVentaBD.Estatus = articuloVenta.Estatus;
+                    articuloVentaBD.EsPlatillo = articuloVenta.EsPlatillo;
+                    while(articuloVentaBD.Platillo.Consume.Count < 0)
+                    {
+                        connection.Entry(articuloVentaBD.Platillo.Consume.First()).State = EntityState.Deleted;
+                    }
+
+                    articuloVentaBD.Platillo = articuloVenta.Platillo;
+                    connection.Entry(articuloVentaBD).State = EntityState.Modified;
+                    resultado = connection.SaveChanges();
+                }
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
+            if (resultado == SIN_CAMBIOS)
+            {
+
+            }
             return true;
         }
     }
