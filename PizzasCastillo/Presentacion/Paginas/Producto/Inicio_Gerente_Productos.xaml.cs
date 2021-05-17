@@ -56,7 +56,8 @@ namespace Presentacion.Paginas.Producto
 
         private void EditarProducto(object sender, RoutedEventArgs e)
         {
-
+            productoSeleccionado = (Dominio.Entidades.Producto)tablaDeProductos.SelectedItem;
+            NavigationService.Navigate(new ActualizacionDeProducto(productoSeleccionado));
         }
 
         private void EliminarProducto(object sender, RoutedEventArgs e)

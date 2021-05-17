@@ -72,8 +72,8 @@
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Producto\ActualizaciónDeRegistro.xaml.cs">
-      <DependentUpon>ActualizaciónDeRegistro.xaml</DependentUpon>
+    <Compile Include="Paginas\Producto\ActualizacionDeProducto.xaml.cs">
+      <DependentUpon>ActualizacionDeProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Producto\DetallesDeProducto.xaml.cs">
       <DependentUpon>DetallesDeProducto.xaml</DependentUpon>
@@ -157,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\Producto\ActualizaciónDeRegistro.xaml">
+    <Page Include="Paginas\Producto\ActualizacionDeProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

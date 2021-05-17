@@ -10,9 +10,9 @@
       Title="RegistroDeProducto">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
-        <StackPanel>
+        <StackPanel Width="1100">
             <TextBlock Text="Registrar Producto" Style="{StaticResource TituloPaginasStyle}"
-                       Margin="80,30,0,0"/>
+                       Margin="80,30,630,0"/>
 
             <!--DATOS DE PRODUCTO-->
             <TextBlock Text="Datos de Producto:" Style="{StaticResource TituloStyle}"
@@ -22,17 +22,16 @@
                       StrokeThickness="0.5"/>
             </Canvas>
             <Button Content="Capturar código" HorizontalAlignment="Center" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" Margin="10,5,700,0" Click="CapturarCodigo"/>
-            <StackPanel Margin="550,-200,0,0" Height="283" Width="586">
-                <TextBlock Text="Imagen Subida:" TextAlignment="Center" Style="{StaticResource TituloCamposStyle}" Margin="0,20,475,0"/>
-                <Image x:Name="imagenProducto" Height="200" Width="200" Margin="0,-30,100,0"/>
-                <TextBlock Text="Foto:" TextAlignment="Right" Style="{StaticResource TituloCamposStyle}" Margin="0,20,475,0"/>
+                    Width="150" Margin="10,0,700,0" Click="CapturarCodigo" RenderTransformOrigin="1.573,0.44"/>
+            <StackPanel Margin="750,-200,0,0" Height="270">
+                <TextBlock Text="Imagen Subida:" TextAlignment="Center" Style="{StaticResource TituloCamposStyle}" Margin="0,5,10,0" Height="25"/>
+                <Image x:Name="imagenProducto" Height="188" Width="200" Margin="75,0"/>
                 <Button Name="botonImagen" Content="Agregar Foto" HorizontalAlignment="Right" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" Margin="0,-40,300,0" Click="SubirFoto"/>
+                    Width="150" Margin="0,0,100,0" Click="SubirFoto"/>
             </StackPanel>
 
 
-            <Grid Margin="130,-50,0,0">
+            <Grid Margin="130,-50,350,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
@@ -46,7 +45,7 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                     <TextBlock x:Name="codigoText" Style="{StaticResource TituloCamposStyle}"
-                                       TextWrapping="WrapWithOverflow"/>
+                               Text="{Binding CodigoBarra}" TextWrapping="WrapWithOverflow"/>
                 </StackPanel>
             </Grid>
 

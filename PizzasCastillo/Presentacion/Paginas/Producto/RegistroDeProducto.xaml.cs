@@ -34,7 +34,7 @@ namespace Presentacion.Paginas.Producto
     /// </summary>
     public partial class RegistroDeProducto : Page
     {
-        private const int ACTIVO = 1;
+        private const int DISPONIBLE = 1;
         private readonly List<Tipo> listaTipoProducto;
         private ValidadorProducto validadorProducto;
         private string codigoBarra = null;
@@ -75,7 +75,7 @@ namespace Presentacion.Paginas.Producto
                     Nombre = NombreText.Text,
                     Precio = precio,
                     Foto = foto,
-                    Estatus = ACTIVO,
+                    Estatus = DISPONIBLE,
                     EsPlatillo = false,
                     NombreFoto = nombreFoto,
                     Cantidad = cantidad,

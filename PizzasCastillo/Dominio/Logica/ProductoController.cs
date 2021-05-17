@@ -12,6 +12,7 @@ namespace Dominio.Logica
     public class ProductoController
     {
         private const int DISPONIBLE = 1;
+        private const int NO_DISPONIBLE = 2;
         private ProductoDAO productoDAO;
 
         public ProductoController()
@@ -52,6 +53,46 @@ namespace Dominio.Logica
                 return ResultadoRegistroProducto.RegistroFallido;
 
             return ResultadoRegistroProducto.RegistroExitoso;
+        }
+
+        public bool ActualizarProducto(Producto producto)
+        {
+
+            AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
+            productoNuevo.Producto = Producto.CloneToDBEntity(producto);
+
+            bool seGuardo;
+
+            try
+            {
+                seGuardo = productoDAO.ActualizarArticulo(productoNuevo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return seGuardo;
+        }
+
+        public bool EliminarProducto(Producto producto)
+        {
+            producto.Estatus = NO_DISPONIBLE;
+            AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
+            productoNuevo.Producto = Producto.CloneToDBEntity(producto);
+
+            bool seGuardo;
+
+            try
+            {
+                seGuardo = productoDAO.ActualizarArticulo(productoNuevo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return seGuardo;
         }
 
         //public AccesoADatos.Producto BuscarProductoID(string codigo)

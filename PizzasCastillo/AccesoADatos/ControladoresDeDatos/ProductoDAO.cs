@@ -65,7 +65,26 @@ namespace AccesoADatos.ControladoresDeDatos
             }
             catch (DbUpdateException)
             {
+                throw;
+            }
 
+            if (resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ActualizarArticulo(ArticuloVenta articuloProducto)
+        {
+            try
+            {
+                conexion.Entry(articuloProducto).State = EntityState.Modified;
+                resultado = conexion.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
                 throw;
             }
 
