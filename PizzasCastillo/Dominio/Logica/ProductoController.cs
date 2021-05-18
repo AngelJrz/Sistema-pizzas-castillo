@@ -39,5 +39,96 @@ namespace Dominio.Logica
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public bool IngresarPedidoEntregado(List<Producto> listaProductos)
+        {
+            List<AccesoADatos.Producto> listaProductosDatos = new List<AccesoADatos.Producto>();
+
+            foreach (Producto producto in listaProductos)
+            {
+                listaProductosDatos.Add(new AccesoADatos.Producto() {
+                    CodigoBarra = producto.CodigoBarra,
+                    Cantidad = producto.Cantidad
+                });
+            }
+
+            ProductosDAO productoDAO = new ProductosDAO();
+            bool actualizado = productoDAO.ActualizarInventario(listaProductosDatos);
+
+            return actualizado;
+        }
+
+
     }
 }

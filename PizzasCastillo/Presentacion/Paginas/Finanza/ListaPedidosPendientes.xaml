@@ -5,23 +5,31 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Presentacion.Paginas.Finanza"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800" Background="White"
       Title="ListaPedidosPendientes">
 
     <StackPanel HorizontalAlignment="Center">
-        <TextBlock  Style="{StaticResource TituloStyle}" Margin="0,20,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Pedidos pendientes" VerticalAlignment="Top" />
+        <TextBlock  Style="{StaticResource TituloStyle}" Margin="0,20,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Pedidos" VerticalAlignment="Top" />
         
-        <DataGrid Margin="0,20,0,0" Height="500" Name="tablaDePedidos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false"  FontFamily="Se">
+        <DataGrid Margin="0,20,0,0" CanUserAddRows="False" Height="500" Name="tablaDePedidos" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false"  FontFamily="Se">
             <DataGrid.Columns>
 
-                <DataGridTextColumn MinWidth="200" IsReadOnly="True" Header="Proveedor" Binding="{Binding Name}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Estatus" Binding="{Binding Name}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Total" Binding="{Binding Name}"/>
+                <DataGridTextColumn MinWidth="200" IsReadOnly="True" Header="Proveedor" Binding="{Binding Proveedor.Nombre}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Estatus" Binding="{Binding Estatus.Nombre}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Precio total" Binding="{Binding CostoTotal}"/>
 
                 <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Confirmar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickConfirmar"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Cancelar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="CancelarPedido"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
