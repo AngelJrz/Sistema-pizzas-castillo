@@ -25,13 +25,13 @@ namespace Presentacion.Paginas.Producto
         public ValidarExistenciaProducto()
         {
             InitializeComponent();
-            ProductoController controller = new ProductoController();
+            ArticuloVentaController controller = new ArticuloVentaController();
             ListaProductos.ItemsSource = controller.ObtenerProductos();
         }
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
-            ProductoController controller = new ProductoController();
-            ListaProductos.ItemsSource=controller.BuscarProductosNombre(BusquedaText.Text);
+            ArticuloVentaController controller = new ArticuloVentaController();
+            //ListaProductos.ItemsSource=controller.BuscarProductosNombre(BusquedaText.Text);
 
         }
 
@@ -46,10 +46,10 @@ namespace Presentacion.Paginas.Producto
         private void ValidarExistencias(object sender, RoutedEventArgs e)
         {
             AccesoADatos.Producto productoSeleccionado = (AccesoADatos.Producto)ListaProductos.SelectedItem;
-            ProductoController controller = new ProductoController();
-             AccesoADatos.Producto productoValidar = controller.BuscarProductoID(productoSeleccionado.CodigoBarra);
+          ArticuloVentaController controller = new ArticuloVentaController();
+             //AccesoADatos.Producto productoValidar = controller.BuscarProductoID(productoSeleccionado.CodigoBarra);
 
-            ValidarExistencias(productoValidar);
+            //ValidarExistencias(productoValidar);
 
         }
 

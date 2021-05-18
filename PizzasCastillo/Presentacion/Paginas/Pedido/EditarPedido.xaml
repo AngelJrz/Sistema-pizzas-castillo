@@ -183,7 +183,7 @@
                                         <ColumnDefinition Width="5"/>
 
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource IconoBoton}" Click="AgregarProductoPedido" Grid.Column="0">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarProducto" Grid.Column="0">
                                         <materialDesign:PackIcon Kind="Delete" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
 
@@ -201,7 +201,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="GuardarEdicionProducto"/>
         </StackPanel>
 
 

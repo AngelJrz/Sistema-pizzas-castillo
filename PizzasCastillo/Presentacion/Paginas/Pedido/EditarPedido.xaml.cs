@@ -20,8 +20,11 @@ namespace Presentacion.Paginas.Pedido
     /// </summary>
     public partial class EditarPedido : Page
     {
-        public EditarPedido()
+        private Dominio.Entidades.Pedido pedido;
+        public EditarPedido(Dominio.Entidades.Pedido pedidoaActualizar)
         {
+            this.pedido = pedidoaActualizar;
+
             InitializeComponent();
         }
 
@@ -31,7 +34,11 @@ namespace Presentacion.Paginas.Pedido
         {
 
         }
-        private void AgregarProductoPedido(object sender, RoutedEventArgs e)
+        private void EliminarProducto(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void GuardarEdicionProducto(object sender, RoutedEventArgs e)
         {
 
         }

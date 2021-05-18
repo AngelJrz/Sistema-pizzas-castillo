@@ -44,7 +44,7 @@
             </StackPanel>
 
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
-                   Source="/Paginas/Finanza/TiposDeGasto.xaml"/>
+                   Source="/Paginas/Pedido/RegistrarPedidoBuscarUsuario.xaml"/>
 
 
         </Grid>

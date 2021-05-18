@@ -29,10 +29,35 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.1*"/>
                     <ColumnDefinition Width="*"/>
+                  
+
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Estatus: " Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Text="¿De Que tipo es su Pedido?" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+
+                    <ComboBox Name="ComboTipo" Style="{StaticResource ComboboxStyle}" Width="400" HorizontalAlignment="Left">
+                        <ComboBoxItem Content="Para Llevar"/>
+                        <ComboBoxItem Content="Local"/>
+                        
+
+                    </ComboBox>
+
+                </StackPanel>
+            
+
+
+            </Grid>
+            <Grid Margin="130,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <Label Content="*" Foreground="{StaticResource Alert}"/>
+                    <TextBlock Text="Estatus " Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <ComboBox x:Name="ComboEstatus" Style="{StaticResource ComboboxStyle}"
@@ -52,32 +77,33 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Fecha:" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Text="Numero de Mesa:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
 
-                    <TextBox x:Name="FechaText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                    <ComboBox x:Name="ComboMesa" Style="{StaticResource ComboboxStyle}"
+                              Width="400" HorizontalAlignment="Left">
+                      
+                    </ComboBox>
                 </StackPanel>
                 
             </Grid>
-             <Grid Margin="130,20,0,0">
+            
+             
+            <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="*"/> 
+                    <ColumnDefinition Width ="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Tipo:" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Text="IdRepartidor:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <ComboBox x:Name="ComboTipo" Style="{StaticResource ComboboxStyle}"
-                              Width="400" HorizontalAlignment="Left">
-                        <ComboBoxItem Content="A Domicilio"/>
-                        <ComboBoxItem Content="En sucursal"/>
-                    </ComboBox>
 
 
+                    <TextBox x:Name="RepartidorText" Template="{StaticResource InputControlTemplate}"
+                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
 
                 </StackPanel>
                 

@@ -19,9 +19,11 @@ namespace Presentacion.Paginas.Pedido
     /// Lógica de interacción para GenerarCuentaPedido.xaml
     /// </summary>
     public partial class GenerarCuentaPedido : Page
-    {
-        public GenerarCuentaPedido()
+    { 
+        private Dominio.Entidades.Pedido pedido;
+        public GenerarCuentaPedido(Dominio.Entidades.Pedido pedidoAActualizar)
         {
+            this.pedido = pedidoAActualizar;
             InitializeComponent();
         }
     }

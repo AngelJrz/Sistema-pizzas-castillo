@@ -51,123 +51,120 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticuloVenta.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Consume.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Contiene.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ControladoresDeDatos\ArticuloVentaDAO.cs" />
     <Compile Include="ControladoresDeDatos\ClienteDAO.cs" />
     <Compile Include="ControladoresDeDatos\DireccionDAO.cs" />
     <Compile Include="ControladoresDeDatos\EstatusPedidoDAO.cs" />
+    <Compile Include="ControladoresDeDatos\MesaDAO.cs" />
     <Compile Include="ControladoresDeDatos\PedidosDAO.cs" />
     <Compile Include="ControladoresDeDatos\ProductosContienePedidoDAO.cs" />
     <Compile Include="ControladoresDeDatos\ProductosDAO.cs" />
     <Compile Include="ControladoresDeDatos\TipoDeGastoDAO.cs" />
     <Compile Include="Direccion.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DireccionProveedor.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Efectivo.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Empleado.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EstatusPedido.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EstatusPedidoAProveedor.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="GastoExtra.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Guarda.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Indica.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Merma.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Mesa.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pedido.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PedidoAProveedor.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persona.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PizzasCastillo.Context.cs">
-      <DesignTime>True</DesignTime>
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>PizzasCastillo.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PizzasCastillo.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="PizzasCastillo.Designer.cs">
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Pedido.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PedidoAProveedor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persona.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Platillo.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Producto.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Repartidor.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Reporta.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ReporteCaja.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ReporteInventario.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Solicita.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoGasto.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoPedido.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoProducto.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoUsuario.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
     <EntityDeploy Include="PizzasCastillo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PizzasCastillo.Designer.cs</LastGenOutput>
@@ -175,6 +172,7 @@
     <None Include="PizzasCastillo.edmx.diagram">
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -183,15 +181,15 @@
     <Folder Include="Excepciones\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PizzasCastillo.Context.tt">
+    <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
-      <LastGenOutput>PizzasCastillo.Context.cs</LastGenOutput>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="PizzasCastillo.tt">
+    <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PizzasCastillo.cs</LastGenOutput>
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

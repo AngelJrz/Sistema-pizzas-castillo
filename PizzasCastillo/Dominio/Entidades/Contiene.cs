@@ -18,7 +18,7 @@ namespace Dominio.Entidades
             {
                 Cantidad = contiene.Cantidad,
                 Total = contiene.Total,
-                ArticuloVenta = ArticuloVenta.Clone(contiene.ArticuloVenta)
+                ArticuloVenta = ArticuloVenta.CloneProducto(contiene.ArticuloVenta)
             };
         }
 
@@ -30,7 +30,7 @@ namespace Dominio.Entidades
                 {
                     Cantidad = c.Cantidad,
                     Total = c.Total,
-                    ArticuloVenta = ArticuloVenta.Clone(c.ArticuloVenta)
+                    ArticuloVenta = ArticuloVenta.CloneProducto(c.ArticuloVenta)
                 }
                 ));
             return list;

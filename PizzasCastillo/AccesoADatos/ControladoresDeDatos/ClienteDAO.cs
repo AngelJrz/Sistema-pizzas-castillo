@@ -28,7 +28,7 @@ namespace AccesoADatos.ControladoresDeDatos
         {
             _clientes = _connection.Persona
                 .Where(persona => persona.Estatus == ACTIVO)
-                .Include("Cliente")
+           
                 .ToList();
 
             return _clientes;

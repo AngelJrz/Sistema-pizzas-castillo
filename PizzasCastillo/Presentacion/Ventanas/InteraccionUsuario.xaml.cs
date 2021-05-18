@@ -10,28 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Presentacion.Paginas.Pedido
+namespace Presentacion.Ventanas
 {
     /// <summary>
-    /// Lógica de interacción para BuscarPedidos.xaml
+    /// Lógica de interacción para InteraccionUsuario.xaml
     /// </summary>
-    public partial class BuscarPedidos : Page
+    public partial class InteraccionUsuario : Window
     {
-        public BuscarPedidos()
+        public string Titulo { get; set; }
+        public string Mensaje { get; set; }
+        public InteraccionUsuario(string titulo, string mensaje)
         {
             InitializeComponent();
+            Titulo = titulo;
+            Mensaje = mensaje;
         }
 
-        private void BuscarEnter(object sender, RoutedEventArgs e)
+        private void AceptarClic(object sender, RoutedEventArgs e)
         {
+            this.Close();
         }
-        private void AgregarProductoPedido(object sender, RoutedEventArgs e)
-        {
-        }
-       
     }
 }
-

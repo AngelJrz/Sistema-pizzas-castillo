@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Dominio.Entidades.Persona;
 
 namespace Dominio.Logica
 {
     public class ClienteController
     {
+     
+        private List<AccesoADatos.Persona> clientesSinclone;
         public bool GuardarCliente(Persona persona)
         {
             ClienteDAO clienteDAO = new ClienteDAO();
@@ -27,12 +30,17 @@ namespace Dominio.Logica
                 Email = persona.Email,
                 Estatus = 1,
             };
+
         }
 
-        public List<AccesoADatos.Persona> ObtenerClientes() {
+        public List<Persona> ObtenerPersonas()
+        {
             ClienteDAO clienteDAO = new ClienteDAO();
-            return clienteDAO.ObtenerClientes();
+            List<AccesoADatos.Persona> clientesBD = clienteDAO.ObtenerClientes();
 
+            List<Persona> clientes = Persona.CloneListPersona(clientesBD);
+
+            return clientes;
         }
         public List<AccesoADatos.Persona> ObtenerClientesNombre(string nombre)
         {

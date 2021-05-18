@@ -9,14 +9,18 @@ namespace AccesoADatos.ControladoresDeDatos
    public  class EstatusPedidoDAO
     {
         private PizzasBDEntities _connection;
-        private List<AccesoADatos.EstatusPedido> _estatusPedido;
+        private List<AccesoADatos.EstatusPedido> _estatusPedido = null;
 
         public List<AccesoADatos.EstatusPedido> ObtenerTiposPedidos() {
 
-            _estatusPedido = _connection.EstatusPedido.ToList();
-
+            try
+            {
+                _estatusPedido = _connection.EstatusPedido.ToList();
+            }
+            catch (Exception) {
+                return _estatusPedido;
+            }
             return _estatusPedido;
-
         }
     }
 }

@@ -151,11 +151,15 @@
     <Compile Include="Paginas\Usuario\TiposUsuario.xaml.cs">
       <DependentUpon>TiposUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recursos\RecursosGlobales.cs" />
     <Compile Include="Ventanas\Confirmacion.xaml.cs">
       <DependentUpon>Confirmacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\InteraccionUsuario.xaml.cs">
+      <DependentUpon>InteraccionUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -310,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\InteraccionUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
