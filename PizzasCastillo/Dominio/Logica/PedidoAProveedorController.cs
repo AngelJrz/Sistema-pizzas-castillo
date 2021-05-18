@@ -10,6 +10,8 @@ namespace Dominio.Logica
 {
     public class PedidoAProveedorController
     {
+        private int ID_PEDIDO_ENTREGADO = 1;
+        private int ID_PEDIDO_CANCELADO = 2;
         public bool RegistrarNuevoPedidoAProveedor(PedidoAProveedor nuevoPedido)
         {
             PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
@@ -17,10 +19,25 @@ namespace Dominio.Logica
             return registrado;
         }
 
+        public List<PedidoAProveedor> ObtenerPedidosAProveedores()
+        {
+            List<PedidoAProveedor> listaARetornar = new List<PedidoAProveedor>();
+            PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
+            List<AccesoADatos.PedidoAProveedor> listaDePedidosdatos = dao.obtenerPedidosAProveedor();
+
+            foreach (AccesoADatos.PedidoAProveedor pedidoDatos in listaDePedidosdatos)
+            {
+                listaARetornar.Add(PedidoAProveedor.Clone(pedidoDatos));
+            }
+
+            return listaARetornar;
+        }
+
         public AccesoADatos.PedidoAProveedor CloneDominioADatos(PedidoAProveedor pedidoAClonar)
         {
             return new AccesoADatos.PedidoAProveedor()
             {
+                Id = pedidoAClonar.Id,
                 Descripcion = pedidoAClonar.Descripcion,
                 Fecha = pedidoAClonar.Fecha,
                 CostoTotal = pedidoAClonar.CostoTotal,
@@ -45,6 +62,20 @@ namespace Dominio.Logica
             }
 
             return listaRetorno;
+        }
+
+        public bool CancelarPedidoAProveedor(PedidoAProveedor pedido)
+        {
+            PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
+            bool cancelado = dao.ActualizarEstadoPedidoAProveedor(CloneDominioADatos(pedido), ID_PEDIDO_CANCELADO);
+            return cancelado;
+        }
+
+        public bool PedidoAProveedorEntregado(PedidoAProveedor pedido)
+        {
+            PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
+            bool entregado = dao.ActualizarEstadoPedidoAProveedor(CloneDominioADatos(pedido), ID_PEDIDO_ENTREGADO);
+            return entregado;
         }
     }
 }

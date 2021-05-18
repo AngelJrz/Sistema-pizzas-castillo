@@ -50,5 +50,26 @@ namespace AccesoADatos.ControladoresDeDatos
 
             return listaDePedidos;
         }
+
+        public bool ActualizarEstadoPedidoAProveedor(PedidoAProveedor pedidoNuevo, int idNuevoEstado)
+        {
+            bool actualizado = false;
+            try
+            {
+                PedidoAProveedor pedidoDB = conexion.PedidoAProveedor.Where(pedido => pedido.Id == pedidoNuevo.Id).SingleOrDefault();
+                
+                pedidoDB.IdEstatusPedidoAProveedor = idNuevoEstado;
+                conexion.Entry(pedidoDB).State = EntityState.Modified;
+                conexion.SaveChanges();
+                
+                actualizado = true;
+            }
+            catch (DbUpdateException ex)
+            {
+                string mess = ex.Message;
+            }
+
+            return actualizado;
+        }
     }
 }
