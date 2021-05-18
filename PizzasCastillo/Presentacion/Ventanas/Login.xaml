@@ -45,7 +45,7 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=usuarioText}">
                             <TextBox x:Name="usuarioText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="30"  KeyDown="ControlarTeclaEnter" GotTouchCapture="AbrirTeclado_Touch"
+                                     MaxLength="30" KeyDown="ControlarTeclaEnter" GotTouchCapture="AbrirTeclado_Touch"
                                      LostFocus="CerrarTeclado"/>
                         </StackPanel>
                     </Grid>
@@ -66,7 +66,7 @@
                         <StackPanel Grid.Column="1">
                             <PasswordBox x:Name="passwordText" Template="{StaticResource PasswordControlTemplate}"
                                          MaxLength="255" GotTouchCapture="AbrirTeclado_Touch"
-                                         LostFocus="CerrarTeclado"/>
+                                         LostFocus="CerrarTeclado" KeyDown="ControlarTeclaEnter"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

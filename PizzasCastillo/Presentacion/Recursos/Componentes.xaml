@@ -57,6 +57,7 @@
     <Style x:Key="NombreUsuarioStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}">
         <Setter Property="Foreground" Value="{StaticResource Blanco}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
     </Style>
 
@@ -165,5 +166,14 @@
         <Setter Property="Foreground" Value="{StaticResource Gris}"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="OpcionMenuSuperior" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 </ResourceDictionary>

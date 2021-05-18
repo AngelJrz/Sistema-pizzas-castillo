@@ -32,7 +32,7 @@ namespace Presentacion.Ventanas
         {
             InitializeComponent();
             _sesion = Singleton.ObtenerInstancia();
-            //Properties.Settings.Default.UltimoBloqueoDeAcceso = DateTime.Now.AddMinutes(-5);
+            
             verificadorDeBloqueoDeAcceso = new Thread(new ThreadStart(VerificarBloqueoDeAcceso));
             verificadorDeBloqueoDeAcceso.Start();
         }
@@ -44,7 +44,6 @@ namespace Presentacion.Ventanas
                 if ((ExisteBloqueoDeAcceso() == false) && (SobrepasoElLimiteDeIntentos() == true))
                 {
                     DesbloquearAcceso();
-                    Console.WriteLine("Desbloquée acceso");
                 }
             }
         }
@@ -101,8 +100,7 @@ namespace Presentacion.Ventanas
 
             EmpleadoController empleadoController = new EmpleadoController();
 
-            Empleado empleado = null;
-
+            Empleado empleado;
             try
             {
                 empleado = empleadoController.IniciarSesion(username, password);
@@ -122,25 +120,6 @@ namespace Presentacion.Ventanas
 
             ReiniciarIntentosDeInicioSesion();
             _sesion.Recursos.Add("Empleado", empleado);
-
-            //switch (empleado.TipoUsuario.Nombre)
-            //{
-            //    case "Gerente":
-            //        MessageBox.Show(empleado.TipoUsuario.Nombre);
-            //        break;
-            //    case "Encargado de caja":
-            //        MessageBox.Show(empleado.TipoUsuario.Nombre);
-            //        break;
-            //    case "Mesero":
-            //        MessageBox.Show(empleado.TipoUsuario.Nombre);
-            //        break;
-            //    case "Contador":
-            //        MessageBox.Show(empleado.TipoUsuario.Nombre);
-            //        break;
-            //    case "Cocinero":
-            //        MessageBox.Show(empleado.TipoUsuario.Nombre);
-            //        break;
-            //}
 
             VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(_sesion);
             ventanaPrincipal.Show();
@@ -195,9 +174,9 @@ namespace Presentacion.Ventanas
         {
             if (e.Key == Key.Enter)
             {
-                Process.Start("osk.exe");
-                ((TextBox)sender).Focus();
+                IniciarSesion();
             }
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
