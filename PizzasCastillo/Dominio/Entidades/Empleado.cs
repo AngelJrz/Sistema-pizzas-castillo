@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Enumeraciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,57 @@ namespace Dominio.Entidades
                 SalarioQuincenal = empleado.SalarioQuincenal,
                 FechaRegistro = empleado.FechaRegistro
             };
+        }
+
+        public static Empleado FullClone(AccesoADatos.Persona empleado)
+        {
+            AccesoADatos.Empleado empleadoAuxiliar = empleado.Empleado.ToList()[0];
+            return new Empleado
+            {
+                Id = empleado.Id,
+                Nombres = empleado.Nombres,
+                Apellidos = empleado.Apellidos,
+                Telefono = empleado.Telefono,
+                Email = empleado.Email,
+                Estatus = (int)empleado.Estatus,
+                TipoUsuario = Tipo.Clone(empleado.TipoUsuario),
+                Direcciones = Entidades.Direccion.CloneList(empleado.Direccion.ToList()),
+                NumeroEmpleado = empleadoAuxiliar.NumeroEmpleado,
+                Username = empleadoAuxiliar.Username,
+                Contrasenia = empleadoAuxiliar.Contrasenia,
+                SalarioQuincenal = empleadoAuxiliar.SalarioQuincenal,
+                FechaRegistro = empleadoAuxiliar.FechaRegistro
+            };
+        }
+
+        public static List<Empleado> FullCloneList(List<AccesoADatos.Persona> empleados)
+        {
+            List<Empleado> list = new List<Empleado>();
+            AccesoADatos.Empleado empleadoTemporal;
+
+            foreach (var empleado in empleados)
+            {
+                empleadoTemporal = empleado.Empleado.ToList()[0];
+
+                list.Add(new Empleado
+                {
+                    Id = empleado.Id,
+                    Nombres = empleado.Nombres,
+                    Apellidos = empleado.Apellidos,
+                    Telefono = empleado.Telefono,
+                    Email = empleado.Email,
+                    Estatus = (int)empleado.Estatus,
+                    TipoUsuario = Tipo.Clone(empleado.TipoUsuario),
+                    Direcciones = Entidades.Direccion.CloneList(empleado.Direccion.ToList()),
+                    NumeroEmpleado = empleadoTemporal.NumeroEmpleado,
+                    Username = empleadoTemporal.Username,
+                    Contrasenia = empleadoTemporal.Contrasenia,
+                    SalarioQuincenal = empleadoTemporal.SalarioQuincenal,
+                    FechaRegistro = empleadoTemporal.FechaRegistro
+                });
+            }
+
+            return list;
         }
 
         public static AccesoADatos.Empleado CloneToEntityDB(Empleado empleado)

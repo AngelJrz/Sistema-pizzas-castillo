@@ -2,6 +2,7 @@
 using AccesoADatos.Excepciones;
 using Dominio.Entidades;
 using Dominio.Enumeraciones;
+using Dominio.Excepciones;
 using Dominio.Utilerias;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,10 @@ namespace Dominio.Logica
             usuarioDAO = new UsuarioDAO();
         }
 
-        public ResultadoRegistroEmpleado RegistrarEmpleado(Empleado empleado)
+        public bool RegistrarEmpleado(Empleado empleado)
         {
             if (usuarioDAO.ObtenerEmpleado(empleado.Username) != null)
-                return ResultadoRegistroEmpleado.UsuarioYaExiste;
+                throw new UsuarioYaExisteException(empleado.Username);
 
             empleado.NumeroEmpleado = GenerarNumeroEmpleado(empleado.TipoUsuario);
             empleado.FechaRegistro = DateTime.Now;
@@ -44,10 +45,7 @@ namespace Dominio.Logica
                 throw;
             }
 
-            if (seRegistro == false)
-                return ResultadoRegistroEmpleado.RegistroFallido;
-
-            return ResultadoRegistroEmpleado.RegistroExitoso;
+            return seRegistro;
         }
 
         private string GenerarNumeroEmpleado(Tipo tipoUsuario)
@@ -94,11 +92,92 @@ namespace Dominio.Logica
             return empleado;
         }
 
-        public List<Empleado> ObtenerEmpleadosActivo()
+        public List<Empleado> ObtenerEmpleadosActivos()
         {
-            List<Empleado> empleados = null;
+            List<AccesoADatos.Persona> empleadosBd;
+            try
+            {
+                empleadosBd = usuarioDAO.ObtenerEmpleadosActivos();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (ConexionFallidaException)
+            {
+                throw;
+            }
+
+
+            List<Empleado> empleados = Empleado.FullCloneList(empleadosBd);
 
             return empleados;
+        }
+
+        public bool ActualizarEmpleado(Empleado empleadoActualizado, bool seActualizoUsername = false, bool seActualizoPassword = false)
+        {
+            AccesoADatos.Empleado empleadoBd = usuarioDAO.ObtenerEmpleado(empleadoActualizado.Id);
+
+            if (empleadoBd == null)
+                return false;
+
+            if (seActualizoUsername)
+            {
+                if (usuarioDAO.ObtenerEmpleado(empleadoActualizado.Username) != null)
+                    throw new UsuarioYaExisteException(empleadoActualizado.Username);
+
+                empleadoBd.Username = empleadoActualizado.Username;
+            }
+
+            if(seActualizoPassword)
+            {
+                string passwordConHash = AdministradorHash.GenerarHash(empleadoActualizado.Contrasenia);
+                empleadoBd.Contrasenia = passwordConHash;
+            }
+
+            empleadoBd.Persona.Nombres = empleadoActualizado.Nombres;
+            empleadoBd.Persona.Apellidos = empleadoActualizado.Apellidos;
+            empleadoBd.Persona.Telefono = empleadoActualizado.Telefono;
+            empleadoBd.Persona.Email = empleadoActualizado.Email;
+            empleadoBd.Persona.IdTipoUsuario = empleadoActualizado.TipoUsuario.Id;
+            empleadoBd.SalarioQuincenal = empleadoActualizado.SalarioQuincenal;
+            empleadoBd.Persona.Direccion.ToList()[0].Calle = empleadoActualizado.Direcciones[0].Calle;
+            empleadoBd.Persona.Direccion.ToList()[0].Colonia = empleadoActualizado.Direcciones[0].Colonia;
+            empleadoBd.Persona.Direccion.ToList()[0].Ciudad = empleadoActualizado.Direcciones[0].Ciudad;
+            empleadoBd.Persona.Direccion.ToList()[0].CodigoPostal = empleadoActualizado.Direcciones[0].CodigoPostal;
+            empleadoBd.Persona.Direccion.ToList()[0].NumeroInterior = empleadoActualizado.Direcciones[0].NumeroInterior;
+            empleadoBd.Persona.Direccion.ToList()[0].Referencias = empleadoActualizado.Direcciones[0].Referencias;
+            empleadoBd.Persona.Direccion.ToList()[0].NumeroExterior = empleadoActualizado.Direcciones[0].NumeroExterior;
+            empleadoBd.Persona.Direccion.ToList()[0].EntidadFederativa = empleadoActualizado.Direcciones[0].EntidadFederativa;
+
+            bool seActualizo;
+
+            try
+            {
+                seActualizo = usuarioDAO.ActualizarEmpleado(empleadoBd);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return seActualizo;
+        }
+
+        public bool DarDeBajaEmpleado(string numeroEmpleado)
+        {
+            bool seDioDeBaja;
+
+            try
+            {
+                seDioDeBaja = usuarioDAO.DarDeBajaEmpleado(numeroEmpleado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return seDioDeBaja;
         }
     }
 }

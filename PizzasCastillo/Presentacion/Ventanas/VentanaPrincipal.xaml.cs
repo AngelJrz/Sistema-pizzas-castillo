@@ -26,5 +26,10 @@ namespace Presentacion.Ventanas
             InitializeComponent();
             _sesion = sesion;
         }
+
+        public VentanaPrincipal()
+        {
+            InitializeComponent();
+        }
     }
 }

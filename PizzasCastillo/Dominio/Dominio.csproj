@@ -87,8 +87,8 @@
     <Compile Include="Entidades\ReporteInventario.cs" />
     <Compile Include="Entidades\Solicita.cs" />
     <Compile Include="Enumeraciones\Efectivo.cs" />
-    <Compile Include="Enumeraciones\ResultadoRegistroEmpleado.cs" />
     <Compile Include="Enumeraciones\Tipo.cs" />
+    <Compile Include="Excepciones\UsuarioYaExisteException.cs" />
     <Compile Include="Logica\ClienteController.cs" />
     <Compile Include="Logica\EmpleadoController.cs" />
     <Compile Include="Logica\TipoDeGastoController.cs" />
@@ -99,9 +99,7 @@
     <Compile Include="Utilerias\ValidadorEmpleado.cs" />
     <Compile Include="Utilerias\ValidadorPersonas.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Excepciones\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AccesoADatos\AccesoADatos.csproj">
       <Project>{0fe7715f-65d4-4561-ae1e-965563b25265}</Project>

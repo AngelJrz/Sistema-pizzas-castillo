@@ -32,9 +32,10 @@
                     <TextBlock Text="Nombres:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                <StackPanel Grid.Column="1">
                     <TextBox x:Name="NombresText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="150" Width="400" HorizontalAlignment="Left" Text="{Binding Nombres}"/>
+                                     MaxLength="150" Width="400" HorizontalAlignment="Left" Text="{Binding Nombres}"
+                             />
                 </StackPanel>
             </Grid>
 
@@ -49,9 +50,10 @@
                     <TextBlock Text="Apellidos:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                <StackPanel Grid.Column="1">
                     <TextBox x:Name="ApellidosText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="200" Width="400" HorizontalAlignment="Left" Text="{Binding Apellidos}"/>
+                                     MaxLength="200" Width="400" HorizontalAlignment="Left" Text="{Binding Apellidos}"
+                             />
                 </StackPanel>
             </Grid>
 
@@ -66,9 +68,10 @@
                     <TextBlock Text="Email:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                <StackPanel Grid.Column="1">
                     <TextBox x:Name="EmailText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="80" Width="400" HorizontalAlignment="Left" Text="{Binding Email}"/>
+                                     MaxLength="80" Width="400" HorizontalAlignment="Left" Text="{Binding Email}"
+                             />
                 </StackPanel>
             </Grid>
 
@@ -83,9 +86,10 @@
                     <TextBlock Text="Teléfono:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                <StackPanel Grid.Column="1">
                     <TextBox x:Name="TelefonoText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="10" Width="200" HorizontalAlignment="Left" Text="{Binding Telefono}"/>
+                                     MaxLength="10" Width="200" HorizontalAlignment="Left" Text="{Binding Telefono}"
+                             />
                 </StackPanel>
             </Grid>
 
@@ -116,11 +120,12 @@
                             <TextBlock Text="Calle:" Style="{StaticResource TituloCamposStyle}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1" 
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CalleText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" 
-                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].Calle}"/>
+                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].Calle}"
+                                     />
                         </StackPanel>
                     </Grid>
 
@@ -136,11 +141,11 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1" 
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoExteriorText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="5" Width="200" 
-                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].NumeroExterior}"/>
+                                     MaxLength="5" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].NumeroExterior}"
+                                     />
                         </StackPanel>
                     </Grid>
 
@@ -156,11 +161,11 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CodigoPostalText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="5" Width="200" 
-                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].CodigoPostal}"/>
+                                     MaxLength="5" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].CodigoPostal}"
+                                     />
                         </StackPanel>
                     </Grid>
 
@@ -176,11 +181,11 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CiudadText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="60" Width="200" 
-                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].Ciudad}"/>
+                                     MaxLength="60" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].Ciudad}"
+                                     />
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -198,11 +203,11 @@
                             <TextBlock Text="Colonia:" Style="{StaticResource TituloCamposStyle}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="ColoniaText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="150" Width="400" 
-                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].Colonia}"/>
+                                     MaxLength="150" Width="400" HorizontalAlignment="Left" Text="{Binding Direcciones[0].Colonia}"
+                                     />
                         </StackPanel>
                     </Grid>
 
@@ -218,11 +223,11 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoInteriorText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="5" Width="200" 
-                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].NumeroInterior}"/>
+                                     MaxLength="5" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].NumeroInterior}"
+                                     />
                         </StackPanel>
                     </Grid>
 
@@ -238,12 +243,13 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center">
                             <ComboBox x:Name="ListaEstidadesFederativas" Style="{StaticResource ComboboxStyle}"
                                       Width="200" HorizontalAlignment="Left"
                                       IsSynchronizedWithCurrentItem="True" 
-                                      SelectedItem="{Binding Direcciones[0].EntidadFederativa}"/>
+                                      SelectedItem="{Binding Direcciones[0].EntidadFederativa}"
+                                      />
                         </StackPanel>
                     </Grid>
 
@@ -259,11 +265,11 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                        <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center">
                             <TextBox x:Name="ReferenciasText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="200" Width="400" Height="80"
-                                 HorizontalAlignment="Left" Text="{Binding Direcciones[0].Referencias}"/>
+                                     MaxLength="200" Width="400" Height="80" HorizontalAlignment="Left" Text="{Binding Direcciones[0].Referencias}"
+                                     />
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -280,7 +286,7 @@
 
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -290,19 +296,22 @@
                                        TextWrapping="WrapWithOverflow"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <ComboBox x:Name="ListaTiposUsuario" Style="{StaticResource ComboboxStyle}"
-                                      Width="200" HorizontalAlignment="Left" DisplayMemberPath="Nombre"
+                                      Width="200" HorizontalAlignment="Left" 
+                                      ItemsSource="{Binding TiposUsuario}"
+                                      DisplayMemberPath="Nombre"
                                       IsSynchronizedWithCurrentItem="True"
                                       SelectedItem="{Binding TipoUsuario}"
+                                      
+                                      
                               />
                 </StackPanel>
             </Grid>
 
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -314,30 +323,30 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="UsernameText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30" Width="200" HorizontalAlignment="Left"
-                             Text="{Binding Username}"/>
+                             Text="{Binding Username}" PreviewTextInput="CamposText_TextInput"/>
                 </StackPanel>
             </Grid>
 
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Contraseña:" Style="{StaticResource TituloCamposStyle}"/>
+                    <Label Content="*" Foreground="{StaticResource Alert}" Visibility="Hidden"/>
+                    <TextBlock Text="Nueva contraseña:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
                     <PasswordBox x:Name="PasswordText" Template="{StaticResource PasswordControlTemplate}"
-                                         MaxLength="255" Width="200" HorizontalAlignment="Left"/>
+                                         MaxLength="255" Width="200" HorizontalAlignment="Left" PasswordChanged="PasswordText_PasswordChanged"/>
                 </StackPanel>
             </Grid>
 
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -357,8 +366,8 @@
                        Foreground="{StaticResource Alert}" Width="1100" Margin="0,20,0,0"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0"/>
-                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="Registrar_Clic"/>
+                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar_Clic"/>
+                <Button x:Name="ActualizarBoton" Content="Actualizar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="Actualizar_Clic"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

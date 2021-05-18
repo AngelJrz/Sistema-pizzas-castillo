@@ -23,6 +23,12 @@ namespace Dominio.Entidades
             get { return Nombres + " " + Apellidos; }
         }
 
+        public string Status
+        {
+            get { return Estatus == 1 ? "Activo" : "No Activo"; }
+            set { }
+        }
+
         public static Persona Clone(AccesoADatos.Persona persona)
         {
             return new Persona

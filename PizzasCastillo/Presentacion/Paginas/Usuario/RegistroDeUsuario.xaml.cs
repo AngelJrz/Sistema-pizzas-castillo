@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Entidades;
 using Dominio.Enumeraciones;
+using Dominio.Excepciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
 
@@ -107,10 +108,15 @@ namespace Presentacion.Paginas.Usuario
             if (EstaInformacionCorrecta(empleado))
             {
                 EmpleadoController empleadoController = new EmpleadoController();
-                ResultadoRegistroEmpleado resultado;
+                bool seRegistro;
                 try
                 {
-                    resultado = empleadoController.RegistrarEmpleado(empleado);
+                    seRegistro = empleadoController.RegistrarEmpleado(empleado);
+                }
+                catch(UsuarioYaExisteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
                 }
                 catch (Exception)
                 {
@@ -119,14 +125,10 @@ namespace Presentacion.Paginas.Usuario
                 }
                 
 
-                if (resultado == ResultadoRegistroEmpleado.RegistroExitoso)
+                if (seRegistro)
                 {
                     MessageBox.Show("Se registró el empleado");
                     LimpiarCampos();
-                }
-                else if (resultado == ResultadoRegistroEmpleado.UsuarioYaExiste)
-                {
-                    MessageBox.Show("El username ingresado ya pertenece a otro empleado. Verifique la información e intente de nuevo");
                 }
                 else
                 {
@@ -135,14 +137,8 @@ namespace Presentacion.Paginas.Usuario
             }
             else
             {
-                List<string> camposIncorecctos = validadorDireccion.ObtenerPropiedadesIncorrectas();
-                string mensaje = "Los siguientes campos están incorrectos: ";
-                foreach (var campos in camposIncorecctos)
-                {
-                    mensaje += campos + ", ";
-                }
-
-                mensaje += "por favor verifique la información.";
+                string mensaje = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
+          
 
                 MessageBox.Show(mensaje);
             }
@@ -177,39 +173,6 @@ namespace Presentacion.Paginas.Usuario
 
             return validadorDireccion.Validar(empleado.Direcciones[0]) && validadorPersona.Validar(empleado) &&
                 validadorEmpleado.Validar(empleado);
-        }
-
-        private bool HayCamposVacios()
-        {
-            return InformacionPersonalEstaVacia() || DireccionEstaVacia() || 
-                DatosCuentaEstaVacia();
-        }
-
-        private bool DatosCuentaEstaVacia()
-        {
-            return ListaTiposUsuario.SelectedItem == null ||
-                String.IsNullOrWhiteSpace(UsernameText.Text) ||
-                String.IsNullOrWhiteSpace(PasswordText.Password) ||
-                String.IsNullOrWhiteSpace(SalarioText.Text);
-        }
-
-        private bool DireccionEstaVacia()
-        {
-            return String.IsNullOrWhiteSpace(CalleText.Text) ||
-                String.IsNullOrWhiteSpace(ColoniaText.Text) ||
-                String.IsNullOrWhiteSpace(NoExteriorText.Text) ||
-                String.IsNullOrWhiteSpace(CodigoPostalText.Text) ||
-                ListaEstidadesFederativas.SelectedItem == null ||
-                String.IsNullOrWhiteSpace(CiudadText.Text) ||
-                String.IsNullOrWhiteSpace(ReferenciasText.Text);
-        }
-
-        private bool InformacionPersonalEstaVacia()
-        {
-            return String.IsNullOrWhiteSpace(NombresText.Text) ||
-                String.IsNullOrWhiteSpace(ApellidosText.Text) ||
-                String.IsNullOrWhiteSpace(EmailText.Text) ||
-                String.IsNullOrWhiteSpace(TelefonoText.Text);
         }
 
     }
