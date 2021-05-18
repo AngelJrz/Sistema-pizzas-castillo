@@ -1,0 +1,64 @@
+﻿<Window x:Class="Presentacion.Ventanas.Usuario.ProductoPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentacion.Ventanas.Usuario"
+        mc:Ignorable="d"
+        Title="ProductoPopUp" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="{StaticResource AzulCastilloLight}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="{StaticResource AzulCastillo}">
+            <Image Source="/Imagenes/logo.png" HorizontalAlignment="Center" Margin="0,130,0,0"
+                   Width="150" Height="150"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="Titulo" Style="{StaticResource TituloPaginasStyle}"
+                       Margin="80,30,0,-0" Grid.Row="0"/>
+
+            <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,-50,0,0">
+                    <Label Content="*" Foreground="{StaticResource Alert}" Margin="0,10,0,0"/>
+                    <TextBlock Text="Producto:" Style="{StaticResource TituloCamposStyle}" Margin="0,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0,-45,0,0">
+                    <ComboBox x:Name="productBox" Style="{StaticResource ComboboxStyle}" DisplayMemberPath="Nombre" Width="300"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                <Label Content="*" Foreground="{StaticResource Alert}" Margin="0,48,0,0"/>
+                <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}" Margin="10,50,0,0"/>
+                <TextBox  Style="{StaticResource InputDefaultStyle}" Width="100" x:Name="cantidadText" Margin="-90,50,0,0"  MaxLength="10"/>
+                <TextBlock Text="Medida:" Style="{StaticResource TituloCamposStyle}" Margin="230,50,0,0"/>
+                <TextBox  Style="{StaticResource InputDefaultStyle}" Text="{Binding ElementName=productBox,Path=SelectedValue.Producto.UnidadDeMedida}" Width="100" Margin="300,50,0,0" IsEnabled="False"/>
+
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+                <Button Content="Cancelar" IsCancel="True" Style="{StaticResource BotonPrincipalStyle}"
+                    VerticalAlignment="Center" Margin="0,-100,30,0"/>
+
+                <Button IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
+                    Margin="30,-100,0,0" Click="RegistrarClic" x:Name="accionBoton"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

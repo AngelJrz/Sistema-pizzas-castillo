@@ -26,6 +26,7 @@ namespace AccesoADatos
         public int Estatus { get; set; }
         public bool EsPlatillo { get; set; }
         public byte[] Foto { get; set; }
+        public string NombreFoto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contiene> Contiene { get; set; }

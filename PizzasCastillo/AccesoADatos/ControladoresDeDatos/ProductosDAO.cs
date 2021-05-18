@@ -20,8 +20,11 @@ namespace AccesoADatos.ControladoresDeDatos
 
 
 
+        public ProductosDAO()
+        {
+            _connection = new PizzasBDEntities();
+        }
 
-       
 
         public List<Producto> ObtenerListaProductos()
         {
@@ -55,6 +58,120 @@ namespace AccesoADatos.ControladoresDeDatos
                     .Where(lista => lista.ArticuloVenta.Nombre.Contains(nombre)).ToList();
 
                     return _productos;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public bool ActualizarInventario(List<Producto> listaDeProductos)
+        {
+            bool registrado = false;
+            try
+            {
+                foreach (Producto productoActualizado in listaDeProductos)
+                {
+                    Producto productoDB  = _connection.Producto.Where(producto => producto.CodigoBarra.Equals(productoActualizado.CodigoBarra)).SingleOrDefault();
+                    productoDB.Cantidad = productoActualizado.Cantidad;
+                    _connection.Entry(productoDB).State = EntityState.Modified;
+                }
+
+                _connection.SaveChanges();
+                registrado = true;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return registrado;
+
         }
 
     }

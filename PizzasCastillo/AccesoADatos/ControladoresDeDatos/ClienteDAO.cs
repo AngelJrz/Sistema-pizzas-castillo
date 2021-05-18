@@ -11,7 +11,7 @@ namespace AccesoADatos.ControladoresDeDatos
     public class ClienteDAO
     {
 
-        private PizzasBDEntities _connection;
+        private readonly PizzasBDEntities _connection;
         private List<Persona> _clientes;
         private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;

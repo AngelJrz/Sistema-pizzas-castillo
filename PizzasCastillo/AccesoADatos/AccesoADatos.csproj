@@ -59,15 +59,19 @@
     <Compile Include="Contiene.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
+    <Compile Include="ControladoresDeDatos\ArticuloVentaDAO.cs" />
     <Compile Include="ControladoresDeDatos\ClienteDAO.cs" />
     <Compile Include="ControladoresDeDatos\DireccionDAO.cs" />
-
+    <Compile Include="ControladoresDeDatos\EfectivoDAO.cs" />
+    <Compile Include="ControladoresDeDatos\PedidoAProveedorDAO.cs" />
+    <Compile Include="ControladoresDeDatos\PlatilloDAO.cs" />
+    <Compile Include="ControladoresDeDatos\ProveedorDAO.cs" />
+    <Compile Include="ControladoresDeDatos\GastoExtraDAO.cs" />
+    <Compile Include="ControladoresDeDatos\ReporteDeCajaDAO.cs" />
     <Compile Include="ControladoresDeDatos\PedidosDAO.cs" />
     <Compile Include="ControladoresDeDatos\ProductosContienePedidoDAO.cs" />
     <Compile Include="ControladoresDeDatos\ProductosDAO.cs" />
-
     <Compile Include="ControladoresDeDatos\TipoDeGastoDAO.cs" />
-
     <Compile Include="Direccion.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>

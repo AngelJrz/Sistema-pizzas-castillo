@@ -11,9 +11,9 @@ namespace AccesoADatos.ControladoresDeDatos
     public class DireccionDAO
     {
 
-        private PizzasBDEntities _connection;
+        private readonly PizzasBDEntities _connection;
         private List<Direccion> _direcciones;
-        private const int ACTIVO = 1;
+        private List<DireccionProveedor> _direccionesProveedor;
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
 
@@ -32,11 +32,11 @@ namespace AccesoADatos.ControladoresDeDatos
             return _direcciones;
         }
 
-        public bool RegistrarDireccion(Direccion direccion, Persona cliente)
+        public bool RegistrarDireccionCliente(Direccion direccion, string telefono)
         {
             try
             {
-                Persona persona = (Persona)_connection.Persona.Where(clientelo => clientelo.Email == cliente.Email);
+                Persona persona = (Persona)_connection.Persona.Where(clientelo => clientelo.Telefono == telefono);
                 direccion.IdPersona = persona.Id;
                 _connection.Entry(direccion).State = EntityState.Added;
                 _resultado = _connection.SaveChanges();
@@ -53,6 +53,14 @@ namespace AccesoADatos.ControladoresDeDatos
             }
 
             return true;
+        }
+
+        public List<DireccionProveedor> ObtenerDireccionesProveedor()
+        {
+            _direccionesProveedor = _connection.DireccionProveedor
+            .ToList();
+
+            return _direccionesProveedor;
         }
 
     }

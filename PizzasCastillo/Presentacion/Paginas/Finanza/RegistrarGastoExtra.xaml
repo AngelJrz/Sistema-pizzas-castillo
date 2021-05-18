@@ -11,28 +11,21 @@
         <TextBlock  Style="{StaticResource TituloStyle}" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Registrar Gasto" Margin="0,20,0,0"/>
 
         <StackPanel HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                <TextBlock Style="{StaticResource TituloCamposStyle}" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Autorizado por:" />
-                <TextBox x:Name="autorizadoPor" Template="{StaticResource InputControlTemplate}" Margin="20,0,0,0" Width="300"/>
-            </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
                 <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right"  TextWrapping="Wrap" Text="Tipo de gasto:" />
-                <ComboBox Name="tipoDeGasto" Margin="20,0,0,0" Width="300">
-                    <ComboBoxItem IsSelected="True">ComboBox Item #1</ComboBoxItem>
-                    <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
-                    <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+                <ComboBox Name="tipoDeGasto" Margin="20,0,0,0" Width="300" ItemsSource="{Binding tipoDeGasto}" DisplayMemberPath="Nombre">
                 </ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
                 <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right"  TextWrapping="Wrap" Text="Concepto:"  />
-                <TextBox x:Name="conceptoDeGasto" Template="{StaticResource InputControlTemplate}" Margin="20,0,0,0" Width="300" TextWrapping="Wrap"/>
+                <TextBox x:Name="conceptoDeGasto" MaxLength="60" Template="{StaticResource InputControlTemplate}" Margin="20,0,0,0" Width="300" TextWrapping="Wrap"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
                 <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right"  TextWrapping="Wrap" Text="Total:" />
-                <TextBox x:Name="total" Template="{StaticResource InputControlTemplate}" Margin="20,0,0,0" Width="300"/>
+                <TextBox x:Name="total" MaxLength="10" Template="{StaticResource InputControlTemplate}" Margin="20,0,0,0" Width="300"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,0">

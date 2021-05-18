@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dominio.Logica;
+using Dominio.Entidades;
 
 namespace Presentacion.Paginas.Finanza
 {
@@ -23,16 +25,26 @@ namespace Presentacion.Paginas.Finanza
         public ListaPedidosPendientes()
         {
             InitializeComponent();
+            PedidoAProveedorController accesoAPedidos = new PedidoAProveedorController();
+            List<PedidoAProveedor> listaDePedidos = accesoAPedidos.ObtenerPedidosAProveedores();
+
+            tablaDePedidos.ItemsSource = listaDePedidos;
+        }
+
+        private void ClickConfirmar(object sender, RoutedEventArgs e)
+        {
+            PedidoAProveedor pedidoSeleccioado = (PedidoAProveedor)tablaDePedidos.SelectedItem;
+            NavigationService.Navigate(new ConfirmarEntrega(pedidoSeleccioado));
+        }
+
+        private void CancelarPedido(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void ClickSalir(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void ClickConfirmar(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Diste un click", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }
