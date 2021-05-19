@@ -1,4 +1,4 @@
-﻿<Page x:Class="Presentacion.Paginas.Pedido.BuscarPedidos"
+﻿<Page x:Class="Presentacion.Paginas.Pedido.BuscarPedidosParaEntrega"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:Presentacion.Paginas.Pedido"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
-      Title="BuscarPedidos">
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="BuscarPedidosParaEntrega">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
         <StackPanel Height="473">
@@ -189,12 +189,7 @@
 
 
                                     </Button>
-                                    <Button Style="{StaticResource IconoBoton}" Click="EditarPedido" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Edit" Foreground="{StaticResource Gris}" 
-                                                                 Width="25" Height="25"/>
-
-
-                                    </Button>
+                                
 
 
                                 </Grid>

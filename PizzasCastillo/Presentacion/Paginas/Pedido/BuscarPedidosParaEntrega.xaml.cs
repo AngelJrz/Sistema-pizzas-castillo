@@ -18,13 +18,13 @@ namespace Presentacion.Paginas.Pedido
     /// <summary>
     /// Lógica de interacción para BuscarPedidos.xaml
     /// </summary>
-    public partial class BuscarPedidos : Page
+    public partial class BuscarPedidosParaEntrega : Page
     {
-        public BuscarPedidos()
+        public BuscarPedidosParaEntrega()
         {
             InitializeComponent();
-            Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
-            ListaPedidos.ItemsSource = controller.ObtenerPedidos();
+           Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+           ListaPedidos.ItemsSource = controller.ObtenerPedidos();
         }
 
         private void BuscarEnter(object sender, RoutedEventArgs e)

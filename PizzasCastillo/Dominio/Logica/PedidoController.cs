@@ -91,7 +91,7 @@ namespace Dominio.Logica
         {
 
             PedidosDAO dao = new PedidosDAO();
-            List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidos();
+            List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidosEnPreparacion();
             List<Pedido> pedidosClonados = CloneList(pedidosEncontrados);
             return pedidosClonados;
            

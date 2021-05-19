@@ -115,8 +115,11 @@
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Pedido\BuscarPedidos.xaml.cs">
-      <DependentUpon>BuscarPedidos.xaml</DependentUpon>
+    <Compile Include="Paginas\Pedido\BuscarPedidoParaEditarProductos.xaml.cs">
+      <DependentUpon>BuscarPedidoParaEditarProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\BuscarPedidosParaEntrega.xaml.cs">
+      <DependentUpon>BuscarPedidosParaEntrega.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Pedido\EditarPedido.xaml.cs">
       <DependentUpon>EditarPedido.xaml</DependentUpon>
@@ -253,7 +256,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\Pedido\BuscarPedidos.xaml">
+    <Page Include="Paginas\Pedido\BuscarPedidoParaEditarProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\BuscarPedidosParaEntrega.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

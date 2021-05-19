@@ -88,13 +88,31 @@ namespace AccesoADatos.ControladoresDeDatos
 
 
 
-        public List<Pedido> ObtenerPedidos() {
+        public List<Pedido> ObtenerPedidosEnPreparacion() {
+            try
+            {
+                using (PizzasBDEntities connection = new PizzasBDEntities())
+                {
+                   
+                    _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals
+                    ("En Preparacion")).Include("Persona")
+                    .ToList();
+                    return _pedidos;
+                }
+            }
+            catch (Exception)
+            {
+                return _pedidos;
+            }
+        }
+        public List<Pedido> ObtenerPedidosEnEspera()
+        {
             try
             {
                 using (PizzasBDEntities connection = new PizzasBDEntities())
                 {
 
-                    _pedidos =connection.Pedido.ToList();
+                    _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Espera")).ToList();
                     return _pedidos;
                 }
             }
