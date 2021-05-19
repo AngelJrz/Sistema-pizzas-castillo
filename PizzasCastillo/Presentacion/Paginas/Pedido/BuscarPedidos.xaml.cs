@@ -23,15 +23,23 @@ namespace Presentacion.Paginas.Pedido
         public BuscarPedidos()
         {
             InitializeComponent();
+            Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+            ListaPedidos.ItemsSource = controller.ObtenerPedidos();
         }
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
+
         }
-        private void AgregarProductoPedido(object sender, RoutedEventArgs e)
+        private void RegistrarEntrega(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pedido.RegistrarEntrega((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+
+        }
+        private void EditarPedido(object sender, RoutedEventArgs e)
         {
         }
-       
+
     }
 }
 

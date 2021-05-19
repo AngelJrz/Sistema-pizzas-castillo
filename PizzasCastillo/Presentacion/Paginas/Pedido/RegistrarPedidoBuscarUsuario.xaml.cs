@@ -31,7 +31,7 @@ namespace Presentacion.Paginas.Pedido
             ClienteController controller = new ClienteController();
 
             ListaUsuarios.ItemsSource = controller.ObtenerPersonas();
-            _empleadoEnSesion = new Dominio.Entidades.Empleado { NumeroEmpleado = "1", Username = "jajas", Contrasenia = "123", SalarioQuincenal = (decimal)120.50, FechaRegistro = DateTime.Now };
+            _empleadoEnSesion = new Dominio.Entidades.Empleado { NumeroEmpleado = "1", Username = "jajas", Contrasenia = "123", SalarioQuincenal = (decimal)120.50, FechaRegistro = DateTime.Now, TipoUsuario = new Dominio.Enumeraciones.Tipo {Id=2,Nombre = "Empleado",Estatus=1 } };
 
         }
 

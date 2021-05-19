@@ -10,20 +10,24 @@ namespace AccesoADatos.ControladoresDeDatos
 {
    public  class PedidosDAO
     {
-        private PizzasBDEntities _connection;
+        PizzasBDEntities _connection;
+      
         private List<Pedido> _pedidos = null;
         private Pedido _pedidoEncontrado;
         private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
 
-        public int RegistrarPedido(Pedido pedido)
+        public void RegistrarPedido(Pedido pedido)
         {
-            try
-            {
-                _connection.Pedido.Add(pedido);
-                _resultado = _connection.SaveChanges();
-            }
+            try { 
+                using (PizzasBDEntities connection = new PizzasBDEntities()) 
+                {
+                    connection.Entry(pedido).State = EntityState.Added;
+
+                    _resultado = connection.SaveChanges();
+                }
+            } 
             catch (DbUpdateException)
             {
 
@@ -32,21 +36,22 @@ namespace AccesoADatos.ControladoresDeDatos
 
            
 
-            return pedido.Id;
         }
 
 
 
 
-        public bool ActualizarPedido(Pedido pedido) {
+        public bool ActualizarPedidoDatos(Pedido pedido) {
 
             try
             {
-                Pedido pedidoEncontrado = (Pedido)_connection.Pedido.Where(p => p.Id == pedido.Id);
-                pedidoEncontrado = pedido;
-                _connection.Pedido.Add(pedidoEncontrado);
+                using (PizzasBDEntities connection = new PizzasBDEntities())
+                {
+                    connection.Entry(pedido).State = EntityState.Modified;
 
+                    _resultado = connection.SaveChanges();
 
+                }
             }
             catch (DbUpdateException)
             {
@@ -63,16 +68,38 @@ namespace AccesoADatos.ControladoresDeDatos
         }
 
 
+        public List<ArticuloVenta> ObtenerArticulosPedido(Pedido pedidoParabuscar) {
+
+            using (PizzasBDEntities connection = new PizzasBDEntities()) 
+            {
+                List<Contiene> listaContiene = connection.Contiene.Where(x => x.IdPedido == pedidoParabuscar.Id).ToList();
+                List<ArticuloVenta> ArticulosDelPedido = null;
+                foreach (Contiene x in listaContiene)
+                {
+                    ArticulosDelPedido.Add(connection.ArticuloVenta.Where(ar =>ar.CodigoBarra == x.CodigoBarra).FirstOrDefault());
+                
+                }
+                return ArticulosDelPedido;
+            
+            }
+        
+
+        }
+
+
 
         public List<Pedido> ObtenerPedidos() {
             try
             {
+                using (PizzasBDEntities connection = new PizzasBDEntities())
+                {
 
-
-                _pedidos = _connection.Pedido.ToList();
-                return _pedidos;
+                    _pedidos =connection.Pedido.ToList();
+                    return _pedidos;
+                }
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 return _pedidos;
             }
         }

@@ -28,21 +28,21 @@
                                        HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
                              Width="500"
-                             HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"/>
+                             HorizontalAlignment="Center" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
-                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Click="BuscarEnter"/>
                 </StackPanel>
             </Grid>
             <TextBlock Text="Pedidos" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
-            <DataGrid x:Name="ListaProductos" HorizontalAlignment="Center" Width="1000"
+            <DataGrid x:Name="ListaPedidos" HorizontalAlignment="Center" Width="1000"
                       AutoGenerateColumns="False" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                       Margin="0,20,0,20" CanUserSortColumns="true" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Imagen" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Id" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -59,85 +59,14 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding foto}" HorizontalAlignment="Center" Width="50" Height="50"/>
-
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-
-                    <DataGridTemplateColumn Header="Codigo de Barras" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
-                                        IsReadOnly="True" CanUserReorder="False">
-                        <DataGridTemplateColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Height" Value="35"/>
-                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                            </Style>
-                        </DataGridTemplateColumn.HeaderStyle>
-
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-
-                                <TextBlock Text="{Binding CodigoDeBarras}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
-                                           FontSize="14"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Nombre" Width="250" MinWidth="250" MaxWidth="140" CanUserResize="False"
-                                        IsReadOnly="True" CanUserReorder="False">
-                        <DataGridTemplateColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Height" Value="35"/>
-                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                            </Style>
-                        </DataGridTemplateColumn.HeaderStyle>
-
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-
-                                <TextBlock Text="{Binding nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
-                                           FontSize="14"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Descripcion" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
-                                        IsReadOnly="True" CanUserReorder="False">
-                        <DataGridTemplateColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Height" Value="35"/>
-                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                            </Style>
-                        </DataGridTemplateColumn.HeaderStyle>
-
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-
-                                <TextBlock Text="{Binding descripcion}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Id}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Precio" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+
+                    <DataGridTemplateColumn Header="Fecha" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -155,12 +84,83 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding presio}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Fecha}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Opciones" Width="200" MinWidth="200" MaxWidth="300" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Total" Width="250" MinWidth="250" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding Total}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Estatus" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding Estatus.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Tipo" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding Tipo.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Opciones" Width="300" MinWidth="200" MaxWidth="300" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -183,8 +183,14 @@
                                         <ColumnDefinition Width="5"/>
 
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource IconoBoton}" Click="AgregarProductoPedido" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Delete" Foreground="{StaticResource Gris}" 
+                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarEntrega" Grid.Column="0">
+                                        <materialDesign:PackIcon Kind="DeliveryDining" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+
+
+                                    </Button>
+                                    <Button Style="{StaticResource IconoBoton}" Click="EditarPedido" Grid.Column="0">
+                                        <materialDesign:PackIcon Kind="Edit" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
 
 

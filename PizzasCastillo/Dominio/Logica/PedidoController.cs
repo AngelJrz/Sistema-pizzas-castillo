@@ -5,69 +5,101 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Dominio.Entidades.Contiene;
+using static Dominio.Entidades.Pedido;
+using Dominio.Entidades;
 namespace Dominio.Logica
 {
     public class PedidoController
     {
-        List<AccesoADatos.Contiene> listacontiene;
+      
 
-        public void AgregarPedido(Dominio.Entidades.Pedido pedido)
+        public void AgregarPedido(Pedido pedido)
         {
+            PedidosDAO dao = new PedidosDAO();
 
-            PedidosDAO pedidosDAO = new PedidosDAO();
-
-            int idPedido = pedidosDAO.RegistrarPedido(CloneRegister(pedido));
-            ProductosContienePedidoDAO contienePedidoDAO = new ProductosContienePedidoDAO();
-
-
-            foreach (Dominio.Entidades.Contiene pedidocontiene in pedido.Contiene)
+            if (pedido.Tipo.Id == 1)
             {
-                listacontiene.Add(CloneRegisterContiene(pedidocontiene,idPedido));
-
-
-
+                dao.RegistrarPedido(CloneDominioADatosParaLlevar(pedido));
             }
-            contienePedidoDAO.RegistrarProductosPedido(listacontiene);
+            else 
+            {
+                dao.RegistrarPedido(CloneDominioADatosLocal(pedido));
+            }
 
 
         }
 
-        private AccesoADatos.Pedido CloneRegister(Dominio.Entidades.Pedido pedido)
+         
+        
+        public AccesoADatos.Pedido CloneDominioADatosParaLlevar(Pedido pedidoAClonar)
         {
-            return new AccesoADatos.Pedido
+            return new AccesoADatos.Pedido()
             {
-
-                Id = pedido.Id,
-                Fecha = pedido.Fecha,
-                Total = pedido.Total,
-                IdPersona = pedido.SolicitadoPor.Id,
-                IdEstatusPedido = pedido.Estatus.Id,
-                NumeroEmpleado = pedido.RegistradoPor.Id.ToString(),
-                IdTipoPedido = pedido.Tipo.Id,
-                IdMesa = pedido.Mesa.Id,
-                IdRepartidor=pedido.RepartidoPor.Id
                
+                Fecha = pedidoAClonar .Fecha,
+                Total = pedidoAClonar.Total,
+                IdPersona=pedidoAClonar.SolicitadoPor.Id,
+                IdEstatusPedido=pedidoAClonar.Estatus.Id,
+                IdTipoPedido=pedidoAClonar.Tipo.Id,
+                NumeroEmpleado = pedidoAClonar.RegistradoPor.NumeroEmpleado,
+                IdRepartidor = pedidoAClonar.RepartidoPor.Id,
+                Contiene = CloneDominioADatosContiene(pedidoAClonar.Contiene)
 
             };
         }
 
-        private AccesoADatos.Contiene CloneRegisterContiene(Dominio.Entidades.Contiene contiene, int id)
+
+        public AccesoADatos.Pedido CloneDominioADatosLocal(Pedido pedidoAClonar)
         {
-            return new AccesoADatos.Contiene
+            return new AccesoADatos.Pedido()
             {
-                IdPedido = id,
-                CodigoBarra = contiene.ArticuloVenta.CodigoBarra.ToString(),
-                Cantidad = contiene.Cantidad,
-                Total = contiene.Total
-
-
-
-
-
-
+                Fecha = pedidoAClonar.Fecha,
+                Total = pedidoAClonar.Total,
+                IdPersona = pedidoAClonar.SolicitadoPor.Id,
+                IdEstatusPedido = pedidoAClonar.Estatus.Id,
+                NumeroEmpleado = pedidoAClonar.RegistradoPor.NumeroEmpleado,
+                IdTipoPedido = pedidoAClonar.Tipo.Id,
+                IdMesa = pedidoAClonar.Mesa.Id,
+                Contiene = CloneDominioADatosContiene(pedidoAClonar.Contiene)
 
             };
-
         }
+
+
+        public List<AccesoADatos.Contiene> CloneDominioADatosContiene(List<Contiene> listaDeSolicitud)
+        {
+            List<AccesoADatos.Contiene> listaRetorno = new List<AccesoADatos.Contiene>();
+
+            foreach (Contiene solicitud in listaDeSolicitud)
+            {
+                listaRetorno.Add(new AccesoADatos.Contiene()
+                {
+                    CodigoBarra = solicitud.ArticuloVenta.CodigoBarra,
+                    Cantidad = solicitud.Cantidad,
+                    Total = solicitud.Total
+                });
+            }
+
+            return listaRetorno;
+        }
+
+
+
+
+
+        public List<Pedido> ObtenerPedidos() 
+        {
+
+            PedidosDAO dao = new PedidosDAO();
+            List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidos();
+            List<Pedido> pedidosClonados = CloneList(pedidosEncontrados);
+            return pedidosClonados;
+           
+
+        
+        
+        }
+
+
     }
     }

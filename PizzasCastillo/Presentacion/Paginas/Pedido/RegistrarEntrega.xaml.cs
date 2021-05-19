@@ -20,8 +20,10 @@ namespace Presentacion.Paginas.Pedido
     /// </summary>
     public partial class RegistrarEntrega : Page
     {
-        public RegistrarEntrega()
+        private Dominio.Entidades.Pedido _pedido;
+        public RegistrarEntrega(Dominio.Entidades.Pedido pedido)
         {
+            _pedido = pedido;
             InitializeComponent();
         }
     }
