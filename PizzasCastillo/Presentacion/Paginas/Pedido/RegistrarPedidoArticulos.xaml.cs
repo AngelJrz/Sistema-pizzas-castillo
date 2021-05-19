@@ -43,7 +43,7 @@ namespace Presentacion.Paginas.Pedido
         }
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
-            if (BusquedaText.Text.Equals(string.Empty))
+            if (!BusquedaText.Text.Equals(string.Empty))
             {
 
                 ArticuloVentaController controller = new ArticuloVentaController();

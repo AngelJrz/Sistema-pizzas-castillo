@@ -38,10 +38,8 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1">
 
-                    <ComboBox Name="ComboTipo" Style="{StaticResource ComboboxStyle}" Width="400" HorizontalAlignment="Left">
-                        <ComboBoxItem Content="Para Llevar"/>
-                        <ComboBoxItem Content="Local"/>
-                        
+                    <ComboBox Name="ComboTipo" Style="{StaticResource ComboboxStyle}" Width="400" DisplayMemberPath="Nombre" HorizontalAlignment="Left" SelectionChanged="CambiarElemento">
+                       
 
                     </ComboBox>
 
@@ -60,11 +58,11 @@
                     <TextBlock Text="Estatus " Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <ComboBox x:Name="ComboEstatus" Style="{StaticResource ComboboxStyle}"
-                              Width="400" HorizontalAlignment="Left">
-                        <ComboBoxItem Content="En espera"/>
+                    <TextBox x:Name="txtEstatus" Template ="{StaticResource InputControlTemplate}"
+                               Width="400" HorizontalAlignment="Left" IsEnabled="False">
                         
-                    </ComboBox>
+                        
+                    </TextBox>
 
                 </StackPanel>
                 
@@ -82,7 +80,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
 
                     <ComboBox x:Name="ComboMesa" Style="{StaticResource ComboboxStyle}"
-                              Width="400" HorizontalAlignment="Left">
+                              Width="400" HorizontalAlignment="Left" DisplayMemberPath="Id">
                       
                     </ComboBox>
                 </StackPanel>
@@ -119,7 +117,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBox x:Name="TotalText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                                     MaxLength="30" Width="400" HorizontalAlignment="Left" IsEnabled="False"/>
 
 
 

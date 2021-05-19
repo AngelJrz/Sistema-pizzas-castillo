@@ -1,4 +1,7 @@
-﻿namespace Dominio.Entidades
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Dominio.Entidades
 {
     public class Mesa
     {
@@ -12,6 +15,20 @@
                 Id = mesa.IdMesa,
                 Estatus = mesa.Estatus
             };
+        }
+
+
+        public static List<Mesa> CloneList(List<AccesoADatos.Mesa> mesas)
+        {
+            List<Mesa> list = new List<Mesa>();
+            mesas.ToList().ForEach(mesa => list.Add(
+                new Mesa
+                {
+                    Id = mesa.IdMesa,
+                    Estatus = mesa.Estatus
+                }
+            )); ;
+            return list;
         }
     }
 }

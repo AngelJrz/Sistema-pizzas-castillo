@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Presentacion.Paginas.Pedido"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Height="Auto" Width="Auto"
       Title="RegistrarPedidoArticulos">
     <Page.Resources>
@@ -15,7 +15,8 @@
     </Page.Resources>  
   
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
-        <StackPanel Height="473">
+        <StackPanel Height="1000
+                    ">
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 
@@ -200,14 +201,23 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
+                   
+                 
+                  
 
 
                 </DataGrid.Columns>
+               
             </DataGrid>
-            <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonSecundarioStyle}"
+            <StackPanel>
+                <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonSecundarioStyle}"
                     Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="GuardarArticulosPedido"/>
+            </StackPanel>
+
         </StackPanel>
+
+
+    
 
 
 

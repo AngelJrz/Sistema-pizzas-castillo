@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dominio.Entidades;
+using Dominio.Enumeraciones;
+using Dominio.Logica;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -21,69 +24,87 @@ namespace Presentacion.Paginas.Pedido
     public partial class RegistrarPedidoDatos : Page
     {
         private Dominio.Entidades.Pedido _pedidoNuevo;
-        private List<AccesoADatos.EstatusPedido> _estatus;
-        private List<String> nombreEstatus;
+        private List<Tipo> _tipoPedido;
+        private List<Mesa> _mesas;
+
         private Decimal totalPedido;
+        Tipo tipoLlevar = new Tipo { Id = 1,Nombre = "Para Llevar",Estatus = 1};
+        Tipo tipoLocal = new Tipo { Id = 2, Nombre = "Local", Estatus = 1 };
+        Tipo estatusEnEspera = new Tipo { Id = 1, Nombre = "En Espera", Estatus = 1 };
+    
 
         public RegistrarPedidoDatos(Dominio.Entidades.Pedido pedidoNuevo)
         {
 
-            _pedidoNuevo = pedidoNuevo;
-            SumarTotal();
-            InitializeComponent();
-            Dominio.Logica.EstatusPedidoController controller = new Dominio.Logica.EstatusPedidoController();
-            _estatus = controller.ObtenerEstatusPedido();
-            foreach (AccesoADatos.EstatusPedido nombre in _estatus) {
-                nombreEstatus.Add(nombre.Nombre);
             
-            }
-            ComboEstatus.ItemsSource = nombreEstatus;
+            InitializeComponent();
+            _pedidoNuevo = pedidoNuevo;
+            MesaController mesaController = new MesaController();
+            _mesas = mesaController.ObtenetMesas();
+            ComboMesa.ItemsSource = _mesas;
+
+            SumarTotal();
+            TipoPedidoController controller = new TipoPedidoController();
+            _tipoPedido = controller.ObtenerTipoPedido();
+            ComboTipo.ItemsSource = _tipoPedido;
+            txtEstatus.Text = estatusEnEspera.Nombre;
+          
+          
             
         }
         //AgregarEstatusPedido
+        private void CambiarElemento(object sender, RoutedEventArgs e)
+        {
+            if (ComboTipo.SelectedIndex == 0)
+            {
+                ComboMesa.IsEnabled = false;
+                RepartidorText.IsEnabled = true;
+
+            }
+            else if (ComboTipo.SelectedIndex == 1) {
+                RepartidorText.IsEnabled = false;
+                ComboMesa.IsEnabled = true;
+            }
+            
+        
+        
+        }
+        
         private void GuardarPedido(object sender, RoutedEventArgs e)
         {
-          
-                RepartidorText.IsEnabled = false;
-                Dominio.Enumeraciones.Tipo tipo = new Dominio.Enumeraciones.Tipo();
+            if (ComboTipo.SelectedIndex == 0)
+            {
+                _pedidoNuevo.Tipo = tipoLlevar;
+                
+               
 
-
-                AccesoADatos.EstatusPedido estatusSeleccionado = _estatus[ComboEstatus.SelectedIndex];
-                Dominio.Enumeraciones.Tipo tipoClone = new Dominio.Enumeraciones.Tipo();
-                tipoClone.Estatus = estatusSeleccionado.Estatus;
-                tipoClone.Id = estatusSeleccionado.Id;
-                tipoClone.Nombre = estatusSeleccionado.Nombre;
-
-                _pedidoNuevo.Estatus = tipoClone;
+            }
+            else if (ComboTipo.SelectedIndex == 1)
+            {
+                _pedidoNuevo.Tipo = tipoLocal;
+                _pedidoNuevo.Mesa = (Mesa)ComboMesa.SelectedItem;
                 _pedidoNuevo.Total = totalPedido;
-                _pedidoNuevo.Tipo = tipoClone;//Esto es estatus, arreglar
 
-               // _pedidoNuevo.Mesa = ComboMesa.Text;//Tiene que ser objeto mesa
-                _pedidoNuevo.RepartidoPor = null;
+            }
 
 
 
 
 
 
-                Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
-                controller.AgregarPedido(_pedidoNuevo);
 
-          
-                
-                
 
-          
-          
-            //agregar checkbox para saber que tipo de pedido es.
-            //si selecciona el de mesa activa el combo de mesa, si activa enviar, activa el textbox de idRepartidor
-            
+
+
+
+
         }
 
 
         private void SumarTotal() {
             foreach (Dominio.Entidades.Contiene articulo in _pedidoNuevo.Contiene) {
                 totalPedido += articulo.Total;
+                TotalText.Text = totalPedido.ToString();
             
             }
         

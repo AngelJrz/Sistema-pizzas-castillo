@@ -71,5 +71,18 @@ namespace Dominio.Enumeraciones
                 Estatus = tipo.Estatus
             };
         }
+        public static List<Tipo> CloneList(List<AccesoADatos.TipoPedido> tipo)
+        {
+            List<Tipo> list = new List<Tipo>();
+            tipo.ToList().ForEach(x => list.Add(
+                new Tipo
+                {
+                   Id = x.Id,
+                   Nombre=x.Nombre,
+                   Estatus=x.Estatus
+                }
+            ));
+            return list;
+        }
     }
 }

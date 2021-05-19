@@ -6,26 +6,29 @@ using System.Threading.Tasks;
 
 namespace AccesoADatos.ControladoresDeDatos
 {
-    public class MesaDAO
+    public class TipoPedidoDAO
     {
-        private List<Mesa> mesasEncontradas;
-       
-        public List<Mesa> ObtenerMesas()
+        private List<TipoPedido> _tipoPedido;
+
+        public List<TipoPedido> ObtenerTipoPedido()
         {
+
             try
             {
                 using (PizzasBDEntities connection = new PizzasBDEntities())
                 {
-                    mesasEncontradas = connection.Mesa.Where(m => m.Estatus == 1).ToList();
+                    _tipoPedido = connection.TipoPedido.ToList();
+
                 }
+
             }
             catch (Exception)
             {
-                throw;
-
+                return _tipoPedido;
             }
-            return mesasEncontradas;
+            return _tipoPedido;
         }
-
     }
+
 }
+
