@@ -44,14 +44,9 @@ namespace Dominio.Logica
                 IdEstatusPedido = pedido.Estatus.Id,
                 NumeroEmpleado = pedido.RegistradoPor.Id.ToString(),
                 IdTipoPedido = pedido.Tipo.Id,
-                Contiene = (ICollection<AccesoADatos.Contiene>)pedido.Contiene,
-
-                //agregar clone para mesa
-                //agregar clone para repartidor
-
-
-
-
+                IdMesa = pedido.Mesa.Id,
+                IdRepartidor=pedido.RepartidoPor.Id
+               
 
             };
         }

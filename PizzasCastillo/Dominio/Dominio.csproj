@@ -78,6 +78,7 @@
     <Compile Include="Logica\MesaController.cs" />
     <Compile Include="Logica\PedidoController.cs" />
     <Compile Include="Logica\PedidoProductosController.cs" />
+    <Compile Include="Logica\RepartidorController.cs" />
     <Compile Include="Logica\TipoDeGastoController.cs" />
     <Compile Include="Logica\TipoPedidoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

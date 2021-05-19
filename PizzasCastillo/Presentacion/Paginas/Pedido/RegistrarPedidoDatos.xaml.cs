@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Dominio.Entidades;
 using Dominio.Enumeraciones;
 using Dominio.Logica;
+using Presentacion.Ventanas;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -52,7 +53,7 @@ namespace Presentacion.Paginas.Pedido
           
             
         }
-        //AgregarEstatusPedido
+       
         private void CambiarElemento(object sender, RoutedEventArgs e)
         {
             if (ComboTipo.SelectedIndex == 0)
@@ -69,14 +70,27 @@ namespace Presentacion.Paginas.Pedido
         
         
         }
-        
+
         private void GuardarPedido(object sender, RoutedEventArgs e)
         {
             if (ComboTipo.SelectedIndex == 0)
             {
                 _pedidoNuevo.Tipo = tipoLlevar;
-                
-               
+                RepartidorController repartidorcontroller = new RepartidorController();
+                Repartidor repartidorEncontrado = repartidorcontroller.BuscarRepartidorPorID(int.Parse(RepartidorText.Text));
+                if (repartidorEncontrado == null)
+                {
+                    InteraccionUsuario err = new InteraccionUsuario("Error De Repartidor", "Error, no existe el repartidr registrado que usted especiica");
+                    err.Show();
+                }
+                _pedidoNuevo.RepartidoPor = repartidorEncontrado;
+                _pedidoNuevo.Total = totalPedido;
+                _pedidoNuevo.Estatus = estatusEnEspera;
+                PedidoController pedidoController = new PedidoController();
+                pedidoController.AgregarPedido(_pedidoNuevo);
+
+
+
 
             }
             else if (ComboTipo.SelectedIndex == 1)
@@ -84,20 +98,13 @@ namespace Presentacion.Paginas.Pedido
                 _pedidoNuevo.Tipo = tipoLocal;
                 _pedidoNuevo.Mesa = (Mesa)ComboMesa.SelectedItem;
                 _pedidoNuevo.Total = totalPedido;
+                _pedidoNuevo.Estatus = estatusEnEspera;
+
+                PedidoController pedidoController = new PedidoController();
+                pedidoController.AgregarPedido(_pedidoNuevo);
+
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
 
