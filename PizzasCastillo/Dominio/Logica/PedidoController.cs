@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Dominio.Entidades.Contiene;
-using static Dominio.Entidades.Pedido;
+
 using Dominio.Entidades;
 namespace Dominio.Logica
 {
@@ -29,8 +29,25 @@ namespace Dominio.Logica
 
         }
 
-         
-        
+
+        public void ActualizarPedidoEstatus(Pedido pedido)
+        {
+            PedidosDAO dao = new PedidosDAO();
+
+            if (pedido.Tipo.Id == 1)
+            {
+                dao.RegistrarPedido(CloneDominioADatosParaLlevar(pedido));
+            }
+            else
+            {
+                dao.RegistrarPedido(CloneDominioADatosLocal(pedido));
+            }
+
+
+        }
+
+
+
         public AccesoADatos.Pedido CloneDominioADatosParaLlevar(Pedido pedidoAClonar)
         {
             return new AccesoADatos.Pedido()
@@ -89,14 +106,29 @@ namespace Dominio.Logica
 
         public List<Pedido> ObtenerPedidos() 
         {
-
+            List<Pedido> listaARetornar = new List<Pedido>();
             PedidosDAO dao = new PedidosDAO();
             List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidosEnPreparacion();
-            List<Pedido> pedidosClonados = CloneList(pedidosEncontrados);
-            return pedidosClonados;
-           
 
-        
+            foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
+            {
+                if (pedido.Mesa == null)
+                {
+
+                    listaARetornar.Add(Pedido.CloneParaLlevar(pedido));
+                }
+                else
+                {
+
+                    listaARetornar.Add(Pedido.CloneParaLocal(pedido));
+
+                }
+
+                
+            
+            }
+
+            return listaARetornar;
         
         }
 

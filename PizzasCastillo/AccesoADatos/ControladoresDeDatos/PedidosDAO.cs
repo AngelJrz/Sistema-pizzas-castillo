@@ -10,16 +10,32 @@ namespace AccesoADatos.ControladoresDeDatos
 {
    public  class PedidosDAO
     {
-        PizzasBDEntities _connection;
+        
       
         private List<Pedido> _pedidos = null;
         private Pedido _pedidoEncontrado;
         private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
+        private readonly PizzasBDEntities connection;
+
+        public PedidosDAO()
+        {
+            connection = new PizzasBDEntities();
+            _resultado = 0;
+        }
+
+
+
 
         public void RegistrarPedido(Pedido pedido)
         {
+
+
+
+
+
+
             try { 
                 using (PizzasBDEntities connection = new PizzasBDEntities()) 
                 {
@@ -35,6 +51,36 @@ namespace AccesoADatos.ControladoresDeDatos
             }
 
            
+
+        }
+
+        public void ActualizarPedidoEstatus(Pedido pedido)
+        {
+
+
+
+
+
+
+            try
+            {
+                using (PizzasBDEntities connection = new PizzasBDEntities())
+                {
+                  var pedidoEncontrado = connection.Pedido.FirstOrDefault(x=>x.Id==pedido.Id);
+                  pedidoEncontrado.IdEstatusPedido = pedido.IdEstatusPedido;
+
+
+
+                    _resultado = connection.SaveChanges();
+                }
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+            }
+
+
 
         }
 
@@ -91,14 +137,13 @@ namespace AccesoADatos.ControladoresDeDatos
         public List<Pedido> ObtenerPedidosEnPreparacion() {
             try
             {
-                using (PizzasBDEntities connection = new PizzasBDEntities())
-                {
+               
                    
                     _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals
-                    ("En Preparacion")).Include("Persona")
+                    ("En Preparacion"))
                     .ToList();
                     return _pedidos;
-                }
+               
             }
             catch (Exception)
             {
@@ -129,7 +174,7 @@ namespace AccesoADatos.ControladoresDeDatos
             {
 
 
-                _pedidoEncontrado = _connection.Pedido.Where(x=>x.Id==id).FirstOrDefault();
+                _pedidoEncontrado = connection.Pedido.Where(x=>x.Id==id).FirstOrDefault();
                 return _pedidoEncontrado;
             }
             catch (Exception)

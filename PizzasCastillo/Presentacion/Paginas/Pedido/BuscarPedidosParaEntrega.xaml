@@ -10,7 +10,7 @@
       Title="BuscarPedidosParaEntrega">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
-        <StackPanel Height="473">
+        <StackPanel Height="600">
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 
