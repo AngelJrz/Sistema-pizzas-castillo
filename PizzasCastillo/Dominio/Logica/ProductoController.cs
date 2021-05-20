@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +26,12 @@ namespace Dominio.Logica
             {
                 return ResultadoRegistroProducto.CodigoBarraDuplicado;
             }
-                
-            if(producto.CodigoBarra == null)
+
+            if (producto.CodigoBarra == null)
             {
                 producto.CodigoBarra = AutogenerarCodigoBarra(producto.Nombre, producto.Tipo);
             }
-                
+
             producto.EsPlatillo = false;
             producto.Estatus = DISPONIBLE;
 
@@ -75,6 +75,26 @@ namespace Dominio.Logica
             return seGuardo;
         }
 
+        public bool ActualizarCantidad(Producto producto)
+        {
+
+            AccesoADatos.Producto actualizacion = Producto.CloneToDBEntity(producto);
+
+            bool seGuardo;
+
+            try
+            {
+                seGuardo = productoDAO.ActualizarCantidad(actualizacion);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return seGuardo;
+        }
+
+
         public bool EliminarProducto(Producto producto)
         {
             producto.Estatus = NO_DISPONIBLE;
@@ -106,7 +126,7 @@ namespace Dominio.Logica
         {
             List<Producto> listaProcutos = new List<Producto>();
             List<AccesoADatos.ArticuloVenta> productosBD = productoDAO.ObtenerListaProductos();
-            foreach(AccesoADatos.ArticuloVenta productoEntity in productosBD)
+            foreach (AccesoADatos.ArticuloVenta productoEntity in productosBD)
             {
                 Producto productoConsultado = new Producto
                 {
@@ -129,6 +149,44 @@ namespace Dominio.Logica
             }
 
             return listaProcutos;
+        }
+
+        public List<Producto> ObtenerProductosActivos()
+        {
+            List<Producto> listaProcutos = new List<Producto>();
+            List<AccesoADatos.ArticuloVenta> productosBD = productoDAO.ObtenerListaProductosActivos();
+            foreach (AccesoADatos.ArticuloVenta productoEntity in productosBD)
+            {
+                Producto productoConsultado = new Producto
+                {
+                    CodigoBarra = productoEntity.CodigoBarra,
+                    Nombre = productoEntity.Nombre,
+                    Precio = productoEntity.Precio,
+                    Foto = productoEntity.Foto,
+                    Estatus = productoEntity.Estatus,
+                    EsPlatillo = productoEntity.EsPlatillo,
+                    NombreFoto = productoEntity.NombreFoto,
+                    Cantidad = productoEntity.Producto.Cantidad,
+                    Descripcion = productoEntity.Producto.Descripcion,
+                    PrecioCompra = productoEntity.Producto.PrecioCompra,
+                    Restricciones = productoEntity.Producto.Restricciones,
+                    Tipo = Tipo.Clone(productoEntity.Producto.TipoProducto),
+                    UnidadDeMedida = productoEntity.Producto.UnidadDeMedida
+                };
+
+                listaProcutos.Add(productoConsultado);
+            }
+
+            return listaProcutos;
+        }
+
+        public AccesoADatos.ArticuloVenta ObtenerArticuloEntity(string codigoBarra)
+        {
+            List<AccesoADatos.ArticuloVenta> productosBD = productoDAO.ObtenerListaProductos();
+             AccesoADatos.ArticuloVenta articuloProducto = 
+                productosBD.FirstOrDefault(p => p.CodigoBarra.Equals(codigoBarra) && p.EsPlatillo == false);
+
+            return articuloProducto;
         }
 
         public List<Producto> BuscarProductosPorNombre(string nombre)
@@ -195,8 +253,8 @@ namespace Dominio.Logica
 
             string inicio = tipo.ObtenerEtiquetaTipoProducto();
             string codigoGenerado = String.Concat(inicio, nombre.Substring(0, 3).ToUpper());
-            codigoGenerado = codigoGenerado + "-" + azar.Next(100,999);
-            
+            codigoGenerado = codigoGenerado + "-" + azar.Next(100, 999);
+
             return codigoGenerado;
         }
     }

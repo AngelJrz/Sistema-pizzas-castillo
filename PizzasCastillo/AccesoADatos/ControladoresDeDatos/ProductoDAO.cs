@@ -14,6 +14,7 @@ namespace AccesoADatos.ControladoresDeDatos
         private List<ArticuloVenta> listaProductos;
         private const int CREADO = 1;
         private const int SIN_CAMBIOS = 0;
+        private const int ACTIVO = 1;
         private int resultado;
 
         public ProductoDAO()
@@ -26,6 +27,17 @@ namespace AccesoADatos.ControladoresDeDatos
         {
             listaProductos = conexion.ArticuloVenta
                 .Where(producto => producto.EsPlatillo == false)
+                .Include(producto => producto.Producto)
+                .ToList();
+
+            return listaProductos;
+        }
+
+        public List<ArticuloVenta> ObtenerListaProductosActivos()
+        {
+            listaProductos = conexion.ArticuloVenta
+                .Where(producto => producto.EsPlatillo == false)
+                .Where(producto => producto.Estatus == ACTIVO)
                 .Include(producto => producto.Producto)
                 .ToList();
 
@@ -101,6 +113,26 @@ namespace AccesoADatos.ControladoresDeDatos
         }
 
         public bool ActualizarArticulo(ArticuloVenta articuloProducto)
+        {
+            try
+            {
+                conexion.Entry(articuloProducto).State = EntityState.Modified;
+                resultado = conexion.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                throw;
+            }
+
+            if (resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ActualizarCantidad(Producto articuloProducto)
         {
             try
             {

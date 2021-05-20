@@ -73,5 +73,20 @@ namespace Dominio.Entidades
                 NombreFoto = articulo.NombreFoto
             };
         }
+
+        public static AccesoADatos.ArticuloVenta CloneToDBEntityFull(ArticuloVenta articulo)
+        {
+            return new AccesoADatos.ArticuloVenta
+            {
+                CodigoBarra = articulo.CodigoBarra,
+                Nombre = articulo.Nombre,
+                Precio = articulo.Precio,
+                EsPlatillo = articulo.EsPlatillo,
+                Estatus = articulo.Estatus,
+                Foto = articulo.Foto,
+                NombreFoto = articulo.NombreFoto,
+                Producto = Producto.CloneToDBEntity(articulo.Producto)
+            };
+        }
     }
 }

@@ -134,7 +134,7 @@ namespace Presentacion.Paginas.Producto
             }
             else
             {
-                MessageBox.Show("eRROR: No se puede actualizar un producto con estatus :No Disponible");
+                MessageBox.Show("ERROR: No se puede actualizar un producto con estatus :No Disponible");
             }
             
         }

@@ -40,7 +40,5 @@ namespace Dominio.Logica
             return clienteDAO.ObtenerClienteNombre(nombre);
 
         }
-
-
     }
 }

@@ -6,11 +6,11 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Presentacion.Paginas.Producto"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
+      d:DesignHeight="1100" d:DesignWidth="1300"
       Title="GeneraciónDeReporteInventario">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
-        <StackPanel>
+        <StackPanel Width="1300">
             <TextBlock Text="Generación de Reporte de Inventario" Style="{StaticResource TituloPaginasStyle}"
                        Margin="80,30,0,0"/>
             <TextBlock Text="Datos de Reporte:" Style="{StaticResource TituloStyle}"
@@ -22,25 +22,25 @@
 
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Nombre de Archivo:" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Text="Nombre de Reporte:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="NombreText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
-            
+
             <TextBlock Text="Productos en Inventario" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
-
-            <DataGrid x:Name="ListaUsuarios" HorizontalAlignment="Center" Width="1160"
+            
+            <DataGrid x:Name="TablaDeProductos" HorizontalAlignment="Center" Width="1300"
                       AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       Margin="0,20,0,20" CanUserSortColumns="True" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
@@ -63,12 +63,12 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding CodigoBarra}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Producto.CodigoBarra}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Nombre" Width="250" MinWidth="250" MaxWidth="250" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Nombre" Width="200" MinWidth="200" MaxWidth="250" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -85,7 +85,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Producto.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -129,13 +129,13 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding UnidadDeMedida}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Producto.UnidadDeMedida}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Cantidad Real" Width="150" MinWidth="150" MaxWidth="150" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Cantidad Real" Width="110" MinWidth="100" MaxWidth="110" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -156,9 +156,9 @@
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    </DataGridTemplateColumn> 
 
-                    <DataGridTemplateColumn Header="Comentario" Width="300" MinWidth="200" MaxWidth="500" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Comentario" Width="325" MinWidth="300" MaxWidth="325" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
 
                         <DataGridTemplateColumn.HeaderStyle>
@@ -176,8 +176,47 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox x:Name="comentarioText" Template="{StaticResource InputControlTemplate}"
-                                         Height="150" Width="1000" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding Comentario}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Opciones" Width="200" MinWidth="200" MaxWidth="200" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Style="{StaticResource IconoBoton}" Click="AgregarCantidad"  Grid.Column="0">
+                                        <materialDesign:PackIcon Kind="Number1" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+                                    </Button>
+
+                                    <Button Style="{StaticResource IconoBoton}" Click="AgregarComentario" Grid.Column="1">
+                                        <materialDesign:PackIcon Kind="Comment" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+                                    </Button>
+                                </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -187,12 +226,12 @@
                        Foreground="{StaticResource Alert}" Width="1100" Margin="0,20,0,0"/>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0"/>
+                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar"/>
                 <Button Content="Guardar Reporte" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" HorizontalAlignment="Center" Margin="0,0,40,0">
+                    Width="150" HorizontalAlignment="Center" Margin="0,0,40,0" Click="GuardarReporte">
                 </Button>
                 <Button Content="Generar PDF" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" HorizontalAlignment="Center" Margin="40,0,0,0">
+                    Width="150" HorizontalAlignment="Center" Margin="40,0,0,0" Click="GenerarPDF">
                 </Button>
             </StackPanel>
         </StackPanel>

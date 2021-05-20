@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Dominio.Entidades;
 using FluentValidation;
 using FluentValidation.Results;
@@ -8,7 +7,7 @@ namespace Dominio.Utilerias
 {
     public class ValidadorProducto : AbstractValidator<Producto>
     {
-        private ValidationResult result;
+        private ValidationResult resultado;
         public ValidadorProducto()
         {
             RuleFor(x => x.CodigoBarra).MaximumLength(10);
@@ -25,7 +24,7 @@ namespace Dominio.Utilerias
         public bool Validar(Producto producto)
         {
             var validador = new ValidadorProducto();
-            ValidationResult resultado = validador.Validate(producto);
+            resultado = validador.Validate(producto);
 
             if (!resultado.IsValid)
             {
@@ -41,9 +40,9 @@ namespace Dominio.Utilerias
         {
             List<string> propiedadesIncorrectas = new List<string>();
 
-            if (result != null)
+            if (resultado != null)
             {
-                foreach (var error in result.Errors)
+                foreach (var error in resultado.Errors)
                 {
                     propiedadesIncorrectas.Add(error.PropertyName);
                 }

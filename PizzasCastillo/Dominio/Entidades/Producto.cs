@@ -43,6 +43,21 @@ namespace Dominio.Entidades
             };
         }
 
+        public static AccesoADatos.Producto CloneToDBEntityFull(AccesoADatos.ArticuloVenta producto)
+        {
+            return new AccesoADatos.Producto
+            {
+                ArticuloVenta = producto,
+                CodigoBarra = producto.CodigoBarra,
+                Cantidad = producto.Producto.Cantidad,
+                Descripcion = producto.Producto.Descripcion,
+                PrecioCompra = producto.Producto.PrecioCompra,
+                Restricciones = producto.Producto.Restricciones,
+                IdTipoProducto = producto.Producto.IdTipoProducto,
+                UnidadDeMedida = producto.Producto.UnidadDeMedida
+            };
+        }
+
         public void SetDatosArticulo(ArticuloVenta articulo)
         {
             CodigoBarra = articulo.CodigoBarra;

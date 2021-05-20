@@ -69,6 +69,7 @@
     <Compile Include="ControladoresDeDatos\ClienteDAO.cs" />
     <Compile Include="ControladoresDeDatos\DireccionDAO.cs" />
     <Compile Include="ControladoresDeDatos\ProductoDAO.cs" />
+    <Compile Include="ControladoresDeDatos\ReporteInventarioDAO.cs" />
     <Compile Include="ControladoresDeDatos\TipoDeGastoDAO.cs" />
     <Compile Include="ControladoresDeDatos\TipoProductoDAO.cs" />
     <Compile Include="ControladoresDeDatos\PedidosDAO.cs" />
