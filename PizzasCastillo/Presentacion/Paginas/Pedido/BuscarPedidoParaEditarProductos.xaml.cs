@@ -23,6 +23,8 @@ namespace Presentacion.Paginas.Pedido
         public BuscarPedidoParaEditarProductos()
         {
             InitializeComponent();
+            Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+            ListaPedidos.ItemsSource = controller.ObtenerPedidos();
         }
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
@@ -31,7 +33,7 @@ namespace Presentacion.Paginas.Pedido
         }
         private void RegistrarEntrega(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pedido.RegistrarEntrega((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+            NavigationService.Navigate(new Pedido.EditarPedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
 
         }
 

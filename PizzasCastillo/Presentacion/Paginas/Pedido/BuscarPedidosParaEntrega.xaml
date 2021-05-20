@@ -179,8 +179,8 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5"/>
-                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="30"/>
+                                      
 
                                     </Grid.ColumnDefinitions>
                                     <Button Style="{StaticResource IconoBoton}" Click="RegistrarEntrega" Grid.Column="0">

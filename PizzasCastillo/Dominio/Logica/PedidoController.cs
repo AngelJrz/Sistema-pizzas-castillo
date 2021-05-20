@@ -46,6 +46,23 @@ namespace Dominio.Logica
 
         }
 
+        public void ActualizarPedidoArticulos(Pedido pedido)
+        {
+            PedidosDAO dao = new PedidosDAO();
+
+            if (pedido.Tipo.Id == 1)
+            {
+                dao.ActualizarPedidoDatos(CloneDominioADatosParaLlevarEditar(pedido));
+            }
+            else
+            {
+                dao.ActualizarPedidoDatos(CloneDominioADatosLocalEditar(pedido));
+            }
+
+
+        }
+
+
 
 
         public AccesoADatos.Pedido CloneDominioADatosParaLlevar(Pedido pedidoAClonar)

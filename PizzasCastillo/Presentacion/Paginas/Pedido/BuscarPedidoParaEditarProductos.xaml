@@ -9,6 +9,12 @@
       d:DesignHeight="700" d:DesignWidth="1000"
       Title="BuscarPedidoParaEditarProductos">
 
+
+    <Page.Resources>
+        <local:ByteToImageConverter x:Name="convertidorImagen" x:Key="ConvertidorRutaImagen" />
+
+    </Page.Resources>
+
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
         <StackPanel Height="473">
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
@@ -179,12 +185,12 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5"/>
-                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="30"/>
+                                      
 
                                     </Grid.ColumnDefinitions>
                                     <Button Style="{StaticResource IconoBoton}" Click="RegistrarEntrega" Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="DeliveryDining" Foreground="{StaticResource Gris}" 
+                                        <materialDesign:PackIcon Kind="Edit" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
 
 
