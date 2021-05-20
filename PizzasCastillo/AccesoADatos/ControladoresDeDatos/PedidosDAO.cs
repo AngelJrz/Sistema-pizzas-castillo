@@ -66,8 +66,9 @@ namespace AccesoADatos.ControladoresDeDatos
             {
                 using (PizzasBDEntities connection = new PizzasBDEntities())
                 {
-                  var pedidoEncontrado = connection.Pedido.FirstOrDefault(x=>x.Id==pedido.Id);
-                  pedidoEncontrado.IdEstatusPedido = pedido.IdEstatusPedido;
+                    Pedido pedidoEditar = connection.Pedido.Where(x => x.Id == pedido.Id).FirstOrDefault();
+                    pedidoEditar.IdEstatusPedido = pedido.IdEstatusPedido;
+                    _resultado = connection.SaveChanges();
 
 
 

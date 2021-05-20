@@ -44,6 +44,9 @@ namespace Presentacion.Paginas.Pedido
         }
         private void GuardarPedido(object sender, RoutedEventArgs e)
         {
+            PedidoController controller = new PedidoController();
+            _pedido.Estatus = (Dominio.Enumeraciones.Tipo)ComboEstatus.SelectedItem;
+            controller.ActualizarPedidoEstatus(_pedido);
 
         }
 

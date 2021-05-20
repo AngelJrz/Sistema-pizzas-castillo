@@ -36,11 +36,11 @@ namespace Dominio.Logica
 
             if (pedido.Tipo.Id == 1)
             {
-                dao.RegistrarPedido(CloneDominioADatosParaLlevar(pedido));
+                dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevar(pedido));
             }
             else
             {
-                dao.RegistrarPedido(CloneDominioADatosLocal(pedido));
+                dao.ActualizarPedidoEstatus(CloneDominioADatosLocal(pedido));
             }
 
 
