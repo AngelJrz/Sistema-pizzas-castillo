@@ -56,6 +56,8 @@ namespace Presentacion.Paginas.Pedido
                     _pedido.Contiene.Remove((Contiene)ListaProductos.SelectedItem);
                     InteraccionUsuario err = new InteraccionUsuario("Exito", "Se Retiró este producto de la lista");
                     err.Show();
+                    ListaProductos.ItemsSource = null;
+                    ListaProductos.ItemsSource = _pedido.Contiene;
 
                 }
                 else {
