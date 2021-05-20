@@ -64,16 +64,17 @@ namespace AccesoADatos.ControladoresDeDatos
 
             try
             {
-                using (PizzasBDEntities connection = new PizzasBDEntities())
-                {
-                    Pedido pedidoEditar = connection.Pedido.Where(x => x.Id == pedido.Id).FirstOrDefault();
-                    pedidoEditar.IdEstatusPedido = pedido.IdEstatusPedido;
-                    _resultado = connection.SaveChanges();
+               
+                     Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
+
+                    pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
+                   connection.Entry(pedidoDB).State = EntityState.Modified;
+                    connection.SaveChanges();
 
 
 
                     _resultado = connection.SaveChanges();
-                }
+                
             }
             catch (DbUpdateException)
             {
@@ -92,13 +93,12 @@ namespace AccesoADatos.ControladoresDeDatos
 
             try
             {
-                using (PizzasBDEntities connection = new PizzasBDEntities())
-                {
-                    connection.Entry(pedido).State = EntityState.Modified;
 
-                    _resultado = connection.SaveChanges();
+                connection.Entry(pedido).State = EntityState.Modified;
 
-                }
+                _resultado = connection.SaveChanges();
+
+
             }
             catch (DbUpdateException)
             {

@@ -36,11 +36,11 @@ namespace Dominio.Logica
 
             if (pedido.Tipo.Id == 1)
             {
-                dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevar(pedido));
+                dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
             }
             else
             {
-                dao.ActualizarPedidoEstatus(CloneDominioADatosLocal(pedido));
+                dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
             }
 
 
@@ -64,6 +64,45 @@ namespace Dominio.Logica
 
             };
         }
+
+
+        public AccesoADatos.Pedido CloneDominioADatosParaLlevarEditar(Pedido pedidoAClonar)
+        {
+            return new AccesoADatos.Pedido()
+            {
+                Id = pedidoAClonar.Id,
+                Fecha = pedidoAClonar.Fecha,
+                Total = pedidoAClonar.Total,
+                IdPersona = pedidoAClonar.SolicitadoPor.Id,
+                IdEstatusPedido = pedidoAClonar.Estatus.Id,
+                IdTipoPedido = pedidoAClonar.Tipo.Id,
+                NumeroEmpleado = pedidoAClonar.RegistradoPor.NumeroEmpleado,
+                IdRepartidor = pedidoAClonar.RepartidoPor.Id,
+                Contiene = CloneDominioADatosContiene(pedidoAClonar.Contiene)
+
+            };
+        }
+
+
+        public AccesoADatos.Pedido CloneDominioADatosLocalEditar(Pedido pedidoAClonar)
+        {
+            return new AccesoADatos.Pedido()
+            {
+                Id=pedidoAClonar.Id,
+                Fecha = pedidoAClonar.Fecha,
+                Total = pedidoAClonar.Total,
+                IdPersona = pedidoAClonar.SolicitadoPor.Id,
+                IdEstatusPedido = pedidoAClonar.Estatus.Id,
+                NumeroEmpleado = pedidoAClonar.RegistradoPor.NumeroEmpleado,
+                IdTipoPedido = pedidoAClonar.Tipo.Id,
+                IdMesa = pedidoAClonar.Mesa.Id,
+                Contiene = CloneDominioADatosContiene(pedidoAClonar.Contiene)
+
+            };
+        }
+
+
+
 
 
         public AccesoADatos.Pedido CloneDominioADatosLocal(Pedido pedidoAClonar)
