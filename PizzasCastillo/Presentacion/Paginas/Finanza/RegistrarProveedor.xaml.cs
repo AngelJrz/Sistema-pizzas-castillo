@@ -174,5 +174,10 @@ namespace Presentacion.Paginas.Finanza
                 ventana.Show();
             }
         }
+
+        private void Cancelar(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

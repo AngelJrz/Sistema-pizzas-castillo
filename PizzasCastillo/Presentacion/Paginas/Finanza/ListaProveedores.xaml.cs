@@ -47,7 +47,7 @@ namespace Presentacion.Paginas.Finanza
 
         private void ClickSalir(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void ClickEditar(object sender, RoutedEventArgs e)

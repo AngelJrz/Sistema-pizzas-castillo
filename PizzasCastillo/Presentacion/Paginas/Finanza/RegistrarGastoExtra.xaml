@@ -14,7 +14,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
                 <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right"  TextWrapping="Wrap" Text="Tipo de gasto:" />
-                <ComboBox Name="tipoDeGasto" Margin="20,0,0,0" Width="300" ItemsSource="{Binding tipoDeGasto}" DisplayMemberPath="Nombre">
+                <ComboBox Name="tipoDeGasto" Margin="20,0,0,0" Width="300"  DisplayMemberPath="Nombre">
                 </ComboBox>
             </StackPanel>
 

@@ -37,33 +37,53 @@ namespace Presentacion.Paginas.Finanza
             List<Proveedor> listaDeProveedores = accesoProveedores.ObtenerProveedores();
             List<ArticuloVenta> listaDeArticulos = accesoArticulosVenta.ObtenerProductos();
 
-            tablaDeArticulos.ItemsSource = listaDeArticulos;
-            comboBoxProveedores.ItemsSource = listaDeProveedores;
+            if (listaDeArticulos.Count == 0 || 
+                listaDeProveedores.Count == 0)
+            {
+                MessageBox.Show("No se puede mostrar la ventana en este momento, asegurate que existen proveedores y articulos registrados", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                NavigationService.GoBack();
+            }
+            else
+            {
+                tablaDeArticulos.ItemsSource = listaDeArticulos;
+                comboBoxProveedores.ItemsSource = listaDeProveedores;
+                comboBoxProveedores.SelectedItem = listaDeProveedores.FirstOrDefault();
             
 
-            foreach (Proveedor proveedor in listaDeProveedores)
-            {
-                File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + proveedor.NombreArchivo, proveedor.ListaDeProductos);
+                foreach (Proveedor proveedor in listaDeProveedores)
+                {
+                    File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + proveedor.NombreArchivo, proveedor.ListaDeProductos);
+                }
+
             }
+
         }
 
         private void ClickConfirmar(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult resultado = MessageBox.Show($"¿Seguro que desea realizar el pedido? \n El costo total es: ${ObtenerCostoTotal(listaDeSolicitudes)}","Confirmación",MessageBoxButton.YesNo,MessageBoxImage.Question);
-            if (resultado == MessageBoxResult.Yes)
+            if (ObtenerCostoTotal(listaDeSolicitudes) != 0)
             {
-                PedidoAProveedor nuevoPedido = ObtenerPedido();
-                PedidoAProveedorController controller = new PedidoAProveedorController();
+                MessageBoxResult resultado = MessageBox.Show($"¿Seguro que desea realizar el pedido? \n El costo total es: ${ObtenerCostoTotal(listaDeSolicitudes)}", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    PedidoAProveedor nuevoPedido = ObtenerPedido();
+                    PedidoAProveedorController controller = new PedidoAProveedorController();
 
-                if (controller.RegistrarNuevoPedidoAProveedor(nuevoPedido))
-                {
-                    MessageBox.Show("El pedido se realizo correctamente");
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrio un error durante el registro");
+                    if (controller.RegistrarNuevoPedidoAProveedor(nuevoPedido))
+                    {
+                        MessageBox.Show("El pedido se realizo correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error durante el registro");
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Debes seleccionar articulos para realizar un pedido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void ClickCancelar(object sender, RoutedEventArgs e)
@@ -89,7 +109,7 @@ namespace Presentacion.Paginas.Finanza
                         }
                     });
 
-                    MessageBox.Show("Solicitaste " + cantidadSolicitada + " de " + articuloSeleccionado.Nombre);
+                    MessageBox.Show("Producto agregado");
                 }
             }
         }

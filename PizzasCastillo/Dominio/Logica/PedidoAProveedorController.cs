@@ -12,6 +12,8 @@ namespace Dominio.Logica
     {
         private int ID_PEDIDO_ENTREGADO = 1;
         private int ID_PEDIDO_CANCELADO = 2;
+        private int ID_PEDIDO_SOLICITADO = 3;
+
         public bool RegistrarNuevoPedidoAProveedor(PedidoAProveedor nuevoPedido)
         {
             PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
@@ -27,7 +29,10 @@ namespace Dominio.Logica
 
             foreach (AccesoADatos.PedidoAProveedor pedidoDatos in listaDePedidosdatos)
             {
-                listaARetornar.Add(PedidoAProveedor.Clone(pedidoDatos));
+                if (pedidoDatos.IdEstatusPedidoAProveedor == ID_PEDIDO_SOLICITADO)
+                {
+                    listaARetornar.Add(PedidoAProveedor.Clone(pedidoDatos));
+                }
             }
 
             return listaARetornar;

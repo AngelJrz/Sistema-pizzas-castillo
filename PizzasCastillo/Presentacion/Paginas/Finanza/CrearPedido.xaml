@@ -15,7 +15,7 @@
     <ScrollViewer>
         <StackPanel>
             <Image HorizontalAlignment="Center" Margin="0,20,0,0" Width="300" Height="400" Source="{Binding ElementName = comboBoxProveedores,Path = SelectedValue.NombreArchivo,Converter={StaticResource convertidorRutaImagen}}"/>
-            <ComboBox Name="comboBoxProveedores" HorizontalAlignment="Center" Width="120" Margin="0,20,0,20" SelectedItem="{Binding Nombre}" DisplayMemberPath="Nombre">
+            <ComboBox Name="comboBoxProveedores" HorizontalAlignment="Center" Width="120" Margin="0,20,0,20" DisplayMemberPath="Nombre">
             </ComboBox>
             <TextBlock x:Name="sumaTotal"></TextBlock>
             <DataGrid Name="tablaDeArticulos" Height="280" CanUserAddRows="false" HorizontalAlignment="Center" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false"  FontFamily="Se">

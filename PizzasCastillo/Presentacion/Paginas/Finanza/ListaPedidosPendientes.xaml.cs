@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Logica;
 using Dominio.Entidades;
+using System.Collections.ObjectModel;
 
 namespace Presentacion.Paginas.Finanza
 {
@@ -22,13 +23,23 @@ namespace Presentacion.Paginas.Finanza
     /// </summary>
     public partial class ListaPedidosPendientes : Page
     {
+        PedidoAProveedorController accesoAPedidos = new PedidoAProveedorController();
+        ObservableCollection<PedidoAProveedor> listaObservable;
+
         public ListaPedidosPendientes()
         {
             InitializeComponent();
-            PedidoAProveedorController accesoAPedidos = new PedidoAProveedorController();
-            List<PedidoAProveedor> listaDePedidos = accesoAPedidos.ObtenerPedidosAProveedores();
+            listaObservable = new ObservableCollection<PedidoAProveedor>(accesoAPedidos.ObtenerPedidosAProveedores());
 
-            tablaDePedidos.ItemsSource = listaDePedidos;
+            if (listaObservable.Count == 0)
+            {
+                MessageBox.Show("No se encuentras pedidos registrados, intente mas tarde", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                NavigationService.GoBack();
+            }
+            else
+            {
+                tablaDePedidos.ItemsSource = listaObservable;
+            }
         }
 
         private void ClickConfirmar(object sender, RoutedEventArgs e)
@@ -39,12 +50,22 @@ namespace Presentacion.Paginas.Finanza
 
         private void CancelarPedido(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult opscionSeleccionada = MessageBox.Show("Estas seguro de cancelar el pedido?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+            if (opscionSeleccionada == MessageBoxResult.Yes) {
+                PedidoAProveedor pedidoSeleccioado = (PedidoAProveedor)tablaDePedidos.SelectedItem;
+                if (accesoAPedidos.CancelarPedidoAProveedor(pedidoSeleccioado))
+                {
+                    MessageBox.Show("El pedido se cancelo correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    listaObservable.Remove(pedidoSeleccioado);
+                }
+            }
+            
         }
 
         private void ClickSalir(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
     }
 }

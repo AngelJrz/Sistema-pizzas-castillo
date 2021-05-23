@@ -75,7 +75,7 @@ namespace Presentacion.Paginas.Finanza
 
         private void ClickCancelar(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private bool ValidarCampos()
