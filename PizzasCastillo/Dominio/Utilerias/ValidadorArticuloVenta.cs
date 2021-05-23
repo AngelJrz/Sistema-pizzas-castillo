@@ -17,8 +17,6 @@ namespace Dominio.Utilerias
             RuleFor(x => x.Precio).NotEmpty().NotNull();
             RuleFor(x => x.NombreFoto).NotEmpty().NotNull();
             RuleFor(x => x.Nombre).NotEmpty().NotNull().MinimumLength(5);
-            RuleFor(x => x.Platillo.Receta).NotEmpty().MinimumLength(10);
-            RuleFor(x => x.Platillo.Consume).NotNull().NotEmpty();
         }
 
         public bool Validar(ArticuloVenta articuloVenta)

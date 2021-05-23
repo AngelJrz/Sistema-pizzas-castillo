@@ -75,7 +75,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                
+
                                 <TextBlock Text="{Binding NumeroEmpledado}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
@@ -171,7 +171,7 @@
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Opciones" Width="200" MinWidth="200" MaxWidth="200" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
-                        
+
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>

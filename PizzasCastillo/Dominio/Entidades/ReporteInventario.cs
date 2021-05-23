@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dominio.Entidades
 {
@@ -14,16 +12,27 @@ namespace Dominio.Entidades
         public Empleado GeneradoPor { get; set; }
         public virtual List<Reporta> Reporta { get; set; }
 
-        public static ReporteInventario Clone(AccesoADatos.ReporteInventario reporta)
+        public static ReporteInventario Clone(AccesoADatos.ReporteInventario reporte)
         {
             return new ReporteInventario
+            {
+                IdReporte = reporte.IdReporte,
+                Fecha = reporte.Fecha,
+                Nombre = reporte.Nombre,
+                GeneradoPor = Empleado.Clone(reporte.Empleado),
+                Reporta = Entidades.Reporta.CloneList(reporte.Reporta.ToList())
+            };
+        }
+
+        public static AccesoADatos.ReporteInventario CloneToDBEntity(ReporteInventario reporta)
+        {
+            return new AccesoADatos.ReporteInventario
             {
                 IdReporte = reporta.IdReporte,
                 Fecha = reporta.Fecha,
                 Nombre = reporta.Nombre,
-                GeneradoPor = Empleado.Clone(reporta.Empleado),
-                Reporta = Entidades.Reporta.CloneList(reporta.Reporta.ToList())
-
+                NumeroEmpleado = reporta.GeneradoPor.NumeroEmpleado,
+                Reporta = Entidades.Reporta.CloneToDBEntityList(reporta.Reporta.ToList())
             };
         }
     }

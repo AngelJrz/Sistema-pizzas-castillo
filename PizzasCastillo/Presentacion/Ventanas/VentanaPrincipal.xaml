@@ -42,7 +42,6 @@
             <StackPanel x:Name="MenuSuperior" Grid.Row="0" Background="{StaticResource ColorSecundario}">
                 
             </StackPanel>
-
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
                    Source="/Paginas/Finanza/ListaPedidosPendientes.xaml"/>
 
