@@ -36,7 +36,7 @@ namespace Dominio.Utilerias
                 writer = new PdfWriter(finalPath);
                 PdfDocument pdfDocument = new PdfDocument(writer);
                 iText.Layout.Document document = new iText.Layout.Document(pdfDocument, PageSize.LETTER);
-                document.SetMargins(95, 35, 70, 35);
+                document.SetMargins(50, 35, 50, 35);
 
                 document.Add(Encabezado().SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.LEFT));
                 document.Add(GenerarTablaInformacionGeneral(nuevoReporte).SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER));
@@ -74,42 +74,34 @@ namespace Dominio.Utilerias
                 .SetFontSize(10f)
                 .SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD));
 
-            Table informationTable = new Table(4).SetWidth(500).SetMargin(25);
+            Table informationTable = new Table(4).SetWidth(500).SetMargin(10);
 
-            Cell informationCell = new Cell(1, 4).Add(new Paragraph("Datos Generales del día"));
+            Cell informationCell = new Cell(1, 4).Add(new Paragraph("Datos del Reporte"));
             informationTable.AddHeaderCell(informationCell.AddStyle(styleHeaderText));
-
-            informationCell = new Cell().Add(new Paragraph("Numero de Empleado: "));
+            informationCell = new Cell(2, 1).Add(new Paragraph("Nombre del reporte informe: "));
             informationTable.AddCell(informationCell.AddStyle(styleLabelText));
-            informationCell = new Cell().Add(new Paragraph(reporte.GeneradoPor.NumeroEmpleado));
-            informationCell = new Cell().Add(new Paragraph("Empleado Encargado: "));
-            informationTable.AddCell(informationCell.AddStyle(styleLabelText));
-            informationCell = new Cell().Add(new Paragraph(reporte.GeneradoPor.NombreCompleto));
+            informationCell = new Cell(2, 2).Add(new Paragraph(reporte.Nombre));
             informationTable.AddCell(informationCell.AddStyle(styleText));
-            informationCell = new Cell().Add(new Paragraph("Fecha de inspección del inventario: "));
+            informationCell = new Cell(2, 3).Add(new Paragraph("Fecha del reporte: "));
             informationTable.AddCell(informationCell.AddStyle(styleLabelText));
-            informationCell = new Cell();
-            informationTable.AddCell(informationCell);
-
-            informationCell = new Cell(1, 4).Add(new Paragraph("Datos del Empleado"));
+            informationCell = new Cell(2, 4).Add(new Paragraph(DateTime.Now.ToString("HH:mm MM/dd/yyyy")));
+            informationTable.AddCell(informationCell.AddStyle(styleText));
+            informationCell = new Cell(3, 4).Add(new Paragraph("Datos del Empleado"));
             informationTable.AddCell(informationCell.AddStyle(styleHeaderText));
-
-            informationCell = new Cell().Add(new Paragraph("Telefono: "));
+            informationCell = new Cell(4,1).Add(new Paragraph("Numero de Empleado: "));
             informationTable.AddCell(informationCell.AddStyle(styleLabelText));
-            informationCell = new Cell().Add(new Paragraph(reporte.GeneradoPor.Telefono));
+            informationCell = new Cell(4,2).Add(new Paragraph(reporte.GeneradoPor.NumeroEmpleado));
+            informationCell = new Cell(4,3).Add(new Paragraph("Nombre: "));
+            informationTable.AddCell(informationCell.AddStyle(styleLabelText));
+            informationCell = new Cell(4,4).Add(new Paragraph(reporte.GeneradoPor.NombreCompleto));
             informationTable.AddCell(informationCell.AddStyle(styleText));
-            informationCell = new Cell().Add(new Paragraph("Tipo de Empleado: "));
+            informationCell = new Cell(5,1).Add(new Paragraph("Telefono: "));
             informationTable.AddCell(informationCell.AddStyle(styleLabelText));
-            informationCell = new Cell().Add(new Paragraph(reporte.GeneradoPor.TipoUsuario.Nombre));
+            informationCell = new Cell(5,2).Add(new Paragraph(reporte.GeneradoPor.Telefono));
             informationTable.AddCell(informationCell.AddStyle(styleText));
-
-            informationCell = new Cell().Add(new Paragraph("Fecha del reporte: "));
+            informationCell = new Cell(5,3).Add(new Paragraph("Tipo de Empleado: "));
             informationTable.AddCell(informationCell.AddStyle(styleLabelText));
-            informationCell = new Cell().Add(new Paragraph(DateTime.Now.ToString("MM/dd/yyyy")));
-            informationTable.AddCell(informationCell.AddStyle(styleText));
-            informationCell = new Cell().Add(new Paragraph("Nombre del reporte informe: "));
-            informationTable.AddCell(informationCell.AddStyle(styleLabelText));
-            informationCell = new Cell().Add(new Paragraph(reporte.Nombre));
+            informationCell = new Cell(5,4).Add(new Paragraph(reporte.GeneradoPor.TipoUsuario.Nombre));
             informationTable.AddCell(informationCell.AddStyle(styleText));
 
             return informationTable;
@@ -129,10 +121,10 @@ namespace Dominio.Utilerias
                 .SetFontSize(10f)
                 .SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD));
 
-            Table productosReportados = new Table(6).SetWidth(500).SetMargin(25);
+            Table productosReportados = new Table(6).SetWidth(600).SetMargin(10);
             Cell informationCell = new Cell(1, 6).Add(new Paragraph("Tabla de Productos en Inventario"));
             productosReportados.AddHeaderCell(informationCell.AddStyle(styleHeaderText));
-            informationCell = new Cell(2, 1).Add(new Paragraph("Código de Barra"));
+            informationCell = new Cell(2, 1).Add(new Paragraph("Código Barra"));
             productosReportados.AddCell(informationCell.AddStyle(styleHeaderText));
             informationCell = new Cell(2, 2).Add(new Paragraph("Nombre"));
             productosReportados.AddCell(informationCell.AddStyle(styleHeaderText));
