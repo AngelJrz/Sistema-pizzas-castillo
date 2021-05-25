@@ -15,6 +15,9 @@ namespace Dominio.Logica
     public class EmpleadoController
     {
         private UsuarioDAO usuarioDAO;
+        private List<Empleado> empleados;
+        private List<AccesoADatos.Empleado> empleadosBd;
+        private const int NUMERO_EMPLEADO_LENGTH = 8;
 
         public EmpleadoController()
         {
@@ -94,7 +97,6 @@ namespace Dominio.Logica
 
         public List<Empleado> ObtenerEmpleadosActivos()
         {
-            List<AccesoADatos.Persona> empleadosBd;
             try
             {
                 empleadosBd = usuarioDAO.ObtenerEmpleadosActivos();
@@ -109,7 +111,7 @@ namespace Dominio.Logica
             }
 
 
-            List<Empleado> empleados = Empleado.FullCloneList(empleadosBd);
+            empleados = Empleado.FullCloneList(empleadosBd);
 
             return empleados;
         }
@@ -178,6 +180,75 @@ namespace Dominio.Logica
             }
 
             return seDioDeBaja;
+        }
+
+        public List<Empleado> ObtenerEmpleadosPorNombre(string nombre)
+        {
+            if (String.IsNullOrEmpty(nombre))
+                return new List<Empleado>();
+
+            try
+            {
+                empleadosBd = usuarioDAO.ObtenerEmpleadosPorNombre(nombre);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (ConexionFallidaException)
+            {
+                throw;
+            }
+
+            empleados = Empleado.FullCloneList(empleadosBd);
+
+            return empleados;
+        }
+
+        public List<Empleado> ObtenerEmpleadosPorNumeroEmpleado(string numeroEmpleado)
+        {
+            if (String.IsNullOrEmpty(numeroEmpleado) || numeroEmpleado.Length > NUMERO_EMPLEADO_LENGTH)
+                return new List<Empleado>();
+
+            try
+            {
+                empleadosBd = usuarioDAO.ObtenerEmpleadosPorNumeroEmpleado(numeroEmpleado);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (ConexionFallidaException)
+            {
+                throw;
+            }
+
+            empleados = Empleado.FullCloneList(empleadosBd);
+
+            return empleados;
+        }
+
+        public List<Empleado> ObtenerEmpleadosPorTelefono(string telefono)
+        {
+            if (String.IsNullOrEmpty(telefono) || telefono.Length > 10)
+                return new List<Empleado>();
+
+            try
+            {
+                empleadosBd = usuarioDAO.ObtenerEmpleadosPorTelefono(telefono);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (ConexionFallidaException)
+            {
+                throw;
+            }
+
+            empleados = Empleado.FullCloneList(empleadosBd);
+
+            return empleados;
         }
     }
 }

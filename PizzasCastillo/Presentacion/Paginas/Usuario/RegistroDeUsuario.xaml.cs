@@ -175,5 +175,9 @@ namespace Presentacion.Paginas.Usuario
                 validadorEmpleado.Validar(empleado);
         }
 
+        private void Cancelar_Clic(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListaDeUsuarios());
+        }
     }
 }

@@ -46,6 +46,10 @@ namespace Presentacion.Paginas.Usuario
 
         }
 
+        private void RealizarBusqueda()
+        {
+
+        }
         private void ConsultarTipoUsuario(object sender, RoutedEventArgs e)
         {
 
@@ -136,6 +140,21 @@ namespace Presentacion.Paginas.Usuario
         private void NuevoTipoRegistrado(object sender, EventArgs e)
         {
             _tiposUsuario.Add(ventanaRegistroTipoUsuario.TipoUsuarioRegistrado);
+        }
+
+        private void Regresar_Clic(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListaDeUsuarios());
+        }
+
+        private void Buscar_Clic(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LimpiarBusqueda_Clic(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

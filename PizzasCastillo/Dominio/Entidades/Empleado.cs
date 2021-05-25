@@ -47,30 +47,27 @@ namespace Dominio.Entidades
             };
         }
 
-        public static List<Empleado> FullCloneList(List<AccesoADatos.Persona> empleados)
+        public static List<Empleado> FullCloneList(List<AccesoADatos.Empleado> empleados)
         {
             List<Empleado> list = new List<Empleado>();
-            AccesoADatos.Empleado empleadoTemporal;
 
             foreach (var empleado in empleados)
             {
-                empleadoTemporal = empleado.Empleado.ToList()[0];
-
                 list.Add(new Empleado
                 {
-                    Id = empleado.Id,
-                    Nombres = empleado.Nombres,
-                    Apellidos = empleado.Apellidos,
-                    Telefono = empleado.Telefono,
-                    Email = empleado.Email,
-                    Estatus = (int)empleado.Estatus,
-                    TipoUsuario = Tipo.Clone(empleado.TipoUsuario),
-                    Direcciones = Entidades.Direccion.CloneList(empleado.Direccion.ToList()),
-                    NumeroEmpleado = empleadoTemporal.NumeroEmpleado,
-                    Username = empleadoTemporal.Username,
-                    Contrasenia = empleadoTemporal.Contrasenia,
-                    SalarioQuincenal = empleadoTemporal.SalarioQuincenal,
-                    FechaRegistro = empleadoTemporal.FechaRegistro
+                    Id = empleado.Persona.Id,
+                    Nombres = empleado.Persona.Nombres,
+                    Apellidos = empleado.Persona.Apellidos,
+                    Telefono = empleado.Persona.Telefono,
+                    Email = empleado.Persona.Email,
+                    Estatus = (int)empleado.Persona.Estatus,
+                    TipoUsuario = Tipo.Clone(empleado.Persona.TipoUsuario),
+                    Direcciones = Entidades.Direccion.CloneList(empleado.Persona.Direccion.ToList()),
+                    NumeroEmpleado = empleado.NumeroEmpleado,
+                    Username = empleado.Username,
+                    Contrasenia = empleado.Contrasenia,
+                    SalarioQuincenal = empleado.SalarioQuincenal,
+                    FechaRegistro = empleado.FechaRegistro
                 });
             }
 
