@@ -168,6 +168,9 @@
     <Compile Include="Paginas\Producto\RegistroDeProducto.xaml.cs">
       <DependentUpon>RegistroDeProducto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Usuario\EditarUsuario.xaml.cs">
+      <DependentUpon>EditarUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Usuario\ListaDeUsuarios.xaml.cs">
       <DependentUpon>ListaDeUsuarios.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,7 @@
       <DependentUpon>TiposUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Recursos\RecursosGlobales.cs" />
+    <Compile Include="Recursos\Singleton.cs" />
     <Compile Include="Ventanas\Confirmacion.xaml.cs">
       <DependentUpon>Confirmacion.xaml</DependentUpon>
     </Compile>
@@ -232,7 +236,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
@@ -324,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Producto\RegistroDeProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Usuario\EditarUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,7 +11,12 @@ namespace Dominio.Enumeraciones
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int Estatus { get; set; }
+        public int Estatus { get; set; } = 1;
+        public string Status
+        {
+            get { return Estatus == 1 ? "Activo" : "No Activo"; }
+            set { }
+        }
 
         public static Tipo Clone(AccesoADatos.TipoGasto tipo)
         {
@@ -63,6 +68,15 @@ namespace Dominio.Enumeraciones
             };
         }
 
+        public static AccesoADatos.TipoUsuario CloneToEntityDB(Tipo tipoUsuario)
+        {
+            return new AccesoADatos.TipoUsuario
+            {
+                Nombre = tipoUsuario.Nombre,
+                Estatus = tipoUsuario.Estatus
+            };
+        }
+
         public static Tipo Clone(AccesoADatos.EstatusPedido tipo)
         {
             return new Tipo
@@ -102,12 +116,27 @@ namespace Dominio.Enumeraciones
                     Id = tipoProducto.Id,
                     Estatus = tipoProducto.Estatus
                 }
+            
+            ));
+
+            return list;
+        }
+
+        public static List<Tipo> CloneList(List<AccesoADatos.TipoUsuario> tiposUsuario)
+        {
+            List<Tipo> list = new List<Tipo>();
+            tiposUsuario.ToList().ForEach(tipoUsuario => list.Add(
+                new Tipo
+                {
+                    Nombre = tipoUsuario.Nombre,
+                    Id = tipoUsuario.Id,
+                    Estatus = tipoUsuario.Estatus
+                }
             ));
             return list;
         }
 
-        public string ObtenerEtiquetaTipoProducto()
-        {
+        public string ObtenerEtiquetaTipoProducto(){
             string etiqueta = "";
 
             switch (Nombre)
@@ -117,6 +146,32 @@ namespace Dominio.Enumeraciones
                     break;
                 case "Insumo":
                     etiqueta = "INS";
+                    break;
+            }
+
+            return etiqueta;
+        }
+        
+        public string ObtenerEtiquetaTipoEmpleado()
+        {
+            string etiqueta = "";
+
+            switch (Nombre)
+            {
+                case "Gerente":
+                    etiqueta = "GER";
+                    break;
+                case "Encargado de caja":
+                    etiqueta = "CAJ";
+                    break;
+                case "Contador":
+                    etiqueta = "CON";
+                    break;
+                case "Mesero":
+                    etiqueta = "MES";
+                    break;
+                case "Cocinero":
+                    etiqueta = "COC";
                     break;
             }
 

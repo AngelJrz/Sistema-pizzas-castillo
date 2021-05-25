@@ -82,6 +82,9 @@
     <Compile Include="ControladoresDeDatos\ReporteInventarioDAO.cs" />
     <Compile Include="ControladoresDeDatos\TipoDeGastoDAO.cs" />
     <Compile Include="ControladoresDeDatos\TipoProductoDAO.cs" />
+    <Compile Include="ControladoresDeDatos\TipoUsuarioDAO.cs" />
+    <Compile Include="ControladoresDeDatos\UsuarioDAO.cs" />
+    <Compile Include="Direccion.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
     <Compile Include="DireccionProveedor.cs">
@@ -100,6 +103,8 @@
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
     <Compile Include="Excepciones\ConexionFallidaException.cs" />
+    <Compile Include="Excepciones\ModificacionDBFallidaException.cs" />
+    <Compile Include="Excepciones\ValidacionEntityException.cs" />
     <Compile Include="GastoExtra.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
@@ -204,6 +209,10 @@
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

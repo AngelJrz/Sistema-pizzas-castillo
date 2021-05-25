@@ -33,17 +33,28 @@
                     </ComboBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1">
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <TextBlock Text="Búsqueda:" Style="{StaticResource TituloCamposStyle}"
                                HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                    <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
+                    <TextBox x:Name="BusquedaText" Style="{StaticResource InputDefaultStyle}"
                                  Width="500" 
                                  HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                    <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
-                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <StackPanel Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Style="{StaticResource BotonSecundarioStyle}"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Width="70" Margin="0,0,10,0" Click="Buscar_Clic">
+                        <materialDesign:PackIcon Kind="Search" Foreground="White" 
+                                 Width="25" Height="25"/>
+                    </Button>
+
+                    <Button Style="{StaticResource BotonSecundarioStyle}"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Width="70" Visibility="Collapsed"
+                            x:Name="LimpiarBusquedaBtn" Click="LimpiarBusqueda_Clic">
+                        <materialDesign:PackIcon Kind="Trash" Foreground="White" 
+                                 Width="25" Height="25"/>
+                    </Button>
                 </StackPanel>
             </Grid>
 
@@ -75,8 +86,8 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-
-                                <TextBlock Text="{Binding NumeroEmpledado}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                
+                                <TextBlock Text="{Binding NumeroEmpleado}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -98,7 +109,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding NombreCompleto}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -142,7 +153,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding TipoUsuario}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding TipoUsuario.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -164,7 +175,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Estatus}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Status}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -215,7 +226,7 @@
             </DataGrid>
 
             <Button Content="Administrar tipos de usuario" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="IrATiposUsuarios"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

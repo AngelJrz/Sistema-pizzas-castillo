@@ -20,16 +20,16 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Source="/Imagenes/logo.png"/>
+            <Image Grid.Row="0" Source="/Imagenes/logo.png" Cursor="Hand" PreviewMouseDown="IrAInicio_PrewiewMouseDown"/>
 
             <StackPanel Grid.Row="1">
-                <TextBlock Text="Rodrigo López López" Style="{StaticResource NombreUsuarioStyle}"/>
-                <TextBlock Text="Gerente" Style="{StaticResource TipoUsuarioStyle}"/>
+                <TextBlock Text="{Binding NombreCompleto}" Style="{StaticResource NombreUsuarioStyle}"/>
+                <TextBlock x:Name="TipoUsuarioText" Text="{Binding TipoUsuario.Nombre}" Style="{StaticResource TipoUsuarioStyle}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2">
                 <Button x:Name="CerrarSesion" Style="{StaticResource BotonPrincipalStyle}" 
-                        Content="Cerrar sesión" Margin="0,180,0,0"/>
+                        Content="Cerrar sesión" Margin="0,180,0,0" Click="CerrarSesion_Click"/>
             </StackPanel>
         </Grid>
 
@@ -39,11 +39,69 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel x:Name="MenuSuperior" Grid.Row="0" Background="{StaticResource ColorSecundario}">
+            <Grid x:Name="MenuSuperiorGerente" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
                 
-            </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Usuarios" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
+                              PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Productos" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"
+                           />
+                <TextBlock Text="Proveedores" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Estadísticas" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Gastos" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Clientes" Grid.Column="5" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                
+            </Grid>
+
+            <Grid x:Name="MenuSuperiorEncargadoCaja" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
+                              PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Clientes" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"
+                           />
+                <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+            </Grid>
+
+            <Grid x:Name="MenuSuperiorMeseroCocina" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
+                              PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+            </Grid>
+
+            <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Corte de caja" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
+                              PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+            </Grid>
+
+
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
-                   Source="/Paginas/Finanza/ListaPedidosPendientes.xaml"/>
+                   Source="/Paginas/Inicio.xaml"/>
 
         </Grid>
         

@@ -33,6 +33,26 @@ namespace Dominio.Entidades
                 Colonia = direccion.Colonia
             };
         }
+
+        public static List<AccesoADatos.Direccion> CloneToEntityDBList(List<Direccion> direcciones)
+        {
+            List<AccesoADatos.Direccion> list = new List<AccesoADatos.Direccion>();
+            direcciones.ForEach(direccion => list.Add(
+                new AccesoADatos.Direccion
+                {
+                    Calle = direccion.Calle,
+                    Ciudad = direccion.Ciudad,
+                    CodigoPostal = direccion.CodigoPostal,
+                    NumeroInterior = direccion.NumeroInterior,
+                    Referencias = direccion.Referencias,
+                    NumeroExterior = direccion.NumeroExterior,
+                    EntidadFederativa = direccion.EntidadFederativa,
+                    Colonia = direccion.Colonia
+                }
+            ));
+            return list;
+        }
+
         public static List<Direccion> CloneList(List<AccesoADatos.Direccion> direcciones)
         {
             List<Direccion> list = new List<Direccion>();

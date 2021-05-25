@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AccesoADatos.Excepciones
 {
-    public class ConexionFallidaException : Exception
+    public class ModificacionDBFallidaException : Exception
     {
-        public ConexionFallidaException(Exception ex)
+        public ModificacionDBFallidaException(Exception ex)
             : base(ex.Message)
         {
 

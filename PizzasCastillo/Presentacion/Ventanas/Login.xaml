@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         Icon="/Imagenes/logo.png"
-        Title="Iniciar sesión" Height="650" Width="1050">
+        Title="Iniciar sesión" Height="650" Width="1050" Closing="Window_Closing">
     <Grid Background="{StaticResource AzulCastilloLight}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
@@ -45,7 +45,8 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=usuarioText}">
                             <TextBox x:Name="usuarioText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="30"  KeyDown="ControlarTeclaEnter"/>
+                                     MaxLength="30" KeyDown="ControlarTeclaEnter" GotTouchCapture="AbrirTeclado_Touch"
+                                     LostFocus="CerrarTeclado"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -64,7 +65,8 @@
 
                         <StackPanel Grid.Column="1">
                             <PasswordBox x:Name="passwordText" Template="{StaticResource PasswordControlTemplate}"
-                                         MaxLength="255"/>
+                                         MaxLength="255" GotTouchCapture="AbrirTeclado_Touch"
+                                         LostFocus="CerrarTeclado" KeyDown="ControlarTeclaEnter"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

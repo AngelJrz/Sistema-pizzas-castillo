@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AccesoADatos.Excepciones
 {
-    public class ConexionFallidaException : Exception
+    public class ValidacionEntityException : Exception
     {
-        public ConexionFallidaException(Exception ex)
-            : base(ex.Message)
+        public ValidacionEntityException(string message)
+            : base(message)
         {
 
         }

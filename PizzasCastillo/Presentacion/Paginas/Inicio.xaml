@@ -10,6 +10,9 @@
       Title="Inicio">
 
     <Grid Background="{StaticResource AzulCastilloLight}">
-        
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="BIENVENIDO AL SISTEMA DE 'PIZZAS CASTILLO'" Style="{StaticResource TituloStyle}" HorizontalAlignment="Center"/>
+            <TextBlock Text="SELECCIONA UNA OPCIÓN DEL MENÚ SUPERIOR" Style="{StaticResource TituloCamposStyle}" HorizontalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </Page>
