@@ -27,5 +27,18 @@ namespace Dominio.Entidades
                 ));
             return list;
         }
+
+        public static List<AccesoADatos.Indica> CloneListDA(List<Indica> indica)
+        {
+            List<AccesoADatos.Indica> list = new List<AccesoADatos.Indica>();
+            indica.ToList().ForEach(i => list.Add(
+                new AccesoADatos.Indica
+                {
+                    Cantidad = i.Cantidad,
+                    CodigoBarra = i.Producto.CodigoBarra
+                }
+                ));
+            return list;
+        }
     }
 }

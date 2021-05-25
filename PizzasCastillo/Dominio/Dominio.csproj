@@ -114,6 +114,7 @@
     <Compile Include="Logica\PedidoAProveedorController.cs" />
     <Compile Include="Logica\EfectivoController.cs" />
     <Compile Include="Logica\DireccionController.cs" />
+    <Compile Include="Logica\MermaController.cs" />
     <Compile Include="Logica\PlatilloController.cs" />
     <Compile Include="Logica\ProveedorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

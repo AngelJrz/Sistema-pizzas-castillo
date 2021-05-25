@@ -18,6 +18,48 @@ namespace Dominio.Logica
             return articuloVentaDAO.RegistrarArticuloVenta(CloneArticuloPlatillo(articuloVenta));
         }
 
+        public bool ActualizarPlatilloVenta(ArticuloVenta articuloVenta)
+        {
+            ArticuloVentaDAO articuloVentaDAO = new ArticuloVentaDAO();
+
+            return articuloVentaDAO.ActualizarArticuloVenta(CloneActualizarArticuloPlatillo(articuloVenta));
+
+        }
+
+        private AccesoADatos.ArticuloVenta CloneActualizarArticuloPlatillo(ArticuloVenta articuloVenta)
+        {
+            List<AccesoADatos.Consume> consumesCollection = new List<AccesoADatos.Consume>();
+
+            foreach (Consume c in articuloVenta.Platillo.Consume)
+            {
+                consumesCollection.Add(new AccesoADatos.Consume
+                {
+                    Cantidad = c.Cantidad,
+                    PlatilloCodigoBarra = articuloVenta.CodigoBarra,
+                    ProductoCodigoBarra = c.Producto.CodigoBarra
+                });
+            }
+
+            return new AccesoADatos.ArticuloVenta
+            {
+                CodigoBarra = articuloVenta.CodigoBarra,
+                Nombre = articuloVenta.Nombre,
+                Precio = articuloVenta.Precio,
+                Foto = articuloVenta.Foto,
+                Estatus = articuloVenta.Estatus,
+                EsPlatillo = articuloVenta.EsPlatillo,
+                NombreFoto = articuloVenta.NombreFoto,
+                Platillo = new AccesoADatos.Platillo
+                {
+                    CodigoBarra = articuloVenta.CodigoBarra,
+                    FechaRegisto = DateTime.Now,
+                    Receta = articuloVenta.Platillo.Receta,
+                    Consume = consumesCollection
+                },
+            };
+        }
+
+
         private AccesoADatos.ArticuloVenta CloneArticuloPlatillo(ArticuloVenta articuloVenta)
         {
             List<AccesoADatos.Consume> consumesCollection = new List<AccesoADatos.Consume>();
@@ -27,7 +69,7 @@ namespace Dominio.Logica
             if (numeroPlatillos < 9)
             {
                 numeroPlatillos += 1;
-                clavePlatillo = CLAVE_PLATILLO +"0000"+ numeroPlatillos ;
+                clavePlatillo = CLAVE_PLATILLO + "0000" + numeroPlatillos;
             }
             else
             {
@@ -53,7 +95,7 @@ namespace Dominio.Logica
                         else
                         {
                             numeroPlatillos += 1;
-                            clavePlatillo = CLAVE_PLATILLO  + numeroPlatillos;
+                            clavePlatillo = CLAVE_PLATILLO + numeroPlatillos;
                         }
                     }
                 }
@@ -83,7 +125,7 @@ namespace Dominio.Logica
                     CodigoBarra = clavePlatillo,
                     FechaRegisto = DateTime.Now,
                     Receta = articuloVenta.Platillo.Receta,
-                    Consume= consumesCollection
+                    Consume = consumesCollection
                 },
             };
         }
@@ -96,6 +138,37 @@ namespace Dominio.Logica
             List<ArticuloVenta> articulos = ArticuloVenta.CloneListProducto(productosBD);
 
             return articulos;
+        }
+
+        public ArticuloVenta ObtenerProducto(string id)
+        {
+            ArticuloVentaDAO articuloDAO = new ArticuloVentaDAO();
+            AccesoADatos.ArticuloVenta productoBD = articuloDAO.ObtenerProducto(id);
+
+            ArticuloVenta articulo = ArticuloVenta.CloneProducto(productoBD);
+
+            return articulo;
+        }
+
+        public List<ArticuloVenta> ObtenerProductosPlatilo()
+        {
+            ArticuloVentaDAO articuloDAO = new ArticuloVentaDAO();
+            List<AccesoADatos.ArticuloVenta> productosBD = articuloDAO.ObtenerProductos();
+
+            List<ArticuloVenta> articulos = ArticuloVenta.CloneListProducto(productosBD);
+
+            return articulos;
+        }
+
+        public List<ArticuloVenta> ObtenerPlatillos()
+        {
+            ArticuloVentaDAO articuloDAO = new ArticuloVentaDAO();
+            List<AccesoADatos.ArticuloVenta> platillosBD = articuloDAO.ObtenerPlatillos();
+
+            List<ArticuloVenta> platillos = ArticuloVenta.CloneListPlatillo(platillosBD);
+
+            return platillos;
+
         }
 
     }

@@ -20,6 +20,7 @@ namespace Dominio.Entidades
         {
             return new Producto
             {
+                CodigoBarra = producto.CodigoBarra,
                 Cantidad = producto.Cantidad,
                 Descripcion = producto.Descripcion,
                 PrecioCompra = producto.PrecioCompra,
@@ -31,8 +32,7 @@ namespace Dominio.Entidades
             };
         }
 
-        public static AccesoADatos.Producto CloneToDBEntity(Producto producto)
-        {
+        public static AccesoADatos.Producto CloneToDBEntity(Producto producto){
             return new AccesoADatos.Producto
             {
                 CodigoBarra = producto.CodigoBarra,
@@ -41,9 +41,25 @@ namespace Dominio.Entidades
                 PrecioCompra = producto.PrecioCompra,
                 Restricciones = producto.Restricciones,
                 IdTipoProducto = producto.Tipo.Id,
+                UnidadDeMedida = producto.UnidadDeMedida,
+                IdTipoProducto = producto.Tipo.Id,
                 UnidadDeMedida = producto.UnidadDeMedida
             };
         }
+        public static AccesoADatos.Producto CloneDA(Producto producto)
+        {
+            return new AccesoADatos.Producto
+            {
+                CodigoBarra = producto.CodigoBarra,
+                Cantidad = producto.Cantidad,
+                Descripcion = producto.Descripcion,
+                PrecioCompra = producto.PrecioCompra,
+                Restricciones = producto.Restricciones,
+                TipoProducto = Tipo.CloneDA(producto.Tipo),
+                UnidadDeMedida = producto.UnidadDeMedida
+            };
+        }
+                
 
         public static AccesoADatos.Producto CloneToDBEntityFull(AccesoADatos.ArticuloVenta producto)
         {
@@ -69,5 +85,6 @@ namespace Dominio.Entidades
             Estatus = articulo.Estatus;
             EsPlatillo = false;
         }
+        
     }
 }

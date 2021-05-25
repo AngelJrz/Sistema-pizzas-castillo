@@ -73,7 +73,15 @@ namespace Dominio.Enumeraciones
             };
         }
 
-
+        public static AccesoADatos.TipoProducto CloneDA(Dominio.Enumeraciones.Tipo tipo)
+        {
+            return new TipoProducto
+            {
+                Id = tipo.Id,
+                Nombre = tipo.Nombre,
+                Estatus = tipo.Estatus
+            };
+        }
         public static Tipo Clone(AccesoADatos.EstatusPedidoAProveedor tipo)
         {
             return new Tipo
