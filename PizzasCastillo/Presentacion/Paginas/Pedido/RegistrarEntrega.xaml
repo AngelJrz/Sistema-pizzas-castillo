@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Presentacion.Paginas.Pedido"
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Height="Auto" Width="Auto"
       Title="RegistrarEntrega">
 
@@ -26,21 +26,37 @@
             <!-- Datos del pedido-->
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition Width="*"/>
+
+
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Estatus: " Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Text="¿De Que tipo es su Pedido?" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <ComboBox x:Name="ComboEstatus" Style="{StaticResource ComboboxStyle}"
-                              Width="400" HorizontalAlignment="Left">
-                        <ComboBoxItem Content="En espera" Height="100" Width="100"/>
-                        <ComboBoxItem Content="En preparacion" Height="100" Width="100"/>
-                        <ComboBoxItem Content="En camino" Height="100" Width="100"/>
-                        <ComboBoxItem Content="Entregado" Height="100" Width="100"/>
-                        <ComboBoxItem Content="Finalizado" Height="100" Width="100"/>
+
+                    <TextBox x:Name="TipoText" Template="{StaticResource InputControlTemplate}"
+                                     MaxLength="30" Width="400" HorizontalAlignment="Left" IsEnabled="False"/>
+
+                </StackPanel>
+
+
+
+            </Grid>
+            <Grid Margin="130,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <Label Content="*" Foreground="{StaticResource Alert}"/>
+                    <TextBlock Text="Estatus " Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <ComboBox Name="ComboEstatus" Style="{StaticResource ComboboxStyle}" Width="400" DisplayMemberPath="Nombre" HorizontalAlignment="Left" SelectionChanged="CambiarElemento">
+
 
                     </ComboBox>
 
@@ -50,43 +66,45 @@
             </Grid>
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Fecha:" Style="{StaticResource TituloCamposStyle}"/>
+                    <TextBlock Text="Numero de Mesa:" Style="{StaticResource TituloCamposStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
 
-                    <TextBox x:Name="FechaText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="MesaText" Template="{StaticResource InputControlTemplate}"
+                                     MaxLength="30" Width="400" HorizontalAlignment="Left" IsEnabled="False"/>
+
+                    
+                </StackPanel>
+
+            </Grid>
+
+
+            <Grid Margin="130,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width ="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <Label Content="*" Foreground="{StaticResource Alert}"/>
+                    <TextBlock Text="Nombre Repartidor:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+
+
+                    <TextBox x:Name="RepartidorText" Template="{StaticResource InputControlTemplate}"
+                                     MaxLength="30" Width="400" HorizontalAlignment="Left" IsEnabled="False"/>
+
                 </StackPanel>
 
             </Grid>
             <Grid Margin="130,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Tipo:" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <ComboBox x:Name="ComboTipo" Style="{StaticResource ComboboxStyle}"
-                              Width="400" HorizontalAlignment="Left">
-                   
-                    </ComboBox>
-
-
-
-                </StackPanel>
-
-            </Grid>
-            <Grid Margin="130,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
@@ -95,7 +113,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBox x:Name="TotalText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                                     MaxLength="30" Width="400" HorizontalAlignment="Left" IsEnabled="False"/>
 
 
 
@@ -108,14 +126,10 @@
                     <ColumnDefinition Width="300"/>
 
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Button Content="Cancelar Edicion" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,25,0,0"/>
-
-                </StackPanel>
+              
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <Button Content="Guardar Pedido" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,25,0,0"/>
+                    <Button Content="Guardar Cambios" Style="{StaticResource BotonSecundarioStyle}"
+                    Width="250" HorizontalAlignment="Center" Margin="0,25,0,0" Click="GuardarPedido"/>
 
                 </StackPanel>
             </Grid>
@@ -124,4 +138,6 @@
         </StackPanel>
 
     </Grid>
+
+
 </Page>

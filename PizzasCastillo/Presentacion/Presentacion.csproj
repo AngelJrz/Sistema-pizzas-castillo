@@ -156,6 +156,15 @@
     <Compile Include="Paginas\Producto\ActualizacionDeProducto.xaml.cs">
       <DependentUpon>ActualizacionDeProducto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Pedido\BuscarPedidoParaEditarProductos.xaml.cs">
+      <DependentUpon>BuscarPedidoParaEditarProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\BuscarPedidosParaEntrega.xaml.cs">
+      <DependentUpon>BuscarPedidosParaEntrega.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\EditarPedido.xaml.cs">
+      <DependentUpon>EditarPedido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Producto\DetallesDeProducto.xaml.cs">
       <DependentUpon>DetallesDeProducto.xaml</DependentUpon>
     </Compile>
@@ -312,6 +321,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Producto\ActualizacionDeProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\BuscarPedidoParaEditarProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\BuscarPedidosParaEntrega.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\EditarPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Pedido\GenerarCuentaPedido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

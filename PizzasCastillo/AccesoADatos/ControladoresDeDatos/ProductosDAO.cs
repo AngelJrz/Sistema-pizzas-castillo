@@ -18,8 +18,6 @@ namespace AccesoADatos.ControladoresDeDatos
         private Producto productoEncontrado;
         private List<Producto> _productos;
 
-
-
         public ProductosDAO()
         {
             _connection = new PizzasBDEntities();
@@ -51,7 +49,6 @@ namespace AccesoADatos.ControladoresDeDatos
 
         }
 
-
         public List<Producto> ObtenerProductosNombre(string nombre) {
 
              _productos = _connection.Producto
@@ -59,95 +56,6 @@ namespace AccesoADatos.ControladoresDeDatos
 
                     return _productos;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public bool ActualizarInventario(List<Producto> listaDeProductos)
         {

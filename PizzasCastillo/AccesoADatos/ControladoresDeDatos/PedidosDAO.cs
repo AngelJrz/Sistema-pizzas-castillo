@@ -10,58 +10,211 @@ namespace AccesoADatos.ControladoresDeDatos
 {
    public  class PedidosDAO
     {
-        private PizzasBDEntities _connection;
-        private List<Pedido> _pedidos;
+        
+      
+        private List<Pedido> _pedidos = null;
+        private Pedido _pedidoEncontrado;
         private const int ACTIVO = 1;
         private const int SIN_CAMBIOS = 0;
         private int _resultado;
+        private readonly PizzasBDEntities connection;
 
-        public bool RegistrarPedido(Pedido pedido)
+        public PedidosDAO()
+        {
+            connection = new PizzasBDEntities();
+            _resultado = 0;
+        }
+
+
+
+
+        public void RegistrarPedido(Pedido pedido)
+        {
+
+
+            try { 
+                using (PizzasBDEntities connection = new PizzasBDEntities()) 
+                {
+                    connection.Entry(pedido).State = EntityState.Added;
+
+                    _resultado = connection.SaveChanges();
+                }
+            } 
+            catch (DbUpdateException)
+            {
+
+                throw;
+            }
+
+           
+
+        }
+
+        public void ActualizarPedidoEstatus(Pedido pedido)
+        {
+
+            try
+            {
+                     Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
+
+                    pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
+                   connection.Entry(pedidoDB).State = EntityState.Modified;
+                    connection.SaveChanges();
+
+                    _resultado = connection.SaveChanges();
+                
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+            }
+
+
+
+        }
+
+
+        public bool ActualizarPedidoDatos(Pedido pedido) {
+
+            try
+            {
+
+              
+                    Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
+
+                    pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
+                for (int x = 0; x > pedidoDB.Contiene.Count(); x++) 
+                    {
+                    pedidoDB.Contiene.Remove(pedidoDB.Contiene.Last());
+                    }
+                    pedidoDB.Contiene = pedido.Contiene;
+
+                    connection.Entry(pedidoDB).State = EntityState.Modified;
+
+                    _resultado = connection.SaveChanges();
+
+             
+
+
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+            }
+
+            if (_resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+     
+
+
+
+        public bool ActualizarPedidoContiene(Pedido pedido)
+        {
+
+            try
+            {
+
+                connection.Entry(pedido).State = EntityState.Modified;
+
+                _resultado = connection.SaveChanges();
+
+
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+            }
+
+            if (_resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+        public List<ArticuloVenta> ObtenerArticulosPedido(Pedido pedidoParabuscar) {
+
+            using (PizzasBDEntities connection = new PizzasBDEntities()) 
+            {
+                List<Contiene> listaContiene = connection.Contiene.Where(x => x.IdPedido == pedidoParabuscar.Id).ToList();
+                List<ArticuloVenta> ArticulosDelPedido = null;
+                foreach (Contiene x in listaContiene)
+                {
+                    ArticulosDelPedido.Add(connection.ArticuloVenta.Where(ar =>ar.CodigoBarra == x.CodigoBarra).FirstOrDefault());
+                
+                }
+                return ArticulosDelPedido;
+            
+            }
+        
+
+        }
+
+
+
+        public List<Pedido> ObtenerPedidosEnPreparacion() {
+            try
+            {
+               
+                   
+                    _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals
+                    ("En Preparacion"))
+                    .ToList();
+                    return _pedidos;
+               
+            }
+            catch (Exception)
+            {
+                return _pedidos;
+            }
+        }
+        public List<Pedido> ObtenerPedidosEnEspera()
         {
             try
             {
-                _connection.Pedido.Add(pedido);
-                _resultado = _connection.SaveChanges();
+                using (PizzasBDEntities connection = new PizzasBDEntities())
+                {
+
+                    _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Espera")).ToList();
+                    return _pedidos;
+                }
             }
-            catch (DbUpdateException)
+            catch (Exception)
             {
-
-                throw;
+                return _pedidos;
             }
-
-            if (_resultado == SIN_CAMBIOS)
-            {
-                return false;
-            }
-
-            return true;
         }
 
 
-
-
-        public bool ActualizarPedido(Pedido pedido) {
-
+        public Pedido ObtenerPedidoPorID(int id)
+        {
             try
             {
-                Pedido pedidoEncontrado = (Pedido)_connection.Pedido.Where(p => p.Id == pedido.Id);
-                pedidoEncontrado = pedido;
-                _connection.Pedido.Add(pedidoEncontrado);
 
 
+                _pedidoEncontrado = connection.Pedido.Where(x=>x.Id==id).FirstOrDefault();
+                return _pedidoEncontrado;
             }
-            catch (DbUpdateException)
+            catch (Exception)
             {
-
-                throw;
+                return _pedidoEncontrado;
             }
-
-            if (_resultado == SIN_CAMBIOS)
-            {
-                return false;
-            }
-
-            return true;
         }
+
+
     }
 }

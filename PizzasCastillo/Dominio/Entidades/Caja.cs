@@ -10,5 +10,7 @@ namespace Dominio.Entidades
     {
         public decimal EfectivoActual { get; set; }
         public decimal SaldoInicial { get; set; }
+
+
     }
 }

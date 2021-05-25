@@ -9,6 +9,11 @@
       d:DesignHeight="450" d:DesignWidth="1000"
       Title="EditarPedido">
 
+    <Page.Resources>
+        <local:ByteToImageConverte x:Name="convertidorImagen" x:Key="ConvertidorRutaImagen" />
+
+    </Page.Resources>
+    
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
         <StackPanel Height="473">
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
@@ -59,7 +64,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding foto}" HorizontalAlignment="Center" Width="50" Height="50"/>
+                                <Image Source="{Binding ArticuloVenta.NombreFoto,Converter={StaticResource ConvertidorRutaImagen}}" HorizontalAlignment="Center" Width="50" Height="50"/>
 
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -84,7 +89,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding CodigoDeBarras}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding ArticuloVenta.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -160,7 +165,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Opciones" Width="200" MinWidth="200" MaxWidth="300" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Opciones" Width="300" MinWidth="200" MaxWidth="300" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -179,13 +184,13 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5"/>
-                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="50"/>
+                                      
 
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource IconoBoton}" Click="AgregarProductoPedido" Grid.Column="0">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarProducto">
                                         <materialDesign:PackIcon Kind="Delete" Foreground="{StaticResource Gris}" 
-                                                                 Width="25" Height="25"/>
+                                                                 />
 
 
                                     </Button>
@@ -201,7 +206,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="GuardarEdicionProducto"/>
         </StackPanel>
 
 

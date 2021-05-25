@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Logica;
+using static Dominio.Entidades.Persona;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -21,12 +22,16 @@ namespace Presentacion.Paginas.Pedido
     /// </summary>
     public partial class RegistrarPedidoBuscarUsuario : Page
     {
+        private Dominio.Entidades.Empleado _empleadoEnSesion;
         public RegistrarPedidoBuscarUsuario()
         {
+
+            //Arreglar la sesion con la clase singleton
             InitializeComponent();
             ClienteController controller = new ClienteController();
-            
-            ListaUsuarios.ItemsSource= controller.ObtenerClientes();
+
+            ListaUsuarios.ItemsSource = controller.ObtenerPersonas();
+            _empleadoEnSesion = new Dominio.Entidades.Empleado { NumeroEmpleado = "1", Username = "jajas", Contrasenia = "123", SalarioQuincenal = (decimal)120.50, FechaRegistro = DateTime.Now, TipoUsuario = new Dominio.Enumeraciones.Tipo {Id=2,Nombre = "Empleado",Estatus=1 } };
 
         }
 
@@ -40,13 +45,25 @@ namespace Presentacion.Paginas.Pedido
         }
         private void UsarClienteSinRegistro(object sender, RoutedEventArgs e)
         {
+            
             NavigationService.Navigate(new Usuario.RegistroCliente());
         }
         private void UsarUsuarioPedido(object sender, RoutedEventArgs e)
         {
+            Dominio.Entidades.Pedido nuevoPedido = new Dominio.Entidades.Pedido();
+          
+
+            Dominio.Entidades.Persona clienteseleccionado = (Dominio.Entidades.Persona)ListaUsuarios.SelectedItem;
+            nuevoPedido.SolicitadoPor = clienteseleccionado;
+            nuevoPedido.RegistradoPor = _empleadoEnSesion;
+            nuevoPedido.Fecha = DateTime.Now;
+            NavigationService.Navigate(new Pedido.RegistrarPedidoArticulos(nuevoPedido));
+
 
         }
 
+
        
+
     }
 }

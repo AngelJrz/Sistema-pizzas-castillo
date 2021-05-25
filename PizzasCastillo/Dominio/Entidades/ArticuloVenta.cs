@@ -15,11 +15,11 @@ namespace Dominio.Entidades
         public int Estatus { get; set; }
         public bool EsPlatillo { get; set; }
         public string NombreFoto { get; set; }
-        //public decimal CantidadLocal { get; set; }
+        public decimal CantidadLocal { get; set; }
         public Producto Producto { get; set; }
         public Platillo Platillo { get; set; }
 
-        public static ArticuloVenta Clone(AccesoADatos.ArticuloVenta articuloVenta)
+        public static ArticuloVenta CloneProducto(AccesoADatos.ArticuloVenta articuloVenta)
         {
             return new ArticuloVenta
             {

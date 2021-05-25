@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dominio.Entidades;
 using Dominio.Logica;
+using Presentacion.Ventanas;
 
 namespace Presentacion.Paginas.Producto
 {
@@ -25,13 +29,18 @@ namespace Presentacion.Paginas.Producto
         public ValidarExistenciaProducto()
         {
             InitializeComponent();
-            ProductoController controller = new ProductoController();
+            ArticuloVentaController controller = new ArticuloVentaController();
             ListaProductos.ItemsSource = controller.ObtenerProductos();
+           
+            foreach (ArticuloVenta p in ListaProductos.Items)
+            {
+                File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
+            }
         }
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
-            ProductoController controller = new ProductoController();
-            ListaProductos.ItemsSource=controller.BuscarProductosNombre(BusquedaText.Text);
+            ArticuloVentaController controller = new ArticuloVentaController();
+            //ListaProductos.ItemsSource=controller.BuscarProductosNombre(BusquedaText.Text);
 
         }
 
@@ -45,21 +54,23 @@ namespace Presentacion.Paginas.Producto
 
         private void ValidarExistencias(object sender, RoutedEventArgs e)
         {
-            AccesoADatos.Producto productoSeleccionado = (AccesoADatos.Producto)ListaProductos.SelectedItem;
-            ProductoController controller = new ProductoController();
-             AccesoADatos.Producto productoValidar = controller.BuscarProductoID(productoSeleccionado.CodigoBarra);
+           ArticuloVenta productoSeleccionado = (ArticuloVenta)ListaProductos.SelectedItem;
+        
+        
 
-            ValidarExistencias(productoValidar);
+           ValidarExistencias(productoSeleccionado);
 
         }
 
-        public static void ValidarExistencias(AccesoADatos.Producto producto) {
-            if (producto.Cantidad == 0 || producto.Cantidad < 0)
+        public static void ValidarExistencias(ArticuloVenta producto) {
+            if (producto.Producto.Cantidad == 0 || producto.Producto.Cantidad < 0)
             {
-                MessageBox.Show("ya no hay existencia de este producto");
+                InteraccionUsuario error = new InteraccionUsuario("Error de Cantidad", "ya no hay cantidad de este producto");
+                error.Show();
             }
             else {
-                MessageBox.Show("Aun hay existen " + producto.Cantidad + " de este producto");
+                InteraccionUsuario error = new InteraccionUsuario("Existencias validas", "Aún Existen "+producto.Producto.Cantidad+" Piezas de este producto" );
+                error.Show();
             }
 
         
@@ -67,8 +78,34 @@ namespace Presentacion.Paginas.Producto
 
       
     }
+    public class ByteToImageConverter : IValueConverter
+    {
+        public String ConvertidorRutaImagen(string nombreArchivo)
+        {
+            if (string.IsNullOrWhiteSpace(nombreArchivo))
+            {
+                return null;
+            }
+            return Recursos.RecursosGlobales.RUTA_IMAGENES + nombreArchivo;
+        }
 
 
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string img = "";
+            if (value != null)
+            {
+                img = this.ConvertidorRutaImagen(value.ToString());
+            }
+            return img;
+        }
 
-   
-}
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+
+     
+    }
+
+    }

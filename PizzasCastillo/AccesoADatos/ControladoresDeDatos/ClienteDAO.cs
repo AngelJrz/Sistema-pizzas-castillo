@@ -27,8 +27,8 @@ namespace AccesoADatos.ControladoresDeDatos
         public List<Persona> ObtenerClientes()
         {
             _clientes = _connection.Persona
-                .Where(persona => persona.Estatus == ACTIVO)
-                .Include("Cliente")
+                .Where(persona => persona.Estatus == ACTIVO && persona.IdTipoUsuario==1)
+           
                 .ToList();
 
             return _clientes;

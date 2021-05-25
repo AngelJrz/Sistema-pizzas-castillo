@@ -84,6 +84,11 @@
     <Compile Include="ControladoresDeDatos\TipoProductoDAO.cs" />
     <Compile Include="ControladoresDeDatos\TipoUsuarioDAO.cs" />
     <Compile Include="ControladoresDeDatos\UsuarioDAO.cs" />
+    <Compile Include="ControladoresDeDatos\EstatusPedidoDAO.cs" />
+    <Compile Include="ControladoresDeDatos\MesaDAO.cs" />
+    <Compile Include="ControladoresDeDatos\ProductosDAO.cs" />
+    <Compile Include="ControladoresDeDatos\RepartidorDao.cs" />
+    <Compile Include="ControladoresDeDatos\TipoPedidoDAO.cs" />
     <Compile Include="Direccion.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
@@ -120,6 +125,21 @@
     <Compile Include="Mesa.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
+    <Compile Include="PizzasCastillo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PizzasCastillo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PizzasCastillo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PizzasCastillo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PizzasCastillo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Pedido.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
     </Compile>
@@ -128,21 +148,6 @@
     </Compile>
     <Compile Include="Persona.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PizzasCastillo.Context.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>PizzasCastillo.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PizzasCastillo.cs">
-      <DependentUpon>PizzasCastillo.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="PizzasCastillo.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>PizzasCastillo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Platillo.cs">
       <DependentUpon>PizzasCastillo.tt</DependentUpon>
@@ -192,6 +197,7 @@
     <None Include="PizzasCastillo.edmx.diagram">
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -205,8 +211,8 @@
     </Content>
     <Content Include="PizzasCastillo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PizzasCastillo.cs</LastGenOutput>
       <DependentUpon>PizzasCastillo.edmx</DependentUpon>
+      <LastGenOutput>PizzasCastillo.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

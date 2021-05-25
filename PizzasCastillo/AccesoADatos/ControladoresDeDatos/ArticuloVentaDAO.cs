@@ -121,5 +121,20 @@ namespace AccesoADatos.ControladoresDeDatos
             }
             return true;
         }
+
+
+        public List<ArticuloVenta> ObtenerArticuloNombre(string nombre)
+        {
+            try {
+                articulosVenta = connection.ArticuloVenta
+                       .Where(lista => lista.Nombre.Contains(nombre)).ToList();
+
+            }
+            catch (ArgumentNullException) {
+                throw;
+            }
+            return articulosVenta;
+        }
+
     }
 }

@@ -154,6 +154,14 @@ namespace Dominio.Logica
         {
             ArticuloVentaDAO articuloDAO = new ArticuloVentaDAO();
             List<AccesoADatos.ArticuloVenta> productosBD = articuloDAO.ObtenerProductos();
+            List<ArticuloVenta> articulos = ArticuloVenta.CloneListProducto(productosBD);
+
+            return articulos;
+        }
+        public List<ArticuloVenta> ObtenerProductosNombre(string nombre)
+        {
+            ArticuloVentaDAO articuloDAO = new ArticuloVentaDAO();
+            List<AccesoADatos.ArticuloVenta> productosBD = articuloDAO.ObtenerArticuloNombre(nombre);
 
             List<ArticuloVenta> articulos = ArticuloVenta.CloneListProducto(productosBD);
 

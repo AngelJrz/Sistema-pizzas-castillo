@@ -57,5 +57,27 @@ namespace Dominio.Entidades
                 Direccion = Direccion.CloneToEntityDBList(persona.Direcciones)
             };
         }
+
+        public static List<Persona> CloneListPersona(List<AccesoADatos.Persona> personas)
+        {
+            List<Persona> listaPersonas = new List<Persona>();
+            personas.ToList().ForEach(persona => listaPersonas.Add(
+                 new Persona
+                 {
+                     Id = persona.Id,
+                     Nombres = persona.Nombres,
+                     Apellidos = persona.Apellidos,
+                     Telefono = persona.Telefono,
+                     Email = persona.Email,
+                     Estatus = (int)persona.Estatus,
+                     TipoUsuario = Tipo.Clone(persona.TipoUsuario),
+                     Direcciones = Entidades.Direccion.CloneList(persona.Direccion.ToList())
+                 }));
+
+            return listaPersonas;
+        }
     }
-}
+            
+    }
+
+
