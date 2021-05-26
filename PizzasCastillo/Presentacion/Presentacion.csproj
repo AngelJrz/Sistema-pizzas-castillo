@@ -153,6 +153,18 @@
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarEntrega.xaml.cs">
+      <DependentUpon>RegistrarEntrega.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml.cs">
+      <DependentUpon>RegistrarPedidoArticulos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml.cs">
+      <DependentUpon>RegistrarPedidoBuscarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoDatos.xaml.cs">
+      <DependentUpon>RegistrarPedidoDatos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Producto\ActualizacionDeProducto.xaml.cs">
       <DependentUpon>ActualizacionDeProducto.xaml</DependentUpon>
     </Compile>
@@ -176,6 +188,9 @@
     </Compile>
     <Compile Include="Paginas\Producto\RegistroDeProducto.xaml.cs">
       <DependentUpon>RegistroDeProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Producto\ValidarExistenciaProducto.xaml.cs">
+      <DependentUpon>ValidarExistenciaProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Usuario\EditarUsuario.xaml.cs">
       <DependentUpon>EditarUsuario.xaml</DependentUpon>
@@ -202,9 +217,6 @@
     </Compile>
     <Compile Include="Ventanas\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ventanas\InteraccionUsuario.xaml.cs">
-      <DependentUpon>InteraccionUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -320,6 +332,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Pedido\RegistrarEntrega.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoArticulos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoBuscarUsuario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoDatos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Paginas\Producto\ActualizacionDeProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -355,6 +383,10 @@
     <Page Include="Paginas\Producto\RegistroDeProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Producto\ValidarExistenciaProducto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Paginas\Usuario\EditarUsuario.xaml">
       <SubType>Designer</SubType>
@@ -396,10 +428,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ventanas\InteraccionUsuario.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Ventanas\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -426,9 +454,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Paginas\Cocina\" />
-    <Folder Include="Paginas\Finanza\" />
-    <Folder Include="Paginas\Pedido\" />
     <Folder Include="Recursos\Imagenes\" />
   </ItemGroup>
   <ItemGroup>
