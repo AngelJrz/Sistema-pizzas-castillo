@@ -19,7 +19,7 @@ namespace Dominio.Entidades
         public Producto Producto { get; set; }
         public Platillo Platillo { get; set; }
 
-        public static ArticuloVenta CloneProducto(AccesoADatos.ArticuloVenta articuloVenta)
+        public static ArticuloVenta CloneProductoPartial(AccesoADatos.ArticuloVenta articuloVenta)
         {
             return new ArticuloVenta
             {

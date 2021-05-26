@@ -30,7 +30,7 @@ namespace Dominio.Entidades
                 {
                     Cantidad = c.Cantidad,
                     Total = c.Total,
-                    ArticuloVenta = ArticuloVenta.CloneProducto(c.ArticuloVenta)
+                    ArticuloVenta = ArticuloVenta.CloneProductoPartial(c.ArticuloVenta)
                 }
                 ));
             return list;

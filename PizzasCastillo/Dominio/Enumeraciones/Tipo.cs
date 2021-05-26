@@ -48,7 +48,7 @@ namespace Dominio.Enumeraciones
             };
         }
 
-        public static AccesoADatos.TipoProducto CloneToEntityDB(Tipo tipoProducto)
+        /*public static AccesoADatos.TipoProducto CloneToEntityDB(Tipo tipoProducto)
         {
             return new AccesoADatos.TipoProducto
             {
@@ -56,7 +56,7 @@ namespace Dominio.Enumeraciones
                 Estatus = tipoProducto.Estatus,
                 Id = tipoProducto.Id
             };
-        }
+        }*/
 
         public static Tipo Clone(AccesoADatos.TipoUsuario tipo)
         {

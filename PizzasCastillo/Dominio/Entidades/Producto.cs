@@ -27,7 +27,6 @@ namespace Dominio.Entidades
                 Restricciones = producto.Restricciones,
                 Tipo = Tipo.Clone(producto.TipoProducto),
                 UnidadDeMedida = producto.UnidadDeMedida,
-                CodigoBarra = producto.CodigoBarra,
                 Nombre = producto.ArticuloVenta.Nombre
             };
         }
@@ -40,8 +39,6 @@ namespace Dominio.Entidades
                 Descripcion = producto.Descripcion,
                 PrecioCompra = producto.PrecioCompra,
                 Restricciones = producto.Restricciones,
-                IdTipoProducto = producto.Tipo.Id,
-                UnidadDeMedida = producto.UnidadDeMedida,
                 IdTipoProducto = producto.Tipo.Id,
                 UnidadDeMedida = producto.UnidadDeMedida
             };
