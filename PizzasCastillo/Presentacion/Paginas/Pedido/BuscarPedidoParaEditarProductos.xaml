@@ -186,11 +186,25 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                       
 
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarEntrega" Grid.Column="0">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EditarPedido" Grid.Column="0">
                                         <materialDesign:PackIcon Kind="Edit" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+
+
+                                    </Button>
+                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarEntrega" Grid.Column="1">
+                                        <materialDesign:PackIcon Kind="DeliveryDining" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+
+
+                                    </Button>
+                                    <Button Style="{StaticResource IconoBoton}" Click="GenerarTicket" Grid.Column="2">
+                                        <materialDesign:PackIcon Kind="Ticket" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
 
 

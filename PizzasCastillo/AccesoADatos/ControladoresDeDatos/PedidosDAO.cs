@@ -182,6 +182,27 @@ namespace AccesoADatos.ControladoresDeDatos
                 return _pedidos;
             }
         }
+        
+        public List<Pedido> ObtenerPedidosDelDia() {
+            try
+            {
+
+                DateTime hoy = DateTime.Now;
+                int dia = hoy.Day;
+                int mes = hoy.Month;
+                int anio = hoy.Year;
+               
+                    _pedidos = connection.Pedido.Where(x => x.Fecha.Day == dia && x.Fecha.Month==mes && x.Fecha.Year == anio)
+                    .ToList();
+                    return _pedidos;
+               
+            }
+            catch (Exception e)
+            {
+                return _pedidos;
+            }
+        }
+
         public List<Pedido> ObtenerPedidosEnEspera()
         {
             try

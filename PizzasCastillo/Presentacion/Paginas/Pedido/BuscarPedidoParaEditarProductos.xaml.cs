@@ -23,17 +23,31 @@ namespace Presentacion.Paginas.Pedido
         public BuscarPedidoParaEditarProductos()
         {
             InitializeComponent();
-            Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
-            ListaPedidos.ItemsSource = controller.ObtenerPedidos();
+            /*Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+            ListaPedidos.ItemsSource = controller.ObtenerPedidos();*/
+            AccesoADatos.ControladoresDeDatos.PedidosDAO dao = new AccesoADatos.ControladoresDeDatos.PedidosDAO();
+            ListaPedidos.ItemsSource = dao.ObtenerPedidosDelDia();
         }
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
 
         }
-        private void RegistrarEntrega(object sender, RoutedEventArgs e)
+        private void EditarPedido(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Pedido.EditarPedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+
+        }
+
+        private void RegistrarEntrega(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pedido.RegistrarEntrega((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+
+        }
+
+        private void GenerarTicket(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pedido.GenerarCuentaPedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
 
         }
 

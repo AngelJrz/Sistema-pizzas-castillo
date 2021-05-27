@@ -9,7 +9,7 @@ namespace Presentacion.Recursos
 {
     public static class RecursosGlobales
     {
-        public static string RUTA_IMAGENES = "C:\\Users\\Angel\\Desktop\\Exportacion\\pizzas\\";
+        public static string RUTA_IMAGENES = "C:\\Users\\Jhoni\\Desktop\\Exportacion\\pizzas\\";
         public const string LLAVE_EMPLEADO = "";
 
     }

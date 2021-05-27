@@ -153,6 +153,9 @@
     <Compile Include="Paginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Pedido\GenerarCuentaPedido.xaml.cs">
+      <DependentUpon>GenerarCuentaPedido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Pedido\RegistrarEntrega.xaml.cs">
       <DependentUpon>RegistrarEntrega.xaml</DependentUpon>
     </Compile>
