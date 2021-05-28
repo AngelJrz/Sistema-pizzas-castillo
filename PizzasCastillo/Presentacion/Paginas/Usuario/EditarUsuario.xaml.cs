@@ -3,6 +3,7 @@ using Dominio.Enumeraciones;
 using Dominio.Excepciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
+using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,6 +77,15 @@ namespace Presentacion.Paginas.Usuario
 
             ListaTiposUsuario.ItemsSource = TiposUsuario;
             DataContext = empleado;
+
+            foreach (var tipoUsuario in ListaTiposUsuario.ItemsSource as List<Tipo>)
+            {
+                if (tipoUsuario.Nombre.Equals(empleado.TipoUsuario.Nombre))
+                {
+                    ListaTiposUsuario.SelectedItem = tipoUsuario;
+                    break;
+                }
+            }
         }
 
         private void Cancelar_Clic(object sender, RoutedEventArgs e)
@@ -104,14 +114,35 @@ namespace Presentacion.Paginas.Usuario
 
             decimal.TryParse(SalarioText.Text, out decimal salario);
             empleadoAActualizar.SalarioQuincenal = salario;
-            empleadoAActualizar.Direcciones[0].Calle = CalleText.Text;
-            empleadoAActualizar.Direcciones[0].Colonia = ColoniaText.Text;
-            empleadoAActualizar.Direcciones[0].Ciudad = CiudadText.Text;
-            empleadoAActualizar.Direcciones[0].CodigoPostal = CodigoPostalText.Text;
-            empleadoAActualizar.Direcciones[0].NumeroInterior = NoInteriorText.Text;
-            empleadoAActualizar.Direcciones[0].Referencias = ReferenciasText.Text;
-            empleadoAActualizar.Direcciones[0].NumeroExterior = NoExteriorText.Text;
-            empleadoAActualizar.Direcciones[0].EntidadFederativa = ListaEstidadesFederativas.Text;
+
+            if(empleadoAActualizar.Direcciones != null && empleadoAActualizar.Direcciones.Count > 0)
+            {
+                empleadoAActualizar.Direcciones[0].Calle = CalleText.Text;
+                empleadoAActualizar.Direcciones[0].Colonia = ColoniaText.Text;
+                empleadoAActualizar.Direcciones[0].Ciudad = CiudadText.Text;
+                empleadoAActualizar.Direcciones[0].CodigoPostal = CodigoPostalText.Text;
+                empleadoAActualizar.Direcciones[0].NumeroInterior = NoInteriorText.Text;
+                empleadoAActualizar.Direcciones[0].Referencias = ReferenciasText.Text;
+                empleadoAActualizar.Direcciones[0].NumeroExterior = NoExteriorText.Text;
+                empleadoAActualizar.Direcciones[0].EntidadFederativa = ListaEstidadesFederativas.Text;
+            }
+            else
+            {
+                Direccion direccion = new Direccion
+                {
+                    Calle = CalleText.Text,
+                    Colonia = ColoniaText.Text,
+                    Ciudad = CiudadText.Text,
+                    CodigoPostal = CodigoPostalText.Text,
+                    NumeroInterior = NoInteriorText.Text,
+                    Referencias = ReferenciasText.Text,
+                    NumeroExterior = NoExteriorText.Text,
+                    EntidadFederativa = ListaEstidadesFederativas.Text
+                };
+
+                empleadoAActualizar.Direcciones?.Add(direccion);
+            }
+            
 
             if(EstaInformacionCorrecta(empleadoAActualizar))
             {
@@ -148,8 +179,11 @@ namespace Presentacion.Paginas.Usuario
             {
                 string mensaje = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
 
-
-                MessageBox.Show(mensaje);
+                new Dialog
+                {
+                    Titulo = "Información incorrecta",
+                    Mensaje = mensaje
+                }.ShowDialog();
             }
         }
 
