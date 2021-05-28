@@ -27,8 +27,10 @@ namespace Presentacion.Paginas.Finanza
         private double sumaTotalDeGasto;
         private Empleado empledoRegistrando;
 
-        public RegistrarGastoExtra()
+        public RegistrarGastoExtra(Empleado empleadoEnSesion)
         {
+            empledoRegistrando = empleadoEnSesion;
+            
             InitializeComponent();
             TipoDeGastoController controlador = new TipoDeGastoController();
             List<Tipo> listaDeTipos = controlador.ObtenerTiposDeGasto();
@@ -43,12 +45,6 @@ namespace Presentacion.Paginas.Finanza
                 tipoDeGasto.ItemsSource = listaDeTipos;
                 tipoDeGasto.SelectedItem = listaDeTipos.ElementAt(0);
             }
-
-            //Se va a quitar
-            empledoRegistrando = new Empleado()
-            {
-                NumeroEmpleado = "1"
-            };
         }
 
         private void ClickRegistrar(object sender, RoutedEventArgs e)

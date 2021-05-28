@@ -29,8 +29,10 @@ namespace Presentacion.Paginas.Finanza
         private List<Efectivo> listaDeTiposEfectivo;
         private Empleado empleado;
 
-        public CorteDeCaja()
+        public CorteDeCaja(Empleado empleadoEnSesion)
         {
+            empleado = empleadoEnSesion;
+
             InitializeComponent();
 
             listaDeCampos = new List<TextBox>();
@@ -49,14 +51,6 @@ namespace Presentacion.Paginas.Finanza
 
             EfectivoController efectivocontroller = new EfectivoController();
             listaDeTiposEfectivo = efectivocontroller.ObtenerTiposDeEfectivo();
-
-
-            //TODO - cambiar empleado por clase singleton
-            empleado = new Empleado()
-            {
-                NumeroEmpleado = "1"
-            };
-
         }
 
         private void ClickGuardarCorte(object sender, RoutedEventArgs e)

@@ -88,15 +88,21 @@
                 <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
             </Grid>
 
-            <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
+            <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Visible">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Corte de caja" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
-                              PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Corte de caja" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_CorteDeCaja"/>
+                <TextBlock Text="Tipos de gasto" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_TiposDeGasto"/>
+                <TextBlock Text="Pedido proveedor" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_CrearPedidoAProveedor"/>
+                <TextBlock Text="Confirmar entrega" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_ConfirmarEntrega"/>
+                <TextBlock Text="Registrar gasto extra" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_RegistrarGastoExtra"/>
             </Grid>
 
 

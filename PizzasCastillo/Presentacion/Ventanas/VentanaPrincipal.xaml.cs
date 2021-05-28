@@ -1,5 +1,6 @@
 ﻿using Dominio.Entidades;
 using Presentacion.Paginas;
+using Presentacion.Paginas.Finanza;
 using Presentacion.Paginas.Usuario;
 using Presentacion.Recursos;
 using System;
@@ -82,6 +83,38 @@ namespace Presentacion.Ventanas
             Login ventanaLogin = new Login();
             ventanaLogin.Show();
             this.Close();
+        }
+
+
+        private void Click_RegistrarGastoExtra(object sender, MouseButtonEventArgs e)
+        {
+            _sesion.Recursos.TryGetValue("Empleado", out object empleado);
+            Empleado empleadoEnSesion = empleado as Empleado;
+
+            PaginaFrame.Navigate(new RegistrarGastoExtra(empleadoEnSesion));
+        }
+
+        private void Click_CorteDeCaja(object sender, MouseButtonEventArgs e)
+        {
+            _sesion.Recursos.TryGetValue("Empleado", out object empleado);
+            Empleado empleadoEnSesion = empleado as Empleado;
+
+            PaginaFrame.Navigate(new CorteDeCaja(empleadoEnSesion));
+        }
+
+        private void Click_TiposDeGasto(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new TiposDeGasto());
+        }
+
+        private void Click_CrearPedidoAProveedor(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new CrearPedido());
+        }
+
+        private void Click_ConfirmarEntrega(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new ListaPedidosPendientes());
         }
     }
 }
