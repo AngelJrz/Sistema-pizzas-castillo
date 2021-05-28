@@ -17,6 +17,7 @@ using Dominio.Enumeraciones;
 using Dominio.Excepciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
+using Presentacion.Ventanas;
 
 namespace Presentacion.Paginas.Usuario
 {
@@ -105,42 +106,61 @@ namespace Presentacion.Paginas.Usuario
             };
             empleado.Direcciones.Add(direccion);
 
+            Dialog ventanaDialog = new Dialog();
+
             if (EstaInformacionCorrecta(empleado))
             {
                 EmpleadoController empleadoController = new EmpleadoController();
-                bool seRegistro;
+                ResultadoRegistroUsuario resultado;
                 try
                 {
-                    seRegistro = empleadoController.RegistrarEmpleado(empleado);
-                }
-                catch(UsuarioYaExisteException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
+                    resultado = empleadoController.RegistrarEmpleado(empleado);
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Ocurrió un error al intentar registrar el usuario. Por favor intente más tarde.");
+                    ventanaDialog.Titulo = "Error de registro";
+                    ventanaDialog.Mensaje = "Ocurrió un error al intentar registrar el usuario. Por favor intente más tarde.";
+
+                    ventanaDialog.ShowDialog();
                     return;
                 }
-                
 
-                if (seRegistro)
+                switch (resultado)
                 {
-                    MessageBox.Show("Se registró el empleado");
-                    LimpiarCampos();
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrió un error, intenté más tarde");
+                    case ResultadoRegistroUsuario.RegistroExitoso:
+                        ventanaDialog.Titulo = "Registro exitoso";
+                        ventanaDialog.Mensaje = "El empleado fue registrado correctamente.";
+                        ventanaDialog.ShowDialog();
+
+                        LimpiarCampos();
+                        break;
+                    case ResultadoRegistroUsuario.RegistroFallido:
+                        ventanaDialog.Titulo = "Error de registro";
+                        ventanaDialog.Mensaje = "Ocurrió un error al intentar registrar el empleado. Intente más tarde.";
+                        ventanaDialog.ShowDialog();
+                        break;
+                    case ResultadoRegistroUsuario.UsuarioYaExiste:
+                        ventanaDialog.Titulo = "El usuario ya existe";
+                        ventanaDialog.Mensaje = $"El usuario {empleado.Username} ya pertenece a otro empleado. Por favor ingrese uno diferente.";
+                        ventanaDialog.ShowDialog();
+                        break;
+                    case ResultadoRegistroUsuario.DireccionNoEspecificada:
+                        ventanaDialog.Titulo = "Error de registro";
+                        ventanaDialog.Mensaje = "La dirección es requerida, por favor especifiquela.";
+                        ventanaDialog.ShowDialog();
+                        break;
+                    case ResultadoRegistroUsuario.InformacionIncorrecta:
+                        ventanaDialog.Titulo = "Error de actualización";
+                        ventanaDialog.Mensaje = "La información ingresada es incorrecta, por favor verifiquela.";
+                        ventanaDialog.ShowDialog();
+                        break;
                 }
             }
             else
             {
-                string mensaje = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
-          
-
-                MessageBox.Show(mensaje);
+                ventanaDialog.Titulo = "Error de registro";
+                ventanaDialog.Mensaje = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
+                ventanaDialog.ShowDialog();
             }
         }
 
@@ -154,6 +174,7 @@ namespace Presentacion.Paginas.Usuario
             CalleText.Text = "";
             ColoniaText.Text = "";
             NoExteriorText.Text = "";
+            NoInteriorText.Text = "";
             CodigoPostalText.Text = "";
             ListaEstidadesFederativas.SelectedItem = null;
             CiudadText.Text = "";

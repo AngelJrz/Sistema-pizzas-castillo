@@ -142,48 +142,62 @@ namespace Presentacion.Paginas.Usuario
 
                 empleadoAActualizar.Direcciones?.Add(direccion);
             }
-            
 
-            if(EstaInformacionCorrecta(empleadoAActualizar))
+            Dialog ventanaDialog = new Dialog();
+
+            if (EstaInformacionCorrecta(empleadoAActualizar))
             {
                 EmpleadoController empleadoController = new EmpleadoController();
-                bool seActualizo;
+                ResultadoRegistroUsuario resultado;
 
                 try
                 {
-                    seActualizo = empleadoController.ActualizarEmpleado(empleadoAActualizar, _seActualizoUsername, _seActualizoPassword);
+                    resultado = empleadoController.ActualizarEmpleado(empleadoAActualizar, _seActualizoUsername, _seActualizoPassword);
                 }
-                catch (UsuarioYaExisteException ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    MessageBox.Show("Ocurrió un error al intentar registrar el usuario. Por favor intente más tarde.");
+                    ventanaDialog.Titulo = "Error de actualización";
+                    ventanaDialog.Mensaje = "Ocurrió un error al intentar actualizar el empleado. Intente más tarde.";
+                    ventanaDialog.ShowDialog();
                     return;
                 }
 
-                if (seActualizo)
+                switch (resultado)
                 {
-                    MessageBox.Show("Se actualizó el empleado");
-                    NavigationService.Navigate(new ListaDeUsuarios());
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrió un error, intenté más tarde");
+                    case ResultadoRegistroUsuario.RegistroExitoso:
+                        ventanaDialog.Titulo = "Actualización exitosa";
+                        ventanaDialog.Mensaje = "El empleado fue actualizado correctamente.";
+                        ventanaDialog.ShowDialog();
+
+                        NavigationService.Navigate(new ListaDeUsuarios());
+                        break;
+                    case ResultadoRegistroUsuario.RegistroFallido:
+                        ventanaDialog.Titulo = "Error de actualización";
+                        ventanaDialog.Mensaje = "Ocurrió un error al intentar actualizar el empleado. Intente más tarde.";
+                        ventanaDialog.ShowDialog();
+                        break;
+                    case ResultadoRegistroUsuario.UsuarioYaExiste:
+                        ventanaDialog.Titulo = "El usuario ya existe";
+                        ventanaDialog.Mensaje = $"El usuario {empleadoAActualizar.Username} ya pertenece a otro empleado. Por favor ingrese uno diferente.";
+                        ventanaDialog.ShowDialog();
+                        break;
+                    case ResultadoRegistroUsuario.DireccionNoEspecificada:
+                        ventanaDialog.Titulo = "Error de actualización";
+                        ventanaDialog.Mensaje = "La dirección es requerida, por favor especifiquela.";
+                        ventanaDialog.ShowDialog();
+                        break;
+                    case ResultadoRegistroUsuario.InformacionIncorrecta:
+                        ventanaDialog.Titulo = "Error de actualización";
+                        ventanaDialog.Mensaje = "La información ingresada es incorrecta, por favor verifiquela.";
+                        ventanaDialog.ShowDialog();
+                        break;
                 }
             }
             else
             {
-                string mensaje = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
-
-                new Dialog
-                {
-                    Titulo = "Información incorrecta",
-                    Mensaje = mensaje
-                }.ShowDialog();
+                ventanaDialog.Titulo = "Información incorrecta";
+                ventanaDialog.Mensaje = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
+                ventanaDialog.ShowDialog();
             }
         }
 

@@ -15,11 +15,11 @@ namespace Dominio.Utilerias
         public ValidadorDireccion()
         {
             RuleFor(x => x.Calle).NotEmpty().MaximumLength(100).MinimumLength(8);
-            RuleFor(x => x.Colonia).NotEmpty().MaximumLength(100).MinimumLength(4);
-            RuleFor(x => x.Ciudad).NotEmpty().MaximumLength(50).MinimumLength(4);
+            RuleFor(x => x.Colonia).NotEmpty().MaximumLength(150).MinimumLength(4);
+            RuleFor(x => x.Ciudad).NotEmpty().MaximumLength(60).MinimumLength(4);
             RuleFor(x => x.CodigoPostal).NotNull().NotEmpty().MaximumLength(6).MinimumLength(5).WithName("C.P.");
-            RuleFor(x => x.Referencias).NotEmpty().NotNull().MaximumLength(200).MinimumLength(5);
-            RuleFor(x => x.NumeroExterior).NotEmpty().NotNull().MaximumLength(4).WithName("Numero exterior");
+            RuleFor(x => x.Referencias).NotEmpty().NotNull().MaximumLength(200).MinimumLength(10);
+            RuleFor(x => x.NumeroExterior).NotEmpty().NotNull().MaximumLength(4).MinimumLength(1).WithName("Numero exterior");
             RuleFor(x => x.EntidadFederativa).NotEmpty().NotNull().MaximumLength(20).MinimumLength(3).WithName("Estado");
         }
 

@@ -24,10 +24,19 @@ namespace Dominio.Logica
             usuarioDAO = new UsuarioDAO();
         }
 
-        public bool RegistrarEmpleado(Empleado empleado)
+        public ResultadoRegistroUsuario RegistrarEmpleado(Empleado empleado)
         {
+            if (empleado == null)
+                return ResultadoRegistroUsuario.InformacionIncorrecta;
+
+            if (empleado.Direcciones == null || empleado.Direcciones.Count == 0)
+                return ResultadoRegistroUsuario.DireccionNoEspecificada;
+
+            if (!EstaInformacionCorrecta(empleado))
+                return ResultadoRegistroUsuario.InformacionIncorrecta;
+
             if (usuarioDAO.ObtenerEmpleado(empleado.Username) != null)
-                throw new UsuarioYaExisteException(empleado.Username);
+                return ResultadoRegistroUsuario.UsuarioYaExiste;
 
             empleado.NumeroEmpleado = GenerarNumeroEmpleado(empleado.TipoUsuario);
             empleado.FechaRegistro = DateTime.Now;
@@ -48,7 +57,21 @@ namespace Dominio.Logica
                 throw;
             }
 
-            return seRegistro;
+            if (!seRegistro)
+                return ResultadoRegistroUsuario.RegistroFallido;
+
+            return ResultadoRegistroUsuario.RegistroExitoso;
+        }
+
+        private bool EstaInformacionCorrecta(Empleado empleado)
+        {
+            ValidadorPersonas validadorPersona = new ValidadorPersonas();
+            ValidadorDireccion validadorDireccion = new ValidadorDireccion();
+            ValidadorEmpleado validadorEmpleado = new ValidadorEmpleado();
+
+            return validadorPersona.Validar(empleado) &&
+                validadorEmpleado.Validar(empleado) &&
+                validadorDireccion.Validar(empleado.Direcciones[0]);
         }
 
         private string GenerarNumeroEmpleado(Tipo tipoUsuario)
@@ -116,17 +139,20 @@ namespace Dominio.Logica
             return empleados;
         }
 
-        public bool ActualizarEmpleado(Empleado empleadoActualizado, bool seActualizoUsername = false, bool seActualizoPassword = false)
+        public ResultadoRegistroUsuario ActualizarEmpleado(Empleado empleadoActualizado, bool seActualizoUsername = false, bool seActualizoPassword = false)
         {
+            if (empleadoActualizado == null)
+                return ResultadoRegistroUsuario.InformacionIncorrecta;
+
             AccesoADatos.Empleado empleadoBd = usuarioDAO.ObtenerEmpleado(empleadoActualizado.Id);
 
             if (empleadoBd == null)
-                return false;
+                return ResultadoRegistroUsuario.InformacionIncorrecta;
 
             if (seActualizoUsername)
             {
                 if (usuarioDAO.ObtenerEmpleado(empleadoActualizado.Username) != null)
-                    throw new UsuarioYaExisteException(empleadoActualizado.Username);
+                    return ResultadoRegistroUsuario.UsuarioYaExiste;
 
                 empleadoBd.Username = empleadoActualizado.Username;
             }
@@ -136,6 +162,9 @@ namespace Dominio.Logica
                 string passwordConHash = AdministradorHash.GenerarHash(empleadoActualizado.Contrasenia);
                 empleadoBd.Contrasenia = passwordConHash;
             }
+
+            if (!EstaInformacionCorrecta(empleadoActualizado))
+                return ResultadoRegistroUsuario.InformacionIncorrecta;
 
             empleadoBd.Persona.Nombres = empleadoActualizado.Nombres;
             empleadoBd.Persona.Apellidos = empleadoActualizado.Apellidos;
@@ -163,7 +192,10 @@ namespace Dominio.Logica
                 throw;
             }
 
-            return seActualizo;
+            if (!seActualizo)
+                return ResultadoRegistroUsuario.RegistroFallido;
+
+            return ResultadoRegistroUsuario.RegistroExitoso;
         }
 
         public bool DarDeBajaEmpleado(string numeroEmpleado)
