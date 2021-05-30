@@ -19,11 +19,11 @@
 
             <Rectangle Grid.Column="0" Fill="#E8FFE7" HorizontalAlignment="Left" Height="69" Stroke="Black" Width="205"/>
             <TextBlock Grid.Column="0" Style="{StaticResource TituloCamposStyle}" TextAlignment="center" TextWrapping="Wrap" Text="Ingresos" Grid.ColumnSpan="2" Margin="0,5,204.6,34.8"  />
-            <TextBlock x:Name="ingresosDelDia" Text="500" Grid.Column="0" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0,39,204.6,-0.2"/>
+            <TextBlock x:Name="ingresosDelDia" Grid.Column="0" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0,39,204.6,-0.2"/>
 
             <Rectangle Grid.Column="1" Fill="#FFE7E7" HorizontalAlignment="Left" Height="69"  Stroke="Black" Width="205"/>
             <TextBlock Grid.Column="1" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center"  TextWrapping="Wrap" Text="Egresos" Grid.ColumnSpan="2" Margin="0.2,4,204.4,34.8" />
-            <TextBlock x:Name="egresosDelDia" Text="250" Grid.Column="1" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center"  TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0.2,40,204.4,-0.2"  />
+            <TextBlock x:Name="egresosDelDia"  Grid.Column="1" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center"  TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0.2,40,204.4,-0.2"  />
 
             <Rectangle Grid.Column="2" Fill="#FFFFE7" HorizontalAlignment="Left" Height="69"  Stroke="Black"  Width="205"/>
             <TextBlock Grid.Column="2" Style="{StaticResource TituloCamposStyle}" TextAlignment="Center" TextWrapping="Wrap" Text="Balance del día" Margin="0.4,4,-0.6,34.8"/>

@@ -20,12 +20,16 @@ namespace Presentacion.Paginas.Finanza
         private List<TextBox> listaDeCampos;
         private List<Efectivo> listaDeTiposEfectivo;
         private Empleado empleado;
+        private GastoExtraController controladorGastos;
+        private PedidoController controladorPedidos;
 
         public CorteDeCaja(Empleado empleadoEnSesion)
         {
             empleado = empleadoEnSesion;
 
             InitializeComponent();
+
+            ColocarIngresosYEgresos();
 
             listaDeCampos = new List<TextBox>();
             listaDeCampos.Add(campoBilleteMil);
@@ -43,6 +47,16 @@ namespace Presentacion.Paginas.Finanza
 
             EfectivoController efectivocontroller = new EfectivoController();
             listaDeTiposEfectivo = efectivocontroller.ObtenerTiposDeEfectivo();
+        }
+
+        public void ColocarIngresosYEgresos()
+        {
+            double totalGastos = controladorGastos.ObtenerSumaDeGastosDelDia();
+            double totalIngresos = controladorPedidos.ObtenerIngresosDelDia();
+
+            egresosDelDia.Text = totalGastos.ToString();
+            ingresosDelDia.Text = totalIngresos.ToString();
+            balanceDiario.Text = (totalIngresos - totalGastos).ToString();
         }
 
         private void ClickGuardarCorte(object sender, RoutedEventArgs e)
@@ -121,10 +135,12 @@ namespace Presentacion.Paginas.Finanza
         {
             double ingresos = double.Parse(ingresosDelDia.Text);
             double egresos = double.Parse(egresosDelDia.Text);
+            double balance = double.Parse(balanceDiario.Text);
+
 
             return new ReporteCaja()
             {
-                BalanceDiario = new Decimal(ingresos - egresos),
+                BalanceDiario = new Decimal(balance),
                 Fecha = DateTime.Now,
                 TotalEntrada = new Decimal(ingresos),
                 TotalSalida = new Decimal(egresos),
