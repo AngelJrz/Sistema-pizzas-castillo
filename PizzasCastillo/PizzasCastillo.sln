@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoADatos", "AccesoADato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacion\Presentacion.csproj", "{86074C3F-B472-4537-B456-131517DA9665}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Test", "test\Dominio.Test\Dominio.Test.csproj", "{77871951-9F08-46A1-B086-26BC7DF83757}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{86074C3F-B472-4537-B456-131517DA9665}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86074C3F-B472-4537-B456-131517DA9665}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86074C3F-B472-4537-B456-131517DA9665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77871951-9F08-46A1-B086-26BC7DF83757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77871951-9F08-46A1-B086-26BC7DF83757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77871951-9F08-46A1-B086-26BC7DF83757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77871951-9F08-46A1-B086-26BC7DF83757}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{A299BD87-2998-4AA0-8ADC-192B97A4643D} = {03F1A339-6ACF-47C1-AD2E-0A63717EAA8E}
 		{0FE7715F-65D4-4561-AE1E-965563B25265} = {03F1A339-6ACF-47C1-AD2E-0A63717EAA8E}
 		{86074C3F-B472-4537-B456-131517DA9665} = {03F1A339-6ACF-47C1-AD2E-0A63717EAA8E}
+		{77871951-9F08-46A1-B086-26BC7DF83757} = {CE0ECAE0-E640-4DB1-A551-7A90CEA89D57}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FFC01BE-0E3C-4823-B1EA-71270FB7A011}
