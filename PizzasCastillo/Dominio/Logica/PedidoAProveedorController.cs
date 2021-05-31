@@ -38,7 +38,21 @@ namespace Dominio.Logica
             return listaARetornar;
         }
 
-        public AccesoADatos.PedidoAProveedor CloneDominioADatos(PedidoAProveedor pedidoAClonar)
+        public bool CancelarPedidoAProveedor(int pedido)
+        {
+            PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
+            bool cancelado = dao.ActualizarEstadoPedidoAProveedor(pedido, ID_PEDIDO_CANCELADO);
+            return cancelado;
+        }
+
+        public bool PedidoAProveedorEntregado(int pedido)
+        {
+            PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
+            bool entregado = dao.ActualizarEstadoPedidoAProveedor(pedido, ID_PEDIDO_ENTREGADO);
+            return entregado;
+        }
+
+        private AccesoADatos.PedidoAProveedor CloneDominioADatos(PedidoAProveedor pedidoAClonar)
         {
             return new AccesoADatos.PedidoAProveedor()
             {
@@ -52,7 +66,7 @@ namespace Dominio.Logica
             };
         }
 
-        public List<AccesoADatos.Solicita> CloneDominioADatosSolicita(List<Solicita> listaDeSolicitud)
+        private List<AccesoADatos.Solicita> CloneDominioADatosSolicita(List<Solicita> listaDeSolicitud)
         {
             List<AccesoADatos.Solicita> listaRetorno = new List<AccesoADatos.Solicita>();
 
@@ -67,20 +81,7 @@ namespace Dominio.Logica
             }
 
             return listaRetorno;
-        }
 
-        public bool CancelarPedidoAProveedor(PedidoAProveedor pedido)
-        {
-            PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
-            bool cancelado = dao.ActualizarEstadoPedidoAProveedor(CloneDominioADatos(pedido), ID_PEDIDO_CANCELADO);
-            return cancelado;
-        }
-
-        public bool PedidoAProveedorEntregado(PedidoAProveedor pedido)
-        {
-            PedidoAProveedorDAO dao = new PedidoAProveedorDAO();
-            bool entregado = dao.ActualizarEstadoPedidoAProveedor(CloneDominioADatos(pedido), ID_PEDIDO_ENTREGADO);
-            return entregado;
         }
     }
 }

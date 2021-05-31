@@ -88,7 +88,7 @@
                 <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
             </Grid>
 
-            <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Visible">
+            <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="110"/>
@@ -107,7 +107,7 @@
 
 
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
-                   Source="/Paginas/Pedido/BuscarPedidoParaEditarProductos.xaml"/>
+                   Source="/Paginas/Finanza/RegistrarProveedor.xaml"/>
 
         </Grid>
         

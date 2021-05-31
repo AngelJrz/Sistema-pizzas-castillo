@@ -43,7 +43,7 @@ namespace Presentacion.Paginas.Finanza
                     
                     if (controllerProducto.IngresarPedidoEntregado(listaDeProductosEntregados))
                     {
-                        if (controllerPedido.PedidoAProveedorEntregado(pedidoRevisado))
+                        if (controllerPedido.PedidoAProveedorEntregado(pedidoRevisado.Id))
                         {
                             MessageBox.Show("En registro del pedido se realizo correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                         }

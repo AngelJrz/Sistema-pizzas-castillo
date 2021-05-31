@@ -12,6 +12,11 @@ namespace Dominio.Logica
     {
         public bool GuardarNuevoTipoDeGasto(Tipo nuevoTipoGasto)
         {
+            if (nuevoTipoGasto == null)
+            {
+                return false;
+            }
+
             TipoDeGastoDAO tipoGastoDAO = new TipoDeGastoDAO();
 
             return tipoGastoDAO.RegistrarTipoDeGasto(CloneRegisterDominioADatos(nuevoTipoGasto));

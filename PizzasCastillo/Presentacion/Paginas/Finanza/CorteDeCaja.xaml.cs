@@ -28,6 +28,8 @@ namespace Presentacion.Paginas.Finanza
             empleado = empleadoEnSesion;
 
             InitializeComponent();
+            controladorGastos = new GastoExtraController();
+            controladorPedidos = new PedidoController();
 
             ColocarIngresosYEgresos();
 

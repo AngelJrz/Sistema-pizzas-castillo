@@ -43,7 +43,7 @@ namespace Presentacion.Paginas.Finanza
 
             if (opscionSeleccionada == MessageBoxResult.Yes) {
                 PedidoAProveedor pedidoSeleccioado = (PedidoAProveedor)tablaDePedidos.SelectedItem;
-                if (accesoAPedidos.CancelarPedidoAProveedor(pedidoSeleccioado))
+                if (accesoAPedidos.CancelarPedidoAProveedor(pedidoSeleccioado.Id))
                 {
                     MessageBox.Show("El pedido se cancelo correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                     listaObservable.Remove(pedidoSeleccioado);
