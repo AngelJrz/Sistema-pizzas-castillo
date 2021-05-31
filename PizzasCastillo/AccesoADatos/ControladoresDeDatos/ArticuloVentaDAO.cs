@@ -39,6 +39,19 @@ namespace AccesoADatos.ControladoresDeDatos
             return articulosVenta;
         }
 
+        public ArticuloVenta ObtenerPlatillo(string codigoBarra)
+        {
+            try
+            {
+                articuloVenta = connection.ArticuloVenta.Find(codigoBarra);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            return articuloVenta;
+        }
+
         public List<ArticuloVenta> ObtenerProductos()
         {
             try

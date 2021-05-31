@@ -104,9 +104,16 @@ namespace Presentacion.Paginas.Cocina
 
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            ListBoxItem selectedItem = (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
-            selectedItem.IsSelected = true;
-            productos.Remove((ArticuloVenta)productoList.SelectedItem);
+            Confirmacion dialogoConfirmacion = new Confirmacion("Regresar",
+               "Seguro que desea borrar el ingrediente");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                ListBoxItem selectedItem = (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
+                selectedItem.IsSelected = true;
+                productos.Remove((ArticuloVenta)productoList.SelectedItem);
+            }
+            
         }
 
         private void Agregar(object sender, RoutedEventArgs e)
@@ -136,7 +143,13 @@ namespace Presentacion.Paginas.Cocina
         }
         private void Cancelar(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            Confirmacion dialogoConfirmacion = new Confirmacion("Regresar",
+               "Seguro que desea cancelar la actualizacion");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                NavigationService.GoBack();
+            }
         }
 
         private void IsTelephoneNumber(object sender, TextCompositionEventArgs e)
@@ -186,8 +199,8 @@ namespace Presentacion.Paginas.Cocina
             }
             else
             {
-                //try
-                //{
+                try
+                {
                     List<Consume> consumePlatillo = new List<Consume>();
                     Consume consumeNew;
 
@@ -227,7 +240,7 @@ namespace Presentacion.Paginas.Cocina
                         {
                             InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo con exito");
                             ventana.Show();
-                            //REGRESA PAGINA
+                            NavigationService.GoBack();
                         }
                         else
                         {
@@ -242,12 +255,12 @@ namespace Presentacion.Paginas.Cocina
                         ventana.Show();
 
                     }
-                /*}
+                }
                 catch (Exception ex)
                 {
-                    InteraccionUsuario ventana = new InteraccionUsuario("Error de Campos", "Uno o mas campos estan vacios, verificar porfavor");
+                    InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "A ocurrido un error de registro");
                     ventana.Show();
-                }*/
+                }
             }
         }
 

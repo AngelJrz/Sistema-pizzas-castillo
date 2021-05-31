@@ -166,22 +166,41 @@ namespace AccesoADatos.ControladoresDeDatos
 
 
 
-        public List<Pedido> ObtenerPedidosEnPreparacion() {
+        public List<Pedido> ObtenerPedidosEnPreparacion() 
+        {
             try
             {
-               
-                   
-                    _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals
-                    ("En Preparacion"))
-                    .ToList();
-                    return _pedidos;
-               
+                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Preparacion")).ToList();
+                return _pedidos;
             }
             catch (Exception)
             {
                 return _pedidos;
             }
         }
+
+        public List<Pedido> ObtenerPedidosHoy()
+        {
+            try
+            {
+                _pedidos = connection.Pedido.ToList();
+                List<Pedido> pedidos = new List<Pedido>();
+                foreach (Pedido pedido in _pedidos)
+                {
+                    if (pedido.Fecha.ToShortDateString().Equals(DateTime.Today.ToShortDateString()))
+                    {
+                        pedidos.Add(pedido);
+                    }
+                }
+                return pedidos;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return _pedidos;
+            }
+        }
+         
         public List<Pedido> ObtenerPedidosEnEspera()
         {
             try

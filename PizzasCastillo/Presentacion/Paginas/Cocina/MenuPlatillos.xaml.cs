@@ -16,13 +16,24 @@ using System.Windows.Shapes;
 namespace Presentacion.Paginas.Cocina
 {
     /// <summary>
-    /// Lógica de interacción para ListaPedidoMermas.xaml
+    /// Lógica de interacción para MenuPlatillos.xaml
     /// </summary>
-    public partial class ListaPedidoMermas : Page
+    public partial class MenuPlatillos : Page
     {
-        public ListaPedidoMermas()
+        public MenuPlatillos()
         {
             InitializeComponent();
+        }
+
+        private void RevisarPlatillos(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListaPlatillos());
+        }
+
+        private void RegistrarPlatillo(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegistroPlatillo());
+
         }
     }
 }

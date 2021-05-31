@@ -11,7 +11,7 @@ namespace AccesoADatos.ControladoresDeDatos
     public class PlatilloDAO
     {
         private readonly PizzasBDEntities connection;
-        private List<Platillo> platillos;
+        private Platillo platillos;
         private const int SIN_CAMBIOS = 0;
 
         private int resultado;
@@ -22,11 +22,11 @@ namespace AccesoADatos.ControladoresDeDatos
             resultado = 0;
         }
 
-        public List<Platillo> ObtenerPlatillo()
+        public Platillo ObtenerPlatillo(string codigoBarra)
         {
             try
             {
-                platillos = connection.Platillo.ToList();
+                platillos = connection.Platillo.Where(x => x.CodigoBarra.Equals(codigoBarra)).FirstOrDefault();
             }
             catch (ArgumentNullException)
             {

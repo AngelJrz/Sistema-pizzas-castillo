@@ -19,7 +19,7 @@
                 <TextBlock Text="Justificacion de la merma:" Style="{StaticResource TituloPaginasStyle}" Margin="120,100,00,30" FontSize="20"/>
                 <TextBox x:Name="justificacionText" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="200" Width="800"  VerticalAlignment="Top"
                          AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="-200,-20,0,0"/>
-                <TextBlock Text="Ingredientes de la merma:" Style="{StaticResource TituloPaginasStyle}" Margin="120,30,00,30" FontSize="20"/>
+                <TextBlock Text="Productos de la merma:" Style="{StaticResource TituloPaginasStyle}" Margin="120,30,00,30" FontSize="20"/>
 
                 <ListBox x:Name="productoList"  Margin="270,0,00,0" Background="White" >
                     <ListBox.ItemTemplate>
@@ -55,7 +55,7 @@
                 </ListBox>
 
 
-                <Button Style="{StaticResource BotonSecundarioStyle}" Margin="-90,30,0,0" Content="Agregar ingrediente" Width="200" Click="Agregar"/>
+                <Button Style="{StaticResource BotonSecundarioStyle}" Margin="-90,30,0,0" Content="Agregar Producto" Width="200" Click="Agregar"/>
 
                 <Grid Margin="250,00,0,0">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,0">

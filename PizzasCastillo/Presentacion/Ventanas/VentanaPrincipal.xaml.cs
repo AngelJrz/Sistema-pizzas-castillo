@@ -1,6 +1,8 @@
 ﻿using Dominio.Entidades;
 using Presentacion.Paginas;
 using Presentacion.Paginas.Usuario;
+using Presentacion.Paginas.Cocina;
+using Presentacion.Paginas.Pedido;
 using Presentacion.Recursos;
 using System;
 using System.Collections.Generic;
@@ -50,7 +52,7 @@ namespace Presentacion.Ventanas
                     MenuSuperiorMeseroCocina.Visibility = Visibility.Visible;
                     break;
                 case "Cocinero":
-                    MenuSuperiorMeseroCocina.Visibility = Visibility.Visible;
+                    MenuSuperiorCocinero.Visibility = Visibility.Visible;
                     break;
                 case "Contador":
                     MenuSuperiorContador.Visibility = Visibility.Visible;
@@ -69,6 +71,17 @@ namespace Presentacion.Ventanas
             
         }
 
+        private void CocineroPlatillos_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new MenuPlatillos());
+
+        }
+        private void CocineroPedidos_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new ListaPedidosPreparar());
+
+        }
+
         private void IrAInicio_PrewiewMouseDown(object sender, MouseButtonEventArgs e)
         {
             PaginaFrame.Navigate(new Inicio());
@@ -82,6 +95,11 @@ namespace Presentacion.Ventanas
             Login ventanaLogin = new Login();
             ventanaLogin.Show();
             this.Close();
+        }
+
+        private void Merma_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new MenuMerma());
         }
     }
 }

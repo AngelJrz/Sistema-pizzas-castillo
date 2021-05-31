@@ -48,7 +48,14 @@ namespace Presentacion.Paginas.Cocina
 
             foreach (ArticuloVenta p in productosList)
             {
-                File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto,p.Foto);
+                try 
+                {
+                    File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
+                }
+                catch(System.IO.IOException)
+                {
+
+                }
             }
         }
 
@@ -85,9 +92,15 @@ namespace Presentacion.Paginas.Cocina
 
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            ListBoxItem selectedItem= (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
-            selectedItem.IsSelected = true;
-            productos.Remove((ArticuloVenta)productoList.SelectedItem);
+            Confirmacion dialogoConfirmacion = new Confirmacion("Regresar",
+               "Seguro que desea eliminar el ingrediente?");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                ListBoxItem selectedItem = (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
+                selectedItem.IsSelected = true;
+                productos.Remove((ArticuloVenta)productoList.SelectedItem);
+            }
         }
 
         private void Agregar(object sender, RoutedEventArgs e)
@@ -117,7 +130,13 @@ namespace Presentacion.Paginas.Cocina
         }
         private void Cancelar(object sender, RoutedEventArgs e)
         {
-            //Regresar
+            Confirmacion dialogoConfirmacion = new Confirmacion("Regresar",
+               "Seguro que desea cancelar el registro");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                NavigationService.GoBack();
+            }
         }
 
         private void IsTelephoneNumber(object sender, TextCompositionEventArgs e)
@@ -207,7 +226,7 @@ namespace Presentacion.Paginas.Cocina
                         {
                             InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo con exito");
                             ventana.Show();
-                            //REGRESA PAGINA
+                            NavigationService.GoBack();
                         }
                         else
                         {

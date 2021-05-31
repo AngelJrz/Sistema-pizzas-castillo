@@ -105,14 +105,35 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Paginas\Cocina\ArticulosPedido.xaml.cs">
+      <DependentUpon>ArticulosPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\ArticulosPedidoMerma.xaml.cs">
+      <DependentUpon>ArticulosPedidoMerma.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Cocina\EditarPlatillo.xaml.cs">
       <DependentUpon>EditarPlatillo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Cocina\GeneracionMermaIngredientes.xaml.cs">
       <DependentUpon>GeneracionMermaIngredientes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Cocina\GeneracionMermaPedido.xaml.cs">
+      <DependentUpon>GeneracionMermaPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\ListaPedidosPreparar.xaml.cs">
+      <DependentUpon>ListaPedidosPreparar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Cocina\ListaPlatillos.xaml.cs">
       <DependentUpon>ListaPlatillos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\MenuMerma.xaml.cs">
+      <DependentUpon>MenuMerma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\MenuPlatillos.xaml.cs">
+      <DependentUpon>MenuPlatillos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cocina\RecetaArticulo.xaml.cs">
+      <DependentUpon>RecetaArticulo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Finanza\ConfirmarEntrega.xaml.cs">
       <DependentUpon>ConfirmarEntrega.xaml</DependentUpon>
@@ -140,12 +161,6 @@
     </Compile>
     <Compile Include="Paginas\Finanza\TiposDeGasto.xaml.cs">
       <DependentUpon>TiposDeGasto.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\Cocina\ListaPedidos.xaml.cs">
-      <DependentUpon>ListaPedidos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\Cocina\ListaPedidoMermas.xaml.cs">
-      <DependentUpon>ListaPedidoMermas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Cocina\RegistroPlatillo.xaml.cs">
       <DependentUpon>RegistroPlatillo.xaml</DependentUpon>
@@ -268,6 +283,14 @@
     <Resource Include="Imagenes\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Paginas\Cocina\ArticulosPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\ArticulosPedidoMerma.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Cocina\EditarPlatillo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,7 +299,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\Cocina\GeneracionMermaPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\ListaPedidosPreparar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Cocina\ListaPlatillos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\MenuMerma.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\MenuPlatillos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Cocina\RecetaArticulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -313,14 +356,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Paginas\Finanza\TiposDeGasto.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Paginas\Cocina\ListaPedidos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Paginas\Cocina\ListaPedidoMermas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

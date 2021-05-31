@@ -59,7 +59,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="0" >
                     <Label Content="*" Foreground="{StaticResource Alert}" />
                     <TextBlock Text="Imagen:" Style="{StaticResource TituloCamposStyle}" />
-                    <Button Height="30" HorizontalAlignment="Left"  Name="botonImagen" VerticalAlignment="Bottom" Style="{StaticResource BotonSecundarioStyle}"
+                    <Button Height="40" HorizontalAlignment="Left"  Name="botonImagen" VerticalAlignment="Bottom" Style="{StaticResource BotonSecundarioStyle}"
                        Width="175" Click="agregarImagen" Content="Agregar Foto" Margin="30,0,0,0"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="-200,38,0,0">
@@ -90,18 +90,18 @@
                                 <StackPanel Orientation="Horizontal" >
                                         <Image Source="{Binding NombreFoto,Converter={StaticResource convertidorRutaImagen}}" Width="150" Height="150" Margin="-30,0,0,0"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="150,-50,0,0">
+                                <StackPanel Orientation="Horizontal" Margin="150,-115,0,0">
                                     <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"  Margin="00,0,10,0" />
-                                        <TextBox x:Name="nombresBox" Text="{Binding Nombre}" Style="{StaticResource InputDefaultStyle}"  Width="300" IsEnabled="False"/>
+                                        <TextBox x:Name="nombresBox" Text="{Binding Nombre}" Style="{StaticResource InputDefaultStyle}"  Width="300" IsEnabled="False" />
                                 </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="150,40,0,0" >
+                                    <StackPanel Orientation="Horizontal" Margin="150,-5,0,0" >
                                         <TextBlock Text="Cantidad" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
                                         <TextBox Style="{StaticResource InputDefaultStyle}" Text="{Binding CantidadLocal}" TextWrapping="Wrap" IsEnabled="False" Width="100" />
                                         <TextBlock Text="Medida" Style="{StaticResource TituloCamposStyle}"  Margin="30,0,10,0"/>
                                         <TextBox Style="{StaticResource InputDefaultStyle}" IsEnabled="False" Text="{Binding Producto.UnidadDeMedida}" Width="100"/>
                                     </StackPanel>
-                                    <Button Content="Eliminar" Name="eliminar" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="Eliminar" Margin="300,135,0,0" />
-                                    <Button Content="Editar" Name="editar" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="Editar" Margin="420,135,0,0" />
+                                    <Button Content="Eliminar" Name="eliminar" Width ="150" Height="35" MinWidth="100" HorizontalAlignment="Left" Click="Eliminar" Margin="150,115,0,0" Style="{StaticResource BotonSecundarioStyle}" />
+                                    <Button Content="Editar" Name="editar" Width ="150" Height="35" MinWidth="100" HorizontalAlignment="Left" Click="Editar" Margin="370,115,0,0" Style="{StaticResource BotonSecundarioStyle}"/>
                                 </Grid>
                           </Border>
                             
@@ -116,11 +116,11 @@
 
             </StackPanel>
 
-            <Button Style="{StaticResource BotonSecundarioStyle}" Margin="-130,30,0,0" Content="Agregar ingrediente" Width="200" Click="Agregar"/>
+            <Button Style="{StaticResource BotonSecundarioStyle}" Margin="-130,30,0,0" Content="Agregar ingrediente" Width="200"  Click="Agregar"/>
             <Grid Margin="180,100,0,0">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                    <Button Style="{StaticResource BotonPrincipalStyle}" Content="Cancelar" Width="200" Click="Cancelar"  Margin="0,50,0,50"/>
-                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Registrar" Width="200" Margin="300,50,0,50" Click="Registrar" />
+                    <Button Style="{StaticResource BotonPrincipalStyle}" Content="Cancelar" Width="200"  Click="Cancelar"  Margin="0,50,0,50"/>
+                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Registrar" Width="200"  Margin="300,50,0,50" Click="Registrar" />
                 </StackPanel>
             </Grid>
 
