@@ -24,19 +24,19 @@ namespace Dominio.Logica
             usuarioDAO = new UsuarioDAO();
         }
 
-        public ResultadoRegistroUsuario RegistrarEmpleado(Empleado empleado)
+        public ResultadoRegistro RegistrarEmpleado(Empleado empleado)
         {
             if (empleado == null)
-                return ResultadoRegistroUsuario.InformacionIncorrecta;
+                return ResultadoRegistro.InformacionIncorrecta;
 
             if (empleado.Direcciones == null || empleado.Direcciones.Count == 0)
-                return ResultadoRegistroUsuario.DireccionNoEspecificada;
+                return ResultadoRegistro.DireccionNoEspecificada;
 
             if (!EstaInformacionCorrecta(empleado))
-                return ResultadoRegistroUsuario.InformacionIncorrecta;
+                return ResultadoRegistro.InformacionIncorrecta;
 
             if (usuarioDAO.ObtenerEmpleado(empleado.Username) != null)
-                return ResultadoRegistroUsuario.UsuarioYaExiste;
+                return ResultadoRegistro.UsuarioYaExiste;
 
             empleado.NumeroEmpleado = GenerarNumeroEmpleado(empleado.TipoUsuario);
             empleado.FechaRegistro = DateTime.Now;
@@ -58,9 +58,9 @@ namespace Dominio.Logica
             }
 
             if (!seRegistro)
-                return ResultadoRegistroUsuario.RegistroFallido;
+                return ResultadoRegistro.RegistroFallido;
 
-            return ResultadoRegistroUsuario.RegistroExitoso;
+            return ResultadoRegistro.RegistroExitoso;
         }
 
         private bool EstaInformacionCorrecta(Empleado empleado)
@@ -139,20 +139,20 @@ namespace Dominio.Logica
             return empleados;
         }
 
-        public ResultadoRegistroUsuario ActualizarEmpleado(Empleado empleadoActualizado, bool seActualizoUsername = false, bool seActualizoPassword = false)
+        public ResultadoRegistro ActualizarEmpleado(Empleado empleadoActualizado, bool seActualizoUsername = false, bool seActualizoPassword = false)
         {
             if (empleadoActualizado == null)
-                return ResultadoRegistroUsuario.InformacionIncorrecta;
+                return ResultadoRegistro.InformacionIncorrecta;
 
             AccesoADatos.Empleado empleadoBd = usuarioDAO.ObtenerEmpleado(empleadoActualizado.Id);
 
             if (empleadoBd == null)
-                return ResultadoRegistroUsuario.InformacionIncorrecta;
+                return ResultadoRegistro.InformacionIncorrecta;
 
             if (seActualizoUsername)
             {
                 if (usuarioDAO.ObtenerEmpleado(empleadoActualizado.Username) != null)
-                    return ResultadoRegistroUsuario.UsuarioYaExiste;
+                    return ResultadoRegistro.UsuarioYaExiste;
 
                 empleadoBd.Username = empleadoActualizado.Username;
             }
@@ -164,7 +164,7 @@ namespace Dominio.Logica
             }
 
             if (!EstaInformacionCorrecta(empleadoActualizado))
-                return ResultadoRegistroUsuario.InformacionIncorrecta;
+                return ResultadoRegistro.InformacionIncorrecta;
 
             empleadoBd.Persona.Nombres = empleadoActualizado.Nombres;
             empleadoBd.Persona.Apellidos = empleadoActualizado.Apellidos;
@@ -193,9 +193,9 @@ namespace Dominio.Logica
             }
 
             if (!seActualizo)
-                return ResultadoRegistroUsuario.RegistroFallido;
+                return ResultadoRegistro.RegistroFallido;
 
-            return ResultadoRegistroUsuario.RegistroExitoso;
+            return ResultadoRegistro.RegistroExitoso;
         }
 
         public bool DarDeBajaEmpleado(string numeroEmpleado)
@@ -281,6 +281,30 @@ namespace Dominio.Logica
             empleados = Empleado.FullCloneList(empleadosBd);
 
             return empleados;
+        }
+
+        public Empleado ObtenerEmpleado(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                return null;
+
+            AccesoADatos.Empleado empleadoBd;
+            try
+            {
+                empleadoBd = usuarioDAO.ObtenerEmpleado(username);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            if (empleadoBd == null)
+                return null;
+
+            Empleado empleadoBuscado = Empleado.Clone(empleadoBd);
+
+            return empleadoBuscado;
         }
     }
 }

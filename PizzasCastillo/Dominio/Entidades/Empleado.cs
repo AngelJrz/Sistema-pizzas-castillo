@@ -18,6 +18,13 @@ namespace Dominio.Entidades
         {
             return new Empleado
             {
+                Id = empleado.Persona.Id,
+                Nombres = empleado.Persona.Nombres,
+                Apellidos = empleado.Persona.Apellidos,
+                Email = empleado.Persona.Email,
+                Telefono = empleado.Persona.Telefono,
+                TipoUsuario = Tipo.Clone(empleado.Persona.TipoUsuario),
+                Direcciones = Direccion.CloneList(empleado.Persona.Direccion.ToList()),
                 NumeroEmpleado = empleado.NumeroEmpleado,
                 Username = empleado.Username,
                 Contrasenia = empleado.Contrasenia,

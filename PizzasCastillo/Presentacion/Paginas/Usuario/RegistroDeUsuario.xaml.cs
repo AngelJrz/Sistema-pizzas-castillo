@@ -111,7 +111,7 @@ namespace Presentacion.Paginas.Usuario
             if (EstaInformacionCorrecta(empleado))
             {
                 EmpleadoController empleadoController = new EmpleadoController();
-                ResultadoRegistroUsuario resultado;
+                ResultadoRegistro resultado;
                 try
                 {
                     resultado = empleadoController.RegistrarEmpleado(empleado);
@@ -127,29 +127,29 @@ namespace Presentacion.Paginas.Usuario
 
                 switch (resultado)
                 {
-                    case ResultadoRegistroUsuario.RegistroExitoso:
+                    case ResultadoRegistro.RegistroExitoso:
                         ventanaDialog.Titulo = "Registro exitoso";
                         ventanaDialog.Mensaje = "El empleado fue registrado correctamente.";
                         ventanaDialog.ShowDialog();
 
                         LimpiarCampos();
                         break;
-                    case ResultadoRegistroUsuario.RegistroFallido:
+                    case ResultadoRegistro.RegistroFallido:
                         ventanaDialog.Titulo = "Error de registro";
                         ventanaDialog.Mensaje = "Ocurrió un error al intentar registrar el empleado. Intente más tarde.";
                         ventanaDialog.ShowDialog();
                         break;
-                    case ResultadoRegistroUsuario.UsuarioYaExiste:
+                    case ResultadoRegistro.UsuarioYaExiste:
                         ventanaDialog.Titulo = "El usuario ya existe";
                         ventanaDialog.Mensaje = $"El usuario {empleado.Username} ya pertenece a otro empleado. Por favor ingrese uno diferente.";
                         ventanaDialog.ShowDialog();
                         break;
-                    case ResultadoRegistroUsuario.DireccionNoEspecificada:
+                    case ResultadoRegistro.DireccionNoEspecificada:
                         ventanaDialog.Titulo = "Error de registro";
                         ventanaDialog.Mensaje = "La dirección es requerida, por favor especifiquela.";
                         ventanaDialog.ShowDialog();
                         break;
-                    case ResultadoRegistroUsuario.InformacionIncorrecta:
+                    case ResultadoRegistro.InformacionIncorrecta:
                         ventanaDialog.Titulo = "Error de actualización";
                         ventanaDialog.Mensaje = "La información ingresada es incorrecta, por favor verifiquela.";
                         ventanaDialog.ShowDialog();

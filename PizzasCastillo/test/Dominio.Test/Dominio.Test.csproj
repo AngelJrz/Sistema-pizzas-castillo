@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CU-MU-01\RegistrarUsuarioTest.cs" />
+    <Compile Include="CU-MU-02\EditarUsuarioTest.cs" />
+    <Compile Include="CU-MU-03\EliminarUsuarioTest.cs" />
+    <Compile Include="CU-MU-04\IniciarSesionTest.cs" />
+    <Compile Include="CU-MU-05\GestionarTiposUsuariosTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
