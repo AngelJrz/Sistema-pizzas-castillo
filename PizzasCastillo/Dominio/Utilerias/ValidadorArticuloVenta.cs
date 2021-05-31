@@ -14,7 +14,6 @@ namespace Dominio.Utilerias
         public ValidadorArticuloVenta()
         {
             RuleFor(x => x.Foto).NotEmpty().NotNull();
-            RuleFor(x => x.Precio).NotEmpty().NotNull();
             RuleFor(x => x.NombreFoto).NotEmpty().NotNull();
             RuleFor(x => x.Nombre).NotEmpty().NotNull().MinimumLength(5);
         }
