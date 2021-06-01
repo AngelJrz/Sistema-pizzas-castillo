@@ -348,7 +348,7 @@ namespace Dominio.Test.CU_MPR_01
 
             Producto productoPrueba = new Producto
             {
-                CodigoBarra = "PRUE80008",
+                CodigoBarra = "PRUE90009",
                 Nombre = "Queso Mozzarella Amarillo",
                 Foto = foto,
                 Estatus = 1,
@@ -551,18 +551,16 @@ namespace Dominio.Test.CU_MPR_01
             };
 
             ResultadoRegistroProducto resultado;
-            bool fueError = false;
+            bool fueRegistrado = false;
 
-            try
+            resultado = productoController.GuardarProducto(productoPrueba);
+
+            if (resultado == ResultadoRegistroProducto.RegistroExitoso)
             {
-                resultado = productoController.GuardarProducto(productoPrueba);
-            }
-            catch (NullReferenceException)
-            {
-                fueError = true;
+                fueRegistrado = true;
             }
 
-            Assert.IsTrue(fueError);
+            Assert.IsFalse(fueRegistrado);
         }
 
         [TestMethod]

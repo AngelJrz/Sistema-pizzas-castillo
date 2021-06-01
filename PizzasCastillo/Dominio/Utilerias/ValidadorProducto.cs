@@ -12,7 +12,6 @@ namespace Dominio.Utilerias
         {
             RuleFor(x => x.CodigoBarra).MaximumLength(10);
             RuleFor(x => x.Nombre).NotEmpty().MaximumLength(80);
-            RuleFor(x => x.Precio).NotNull().NotEmpty().GreaterThan(0);
             RuleFor(x => x.Cantidad).NotNull().NotEmpty().GreaterThan(0);
             RuleFor(x => x.Descripcion).NotEmpty().MaximumLength(180);
             RuleFor(x => x.PrecioCompra).NotNull().NotEmpty().GreaterThan(0);

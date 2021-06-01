@@ -114,6 +114,8 @@ namespace AccesoADatos.ControladoresDeDatos
 
         public bool ActualizarArticulo(ArticuloVenta articuloProducto)
         {
+            conexion = new PizzasBDEntities();
+
             try
             {
                 conexion.Entry(articuloProducto).State = EntityState.Modified;
@@ -123,7 +125,10 @@ namespace AccesoADatos.ControladoresDeDatos
             {
                 throw;
             }
-
+            catch (InvalidOperationException ex)
+            {
+                resultado = SIN_CAMBIOS;
+            }
             if (resultado == SIN_CAMBIOS)
             {
                 return false;
