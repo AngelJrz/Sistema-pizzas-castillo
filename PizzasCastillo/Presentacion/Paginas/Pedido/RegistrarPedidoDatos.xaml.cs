@@ -33,7 +33,7 @@ namespace Presentacion.Paginas.Pedido
         private Decimal totalPedido;
         Tipo tipoLlevar = new Tipo { Id = 1,Nombre = "Para Llevar",Estatus = 1};
         Tipo tipoLocal = new Tipo { Id = 2, Nombre = "Local", Estatus = 1 };
-        Tipo estatusEnEspera = new Tipo { Id = 1, Nombre = "En Espera", Estatus = 1 };
+        Tipo estatusEnEspera = new Tipo { Id = 2, Nombre = "En Preparacion", Estatus = 1 };
     
 
         public RegistrarPedidoDatos(Dominio.Entidades.Pedido pedidoNuevo)
