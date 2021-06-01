@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Logica;
+using Presentacion.Ventanas;
 using static Dominio.Entidades.Persona;
 
 namespace Presentacion.Paginas.Pedido
@@ -37,10 +38,23 @@ namespace Presentacion.Paginas.Pedido
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
-            ClienteController controller = new ClienteController();
+            if (!BusquedaText.Text.Equals(string.Empty))
+            {
 
-            ListaUsuarios.ItemsSource = controller.ObtenerClientesNombre(BusquedaText.Text);
+                ClienteController controller = new ClienteController();
 
+                ListaUsuarios.ItemsSource = controller.ObtenerClientesNombre(BusquedaText.Text);
+                InteraccionUsuario error = new InteraccionUsuario("Exito", "BusquedaCompletada");
+                error.Show();
+
+            }
+            else {
+                ClienteController controller = new ClienteController();
+
+                ListaUsuarios.ItemsSource = controller.ObtenerPersonas();
+                InteraccionUsuario error = new InteraccionUsuario("Error de busqueda", "no puede buscar con un texto vacio");
+                error.Show();
+            }
 
         }
         private void UsarClienteSinRegistro(object sender, RoutedEventArgs e)

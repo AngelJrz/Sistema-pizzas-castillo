@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Logica;
 using Presentacion.Ventanas;
+using static Presentacion.Recursos.PedidosResults;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -41,10 +42,7 @@ namespace Presentacion.Paginas.Pedido
 
 
 
-        private void BuscarEnter(object sender, RoutedEventArgs e)
-        {
-
-        }
+     
         private void EliminarProducto(object sender, RoutedEventArgs e)
         {
             Contiene contieneQuitar = (Contiene)ListaProductos.SelectedItem;
@@ -83,9 +81,23 @@ namespace Presentacion.Paginas.Pedido
         }
         private void GuardarEdicionProducto(object sender, RoutedEventArgs e)
         {
+            ResultsPedidos resultado = ResultsPedidos.NoSePudoActualizar;
 
             PedidoController controller = new PedidoController();
-            controller.ActualizarPedidoArticulos(_pedido);
+             resultado= (ResultsPedidos)controller.ActualizarPedidoArticulos(_pedido);
+
+            if (resultado == ResultsPedidos.ActualizadoConExito)
+            {
+                InteraccionUsuario err = new InteraccionUsuario("Exito", "Pedido Actualizado con Exito");
+                err.Show();
+
+
+            }
+            else {
+                InteraccionUsuario err = new InteraccionUsuario("Error", "no se pudo actualizar el pedido");
+                err.Show();
+
+            }
         }
 
 

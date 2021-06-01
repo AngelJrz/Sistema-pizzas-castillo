@@ -16,7 +16,7 @@
     
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
         <StackPanel Height="473">
-            <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
+            <TextBlock Text="Editar Pedido" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 
             <Grid Width="900" Margin="0,30,0,0">
@@ -28,17 +28,7 @@
 
 
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="Búsqueda:" Style="{StaticResource TituloCamposStyle}"
-                                       HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                    <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
-                             Width="500"
-                             HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
-                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </StackPanel>
+               
             </Grid>
             <TextBlock Text="Productos del pedido" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
@@ -89,7 +79,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding ArticuloVenta.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding ArticuloVenta.CodigoBarra}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -112,13 +102,13 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding ArticuloVenta.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
 
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Descripcion" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Estatus" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -136,7 +126,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding descripcion}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding ArticuloVenta.Estatus}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -160,7 +150,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding presio}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding ArticuloVenta.Precio}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

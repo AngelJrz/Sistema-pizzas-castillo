@@ -15,8 +15,8 @@
 
     </Page.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
-        <StackPanel Height="473">
+    <ScrollViewer HorizontalScrollBarVisibility="Visible" Background="{StaticResource AzulCastilloLight}"  >
+        <StackPanel Height="627">
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 
@@ -34,7 +34,7 @@
                                        HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
                              Width="500"
-                             HorizontalAlignment="Center" FontSize="14"/>
+                             HorizontalAlignment="Center" FontSize="14" MaxLength="20"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
@@ -43,12 +43,12 @@
             </Grid>
             <TextBlock Text="Pedidos" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
-            <DataGrid x:Name="ListaPedidos" HorizontalAlignment="Center" Width="1000"
-                      AutoGenerateColumns="False" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            <DataGrid x:Name="ListaPedidos" HorizontalAlignment="Center" Width="auto"
+                      AutoGenerateColumns="False" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Visible" 
                       Margin="0,20,0,20" CanUserSortColumns="true" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Id" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Cliente" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -65,7 +65,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Id}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding SolicitadoPor.Nombres}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

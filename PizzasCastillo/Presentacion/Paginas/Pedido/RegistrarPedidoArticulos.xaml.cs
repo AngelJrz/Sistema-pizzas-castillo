@@ -48,12 +48,16 @@ namespace Presentacion.Paginas.Pedido
 
                 ArticuloVentaController controller = new ArticuloVentaController();
                 ListaProductos.ItemsSource = controller.ObtenerProductosNombre(BusquedaText.Text);
+                InteraccionUsuario error = new InteraccionUsuario("Exito", "BusquedaCompletada");
+                error.Show();
 
 
 
 
             }
             else {
+                ArticuloVentaController controller = new ArticuloVentaController();
+                ListaProductos.ItemsSource = controller.ObtenerProductos();
                 InteraccionUsuario error = new InteraccionUsuario("Error de busqueda", "no puede buscar con un texto vacio");
                 error.Show();
 
@@ -94,7 +98,17 @@ namespace Presentacion.Paginas.Pedido
         }
         private void GuardarArticulosPedido(object sender, RoutedEventArgs e)
         {
-           NavigationService.Navigate(new Pedido.RegistrarPedidoDatos(_pedidoNuevo));
+            if (_pedidoNuevo.Contiene.Count == 0)
+            {
+
+                InteraccionUsuario agregado = new InteraccionUsuario("Error", "No se puede hacer un pedido sin agregar productos");
+                agregado.Show();
+            }
+            else {
+                NavigationService.Navigate(new Pedido.RegistrarPedidoDatos(_pedidoNuevo));
+
+            }
+        
 
 
         }

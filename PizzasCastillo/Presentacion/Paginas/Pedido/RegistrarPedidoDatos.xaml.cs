@@ -16,6 +16,8 @@ using Dominio.Entidades;
 using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Presentacion.Ventanas;
+using static Presentacion.Recursos.PedidosResults;
+using static Presentacion.Recursos.PedidosResults.ResultsPedidos;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -87,7 +89,26 @@ namespace Presentacion.Paginas.Pedido
                 _pedidoNuevo.Total = totalPedido;
                 _pedidoNuevo.Estatus = estatusEnEspera;
                 PedidoController pedidoController = new PedidoController();
-                pedidoController.AgregarPedido(_pedidoNuevo);
+
+                ResultsPedidos resultado;
+               resultado = (ResultsPedidos)pedidoController.AgregarPedido(_pedidoNuevo);
+
+
+
+
+                if (resultado == ResultsPedidos.RegistradoConExito)
+
+                {
+                    InteraccionUsuario err = new InteraccionUsuario("Exito", "El pedido se resgistro correctamente");
+                    err.Show();
+
+                }
+                else
+                {
+                    InteraccionUsuario err = new InteraccionUsuario("error", "El pedido no se resgistro");
+                    err.Show();
+
+                }
 
 
 
@@ -100,8 +121,26 @@ namespace Presentacion.Paginas.Pedido
                 _pedidoNuevo.Total = totalPedido;
                 _pedidoNuevo.Estatus = estatusEnEspera;
 
+                ResultsPedidos resultado;
+
                 PedidoController pedidoController = new PedidoController();
-                pedidoController.AgregarPedido(_pedidoNuevo);
+                resultado = (ResultsPedidos)pedidoController.AgregarPedido(_pedidoNuevo);
+
+
+                if (resultado == ResultsPedidos.RegistradoConExito)
+
+                {
+                    InteraccionUsuario err = new InteraccionUsuario("Exito", "El pedido se resgistro correctamente");
+                    err.Show();
+
+                }
+                else 
+                {
+                    InteraccionUsuario err = new InteraccionUsuario("error", "El pedido no se resgistro");
+                    err.Show();
+
+                }
+
 
 
             }

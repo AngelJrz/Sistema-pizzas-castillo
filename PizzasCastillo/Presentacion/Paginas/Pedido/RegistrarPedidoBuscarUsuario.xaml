@@ -23,14 +23,8 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="Tipo de búsqueda:" Style="{StaticResource TituloCamposStyle}"
-                               HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                    <ComboBox x:Name="TipoBusqueda" Style="{StaticResource ComboboxStyle}"
-                                     HorizontalAlignment="Center" Width="180">
-                        <ComboBoxItem>No. Empleado</ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">Nombre</ComboBoxItem>
-                        <ComboBoxItem>Teléfono</ComboBoxItem>
-                    </ComboBox>
+                 
+               
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -38,7 +32,7 @@
                                HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
                                  Width="500" 
-                                 HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"/>
+                                 HorizontalAlignment="Center" FontSize="14" MaxLength="20"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">

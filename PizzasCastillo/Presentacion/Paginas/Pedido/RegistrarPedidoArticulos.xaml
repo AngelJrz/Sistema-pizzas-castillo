@@ -34,7 +34,7 @@
                                        HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
                              Width="500"
-                             HorizontalAlignment="Center" FontSize="14" DragEnter ="BuscarEnter"/>
+                             HorizontalAlignment="Center" FontSize="14" DragEnter ="BuscarEnter" MaxLength="20"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"

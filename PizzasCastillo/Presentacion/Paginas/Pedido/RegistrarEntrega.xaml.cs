@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Logica;
+using Presentacion.Ventanas;
+using static Presentacion.Recursos.PedidosResults;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -46,7 +48,23 @@ namespace Presentacion.Paginas.Pedido
         {
             PedidoController controller = new PedidoController();
             _pedido.Estatus = (Dominio.Enumeraciones.Tipo)ComboEstatus.SelectedItem;
-            controller.ActualizarPedidoEstatus(_pedido);
+            ResultsPedidos resultado;
+            resultado= (ResultsPedidos)controller.ActualizarPedidoEstatus(_pedido);
+
+
+            if (resultado == ResultsPedidos.ActualizadoConExito)
+
+            {
+                InteraccionUsuario err = new InteraccionUsuario("Exito", "El pedido se actualizó correctamente");
+                err.Show();
+
+            }
+            else
+            {
+                InteraccionUsuario err = new InteraccionUsuario("error", "El pedido no se Actualizó");
+                err.Show();
+
+            }
 
         }
 

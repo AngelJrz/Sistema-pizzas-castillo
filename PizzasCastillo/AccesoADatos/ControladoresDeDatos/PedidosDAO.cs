@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AccesoADatos.ControladoresDeDatos
 {
    public  class PedidosDAO
@@ -28,7 +29,7 @@ namespace AccesoADatos.ControladoresDeDatos
 
 
 
-        public void RegistrarPedido(Pedido pedido)
+        public bool RegistrarPedido(Pedido pedido)
         {
 
 
@@ -39,18 +40,16 @@ namespace AccesoADatos.ControladoresDeDatos
 
                     _resultado = connection.SaveChanges();
                 }
-            } 
-            catch (DbUpdateException)
-            {
-
-                throw;
             }
-
-           
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
 
         }
 
-        public void ActualizarPedidoEstatus(Pedido pedido)
+        public bool ActualizarPedidoEstatus(Pedido pedido)
         {
 
             try
@@ -67,11 +66,11 @@ namespace AccesoADatos.ControladoresDeDatos
             catch (DbUpdateException)
             {
 
-                throw;
+                return false;
             }
 
 
-
+            return true;
         }
 
 
@@ -100,8 +99,7 @@ namespace AccesoADatos.ControladoresDeDatos
             }
             catch (DbUpdateException)
             {
-
-                throw;
+                return false;
             }
 
             if (_resultado == SIN_CAMBIOS)
@@ -182,7 +180,30 @@ namespace AccesoADatos.ControladoresDeDatos
                 return _pedidos;
             }
         }
-        
+
+
+
+        public List<Pedido> ObtenerPedidoPorNombre(string nombre)
+        {
+            try
+            {
+
+
+                _pedidos = connection.Pedido.Where(x => x.Persona.Nombres.Contains
+                (nombre) && x.EstatusPedido.Nombre.Equals("En Preparacion"))
+                .ToList();
+                return _pedidos;
+
+            }
+            catch (Exception)
+            {
+                return _pedidos;
+            }
+        }
+
+
+
+
         public List<Pedido> ObtenerPedidosDelDia() {
             try
             {
