@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Dominio.Logica;
 using Dominio.Enumeraciones;
 using Dominio.Entidades;
-using System.Collections.ObjectModel;
 
 namespace Presentacion.Paginas.Finanza
 {
@@ -27,8 +18,10 @@ namespace Presentacion.Paginas.Finanza
         private double sumaTotalDeGasto;
         private Empleado empledoRegistrando;
 
-        public RegistrarGastoExtra()
+        public RegistrarGastoExtra(Empleado empleadoEnSesion)
         {
+            empledoRegistrando = empleadoEnSesion;
+            
             InitializeComponent();
             TipoDeGastoController controlador = new TipoDeGastoController();
             List<Tipo> listaDeTipos = controlador.ObtenerTiposDeGasto();
@@ -43,12 +36,6 @@ namespace Presentacion.Paginas.Finanza
                 tipoDeGasto.ItemsSource = listaDeTipos;
                 tipoDeGasto.SelectedItem = listaDeTipos.ElementAt(0);
             }
-
-            //Se va a quitar
-            empledoRegistrando = new Empleado()
-            {
-                NumeroEmpleado = "1"
-            };
         }
 
         private void ClickRegistrar(object sender, RoutedEventArgs e)

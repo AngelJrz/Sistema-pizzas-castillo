@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Presentacion.Ventanas;
 using Dominio.Enumeraciones;
 using Dominio.Entidades;
@@ -29,8 +21,10 @@ namespace Presentacion.Paginas.Finanza
         private List<Efectivo> listaDeTiposEfectivo;
         private Empleado empleado;
 
-        public CorteDeCaja()
+        public CorteDeCaja(Empleado empleadoEnSesion)
         {
+            empleado = empleadoEnSesion;
+
             InitializeComponent();
 
             listaDeCampos = new List<TextBox>();
@@ -49,14 +43,6 @@ namespace Presentacion.Paginas.Finanza
 
             EfectivoController efectivocontroller = new EfectivoController();
             listaDeTiposEfectivo = efectivocontroller.ObtenerTiposDeEfectivo();
-
-
-            //TODO - cambiar empleado por clase singleton
-            empleado = new Empleado()
-            {
-                NumeroEmpleado = "1"
-            };
-
         }
 
         private void ClickGuardarCorte(object sender, RoutedEventArgs e)
