@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CU-MU-01\RegistrarUsuarioTest.cs" />
+    <Compile Include="CU-MU-06\RegistroClienteTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
