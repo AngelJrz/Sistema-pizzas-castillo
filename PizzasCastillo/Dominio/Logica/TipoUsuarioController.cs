@@ -12,6 +12,7 @@ namespace Dominio.Logica
     public class TipoUsuarioController
     {
         private TipoUsuarioDAO _tipoUsuarioDAO;
+
         public TipoUsuarioController()
         {
             _tipoUsuarioDAO = new TipoUsuarioDAO();
@@ -27,8 +28,14 @@ namespace Dominio.Logica
             return tiposUsuario;
         }
 
-        public bool RegistrarNuevoTipoUsuario(Tipo nuevoTipoUsuario)
+        public ResultadoRegistro RegistrarNuevoTipoUsuario(Tipo nuevoTipoUsuario)
         {
+            if (nuevoTipoUsuario == null || String.IsNullOrWhiteSpace(nuevoTipoUsuario.Nombre))
+                return ResultadoRegistro.InformacionIncorrecta;
+
+            if (_tipoUsuarioDAO.ObtenerTipoUsuario(nuevoTipoUsuario.Nombre) != null)
+                return ResultadoRegistro.TipoUsuarioYaExiste;
+
             AccesoADatos.TipoUsuario tipoUsuarioARegistrar = Tipo.CloneToEntityDB(nuevoTipoUsuario);
 
             bool seRegistro;
@@ -46,13 +53,17 @@ namespace Dominio.Logica
                 throw;
             }
 
-            return seRegistro;
+            if (!seRegistro)
+                return ResultadoRegistro.RegistroFallido;
+
+            return ResultadoRegistro.RegistroExitoso;
         }
 
-        public bool DarDeBajaTipoUsuario(Tipo tipoUsuario)
+        public ResultadoRegistro DarDeBajaTipoUsuario(Tipo tipoUsuario)
         {
-            if (tipoUsuario == null)
-                return false;
+            int VALOR_MINIMO_ID = 1;
+            if (tipoUsuario == null || tipoUsuario.Id < VALOR_MINIMO_ID)
+                return ResultadoRegistro.InformacionIncorrecta;
 
             AccesoADatos.TipoUsuario tipoUsuarioADarDeBaja = Tipo.CloneToEntityDB(tipoUsuario);
 
@@ -79,13 +90,26 @@ namespace Dominio.Logica
                 throw;
             }
 
-            return seDioDeBaja;
+            if (!seDioDeBaja)
+                return ResultadoRegistro.RegistroFallido;
+
+
+            return ResultadoRegistro.RegistroExitoso;
         }
 
-        public bool EditarTipoUsuario(Tipo tipoUsuario)
+        public ResultadoRegistro EditarTipoUsuario(Tipo tipoUsuario, bool seActualizoNombre = false)
         {
-            if (tipoUsuario == null)
-                return false;
+            if (tipoUsuario == null
+                || String.IsNullOrWhiteSpace(tipoUsuario.Nombre)
+                || tipoUsuario.Estatus < 0
+                || tipoUsuario.Estatus > 1)
+                return ResultadoRegistro.InformacionIncorrecta;
+
+            if (seActualizoNombre)
+            {
+                if (_tipoUsuarioDAO.ObtenerTipoUsuario(tipoUsuario.Nombre) != null)
+                    return ResultadoRegistro.TipoUsuarioYaExiste;
+            }
 
             AccesoADatos.TipoUsuario tipoUsuarioAEditar = Tipo.CloneToEntityDB(tipoUsuario);
 
@@ -112,7 +136,10 @@ namespace Dominio.Logica
                 throw;
             }
 
-            return seActualizo;
+            if (!seActualizo)
+                return ResultadoRegistro.RegistroFallido;
+
+            return ResultadoRegistro.RegistroExitoso;
         }
     }
 }

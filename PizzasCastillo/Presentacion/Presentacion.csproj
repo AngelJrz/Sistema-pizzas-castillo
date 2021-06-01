@@ -227,6 +227,9 @@
     <Compile Include="Ventanas\Confirmacion.xaml.cs">
       <DependentUpon>Confirmacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Dialog.xaml.cs">
+      <DependentUpon>Dialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\InteraccionUsuario.xaml.cs">
       <DependentUpon>InteraccionUsuario.xaml</DependentUpon>
     </Compile>
@@ -452,6 +455,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Confirmacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

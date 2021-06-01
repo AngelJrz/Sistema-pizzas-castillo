@@ -35,7 +35,7 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="NombresText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" HorizontalAlignment="Left" Text="{Binding Nombres}"
-                             />
+                             ToolTip="El nombre debe ser mínimo de 2 caracteres y máximo de 50."/>
                 </StackPanel>
             </Grid>
 
@@ -53,7 +53,7 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="ApellidosText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="200" Width="400" HorizontalAlignment="Left" Text="{Binding Apellidos}"
-                             />
+                             ToolTip="Los apellidos deben ser mínimo de 2 caracteres y máximo de 150."/>
                 </StackPanel>
             </Grid>
 
@@ -71,7 +71,7 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="EmailText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="80" Width="400" HorizontalAlignment="Left" Text="{Binding Email}"
-                             />
+                             ToolTip="La estructura del correo es usuario@dominio y debe ser mínimo de 10 caracteres y máximo de 80."/>
                 </StackPanel>
             </Grid>
 
@@ -89,7 +89,7 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="TelefonoText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="10" Width="200" HorizontalAlignment="Left" Text="{Binding Telefono}"
-                             />
+                             ToolTip="El teléfono solo puede contener números, con un mínimo y máximo de 10 digitos."/>
                 </StackPanel>
             </Grid>
 
@@ -125,7 +125,7 @@
                             <TextBox x:Name="CalleText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" 
                                  HorizontalAlignment="Left" Text="{Binding Direcciones[0].Calle}"
-                                     />
+                                    ToolTip="La calle debe ser mínimo de 8 caracteres y máximo de 150." />
                         </StackPanel>
                     </Grid>
 
@@ -145,7 +145,7 @@
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoExteriorText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="5" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].NumeroExterior}"
-                                     />
+                                     ToolTip="El número exterior debe ser mínimo de 1 digito y máximo de 4"/>
                         </StackPanel>
                     </Grid>
 
@@ -165,7 +165,7 @@
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CodigoPostalText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="5" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].CodigoPostal}"
-                                     />
+                                     ToolTip="El código postal debe tener un mínimo y máximo de 5 digitos"/>
                         </StackPanel>
                     </Grid>
 
@@ -185,7 +185,7 @@
                                 VerticalAlignment="Center">
                             <TextBox x:Name="CiudadText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="60" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].Ciudad}"
-                                     />
+                                     ToolTip="La ciudad debe ser mínimo de 4 caracteres y un máximo de 60."/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -207,7 +207,7 @@
                                 VerticalAlignment="Center">
                             <TextBox x:Name="ColoniaText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" HorizontalAlignment="Left" Text="{Binding Direcciones[0].Colonia}"
-                                     />
+                                     ToolTip="La colonia debe tener un mínimo de 4 caracteres y un máximo de 150."/>
                         </StackPanel>
                     </Grid>
 
@@ -227,7 +227,7 @@
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoInteriorText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="5" Width="200" HorizontalAlignment="Left" Text="{Binding Direcciones[0].NumeroInterior}"
-                                     />
+                                     ToolTip="El número interior debe ser mínimo de 1 digito y máximo de 4."/>
                         </StackPanel>
                     </Grid>
 
@@ -249,7 +249,7 @@
                                       Width="200" HorizontalAlignment="Left"
                                       IsSynchronizedWithCurrentItem="True" 
                                       SelectedItem="{Binding Direcciones[0].EntidadFederativa}"
-                                      />
+                                      ToolTip="Seleccione un estado."/>
                         </StackPanel>
                     </Grid>
 
@@ -267,9 +267,9 @@
 
                         <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="ReferenciasText" Template="{StaticResource InputControlTemplate}"
+                            <TextBox x:Name="ReferenciasText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="200" Width="400" Height="80" HorizontalAlignment="Left" Text="{Binding Direcciones[0].Referencias}"
-                                     />
+                                     ToolTip="Las referencias deben ser mínimo de 10 caracteres y máximo de 200."/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -302,9 +302,7 @@
                                       ItemsSource="{Binding TiposUsuario}"
                                       DisplayMemberPath="Nombre"
                                       IsSynchronizedWithCurrentItem="True"
-                                      SelectedItem="{Binding TipoUsuario}"
-                                      
-                                      
+                                      ToolTip="Seleccione un tipo de usuario."
                               />
                 </StackPanel>
             </Grid>
@@ -323,7 +321,8 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="UsernameText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30" Width="200" HorizontalAlignment="Left"
-                             Text="{Binding Username}" PreviewTextInput="CamposText_TextInput"/>
+                             Text="{Binding Username}" PreviewTextInput="CamposText_TextInput"
+                             ToolTip="El username debe ser mínimo de 5 caracteres y máximo de 30."/>
                 </StackPanel>
             </Grid>
 
@@ -358,7 +357,8 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="SalarioText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="8" Width="200" HorizontalAlignment="Left"
-                                    Text="{Binding SalarioQuincenal}"/>
+                                    Text="{Binding SalarioQuincenal}"
+                             ToolTip="El salario debe ser mayor a 0 y puede contener 3 números después del punto."/>
                 </StackPanel>
             </Grid>
 

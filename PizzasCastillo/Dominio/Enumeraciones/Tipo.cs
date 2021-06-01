@@ -71,7 +71,8 @@ namespace Dominio.Enumeraciones
         public static AccesoADatos.TipoUsuario CloneToEntityDB(Tipo tipoUsuario)
         {
             return new AccesoADatos.TipoUsuario
-            {
+            { 
+                Id = tipoUsuario.Id,
                 Nombre = tipoUsuario.Nombre,
                 Estatus = tipoUsuario.Estatus
             };
