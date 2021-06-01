@@ -59,6 +59,7 @@
     <Compile Include="CU-MPR-01\RegistrarProductoTest.cs" />
     <Compile Include="CU-MPR-02\ActualizarProductoTest.cs" />
     <Compile Include="CU-MPR-03\GestionarProductoTest.cs" />
+    <Compile Include="CU-MPR-04\GenerarReporteInventarioTest.cs" />
     <Compile Include="CU-MU-01\RegistrarUsuarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

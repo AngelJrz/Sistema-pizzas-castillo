@@ -101,7 +101,7 @@
 
 
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
-                   Source="/Paginas/Pedido/BuscarPedidoParaEditarProductos.xaml"/>
+                   Source="/Paginas/Usuario/RegistroDeUsuario.xaml"/>
 
         </Grid>
         
