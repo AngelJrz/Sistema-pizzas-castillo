@@ -70,7 +70,41 @@ namespace Dominio.Test.CU_MPR_01
 
 
         [TestMethod]
-        public void GuardarReporteSinProductosReportados()
+        public void GuardarReporteValido()
+        {
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
+            List<Reporta> listaReportados = new List<Reporta>();
+
+            foreach( Producto p in listaProductos)
+            {
+                Reporta item = new Dominio.Entidades.Reporta
+                {
+                    Producto = p,
+                    CantidadEnInventario = p.Cantidad,
+                    CantidadReal = 50,
+                    Comentario = "Comentario Prueba"
+                    
+                };
+
+                listaReportados.Add(item);
+            }
+
+
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA",
+                GeneradoPor = empleadoPrueba,
+                Reporta = listaReportados
+            };
+
+            bool seGuardo = reporteController.GuardarReporte(reportePrueba);
+            Assert.IsTrue(seGuardo);
+        }
+
+        [TestMethod]
+        public void GuardarReporteSinProductoReportados()
         {
             List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
             Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
@@ -79,113 +113,231 @@ namespace Dominio.Test.CU_MPR_01
 
             ReporteInventario reportePrueba = new ReporteInventario
             {
-                Nombre = "",
-                GeneradoPor = empleadoPrueba    
-            
+                Nombre = "REPORTE PRUEBA",
+                GeneradoPor = empleadoPrueba,
             };
 
-            Assert.IsTrue(listaProductos.Count > 0);
+            bool seGuardo = reporteController.GuardarReporte(reportePrueba);
+            Assert.IsFalse(seGuardo);
         }
 
         [TestMethod]
-        public void GetListaProductos()
+        public void GuardarReporteSinNombre()
         {
-            List<Producto> listaProductos = reporteController.ObtenerProductos();
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
+            List<Reporta> listaReportados = new List<Reporta>();
 
-            Assert.IsTrue(listaProductos.Count > 0);
+            foreach (Producto p in listaProductos)
+            {
+                Reporta item = new Dominio.Entidades.Reporta
+                {
+                    Producto = p,
+                    CantidadEnInventario = p.Cantidad,
+                    CantidadReal = 50,
+                    Comentario = "Comentario Prueba"
+
+                };
+
+                listaReportados.Add(item);
+            }
+
+
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "",
+                GeneradoPor = empleadoPrueba,
+                Reporta = listaReportados
+            };
+
+            bool seGuardo = reporteController.GuardarReporte(reportePrueba);
+            Assert.IsFalse(seGuardo);
         }
 
         [TestMethod]
-        public void GetProductosConCodigoFiltroValido()
+        public void GuardarReporteSinEmpleado()
         {
-            string filtro = "PRUE";
-            List<Producto> listaProductos = reporteController.BuscarProductosPorCodigo(filtro);
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
+            List<Reporta> listaReportados = new List<Reporta>();
 
-            List<Producto> listaAuxiliar = listaProductos.FindAll(p => p.CodigoBarra.Contains(filtro));
+            foreach (Producto p in listaProductos)
+            {
+                Reporta item = new Dominio.Entidades.Reporta
+                {
+                    Producto = p,
+                    CantidadEnInventario = p.Cantidad,
+                    CantidadReal = 50,
+                    Comentario = "Comentario Prueba"
 
-            bool seFiltro = false;
+                };
 
-            if (listaProductos.Count == listaAuxiliar.Count)
-                seFiltro = true;
+                listaReportados.Add(item);
+            }
 
-            Assert.IsTrue(seFiltro);
+
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA",
+                Reporta = listaReportados
+            };
+
+            bool seGuardo = reporteController.GuardarReporte(reportePrueba);
+            Assert.IsFalse(seGuardo);
         }
 
         [TestMethod]
-        public void GetProductosConCodigoFiltroInvalido()
+        public void GuardarReporteNombreInvalido()
         {
-            string filtro = "QQQQQQQQQQ";
-            List<Producto> listaProductos = reporteController.BuscarProductosPorCodigo(filtro);
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
+            List<Reporta> listaReportados = new List<Reporta>();
 
-            Assert.IsFalse(listaProductos.Count > 0);
+            foreach (Producto p in listaProductos)
+            {
+                Reporta item = new Dominio.Entidades.Reporta
+                {
+                    Producto = p,
+                    CantidadEnInventario = p.Cantidad,
+                    CantidadReal = 50,
+                    Comentario = "Comentario Prueba"
+
+                };
+
+                listaReportados.Add(item);
+            }
+
+
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA LARGO REPORTE PRUEBA LARGO REPORTE PRUEBA LARGO REPORTE PRUEBA LARGO",
+                GeneradoPor = empleadoPrueba,
+                Reporta = listaReportados
+            };
+
+            bool seGuardo = reporteController.GuardarReporte(reportePrueba);
+            Assert.IsFalse(seGuardo);
         }
 
         [TestMethod]
-        public void GetProductosConNombreFiltroValido()
+        public void GenerarPDFValidoDatosCompletos()
         {
-            string filtro = "500 ml";
-            List<Producto> listaProductos = reporteController.BuscarProductosPorNombre(filtro);
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
+            List<Reporta> listaReportados = new List<Reporta>();
 
-            List<Producto> listaAuxiliar = listaProductos.FindAll(p => p.CodigoBarra.Contains(filtro));
+            foreach (Producto p in listaProductos)
+            {
+                Reporta item = new Dominio.Entidades.Reporta
+                {
+                    Producto = p,
+                    CantidadEnInventario = p.Cantidad,
+                    CantidadReal = 50,
+                    Comentario = "Comentario Prueba"
+                };
 
-            bool seFiltro = false;
+                listaReportados.Add(item);
+            }
 
-            if (listaProductos.Count == listaAuxiliar.Count)
-                seFiltro = true;
 
-            Assert.IsTrue(seFiltro);
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA PDF 2",
+                GeneradoPor = empleadoPrueba,
+                Reporta = listaReportados
+            };
+            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            string ruta = path + "/CU-MPR-01/ReportePrueba.pdf";
+            bool seGuardo = reporteController.GenerarPDF(reportePrueba,ruta);
+            Assert.IsTrue(seGuardo);
         }
 
         [TestMethod]
-        public void GetProductosConNombreFiltroInvalido()
+        public void GenerarPDFValidoDatosParciales()
         {
-            string filtro = "nombreFalso";
-            List<Producto> listaProductos = reporteController.BuscarProductosPorNombre(filtro);
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
+            List<Reporta> listaReportados = new List<Reporta>();
 
-            Assert.IsFalse(listaProductos.Count > 0);
+            foreach (Producto p in listaProductos)
+            {
+                Reporta item = new Dominio.Entidades.Reporta
+                {
+                    Producto = p,
+                    CantidadEnInventario = p.Cantidad
+                };
+
+                listaReportados.Add(item);
+            }
+
+
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA PDF 2",
+                GeneradoPor = empleadoPrueba,
+                Reporta = listaReportados
+            };
+            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            string ruta = path + "/CU-MPR-01/ReportePrueba2.pdf";
+            bool seGuardo = reporteController.GenerarPDF(reportePrueba, ruta);
+            Assert.IsTrue(seGuardo);
         }
 
         [TestMethod]
-        public void GetDatosProducto()
+        public void GenerarPDFInvalidoSinReporta()
         {
-            List<Producto> listaProductos = reporteController.ObtenerProductos();
-            Producto productoObtenido = new Producto();
-            productoObtenido = listaProductos.Find(p => p.EsPlatillo == false);
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
 
-            ValidadorArticuloVenta validadorArticulo = new ValidadorArticuloVenta();
-            ValidadorProducto validadorProducto = new ValidadorProducto();
-
-            bool esCorrecto = validadorArticulo.Validar(productoObtenido) && validadorProducto.Validar(productoObtenido);
-
-            Assert.IsTrue(esCorrecto);
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA INVALIDA SIN REPORTA",
+                GeneradoPor = empleadoPrueba,
+            };
+            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            string ruta = path + "/CU-MPR-01/ReportePrueba2.pdf";
+            bool seGuardo = reporteController.GenerarPDF(reportePrueba, ruta);
+            Assert.IsFalse(seGuardo);
         }
 
         [TestMethod]
-        public void EliminarProductoActivo()
+        public void GenerarPDFInvalidoSinRuta()
         {
-            const int DISPONIBLE = 1;
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
 
-            List<Producto> listaProductos = reporteController.ObtenerProductos();
-            Producto productoObtenido = new Producto();
-            productoObtenido = listaProductos.Find(p => p.Estatus == DISPONIBLE);
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA INVALIDO",
+                GeneradoPor = empleadoPrueba,
+            };
 
-            bool seElimino = reporteController.EliminarProducto(productoObtenido);
-
-            Assert.IsTrue(seElimino);
+            string ruta = "";
+            bool seGuardo = reporteController.GenerarPDF(reportePrueba, ruta);
+            Assert.IsFalse(seGuardo);
         }
 
         [TestMethod]
-        public void EliminarProductoNoActivo()
+        public void GenerarPDFInvalidoRutaInvalida()
         {
-            const int NO_DISPONIBLE = 2;
+            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
+            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
+            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
 
-            List<Producto> listaProductos = reporteController.ObtenerProductos();
-            Producto productoObtenido = new Producto();
-            productoObtenido = listaProductos.Find(p => p.Estatus == NO_DISPONIBLE);
+            ReporteInventario reportePrueba = new ReporteInventario
+            {
+                Nombre = "REPORTE PRUEBA INVALIDO",
+                GeneradoPor = empleadoPrueba,
+            };
 
-            bool seElimino = reporteController.EliminarProducto(productoObtenido);
-
-            Assert.IsFalse(seElimino);
+            string ruta = "sdfsdfsd";
+            bool seGuardo = reporteController.GenerarPDF(reportePrueba, ruta);
+            Assert.IsFalse(seGuardo);
         }
     }
 }

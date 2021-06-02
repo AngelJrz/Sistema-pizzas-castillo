@@ -50,7 +50,7 @@ namespace Dominio.Utilerias
             catch (IOException ex)
             {
 
-                throw ex;
+                isGenerated = false;
             }
 
             return isGenerated;
