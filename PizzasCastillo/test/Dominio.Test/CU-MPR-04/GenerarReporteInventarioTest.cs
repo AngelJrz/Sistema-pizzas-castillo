@@ -241,10 +241,9 @@ namespace Dominio.Test.CU_MPR_01
                 listaReportados.Add(item);
             }
 
-
             ReporteInventario reportePrueba = new ReporteInventario
             {
-                Nombre = "REPORTE PRUEBA PDF 2",
+                Nombre = "REPORTE PRUEBA PDF",
                 GeneradoPor = empleadoPrueba,
                 Reporta = listaReportados
             };
@@ -310,32 +309,27 @@ namespace Dominio.Test.CU_MPR_01
             List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
             Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
             List<Producto> listaProductos = productoController.ObtenerProductosActivos();
+            List<Reporta> listaReportados = new List<Reporta>();
+
+            foreach (Producto p in listaProductos)
+            {
+                Reporta item = new Dominio.Entidades.Reporta
+                {
+                    Producto = p,
+                    CantidadEnInventario = p.Cantidad
+                };
+
+                listaReportados.Add(item);
+            }
 
             ReporteInventario reportePrueba = new ReporteInventario
             {
                 Nombre = "REPORTE PRUEBA INVALIDO",
                 GeneradoPor = empleadoPrueba,
+                Reporta = listaReportados
             };
 
             string ruta = "";
-            bool seGuardo = reporteController.GenerarPDF(reportePrueba, ruta);
-            Assert.IsFalse(seGuardo);
-        }
-
-        [TestMethod]
-        public void GenerarPDFInvalidoRutaInvalida()
-        {
-            List<Empleado> listaEmpleados = empleadoController.ObtenerEmpleadosActivos();
-            Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Gerente"));
-            List<Producto> listaProductos = productoController.ObtenerProductosActivos();
-
-            ReporteInventario reportePrueba = new ReporteInventario
-            {
-                Nombre = "REPORTE PRUEBA INVALIDO",
-                GeneradoPor = empleadoPrueba,
-            };
-
-            string ruta = "sdfsdfsd";
             bool seGuardo = reporteController.GenerarPDF(reportePrueba, ruta);
             Assert.IsFalse(seGuardo);
         }
