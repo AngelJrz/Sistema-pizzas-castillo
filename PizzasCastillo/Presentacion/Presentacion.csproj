@@ -168,7 +168,6 @@
     <Compile Include="Paginas\Pedido\RegistrarPedidoDatos.xaml.cs">
       <DependentUpon>RegistrarPedidoDatos.xaml</DependentUpon>
     </Compile>
-<<<<<<< Updated upstream
     <Compile Include="Paginas\Producto\ActualizacionDeProducto.xaml.cs">
       <DependentUpon>ActualizacionDeProducto.xaml</DependentUpon>
     </Compile>
@@ -192,10 +191,6 @@
     </Compile>
     <Compile Include="Paginas\Producto\RegistroDeProducto.xaml.cs">
       <DependentUpon>RegistroDeProducto.xaml</DependentUpon>
-=======
-    <Compile Include="Paginas\Pedido\RegistroDePagoDePedido.xaml.cs">
-      <DependentUpon>RegistroDePagoDePedido.xaml</DependentUpon>
->>>>>>> Stashed changes
     </Compile>
     <Compile Include="Paginas\Producto\ValidarExistenciaProducto.xaml.cs">
       <DependentUpon>ValidarExistenciaProducto.xaml</DependentUpon>
@@ -389,10 +384,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Producto\RegistroDeProducto.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Paginas\Pedido\RegistroDePagoDePedido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
