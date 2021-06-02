@@ -66,5 +66,10 @@ namespace Presentacion.Paginas.Pedido
 
         }
 
+        private void RegistrarPago(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pedido.GenerarCuentaPedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+
+        }
     }
 }

@@ -210,7 +210,10 @@
 
                                     </Button>
 
-
+                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarPago" Grid.Column="2">
+                                        <materialDesign:PackIcon Kind="Cash" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+                                    </Button>
 
                                 </Grid>
                             </DataTemplate>

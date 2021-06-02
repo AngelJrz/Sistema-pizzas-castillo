@@ -168,6 +168,9 @@
     <Compile Include="Paginas\Pedido\RegistrarPedidoDatos.xaml.cs">
       <DependentUpon>RegistrarPedidoDatos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Pedido\RegistroDePagoDePedido.xaml.cs">
+      <DependentUpon>RegistroDePagoDePedido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Producto\ActualizacionDeProducto.xaml.cs">
       <DependentUpon>ActualizacionDeProducto.xaml</DependentUpon>
     </Compile>
@@ -346,6 +349,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Paginas\Pedido\RegistrarPedidoDatos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Paginas\Pedido\RegistroDePagoDePedido.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

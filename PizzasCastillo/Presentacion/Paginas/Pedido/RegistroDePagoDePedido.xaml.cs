@@ -51,5 +51,10 @@ namespace Presentacion.Paginas.Pedido
                 error.Show();
             }
         }
+
+        private void Cancelar(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }
