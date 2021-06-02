@@ -2,6 +2,7 @@
 using Dominio.Logica;
 using Dominio.Utilerias;
 using Microsoft.Win32;
+using Presentacion.Recursos;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Presentacion.Paginas.Producto
     /// </summary>
     public partial class ActualizacionDeProducto : Page
     {
+        private readonly Singleton _sesion;
         private const int DISPONIBLE = 1;
         private readonly List<Tipo> listaTipoProducto;
         private ValidadorProducto validadorProducto;
@@ -35,10 +37,11 @@ namespace Presentacion.Paginas.Producto
         private byte[] foto;
         private string nombreFoto;
         private Dominio.Entidades.Producto producto;
-        public ActualizacionDeProducto(Dominio.Entidades.Producto productoSeleccionado)
+        public ActualizacionDeProducto(Dominio.Entidades.Producto productoSeleccionado, Singleton sesion)
         {
             InitializeComponent();
 
+            _sesion = sesion;
             TipoProductoController tipoProductoController = new TipoProductoController();
             listaTipoProducto = tipoProductoController.ObtenerTipoProducto();
             ListaTiposProducto.ItemsSource = listaTipoProducto;
@@ -111,7 +114,7 @@ namespace Presentacion.Paginas.Producto
                     if (resultado)
                     {
                         MessageBox.Show("Se actualizo el producto");
-                        NavigationService.Navigate(new Inicio_Gerente_Productos());
+                        NavigationService.Navigate(new Inicio_Gerente_Productos(_sesion));
                     }
                     else
                     {

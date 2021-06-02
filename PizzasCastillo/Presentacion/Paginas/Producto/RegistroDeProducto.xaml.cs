@@ -26,6 +26,7 @@ using System.Collections.ObjectModel;
 using Presentacion.Ventanas.Usuario;
 using Dominio.Utilerias;
 using Presentacion.Ventanas.Producto;
+using Presentacion.Recursos;
 
 namespace Presentacion.Paginas.Producto
 {
@@ -34,6 +35,7 @@ namespace Presentacion.Paginas.Producto
     /// </summary>
     public partial class RegistroDeProducto : Page
     {
+        private readonly Singleton _sesion;
         private const int DISPONIBLE = 1;
         private readonly List<Tipo> listaTipoProducto;
         private ValidadorProducto validadorProducto;
@@ -42,10 +44,11 @@ namespace Presentacion.Paginas.Producto
         private byte[] foto;
         private string nombreFoto;
 
-        public RegistroDeProducto()
+        public RegistroDeProducto(Singleton sesion)
         {
             InitializeComponent();
 
+            _sesion = sesion;
             TipoProductoController tipoProductoController = new TipoProductoController();
             listaTipoProducto = tipoProductoController.ObtenerTipoProducto();
             ListaTiposProducto.ItemsSource = listaTipoProducto;
@@ -103,7 +106,7 @@ namespace Presentacion.Paginas.Producto
                     if (resultado == ResultadoRegistroProducto.RegistroExitoso)
                     {
                         MessageBox.Show("Se registró el producto");
-                        NavigationService.Navigate(new Inicio_Gerente_Productos());
+                        NavigationService.Navigate(new Inicio_Gerente_Productos(_sesion));
                     }
                     else if (resultado == ResultadoRegistroProducto.CodigoBarraDuplicado)
                     {

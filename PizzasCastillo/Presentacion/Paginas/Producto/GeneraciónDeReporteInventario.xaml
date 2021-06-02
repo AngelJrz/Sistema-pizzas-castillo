@@ -208,7 +208,7 @@
                                         <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
                                     <Button Style="{StaticResource IconoBoton}" Click="AgregarCantidad"  Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Number1" Foreground="{StaticResource Gris}" 
+                                        <materialDesign:PackIcon Kind="Plus"  Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
 

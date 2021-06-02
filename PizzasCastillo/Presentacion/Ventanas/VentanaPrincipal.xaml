@@ -52,7 +52,7 @@
 
                 <TextBlock Text="Usuarios" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
                               PreviewMouseDown="Usuarios_PreviewMouseDown"/>
-                <TextBlock Text="Productos" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"
+                <TextBlock Text="Productos" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Productos_PreviewMouseDown"
                            />
                 <TextBlock Text="Proveedores" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
                 <TextBlock Text="Estadísticas" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
@@ -88,7 +88,7 @@
                 <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
             </Grid>
 
-            <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Visible">
+            <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="110"/>
@@ -107,7 +107,7 @@
 
 
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 
-                   Source="/Paginas/Usuario/RegistroDeUsuario.xaml"/>
+                   Source="/Paginas/Inicio.xaml"/>
 
         </Grid>
         

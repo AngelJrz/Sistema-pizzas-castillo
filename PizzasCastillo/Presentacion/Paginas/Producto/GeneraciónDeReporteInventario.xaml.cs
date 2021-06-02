@@ -1,7 +1,9 @@
-﻿using Dominio.Enumeraciones;
+﻿using Dominio.Entidades;
+using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
 using Microsoft.Win32;
+using Presentacion.Recursos;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
@@ -27,12 +29,16 @@ namespace Presentacion.Paginas.Producto
         private ObservableCollection<Dominio.Entidades.Reporta> productosReportados;
         private List<Dominio.Entidades.Producto> listaProductos;
         private List<Dominio.Entidades.Reporta> listaReportados;
-        private readonly Dominio.Entidades.Empleado empleadoActual;
+        private Dominio.Entidades.Empleado empleadoActual;
         private ValidadorReporteInventario validadorReporteInventario;
         private Dominio.Entidades.Reporta productoSeleccionado;
-        public GeneraciónDeReporteInventario()
+        private readonly Singleton _sesion;
+
+        public GeneraciónDeReporteInventario(Singleton sesion)
         {
             InitializeComponent();
+
+            _sesion = sesion;
 
             ProductoController productoController = new ProductoController();
             listaProductos = productoController.ObtenerProductosActivos();
@@ -60,19 +66,6 @@ namespace Presentacion.Paginas.Producto
                 productosReportados = new ObservableCollection<Dominio.Entidades.Reporta>(listaReportados);
                 TablaDeProductos.ItemsSource = productosReportados;
             }
-
-            Tipo tipo = new Tipo();
-            tipo.Nombre = "Gerente";
-
-            empleadoActual = new Dominio.Entidades.Empleado
-            {
-                Id = 1,
-                NumeroEmpleado = "GER12567",
-                Telefono = "1241747",
-                Nombres = "Rodrigo",
-                Apellidos = "Lopez Lopez",
-                TipoUsuario = tipo
-            };
         }
 
         private void Cancelar(object sender, RoutedEventArgs e)
@@ -83,6 +76,8 @@ namespace Presentacion.Paginas.Producto
         private void GuardarReporte(object sender, RoutedEventArgs e)
         {
             Dominio.Entidades.ReporteInventario reporteNuevo = ObtenerReporte();
+
+
 
             if (EstaInformacionCorrecta(reporteNuevo))
             {
@@ -115,7 +110,7 @@ namespace Presentacion.Paginas.Producto
                 if (resultado)
                 {
                     MessageBox.Show("Se registró el reporte");
-                    NavigationService.Navigate(new Inicio_Gerente_Productos());
+                    NavigationService.Navigate(new Inicio_Gerente_Productos(_sesion));
                 }
                 else
                 {
@@ -214,6 +209,10 @@ namespace Presentacion.Paginas.Producto
 
         private Dominio.Entidades.ReporteInventario ObtenerReporte()
         {
+            _sesion.Recursos.TryGetValue("Empleado", out object empleado);
+
+            empleadoActual  = empleado as Empleado;
+
             Dominio.Entidades.ReporteInventario reporteActual = new Dominio.Entidades.ReporteInventario
             {
                 Fecha = DateTime.Now,

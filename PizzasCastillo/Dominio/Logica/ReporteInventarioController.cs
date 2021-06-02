@@ -24,7 +24,6 @@ namespace Dominio.Logica
         {
 
             AccesoADatos.ReporteInventario reporteNuevo = ReporteInventario.CloneToDBEntity(reporte);
-            reporteNuevo.NumeroEmpleado = "GER1234567";
 
             bool seGuardo = false;
 
