@@ -86,6 +86,29 @@ namespace Dominio.Logica
 
         }
 
+        public bool ActualizarAPagado(Pedido pedido, decimal pago)
+        {
+
+            if (pedido.Total > pago)
+            {
+                return false;
+            }
+
+            if (!pedido.Estatus.Nombre.Equals("Entregado"))
+            {
+                return false;
+            }
+
+            PedidosDAO dao = new PedidosDAO();
+            EstatusPedidoController estatusController = new EstatusPedidoController();
+            List<Dominio.Enumeraciones.Tipo> listaTipos = estatusController.ObtenerEstatusPedido();
+            pedido.Estatus = listaTipos.Find(t => t.Nombre.Equals("Pagado"));
+            bool resultado = false;
+            resultado = dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+
+            return resultado;
+        }
+
         public ResultsPedidos ActualizarPedidoArticulos(Pedido pedido)
         {
             PedidosDAO dao = new PedidosDAO();
@@ -221,7 +244,7 @@ namespace Dominio.Logica
         {
             List<Pedido> listaARetornar = new List<Pedido>();
             PedidosDAO dao = new PedidosDAO();
-            List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidosEnPreparacion();
+            List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidos();
 
             foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
             {

@@ -186,8 +186,9 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="30"/>
                                       
 
                                     </Grid.ColumnDefinitions>
@@ -210,7 +211,10 @@
 
                                     </Button>
 
-
+                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarPago" Grid.Column="3">
+                                        <materialDesign:PackIcon Kind="Cash" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+                                    </Button>
 
                                 </Grid>
                             </DataTemplate>
