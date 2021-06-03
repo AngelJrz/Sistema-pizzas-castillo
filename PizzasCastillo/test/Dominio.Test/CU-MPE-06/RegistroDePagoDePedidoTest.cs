@@ -97,7 +97,7 @@ namespace Dominio.Test.CU_MPE_06
             Empleado empleadoPrueba = listaEmpleados.Find(e => e.TipoUsuario.Nombre.Equals("Encargado de caja"));
             List<Pedido> listaPedidos = pedidoController.ObtenerPedidos();
             Pedido pedidoPrueba = listaPedidos.Find(p => p.Estatus.Nombre.Equals("Preparado"));
-            decimal pagoPrueba = 0;
+            decimal pagoPrueba = 999;
             bool seGuardo = pedidoController.ActualizarAPagado(pedidoPrueba, pagoPrueba);
             Assert.IsFalse(seGuardo);
         }
