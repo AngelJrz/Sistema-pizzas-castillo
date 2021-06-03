@@ -60,7 +60,7 @@ namespace Dominio.Test.CU_MPR_05
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void ValidarExistenciaTest()
         {
             ArticuloVentaController controller = new ArticuloVentaController();
             Assert.IsNotNull(controller.ObtenerProductos());
