@@ -52,6 +52,7 @@
     <Compile Include="CU-MPE-01\RegistrarPedidoPrueba.cs" />
     <Compile Include="CU-MPE-02\EditarPedidoTest.cs" />
     <Compile Include="CU-MPE-03\RegistrarEntrega.cs" />
+    <Compile Include="CU-MPE-06\RegistroDePagoDePedidoTest.cs" />
     <Compile Include="CU-MPR-05\ValidarExistenciasTest.cs" />
     <Compile Include="CU-MU-01\RegistrarUsuarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1100"
       Title="RegistroDePagoDePedido">
-
+    
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
         <StackPanel Width="1000">
             <TextBlock Text="Registrar Pago de Pedido" Style="{StaticResource TituloPaginasStyle}"
@@ -48,8 +48,8 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock x:Name="EmpleadoText" Style="{StaticResource TituloCamposStyle}"
-                             Text="{Binding RegistradoPor.NombreCompleto}" Width="255" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="EmpleadoText" Style="{StaticResource TituloCamposStyle}" Text="{Binding RegistradoPor.NombreCompleto}"
+                               Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -65,7 +65,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBlock x:Name="estatusText" Style="{StaticResource TituloCamposStyle}"
-                             Text="{Binding Estatus}" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
+                             Text="{Binding Estatus.Nombre}" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
                 </StackPanel>
             </Grid>
 
@@ -81,7 +81,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBlock Style="{StaticResource TituloCamposStyle}"
-                               Text="{Binding Tipo.Nombre}" Width="255" HorizontalAlignment="Left"/>
+                               Text="{Binding Tipo.Nombre}"  Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -133,7 +133,9 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="pagoText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="255" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
+                             MaxLength="255" Width="255" HorizontalAlignment="Left" KeyUp="IngresarPago" ToolTip="Hola"
+                             TextCompositionManager.PreviewTextInput="PermitirNumero">
+                    </TextBox>
                 </StackPanel>
             </Grid>
 
@@ -148,7 +150,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock x:Name="entregaText" Text="{Binding Total}" Style="{StaticResource TituloCamposStyle}"
+                    <TextBlock x:Name="entregaText" Style="{StaticResource TituloCamposStyle}"
                                Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>

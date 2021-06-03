@@ -164,18 +164,15 @@ namespace AccesoADatos.ControladoresDeDatos
 
 
 
-        public List<Pedido> ObtenerPedidosEnPreparacion() {
+        public List<Pedido> ObtenerPedidos() {
             try
             {
-               
-                   
-                    _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals
-                    ("En Preparacion"))
-                    .ToList();
-                    return _pedidos;
-               
+                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Estatus != 0)
+                .ToList();
+                return _pedidos;
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return _pedidos;
             }
