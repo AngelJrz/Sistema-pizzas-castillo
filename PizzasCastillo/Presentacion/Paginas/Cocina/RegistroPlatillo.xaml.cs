@@ -23,6 +23,7 @@ using System.Globalization;
 using System.Collections.ObjectModel;
 using Presentacion.Ventanas.Usuario;
 using Dominio.Utilerias;
+using Dominio.Enumeraciones;
 
 namespace Presentacion.Paginas.Cocina
 {
@@ -221,17 +222,23 @@ namespace Presentacion.Paginas.Cocina
                     if (validadorArticulo.Validar(nuevoPlatillo))
                     {
                         ArticuloVentaController articuloVentaController = new ArticuloVentaController();
-                        bool guardado = articuloVentaController.GuardarPlatilloVenta(nuevoPlatillo);
-                        if (guardado)
+                        ResultadoRegistro guardado = articuloVentaController.GuardarPlatilloVenta(nuevoPlatillo);
+
+                        switch (guardado)
                         {
-                            InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo con exito");
-                            ventana.Show();
-                            NavigationService.GoBack();
-                        }
-                        else
-                        {
-                            InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "A ocurrido un error de registro");
-                            ventana.Show();
+                            case ResultadoRegistro.YaExiste:
+                                InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Este Platilo ya se encuentra registrado, de preferencia editelo mejor");
+                                ventana.Show();
+                                break;
+                            case ResultadoRegistro.RegistroFallido:
+                                InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
+                                ventana1.Show();
+                                break;
+                            case ResultadoRegistro.RegistroExitoso:
+                                InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo y sus ingredientes con exito");
+                                ventana2.Show();
+                                NavigationService.GoBack();
+                                break;
                         }
 
                     }

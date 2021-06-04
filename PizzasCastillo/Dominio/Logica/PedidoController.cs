@@ -30,17 +30,20 @@ namespace Dominio.Logica
         }
 
 
-        public void ActualizarPedidoEstatus(Pedido pedido)
+        public bool ActualizarPedidoEstatus(Pedido pedido)
         {
             PedidosDAO dao = new PedidosDAO();
-
+            if(dao.ObtenerPedidoPorID(pedido.Id) == null)
+            {
+                return false;
+            }
             if (pedido.Tipo.Id == 1)
             {
-                dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
+                return dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
             }
             else
             {
-                dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+                return dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
             }
 
 

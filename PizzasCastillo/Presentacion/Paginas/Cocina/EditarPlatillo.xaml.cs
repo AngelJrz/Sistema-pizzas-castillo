@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades;
+using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
 using Microsoft.Win32;
@@ -31,6 +32,7 @@ namespace Presentacion.Paginas.Cocina
         byte[] foto;
         string nombreFoto;
         string codigoBarra;
+        string nombrePlatillo;
         ObservableCollection<ArticuloVenta> productos;
         private ProductoPopUp productoPopUP;
         private List<ArticuloVenta> insumosList;
@@ -38,6 +40,7 @@ namespace Presentacion.Paginas.Cocina
         public EditarPlatillo(ArticuloVenta platilloEdicion)
         {
             InitializeComponent();
+            nombrePlatillo = platilloEdicion.Nombre;
             ArticuloVentaController ventaController = new ArticuloVentaController();
             productos = new ObservableCollection<ArticuloVenta>();
             insumosList = ventaController.ObtenerProductos();
@@ -235,17 +238,30 @@ namespace Presentacion.Paginas.Cocina
                     if (validadorArticulo.Validar(nuevoPlatillo))
                     {
                         ArticuloVentaController articuloVentaController = new ArticuloVentaController();
-                        bool guardado = articuloVentaController.ActualizarPlatilloVenta(nuevoPlatillo);
-                        if (guardado)
+                        ResultadoRegistro guardado;
+                        if (NombreText.Text == nombrePlatillo)
                         {
-                            InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo con exito");
-                            ventana.Show();
-                            NavigationService.GoBack();
+                            guardado = articuloVentaController.ActualizarPlatilloVenta(nuevoPlatillo,false);
                         }
                         else
                         {
-                            InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "A ocurrido un error de registro");
-                            ventana.Show();
+                            guardado = articuloVentaController.ActualizarPlatilloVenta(nuevoPlatillo,true);
+                        }
+                        switch (guardado)
+                        {
+                            case ResultadoRegistro.YaExiste:
+                                InteraccionUsuario ventana = new InteraccionUsuario("Error de actualizacion", "Este Nombre de platilo ya se encuentra registrado, de preferencia editelo mejor");
+                                ventana.Show();
+                                break;
+                            case ResultadoRegistro.RegistroFallido:
+                                InteraccionUsuario ventana1 = new InteraccionUsuario("Error de actualizacion", "Hubo un error a la hora del registro, Intente mas tarde");
+                                ventana1.Show();
+                                break;
+                            case ResultadoRegistro.RegistroExitoso:
+                                InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en actualizacion", "Se ha guardado el platillo y sus ingredientes con exito");
+                                ventana2.Show();
+                                NavigationService.GoBack();
+                                break;
                         }
 
                     }

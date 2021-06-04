@@ -12,6 +12,10 @@ namespace Dominio.Logica
     {
         public bool GuardarMermaInsumos(Merma nuevaMerma)
         {
+            if (nuevaMerma.Indica == null || nuevaMerma.Indica.Count == 0)
+            {
+                return false;
+            }
             MermaDAO mermaDAO = new MermaDAO();
             return mermaDAO.RegistrarMermaInsumos(Clone(nuevaMerma));
         }
@@ -39,6 +43,11 @@ namespace Dominio.Logica
 
         public bool GuardarMermaPedido(Merma nuevaMerma)
         {
+            PedidosDAO pedidosDAO = new PedidosDAO();
+            if(pedidosDAO.ObtenerPedidoPorID(nuevaMerma.Id) == null)
+            {
+                return false;
+            }
             MermaDAO mermaDAO = new MermaDAO();
             return mermaDAO.RegistrarMermaPedido(CloneMermaPedido(nuevaMerma));
         }

@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades;
+using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
 using Microsoft.Win32;
@@ -147,18 +148,23 @@ namespace Presentacion.Paginas.Finanza
                 if (ValidarCampos(proveedor, direccion))
                 {
                     ProveedorController proveedorController = new ProveedorController();
-                    bool guardado = proveedorController.GuardarProveedor(proveedor);
+                    ResultadoRegistro guardado = proveedorController.GuardarProveedor(proveedor);
 
-                    if (guardado)
+                    switch (guardado)
                     {
-                        InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el proveedor y su direccion con exito");
-                        ventana.Show();
-                        //REGRESA PAGINA
-                    }
-                    else
-                    {
-                        InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "A ocurrido un error de registro");
-                        ventana.Show();
+                        case ResultadoRegistro.UsuarioYaExiste:
+                            InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Este proveedor ya se encuentra registrado");
+                            ventana.Show();
+                            break;
+                        case ResultadoRegistro.RegistroFallido:
+                            InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
+                            ventana1.Show();
+                            break;
+                        case ResultadoRegistro.RegistroExitoso:
+                            InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el proveedor y su direccion con exito");
+                            ventana2.Show();
+                            NavigationService.GoBack();
+                            break;
                     }
                 }
                 else

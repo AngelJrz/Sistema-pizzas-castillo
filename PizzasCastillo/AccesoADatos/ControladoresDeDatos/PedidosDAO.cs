@@ -50,28 +50,26 @@ namespace AccesoADatos.ControladoresDeDatos
 
         }
 
-        public void ActualizarPedidoEstatus(Pedido pedido)
+        public bool ActualizarPedidoEstatus(Pedido pedido)
         {
-
             try
             {
-                     Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
-
-                    pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
-                   connection.Entry(pedidoDB).State = EntityState.Modified;
-                    connection.SaveChanges();
-
-                    _resultado = connection.SaveChanges();
-                
+                Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
+                pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
+                connection.Entry(pedidoDB).State = EntityState.Modified;
+                connection.SaveChanges();
+                _resultado = connection.SaveChanges();
+          
             }
             catch (DbUpdateException)
             {
-
                 throw;
             }
-
-
-
+            if (_resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
+            return true;
         }
 
 
@@ -79,24 +77,17 @@ namespace AccesoADatos.ControladoresDeDatos
 
             try
             {
+                Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
+                pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
 
-              
-                    Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
-
-                    pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
                 for (int x = 0; x > pedidoDB.Contiene.Count(); x++) 
-                    {
+                {
                     pedidoDB.Contiene.Remove(pedidoDB.Contiene.Last());
-                    }
-                    pedidoDB.Contiene = pedido.Contiene;
+                }
 
-                    connection.Entry(pedidoDB).State = EntityState.Modified;
-
-                    _resultado = connection.SaveChanges();
-
-             
-
-
+                pedidoDB.Contiene = pedido.Contiene;
+                connection.Entry(pedidoDB).State = EntityState.Modified;
+                _resultado = connection.SaveChanges();
             }
             catch (DbUpdateException)
             {

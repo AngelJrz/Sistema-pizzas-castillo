@@ -25,7 +25,7 @@ namespace Dominio.Test.CU_MU_05
         ///Obtiene o establece el contexto de las pruebas que proporciona
         ///información y funcionalidad para la serie de pruebas actual.
         ///</summary>
-        public TestContext TestContext
+        /*public TestContext TestContext
         {
             get
             {
@@ -148,6 +148,6 @@ namespace Dominio.Test.CU_MU_05
             bool resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado);
 
             Assert.IsTrue(resultado);
-        }
+        }*/
     }
 }

@@ -9,7 +9,7 @@ using Dominio.Enumeraciones;
 namespace Dominio.Test.CU_MU_06
 {
     [TestClass]
-    public class UnitTest1
+    public class RegistroClienteTest
     {
         private ClienteController clienteController = new ClienteController();
 
@@ -23,7 +23,7 @@ namespace Dominio.Test.CU_MU_06
             Direccion direccion = new Direccion
             {
                 Calle = "Privada los miraobos",
-                NumeroExterior = "87",
+                NumeroExterior = "88",
                 CodigoPostal = "98414",
                 Colonia = "Los Miradores",
                 EntidadFederativa = "Veracruz",
@@ -36,17 +36,17 @@ namespace Dominio.Test.CU_MU_06
 
             Persona clienteARegistrar = new Persona
             {
-                Nombres = "Sammy",
-                Apellidos = "Guayabo Platano",
-                Email = "boing@jugos.com",
-                Telefono = "2288442970",
+                Nombres = "Armando",
+                Apellidos = "Hoyos",
+                Email = "hoyo@derbez.com",
+                Telefono = "2281887144",
                 Direcciones = new List<Direccion>() { direccion },
                 TipoUsuario = tipoUsuario,
             };
 
-            bool resultado = clienteController.GuardarCliente(clienteARegistrar);
+            ResultadoRegistro resultado = clienteController.RegistrarCliente(clienteARegistrar);
 
-            Assert.IsTrue(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.RegistroExitoso);
         }
 
         [TestMethod]
@@ -72,18 +72,89 @@ namespace Dominio.Test.CU_MU_06
 
             Persona clienteARegistrar = new Persona
             {
-                Id = 5,
                 Nombres = "Sammy",
                 Apellidos = "Guayabo Platano",
                 Email = "boing@jugos.com",
-                Telefono = "2288442970",
+                Telefono = "2281887144",
                 Direcciones = new List<Direccion>() { direccion },
                 TipoUsuario = tipoUsuario,
             };
 
-            bool resultado = clienteController.GuardarCliente(clienteARegistrar);
+            ResultadoRegistro resultado = clienteController.RegistrarCliente(clienteARegistrar);
 
-            Assert.IsFalse(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.UsuarioYaExiste);
         }
+
+        [TestMethod]
+        public void RegistrarClienteIncorrecto()
+        {
+            TipoUsuarioController tipoUsuarioController = new TipoUsuarioController();
+
+            List<Tipo> tiposUsuario = tipoUsuarioController.ObtenerTiposUsuario();
+
+            Direccion direccion = new Direccion
+            {
+                Calle = "Privada los miraobos",
+                NumeroExterior = "",
+                CodigoPostal = "98414",
+                Colonia = "Los Mres",
+                EntidadFederativa = "Veracruz",
+                Ciudad = "Xalapa",
+                Referencias = "im",
+                NumeroInterior = ""
+            };
+
+            Tipo tipoUsuario = tiposUsuario.Find(tipo => tipo.Nombre.Equals("Cliente"));
+
+            Persona clienteARegistrar = new Persona
+            {
+                Nombres = "Sammy",
+                Apellidos = "",
+                Email = "boios.com",
+                Telefono = "22970",
+                Direcciones = new List<Direccion>() { direccion },
+                TipoUsuario = tipoUsuario,
+            };
+
+            ResultadoRegistro resultado = clienteController.RegistrarCliente(clienteARegistrar);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
+        }
+
+
+        [TestMethod]
+        public void RegistrarClienteSinDireccion()
+        {
+            TipoUsuarioController tipoUsuarioController = new TipoUsuarioController();
+
+            List<Tipo> tiposUsuario = tipoUsuarioController.ObtenerTiposUsuario();
+
+            Tipo tipoUsuario = tiposUsuario.Find(tipo => tipo.Nombre.Equals("Cliente"));
+
+            Persona clienteARegistrar = new Persona
+            {
+                Nombres = "Sammy",
+                Apellidos = "Wayabo",
+                Email = "boing@jugos.com",
+                Telefono = "22970",
+                TipoUsuario = tipoUsuario,
+            };
+
+            ResultadoRegistro resultado = clienteController.RegistrarCliente(clienteARegistrar);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.DireccionNoEspecificada);
+        }
+
+        [TestMethod]
+        public void RegistrarClienteNulo()
+        {
+
+            Persona persona = null;
+
+            ResultadoRegistro resultado = clienteController.RegistrarCliente(persona);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
+        }
+
     }
 }
