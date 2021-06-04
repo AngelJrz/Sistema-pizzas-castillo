@@ -99,22 +99,26 @@ namespace Presentacion.Paginas.Producto
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Ocurrió un error al intentar guardar el producto. Por favor intente más tarde.");
+                        InteraccionUsuario error = new InteraccionUsuario("Error", "Ocurrió un error al intentar guardar el producto. Por favor intente más tarde.");
+                        error.Show();
                         return;
                     }
 
                     if (resultado == ResultadoRegistroProducto.RegistroExitoso)
                     {
-                        MessageBox.Show("Se registró el producto");
+                        InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se registró el producto");
+                        exito.Show();
                         NavigationService.Navigate(new Inicio_Gerente_Productos(_sesion));
                     }
                     else if (resultado == ResultadoRegistroProducto.CodigoBarraDuplicado)
                     {
-                        MessageBox.Show("El codigo de barra ingresado ya pertenece a otro producti. Verifique la información e intente de nuevo");
+                        InteraccionUsuario error = new InteraccionUsuario("Error", "El codigo de barra ingresado ya pertenece a otro producti. Verifique la información e intente de nuevo");
+                        error.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Ocurrió un error, intenté más tarde");
+                        InteraccionUsuario error = new InteraccionUsuario("Error", "Ocurrió un error, intenté más tarde");
+                        error.Show();
                     }
                 }
                 else
