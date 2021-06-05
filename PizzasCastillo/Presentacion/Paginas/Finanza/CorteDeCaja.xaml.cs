@@ -22,6 +22,7 @@ namespace Presentacion.Paginas.Finanza
         private Empleado empleado;
         private GastoExtraController controladorGastos;
         private PedidoController controladorPedidos;
+        private ReporteDeCajaController controladorReportes;
 
         public CorteDeCaja(Empleado empleadoEnSesion)
         {
@@ -30,6 +31,7 @@ namespace Presentacion.Paginas.Finanza
             InitializeComponent();
             controladorGastos = new GastoExtraController();
             controladorPedidos = new PedidoController();
+            controladorReportes = new ReporteDeCajaController();
 
             ColocarIngresosYEgresos();
 
@@ -53,30 +55,37 @@ namespace Presentacion.Paginas.Finanza
 
         public void ColocarIngresosYEgresos()
         {
-            double totalGastos = controladorGastos.ObtenerSumaDeGastosDelDia();
-            double totalIngresos = controladorPedidos.ObtenerIngresosDelDia();
+            double dineroDejado = controladorReportes.ObtenerEfectivoDejado();
+            double ingresos = controladorPedidos.ObtenerIngresosDelDia();
+            double gastos = controladorGastos.ObtenerSumaDeGastosDelDia();
+            double totalIngresos = ingresos + dineroDejado;
 
-            egresosDelDia.Text = totalGastos.ToString();
+            inicioDeCaja.Text = dineroDejado.ToString();
             ingresosDelDia.Text = totalIngresos.ToString();
-            balanceDiario.Text = (totalIngresos - totalGastos).ToString();
+            egresosDelDia.Text = gastos.ToString();
+            balanceDiario.Text = (totalIngresos - gastos).ToString();
         }
 
         private void ClickGuardarCorte(object sender, RoutedEventArgs e)
         {
             if (CamposCorrectos())
             {
-                if (ObtenerEfectivoParaDiaSiguiente())
+                if (VerificarEfectivoEnCaja())
                 {
-                    ReporteCaja nuevoReporte = CrearReporteDeCaja();
-                    ReporteDeCajaController controlador = new ReporteDeCajaController();
+                    if (ObtenerEfectivoParaDiaSiguiente())
+                    {
+                        ReporteCaja nuevoReporte = CrearReporteDeCaja();
+                        ReporteDeCajaController controlador = new ReporteDeCajaController();
 
-                    if (controlador.RegistrarNuevoReporteDeCaja(nuevoReporte))
-                    {
-                        MessageBox.Show("El corte de caja se registro con exito");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ocurrio un error durante el registro");
+                        if (controlador.RegistrarNuevoReporteDeCaja(nuevoReporte))
+                        {
+                            MessageBox.Show("El corte de caja se registro con exito");
+                            ResetListaDeCampos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ocurrio un error durante el registro");
+                        }
                     }
                 }
             }
@@ -197,6 +206,38 @@ namespace Presentacion.Paginas.Finanza
             }
 
             return sumaTotalEfectivo;
+        }
+
+        private bool VerificarEfectivoEnCaja()
+        {
+            double balanceDelDia = double.Parse(balanceDiario.Text);
+            double dineroEnCaja = ObtenerSumaTotalDeEfectivo();
+
+            if (balanceDelDia == dineroEnCaja)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBoxResult opscionSeleccionada = MessageBox.Show($"El efectivo en caja es ${dineroEnCaja} y no corresponde con el balance ¿Deseas continuar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (opscionSeleccionada == MessageBoxResult.Yes)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private void ResetListaDeCampos()
+        {
+            comentariosInput.Text = "Sin comentarios";
+            foreach (TextBox campo in listaDeCampos)
+            {
+                campo.Text = "0";
+            }
         }
     }
 }

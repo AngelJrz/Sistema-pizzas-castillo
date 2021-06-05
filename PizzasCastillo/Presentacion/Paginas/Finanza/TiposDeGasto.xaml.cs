@@ -42,7 +42,7 @@ namespace Presentacion.Paginas.Finanza
                     }
                     else
                     {
-                        MessageBox.Show("Ocurrio un error al registrar el nuevo tipo", "Error");
+                        MessageBox.Show("Ocurrio un error al registrar el nuevo tipo, verifica que no exista en la lista actual", "Error");
                     }  
                 }
             }
@@ -74,7 +74,7 @@ namespace Presentacion.Paginas.Finanza
                     }
                     else
                     {
-                        MessageBox.Show("Ocurrio un error");
+                        MessageBox.Show("Ocurrio un error, verifica que no exista en la lista actual");
                     }
                 }
                 else

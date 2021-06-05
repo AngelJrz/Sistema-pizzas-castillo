@@ -66,5 +66,30 @@ namespace Dominio.Test.CU_MF_06
 
             Assert.IsFalse(resultado);
         }
+
+        [TestMethod]
+        public void ModificarTipoDeGasto_NombreExistente()
+        {
+            string nuevoNombre = "Nuevo tipo";
+            int idTipoAModificar = 0;
+
+            bool resultado = _tipoGastoController.ModificarTiposDeGasto(idTipoAModificar, nuevoNombre);
+
+            Assert.IsFalse(resultado);
+        }
+
+        [TestMethod]
+        public void GuardarNuevoTipoDeGasto__GastoExistente()
+        {
+            Tipo nuevoTipoDeGasto = new Tipo()
+            {
+                Nombre = "Pago a proveedor",
+                Estatus = 1
+            };
+
+            bool resultado = _tipoGastoController.GuardarNuevoTipoDeGasto(nuevoTipoDeGasto);
+
+            Assert.IsFalse(resultado);
+        }
     }
 }

@@ -111,56 +111,5 @@ namespace Dominio.Test.CU_MF_05
             Assert.IsTrue(resultado.Count >= 0);
         }
 
-        [TestMethod]
-        public void CancelarPedidoProveedor()
-        {
-            PedidoAProveedor pedidoACancelar = new PedidoAProveedor()
-            {
-                Id = 4
-            };
-
-            bool resultado = _pedidoController.CancelarPedidoAProveedor(pedidoACancelar.Id);
-
-            Assert.IsTrue(resultado);
-        }
-
-        [TestMethod]
-        public void CancelarPedidoProveedor_idIncorrecto()
-        {
-            PedidoAProveedor pedidoACancelar = new PedidoAProveedor()
-            {
-                Id = 0
-            };
-
-            bool resultado = _pedidoController.CancelarPedidoAProveedor(pedidoACancelar.Id);
-
-            Assert.IsFalse(resultado);
-        }
-
-        [TestMethod]
-        public void EntregarPedidoProveedor()
-        {
-            PedidoAProveedor pedidoAEntregar = new PedidoAProveedor()
-            {
-                Id = 4
-            };
-
-            bool resultado = _pedidoController.PedidoAProveedorEntregado(pedidoAEntregar.Id);
-
-            Assert.IsTrue(resultado);
-        }
-
-        [TestMethod]
-        public void EntregarPedidoProveedor_idIncorrecto()
-        {
-            PedidoAProveedor pedidoAEntregar = new PedidoAProveedor()
-            {
-                Id = 0
-            };
-
-            bool resultado = _pedidoController.PedidoAProveedorEntregado(pedidoAEntregar.Id);
-
-            Assert.IsFalse(resultado);
-        }
     }
 }

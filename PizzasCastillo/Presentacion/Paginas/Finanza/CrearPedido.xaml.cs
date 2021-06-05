@@ -45,7 +45,14 @@ namespace Presentacion.Paginas.Finanza
 
                 foreach (Proveedor proveedor in listaDeProveedores)
                 {
-                    File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + proveedor.NombreArchivo, proveedor.ListaDeProductos);
+                    try
+                    {
+                        File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + proveedor.NombreArchivo, proveedor.ListaDeProductos);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
 
             }
@@ -65,6 +72,7 @@ namespace Presentacion.Paginas.Finanza
                     if (controller.RegistrarNuevoPedidoAProveedor(nuevoPedido))
                     {
                         MessageBox.Show("El pedido se realizo correctamente");
+                        NavigationService.Navigate(new Inicio());
                     }
                     else
                     {
@@ -102,7 +110,10 @@ namespace Presentacion.Paginas.Finanza
                         }
                     });
 
-                    MessageBox.Show("Producto agregado");
+                    TextBlock nuevoArticulo = new TextBlock();
+                    nuevoArticulo.Text = $"{cantidad.ResponseText} - {articuloSeleccionado.Nombre}"; ;
+                    nuevoArticulo.FontSize = 15;
+                    listaDeArticulosSolicitados.Children.Add(nuevoArticulo);
                 }
             }
         }

@@ -23,7 +23,6 @@ namespace Presentacion.Paginas.Finanza
             if (listaObservable.Count == 0)
             {
                 MessageBox.Show("No se encuentras pedidos registrados, intente mas tarde", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                NavigationService.GoBack();
             }
             else
             {

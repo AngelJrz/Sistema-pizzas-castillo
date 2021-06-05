@@ -48,6 +48,7 @@ namespace Presentacion.Paginas.Finanza
                 if (controlador.RegistrarGastoExtra(nuevoGasto))
                 {
                     MessageBox.Show("Se registro el gasto exitosamente");
+                    LimpiarCampos();
                 }
                 else
                 {
@@ -97,6 +98,12 @@ namespace Presentacion.Paginas.Finanza
             };
 
             return nuevoGasto;
+        }
+
+        private void LimpiarCampos()
+        {
+            conceptoDeGasto.Text = "";
+            total.Text = "";
         }
     }
 }
