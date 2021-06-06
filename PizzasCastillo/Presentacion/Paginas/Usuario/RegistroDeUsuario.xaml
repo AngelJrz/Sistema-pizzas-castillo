@@ -36,7 +36,8 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="NombresText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" HorizontalAlignment="Left"
-                             ToolTip="El nombre debe ser mínimo de 2 caracteres y máximo de 50."/>
+                             ToolTip="El nombre debe ser mínimo de 2 caracteres y máximo de 50."
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                 </StackPanel>
             </Grid>
 
@@ -54,7 +55,8 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="ApellidosText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="200" Width="400" HorizontalAlignment="Left"
-                             ToolTip="Los apellidos deben ser mínimo de 2 caracteres y máximo de 150."/>
+                             ToolTip="Los apellidos deben ser mínimo de 2 caracteres y máximo de 150."
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                 </StackPanel>
             </Grid>
 
@@ -72,7 +74,8 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="EmailText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="80" Width="400" HorizontalAlignment="Left"
-                             ToolTip="La estructura del correo es usuario@dominio y debe ser mínimo de 10 caracteres y máximo de 80."/>
+                             ToolTip="La estructura del correo es usuario@dominio y debe ser mínimo de 10 caracteres y máximo de 80."
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                 </StackPanel>
             </Grid>
 
@@ -90,7 +93,8 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="TelefonoText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="10" Width="200" HorizontalAlignment="Left"
-                             ToolTip="El teléfono solo puede contener números, con un mínimo y máximo de 10 digitos."/>
+                             ToolTip="El teléfono solo puede contener números, con un mínimo y máximo de 10 digitos."
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                 </StackPanel>
             </Grid>
 
@@ -124,7 +128,8 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBox x:Name="CalleText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" HorizontalAlignment="Left"
-                                     ToolTip="La calle debe ser mínimo de 8 caracteres y máximo de 150."/>
+                                     ToolTip="La calle debe ser mínimo de 8 caracteres y máximo de 150."
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                         </StackPanel>
                     </Grid>
 
@@ -143,7 +148,8 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBox x:Name="NoExteriorText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="5" Width="200" HorizontalAlignment="Left"
-                                     ToolTip="El número exterior debe ser mínimo de 1 digito y máximo de 4"/>
+                                     ToolTip="El número exterior debe ser mínimo de 1 digito y máximo de 4"
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                         </StackPanel>
                     </Grid>
 
@@ -162,7 +168,8 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBox x:Name="CodigoPostalText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="5" Width="200" HorizontalAlignment="Left"
-                                     ToolTip="El código postal debe tener un mínimo y máximo de 5 digitos"/>
+                                     ToolTip="El código postal debe tener un mínimo y máximo de 5 digitos"
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                         </StackPanel>
                     </Grid>
 
@@ -181,7 +188,8 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBox x:Name="CiudadText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="60" Width="200" HorizontalAlignment="Left"
-                                     ToolTip="La ciudad debe ser mínimo de 4 caracteres y un máximo de 60."/>
+                                     ToolTip="La ciudad debe ser mínimo de 4 caracteres y un máximo de 60."
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -202,7 +210,8 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBox x:Name="ColoniaText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" HorizontalAlignment="Left"
-                                     ToolTip="La colonia debe tener un mínimo de 4 caracteres y un máximo de 150."/>
+                                     ToolTip="La colonia debe tener un mínimo de 4 caracteres y un máximo de 150."
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                         </StackPanel>
                     </Grid>
 
@@ -222,7 +231,8 @@
                                 VerticalAlignment="Center">
                             <TextBox x:Name="NoInteriorText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="5" Width="200" HorizontalAlignment="Left"
-                                     ToolTip="El número interior debe ser mínimo de 1 digito y máximo de 4."/>
+                                     ToolTip="El número interior debe ser mínimo de 1 digito y máximo de 4."
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                         </StackPanel>
                     </Grid>
 
@@ -261,7 +271,8 @@
                                 VerticalAlignment="Center">
                             <TextBox x:Name="ReferenciasText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="200" Width="400" Height="80" HorizontalAlignment="Left"
-                                     ToolTip="Las referencias deben ser mínimo de 10 caracteres y máximo de 200."/>
+                                     ToolTip="Las referencias deben ser mínimo de 10 caracteres y máximo de 200."
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -309,7 +320,8 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="UsernameText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30" Width="200" HorizontalAlignment="Left"
-                             ToolTip="El username debe ser mínimo de 5 caracteres y máximo de 30."/>
+                             ToolTip="El username debe ser mínimo de 5 caracteres y máximo de 30."
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                 </StackPanel>
             </Grid>
 
@@ -326,7 +338,8 @@
 
                 <StackPanel Grid.Column="1">
                     <PasswordBox x:Name="PasswordText" Template="{StaticResource PasswordControlTemplate}"
-                                         MaxLength="255" Width="200" HorizontalAlignment="Left"/>
+                                 MaxLength="255" Width="200" HorizontalAlignment="Left"
+                                 GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                 </StackPanel>
             </Grid>
 
@@ -343,8 +356,9 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="SalarioText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="8" Width="200" HorizontalAlignment="Left" 
-                             ToolTip="El salario debe ser mayor a 0 y puede contener 3 números después del punto."/>
+                             MaxLength="8" Width="200" HorizontalAlignment="Left" 
+                             ToolTip="El salario debe ser mayor a 0 y puede contener 3 números después del punto."
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
                 </StackPanel>
             </Grid>
 
@@ -352,8 +366,10 @@
                        Foreground="{StaticResource Alert}" Width="1100" Margin="0,20,0,0"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar_Clic"/>
-                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="Registrar_Clic"/>
+                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" 
+                        Click="Cancelar_Clic" PreviewTouchDown="Cancelar_Touch"/>
+                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" 
+                        Click="Registrar_Clic" PreviewTouchDown="Registrar_Touch"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

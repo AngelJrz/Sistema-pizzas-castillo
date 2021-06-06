@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Presentacion.Paginas.Usuario
         private readonly List<string> estadosLista;
         private readonly List<Tipo> tiposUsuario;
         private ValidadorDireccion validadorDireccion;
+        private Process _teclado;
 
         public RegistroDeUsuario()
         {
@@ -78,7 +80,7 @@ namespace Presentacion.Paginas.Usuario
             ListaTiposUsuario.ItemsSource = tiposUsuario;
         }
 
-        private void Registrar_Clic(object sender, RoutedEventArgs e)
+        private void RegistrarUsuario()
         {
             Direccion direccion = new Direccion
             {
@@ -164,6 +166,11 @@ namespace Presentacion.Paginas.Usuario
             }
         }
 
+        private void Registrar_Clic(object sender, RoutedEventArgs e)
+        {
+            RegistrarUsuario();
+        }
+
         private void LimpiarCampos()
         {
             ListaTiposUsuario.SelectedItem = null;
@@ -199,6 +206,36 @@ namespace Presentacion.Paginas.Usuario
         private void Cancelar_Clic(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListaDeUsuarios());
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+                _teclado.Kill();
+        }
+
+        private void Cancelar_Touch(object sender, TouchEventArgs e)
+        {
+            NavigationService.Navigate(new ListaDeUsuarios());
+        }
+
+        private void Registrar_Touch(object sender, TouchEventArgs e)
+        {
+            RegistrarUsuario();
         }
     }
 }

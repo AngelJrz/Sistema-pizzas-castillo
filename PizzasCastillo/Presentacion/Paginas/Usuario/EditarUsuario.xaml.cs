@@ -6,6 +6,7 @@ using Dominio.Utilerias;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,13 +31,12 @@ namespace Presentacion.Paginas.Usuario
         public List<Tipo> TiposUsuario { get; set; }
         private bool _seActualizoUsername = false;
         private bool _seActualizoPassword = false;
-        private readonly string _usernameEmpleado;
         private readonly Empleado _empleadoRespaldo;
+        private Process _teclado;
 
         public EditarUsuario(Empleado empleado)
         {
             InitializeComponent();
-            _usernameEmpleado = empleado.Username;
             estadosLista = new List<string>
             {
                 "Aguascalientes",
@@ -101,7 +101,7 @@ namespace Presentacion.Paginas.Usuario
             NavigationService.Navigate(new ListaDeUsuarios());
         }
 
-        private void Actualizar_Clic(object sender, RoutedEventArgs e)
+        private void ActualizarEmpleado()
         {
             Empleado empleadoAActualizar = DataContext as Empleado;
 
@@ -178,6 +178,11 @@ namespace Presentacion.Paginas.Usuario
             }
         }
 
+        private void Actualizar_Clic(object sender, RoutedEventArgs e)
+        {
+            ActualizarEmpleado();
+        }
+
         private bool EstaInformacionCorrecta(Empleado empleado)
         {
             ValidadorPersonas validadorPersona = new ValidadorPersonas();
@@ -186,6 +191,36 @@ namespace Presentacion.Paginas.Usuario
 
             return validadorDireccion.Validar(empleado.Direcciones[0]) && validadorPersona.Validar(empleado) &&
                 validadorEmpleado.Validar(empleado);
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+                _teclado.Kill();
+        }
+
+        private void Cancelar_Touch(object sender, TouchEventArgs e)
+        {
+            NavigationService.Navigate(new ListaDeUsuarios());
+        }
+
+        private void Actualizar_Touch(object sender, TouchEventArgs e)
+        {
+            ActualizarEmpleado();
         }
     }
 }

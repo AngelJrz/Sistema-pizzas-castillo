@@ -167,7 +167,7 @@ namespace Presentacion.Ventanas
 
         private void IniciarSesionTouch(object sender, TouchEventArgs e)
         {
-            
+            IniciarSesion();
         }
 
         private void ControlarTeclaEnter(object sender, KeyEventArgs e)
