@@ -171,7 +171,7 @@ namespace AccesoADatos.ControladoresDeDatos
             {
                 empleadoBuscado = _connection.Empleado
                     .Where(empleado => empleado.Username.Equals(username))
-                    .Where(empleado => empleado.Persona.Estatus == 1)
+                    .Where(empleado => empleado.Persona.Estatus == ACTIVO)
                     .Include(empleado => empleado.Persona)
                     .FirstOrDefault();
             }
@@ -285,6 +285,31 @@ namespace AccesoADatos.ControladoresDeDatos
                 return false;
 
             return true;
+        }
+
+        public int ObtenerNumeroUsuariosPorTipo(string nombreTipo)
+        {
+            List<Persona> usuarios;
+
+            try
+            {
+                usuarios = _connection.Persona
+                    .Where(usuario => usuario.TipoUsuario.Nombre.Equals(nombreTipo) && usuario.Estatus == ACTIVO)
+                    .ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (EntityException ex)
+            {
+                throw new ConexionFallidaException(ex);
+            }
+
+            if (usuarios == null)
+                return -1;
+
+            return usuarios.Count;
         }
     }
 }

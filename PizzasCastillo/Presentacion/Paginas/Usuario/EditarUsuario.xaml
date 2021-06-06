@@ -321,7 +321,7 @@
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="UsernameText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30" Width="200" HorizontalAlignment="Left"
-                             Text="{Binding Username}" PreviewTextInput="CamposText_TextInput"
+                             Text="{Binding Username}" 
                              ToolTip="El username debe ser mínimo de 5 caracteres y máximo de 30."/>
                 </StackPanel>
             </Grid>
@@ -339,7 +339,7 @@
 
                 <StackPanel Grid.Column="1">
                     <PasswordBox x:Name="PasswordText" Template="{StaticResource PasswordControlTemplate}"
-                                         MaxLength="255" Width="200" HorizontalAlignment="Left" PasswordChanged="PasswordText_PasswordChanged"/>
+                                         MaxLength="255" Width="200" HorizontalAlignment="Left" />
                 </StackPanel>
             </Grid>
 

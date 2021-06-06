@@ -74,19 +74,11 @@ namespace Presentacion.Paginas.Usuario
             if (tipoUsuarioAEditar != null)
             {
                 ventanaEditar = new EditarTipoUsuario(tipoUsuarioAEditar);
-                //ventanaEditar.ActualizacionExitosa += new EventHandler(TipoUsuarioEditado);
-
-                //ventanaEditar.ShowDialog();
 
                 if (ventanaEditar.ShowDialog() == true)
                     CargarTiposUsuarios();
             }
         }
-
-        //private void TipoUsuarioEditado(object sender, EventArgs e)
-        //{
-        //    CargarTiposUsuarios();
-        //}
 
         private void EliminarTipoUsuario(object sender, RoutedEventArgs e)
         {
@@ -130,6 +122,15 @@ namespace Presentacion.Paginas.Usuario
                         }.ShowDialog();
 
                         CargarTiposUsuarios();
+                    }
+                    else if (resultado == ResultadoRegistro.ExistenUsuariosVinculados)
+                    {
+                        new Dialog
+                        {
+                            Titulo = "Usuarios ya vinculados",
+                            Mensaje = $"No se puede eliminar el tipo de usuario {tipoUsuarioAEliminar.Nombre} porque " +
+                            $"ya hay usuarios registrados pertenecientes a él."
+                        }.ShowDialog();
                     }
                     else if(resultado == ResultadoRegistro.RegistroFallido)
                     {

@@ -70,6 +70,15 @@ namespace Dominio.Logica
                 || tipoUsuario.Id < VALOR_MINIMO_ID)
                 return ResultadoRegistro.InformacionIncorrecta;
 
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+            int numeroDeUsuariosPorTipo = usuarioDAO.ObtenerNumeroUsuariosPorTipo(tipoUsuario.Nombre);
+
+            if (numeroDeUsuariosPorTipo > 0)
+                return ResultadoRegistro.ExistenUsuariosVinculados;
+            else if (numeroDeUsuariosPorTipo == -1)
+                return ResultadoRegistro.RegistroFallido;
+
             AccesoADatos.TipoUsuario tipoUsuarioADarDeBaja = Tipo.CloneToEntityDB(tipoUsuario);
 
             bool seDioDeBaja;
