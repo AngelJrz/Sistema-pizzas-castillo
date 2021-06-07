@@ -14,8 +14,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Kernel.Geom;
+using iText.Layout.Element;
+using Microsoft.Win32;
+using iText.Kernel.Pdf.Canvas.Parser.ClipperLib;
+using Dominio.Entidades;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -49,8 +54,8 @@ namespace Presentacion.Paginas.Pedido
 
         private void ImprimirTicket(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
-          
+
+            CrearTicket();
         }
 
 
@@ -59,8 +64,45 @@ namespace Presentacion.Paginas.Pedido
 
         private void CrearTicket() {
 
-
           
+            Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
+            dialog.FileName = "Document";
+            dialog.DefaultExt = ".Pdf";
+            dialog.Filter = "PDF Documents (.pdf)|*.pdf";
+
+            Nullable<bool> result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+
+
+
+
+                String filename = dialog.FileName;
+
+
+               
+                PdfWriter pw = new PdfWriter(filename);
+                PdfDocument pdfDocument = new PdfDocument(pw);
+                Document doc = new Document(pdfDocument, PageSize.B6);
+                doc.SetMargins(0, 35, 70, 35);
+                doc.Add(new iText.Layout.Element.Paragraph("Pizzas Castillo").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                doc.Add(new iText.Layout.Element.Paragraph("Direccion: " + "Calle misterios #15"));
+                doc.Add(new iText.Layout.Element.Paragraph("Numero de pedido: " + _pedido.Id.ToString()));
+                doc.Add(new iText.Layout.Element.Paragraph("Articulos: "  ));
+                foreach (Contiene x in _pedido.Contiene) 
+                {
+                    doc.Add(new iText.Layout.Element.Paragraph(x.ArticuloVenta.Nombre.ToString() + x.Cantidad.ToString() + x.Total.ToString()));
+                }
+                doc.Add(new iText.Layout.Element.Paragraph("Fecha y hora en la que se generó: " + DateTime.Now.ToString()));
+                doc.Add(new iText.Layout.Element.Paragraph("Empleado:" + _pedido.RegistradoPor.NombreCompleto));
+
+                doc.Close();
+
+            }
+
+
+
         }
 
       
