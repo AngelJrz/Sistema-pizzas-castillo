@@ -245,7 +245,7 @@ namespace Dominio.Logica
             List<Pedido> listaARetornar = new List<Pedido>();
             PedidosDAO dao = new PedidosDAO();
             List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidos();
-
+            
             foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
             {
                 if (pedido.Mesa == null)

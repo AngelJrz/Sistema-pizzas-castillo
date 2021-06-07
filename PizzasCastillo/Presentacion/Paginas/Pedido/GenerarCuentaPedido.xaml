@@ -6,10 +6,279 @@
       xmlns:local="clr-namespace:Presentacion.Paginas.Pedido"
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="1100"
       Title="GenerarCuentaPedido">
 
-    <Grid>
+    <Page.Resources>
+        <local:ByteToImageConverte x:Name="convertidorImagen" x:Key="ConvertidorRutaImagen" />
+
+    </Page.Resources>
+
+    <ScrollViewer Background="{StaticResource AzulCastilloLight}">
+        <StackPanel>
+            <TextBlock Text="Registrar Pago de Pedido" Style="{StaticResource TituloPaginasStyle}"
+                       Margin="80,30,506,0"/>
+
+            <!--DATOS DE PEDIDO-->
+            <TextBlock Text="Datos de Pedido:" Style="{StaticResource TituloStyle}"
+                       Margin="110,30,0,0"/>
+            <Canvas Margin="60,0,0,10">
+                <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
+                      StrokeThickness="0.5"/>
+            </Canvas>
+
+            <Grid Margin="120,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Número de Pedido:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="NumeroText" Style="{StaticResource TituloCamposStyle}"
+                             Text="{Binding Id}" Width="255" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="120,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Empleado Encargado:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="EmpleadoText" Style="{StaticResource TituloCamposStyle}" Text="{Binding RegistradoPor.NombreCompleto}"
+                               Width="255" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="120,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Estatus de Pedido:" Style="{StaticResource TituloCamposStyle}" VerticalAlignment="Top"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="estatusText" Style="{StaticResource TituloCamposStyle}"
+                             Text="{Binding Estatus.Nombre}" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="120,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Tipo de Pedido:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Style="{StaticResource TituloCamposStyle}"
+                               Text="{Binding Tipo.Nombre}"  Width="255" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="120,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Fecha:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="fechaText" Style="{StaticResource TituloCamposStyle}"
+                             Text="{Binding Fecha}" Width="255" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="120,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Precio Total:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="precioText" Text="{Binding Total}" Style="{StaticResource TituloCamposStyle}"
+                               Width="255" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="120,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Text="Articulos Del Pedido:" Style="{StaticResource TituloCamposStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+              
+                </StackPanel>
+            </Grid>
+
+            <DataGrid x:Name="ListaProductos" HorizontalAlignment="Center" 
+                      ColumnWidth="*"
+                      AutoGenerateColumns="False" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                      Margin="0,20,0,20" CanUserSortColumns="true" AlternatingRowBackground="{StaticResource ColorSecundario}"
+                      
+                      GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Imagen" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ArticuloVenta.NombreFoto,Converter={StaticResource ConvertidorRutaImagen}}" HorizontalAlignment="Center" Width="50" Height="50"/>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+                    <DataGridTemplateColumn Header="Codigo de Barras" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding ArticuloVenta.CodigoBarra}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Nombre" Width="250" MinWidth="250" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding ArticuloVenta.Nombre}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Cantidad" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding Cantidad}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Precio" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                                        IsReadOnly="True" CanUserReorder="False">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource AzulCastillo}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Gris}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding ArticuloVenta.Precio}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                           FontSize="14"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                 
+
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
+                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar"/>
+                <Button Content="Imprimir Ticket" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="ImprimirTicket"/>
+            </StackPanel>
+
+
+        </StackPanel>
+
+   
         
-    </Grid>
+    </ScrollViewer>
+   
 </Page>

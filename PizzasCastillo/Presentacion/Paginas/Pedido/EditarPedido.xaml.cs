@@ -34,10 +34,14 @@ namespace Presentacion.Paginas.Pedido
 
             InitializeComponent();
             ListaProductos.ItemsSource = _pedido.Contiene;
-            foreach (Contiene p in _pedido.Contiene)
+            try
             {
-                File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.ArticuloVenta.NombreFoto, p.ArticuloVenta.Foto);
+                foreach (Contiene p in _pedido.Contiene)
+                {
+                    File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.ArticuloVenta.NombreFoto, p.ArticuloVenta.Foto);
+                }
             }
+            catch (IOException) { }
         }
 
 
@@ -70,6 +74,7 @@ namespace Presentacion.Paginas.Pedido
             
                     _pedido.Contiene.Find(x => x.ArticuloVenta.CodigoBarra.Contains(contieneQuitar.ArticuloVenta.CodigoBarra)).Cantidad -= 1;
                     _pedido.Contiene.Find(x => x.ArticuloVenta.CodigoBarra.Contains(contieneQuitar.ArticuloVenta.CodigoBarra)).Total -= contieneQuitar.ArticuloVenta.Precio;
+                
                 InteraccionUsuario err = new InteraccionUsuario("Exito", "Se Retiró 1 en la cantidad de este producto");
                 err.Show();
 

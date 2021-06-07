@@ -88,6 +88,7 @@ namespace AccesoADatos.ControladoresDeDatos
                     pedidoDB.Contiene.Remove(pedidoDB.Contiene.Last());
                     }
                     pedidoDB.Contiene = pedido.Contiene;
+                    pedidoDB.Total = pedido.Total;
 
                     connection.Entry(pedidoDB).State = EntityState.Modified;
 
@@ -167,7 +168,7 @@ namespace AccesoADatos.ControladoresDeDatos
         public List<Pedido> ObtenerPedidos() {
             try
             {
-                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Estatus != 0)
+                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Preparacion"))
                 .ToList();
                 return _pedidos;
 

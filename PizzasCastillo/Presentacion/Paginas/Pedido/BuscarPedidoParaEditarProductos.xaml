@@ -15,8 +15,8 @@
 
     </Page.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Visible" Background="{StaticResource AzulCastilloLight}"  >
-        <StackPanel Height="627">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
+        <StackPanel>
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 
@@ -43,8 +43,11 @@
             </Grid>
             <TextBlock Text="Pedidos" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
-            <DataGrid x:Name="ListaPedidos" HorizontalAlignment="Center" Width="auto"
-                      AutoGenerateColumns="False" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+        
+            <DataGrid x:Name="ListaPedidos" HorizontalAlignment="Center" Width="1000"
+                      AutoGenerateColumns="False" CanUserAddRows="false" 
+                      ScrollViewer.CanContentScroll="False"
+                    
                       Margin="0,20,0,20" CanUserSortColumns="true" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
                 <DataGrid.Columns>
@@ -199,7 +202,7 @@
 
                                     </Button>
                                     <Button Style="{StaticResource IconoBoton}" Click="RegistrarEntrega" Grid.Column="1">
-                                        <materialDesign:PackIcon Kind="DeliveryDining" Foreground="{StaticResource Gris}" 
+                                        <materialDesign:PackIcon Kind="LorryDelivery" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
 
 
@@ -225,6 +228,7 @@
 
                 </DataGrid.Columns>
             </DataGrid>
+          
 
         </StackPanel>
 

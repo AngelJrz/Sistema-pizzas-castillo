@@ -108,7 +108,7 @@
                         </DataGridTemplateColumn.CellTemplate>
 
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Estatus" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Cantidad" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -126,7 +126,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding ArticuloVenta.Estatus}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Cantidad}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
