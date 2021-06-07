@@ -89,10 +89,11 @@ namespace Presentacion.Paginas.Pedido
                 doc.Add(new iText.Layout.Element.Paragraph("Pizzas Castillo").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                 doc.Add(new iText.Layout.Element.Paragraph("Direccion: " + "Calle misterios #15"));
                 doc.Add(new iText.Layout.Element.Paragraph("Numero de pedido: " + _pedido.Id.ToString()));
-                doc.Add(new iText.Layout.Element.Paragraph("Articulos: "  ));
+                doc.Add(new iText.Layout.Element.Paragraph("Articulos: "));
+                doc.Add(new iText.Layout.Element.Paragraph("Descripcion: "+"----------"+"Cantiddad: "+ "----------"+"Precio: " + "----------"+ "total"));
                 foreach (Contiene x in _pedido.Contiene) 
                 {
-                    doc.Add(new iText.Layout.Element.Paragraph(x.ArticuloVenta.Nombre.ToString() + x.Cantidad.ToString() + x.Total.ToString()));
+                    doc.Add(new iText.Layout.Element.Paragraph(x.ArticuloVenta.Nombre.ToString() + "----------"+ x.Cantidad.ToString() + "----------"+x.ArticuloVenta.Precio + "----------" + x.Total.ToString()));
                 }
                 doc.Add(new iText.Layout.Element.Paragraph("Fecha y hora en la que se generó: " + DateTime.Now.ToString()));
                 doc.Add(new iText.Layout.Element.Paragraph("Empleado:" + _pedido.RegistradoPor.NombreCompleto));
