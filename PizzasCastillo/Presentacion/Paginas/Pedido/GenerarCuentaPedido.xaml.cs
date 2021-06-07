@@ -21,6 +21,7 @@ using iText.Layout.Element;
 using Microsoft.Win32;
 using iText.Kernel.Pdf.Canvas.Parser.ClipperLib;
 using Dominio.Entidades;
+using Presentacion.Ventanas;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -55,15 +56,28 @@ namespace Presentacion.Paginas.Pedido
         private void ImprimirTicket(object sender, RoutedEventArgs e)
         {
 
-            CrearTicket();
+            if (CrearTicket())
+            {
+                InteraccionUsuario err = new InteraccionUsuario("Exito", "El Ticket se a generado correctamente");
+                err.Show();
+                NavigationService.GoBack();
+
+            }
+            else {
+                InteraccionUsuario err = new InteraccionUsuario("Error", "El Ticket no se a generado correctamente");
+                err.Show();
+              
+
+            }
+            
         }
 
 
 
 
 
-        private void CrearTicket() {
-
+        private bool CrearTicket() {
+            bool bandera = false;
           
             Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
             dialog.FileName = "Document";
@@ -99,10 +113,10 @@ namespace Presentacion.Paginas.Pedido
                 doc.Add(new iText.Layout.Element.Paragraph("Empleado:" + _pedido.RegistradoPor.NombreCompleto));
 
                 doc.Close();
-
+                bandera = true;
             }
 
-
+            return bandera;
 
         }
 
