@@ -1,6 +1,7 @@
 ﻿using Dominio.Entidades;
 using Presentacion.Paginas;
 using Presentacion.Paginas.Finanza;
+using Presentacion.Paginas.Producto;
 using Presentacion.Paginas.Usuario;
 using Presentacion.Paginas.Pedido;
 using Presentacion.Recursos;
@@ -69,6 +70,11 @@ namespace Presentacion.Ventanas
         {
             PaginaFrame.Navigate(new ListaDeUsuarios());
             
+        }
+        private void Productos_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new Inicio_Gerente_Productos(_sesion));
+
         }
 
         private void IrAInicio_PrewiewMouseDown(object sender, MouseButtonEventArgs e)

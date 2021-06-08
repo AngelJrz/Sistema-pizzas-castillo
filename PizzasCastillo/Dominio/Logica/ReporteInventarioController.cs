@@ -22,11 +22,15 @@ namespace Dominio.Logica
 
         public bool GuardarReporte(ReporteInventario reporte)
         {
+            if (!EstaInformacionCorrecta(reporte))
+            {
+                return false;
+            }
 
             AccesoADatos.ReporteInventario reporteNuevo = ReporteInventario.CloneToDBEntity(reporte);
-            reporteNuevo.NumeroEmpleado = "GER1234567";
 
             bool seGuardo = false;
+            reporteNuevo.Fecha = DateTime.Now;
 
             try
             {
@@ -64,12 +68,67 @@ namespace Dominio.Logica
 
         public bool GenerarPDF(ReporteInventario reporte, string ruta)
         {
+            if (String.IsNullOrEmpty(ruta))
+            {
+                return false;
+            }
+
+            if (!EstaInformacionCorrectaReporte(reporte))
+            {
+                return false;
+            }
+
             bool seGenero;
 
             GeneradorPDFInventario creador = new GeneradorPDFInventario(reporte);
             seGenero = creador.GenerarPDFReporteInventario(ruta);
 
             return seGenero;
+        }
+
+        private bool EstaInformacionCorrecta(ReporteInventario reporte)
+        {
+            if (reporte.GeneradoPor == null)
+            {
+                return false;
+            }
+
+            if (reporte.Reporta == null)
+            {
+                return false;
+            }
+
+            if(reporte.Reporta.Count < 1)
+            {
+                return false;
+            }
+
+            ValidadorReporta validadorReporta = new ValidadorReporta();
+            ValidadorReporteInventario validadorReporteInventario = new ValidadorReporteInventario();
+
+            bool estaCorrecto = false;
+
+            foreach (Reporta reportado in reporte.Reporta)
+            {
+                estaCorrecto = validadorReporta.Validar(reportado);
+                if (!estaCorrecto)
+                {
+                    break;
+                }
+            }
+            return validadorReporteInventario.Validar(reporte) && estaCorrecto;
+        }
+
+        private bool EstaInformacionCorrectaReporte(ReporteInventario reporte)
+        {
+            if (reporte.GeneradoPor == null)
+            {
+                return false;
+            }
+
+            ValidadorReporteInventario validadorReporteInventario = new ValidadorReporteInventario();
+
+            return validadorReporteInventario.Validar(reporte);
         }
     }
 }
