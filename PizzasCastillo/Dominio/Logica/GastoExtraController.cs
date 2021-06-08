@@ -16,6 +16,23 @@ namespace Dominio.Logica
             return gastoDAO.RegistrarGastoExtra(CloneRegisterDominioADatos(nuevoGasto));
         }
 
+        public double ObtenerSumaDeGastosDelDia()
+        {
+            decimal sumatoria = 0;
+            GastoExtraDAO gastoDAO = new GastoExtraDAO();
+            List<AccesoADatos.GastoExtra> listaDeGastos = new List<AccesoADatos.GastoExtra>();
+            listaDeGastos = gastoDAO.ObtenerPedidosDelDia();
+
+            foreach (AccesoADatos.GastoExtra gasto in listaDeGastos)
+            {
+                sumatoria += gasto.Total;
+            }
+
+            double total = Convert.ToDouble(sumatoria);
+
+            return total;
+        }
+
         private AccesoADatos.GastoExtra CloneRegisterDominioADatos(GastoExtra nuevoGasto)
         {
             return new AccesoADatos.GastoExtra

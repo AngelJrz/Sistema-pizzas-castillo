@@ -47,5 +47,11 @@ namespace Dominio.Logica
 
             return listaRetorno;
         }
+
+        public double ObtenerEfectivoDejado()
+        {
+            ReporteDeCajaDAO reporteDAO = new ReporteDeCajaDAO();
+            return reporteDAO.ObtenerEfectivoEnCaja();
+        }
     }
 }

@@ -27,12 +27,31 @@ namespace AccesoADatos.ControladoresDeDatos
                 conexion.SaveChanges();
                 registrado = true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
                 return registrado;
             }
 
             return registrado;
+        }
+
+        public double ObtenerEfectivoEnCaja()
+        {
+            double dineroARetornar = 0;
+
+            try
+            {
+                ReporteCaja ultimoReporte = conexion.ReporteCaja.OrderByDescending(x => x.Fecha).FirstOrDefault();
+                decimal dineroDejado = ultimoReporte.EfectivoDiaSiguiente;
+
+                dineroARetornar = Convert.ToDouble(dineroDejado);
+            }
+            catch (DbUpdateException ex)
+            {
+                return dineroARetornar;
+            }
+
+            return dineroARetornar;
         }
     }
 }

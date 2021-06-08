@@ -283,6 +283,23 @@ namespace Dominio.Logica
         
         }
 
+        public double ObtenerIngresosDelDia()
+        {
+            decimal sumatoria = 0;
+            PedidosDAO pedidoDAO = new PedidosDAO();
+            List<AccesoADatos.Pedido> listaDePedidos = new List<AccesoADatos.Pedido>();
+            listaDePedidos = pedidoDAO.ObtenerPedidosDelDia();
+
+            foreach (AccesoADatos.Pedido pedido in listaDePedidos)
+            {
+                sumatoria += pedido.Total;
+            }
+
+            double total = Convert.ToDouble(sumatoria);
+
+            return total;
+        }
+        
         public List<Pedido> ObtenerPedidosHoy()
         {
             List<Pedido> pedidoList = new List<Pedido>();

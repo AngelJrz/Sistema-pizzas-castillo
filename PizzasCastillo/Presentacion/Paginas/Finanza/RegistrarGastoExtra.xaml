@@ -19,11 +19,13 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Label Content="*" Foreground="{StaticResource Alert}"/>
                 <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right"  TextWrapping="Wrap" Text="Concepto:"  />
                 <TextBox x:Name="conceptoDeGasto" MaxLength="60" Template="{StaticResource InputControlTemplate}" Margin="20,0,0,0" Width="300" TextWrapping="Wrap"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Label Content="*" Foreground="{StaticResource Alert}"/>
                 <TextBlock Style="{StaticResource TituloCamposStyle}" TextAlignment="Right"  TextWrapping="Wrap" Text="Total:" />
                 <TextBox x:Name="total" MaxLength="10" Template="{StaticResource InputControlTemplate}" Margin="20,0,0,0" Width="300"/>
             </StackPanel>

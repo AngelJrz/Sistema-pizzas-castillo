@@ -43,9 +43,10 @@ namespace Presentacion.Paginas.Finanza
                     
                     if (controllerProducto.IngresarPedidoEntregado(listaDeProductosEntregados))
                     {
-                        if (controllerPedido.PedidoAProveedorEntregado(pedidoRevisado))
+                        if (controllerPedido.PedidoAProveedorEntregado(pedidoRevisado.Id))
                         {
                             MessageBox.Show("En registro del pedido se realizo correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                            NavigationService.Navigate(new Inicio());
                         }
                         else
                         {
@@ -82,6 +83,12 @@ namespace Presentacion.Paginas.Finanza
                         Cantidad = productoSeleccionado.ProductoSolicitado.Cantidad + Decimal.Parse(cantidad.ResponseText)
                     });
 
+
+                    TextBlock nuevoArticulo = new TextBlock();
+                    nuevoArticulo.Text = $"{cantidad.ResponseText} {productoSeleccionado.ProductoSolicitado.UnidadDeMedida} - {productoSeleccionado.ProductoSolicitado.Nombre}";
+                    nuevoArticulo.FontSize = 15;
+                    listaCantidadReal.Children.Add(nuevoArticulo);
+
                     listaObservable.Remove(productoSeleccionado);
                 }
             }
@@ -108,6 +115,7 @@ namespace Presentacion.Paginas.Finanza
 
         private void ClickReset(object sender, RoutedEventArgs e)
         {
+            listaCantidadReal.Children.Clear();
             listaDeProductosEntregados = new List<Dominio.Entidades.Producto>();
             listaObservable = new ObservableCollection<Solicita>(listaSolicitadaOriginal);
 

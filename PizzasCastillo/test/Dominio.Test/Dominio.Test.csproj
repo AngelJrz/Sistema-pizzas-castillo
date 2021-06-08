@@ -94,6 +94,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CU-MF-01\RegistrarGastoExtraTest.cs" />
+    <Compile Include="CU-MF-02\GenerarCorteDeCajaTest.cs" />
+    <Compile Include="CU-MF-05\RegistrarPedidoAProveedorTest.cs" />
+    <Compile Include="CU-MF-06\GestionarTiposDeSalidasTest.cs" />
+    <Compile Include="CU-MF-07\ConfirmarEntregaDePedidoTest.cs" />
     <Compile Include="CU-MPR-01\RegistrarProductoTest.cs" />
     <Compile Include="CU-MPR-02\ActualizarProductoTest.cs" />
     <Compile Include="CU-MPR-03\GestionarProductoTest.cs" />

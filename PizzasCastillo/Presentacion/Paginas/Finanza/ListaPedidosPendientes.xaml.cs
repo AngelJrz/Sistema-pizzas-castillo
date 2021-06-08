@@ -23,7 +23,6 @@ namespace Presentacion.Paginas.Finanza
             if (listaObservable.Count == 0)
             {
                 MessageBox.Show("No se encuentras pedidos registrados, intente mas tarde", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                NavigationService.GoBack();
             }
             else
             {
@@ -43,7 +42,7 @@ namespace Presentacion.Paginas.Finanza
 
             if (opscionSeleccionada == MessageBoxResult.Yes) {
                 PedidoAProveedor pedidoSeleccioado = (PedidoAProveedor)tablaDePedidos.SelectedItem;
-                if (accesoAPedidos.CancelarPedidoAProveedor(pedidoSeleccioado))
+                if (accesoAPedidos.CancelarPedidoAProveedor(pedidoSeleccioado.Id))
                 {
                     MessageBox.Show("El pedido se cancelo correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                     listaObservable.Remove(pedidoSeleccioado);
