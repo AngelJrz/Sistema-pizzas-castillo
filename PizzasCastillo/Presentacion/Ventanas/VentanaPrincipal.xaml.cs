@@ -3,6 +3,7 @@ using Presentacion.Paginas;
 using Presentacion.Paginas.Finanza;
 using Presentacion.Paginas.Producto;
 using Presentacion.Paginas.Usuario;
+using Presentacion.Paginas.Cocina;
 using Presentacion.Paginas.Pedido;
 using Presentacion.Recursos;
 using System;
@@ -53,7 +54,7 @@ namespace Presentacion.Ventanas
                     MenuSuperiorMeseroCocina.Visibility = Visibility.Visible;
                     break;
                 case "Cocinero":
-                    MenuSuperiorMeseroCocina.Visibility = Visibility.Visible;
+                    MenuSuperiorCocinero.Visibility = Visibility.Visible;
                     break;
                 case "Contador":
                     MenuSuperiorContador.Visibility = Visibility.Visible;
@@ -74,6 +75,17 @@ namespace Presentacion.Ventanas
         private void Productos_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             PaginaFrame.Navigate(new Inicio_Gerente_Productos(_sesion));
+
+        }
+
+        private void CocineroPlatillos_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new MenuPlatillos());
+
+        }
+        private void CocineroPedidos_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new ListaPedidosPreparar());
 
         }
 
@@ -123,10 +135,6 @@ namespace Presentacion.Ventanas
         {
             PaginaFrame.Navigate(new ListaPedidosPendientes());
         }
-
-
-
-
         private void Pedidos(object sender, MouseButtonEventArgs e)
         {
            /*_sesion.Recursos.TryGetValue("Empleado", out object empleado);
@@ -141,6 +149,11 @@ namespace Presentacion.Ventanas
             Empleado empleadoEnSesion = empleado as Empleado;*/
 
             PaginaFrame.Navigate(new RegistrarPedidoBuscarUsuario());
+        }
+        
+        private void Merma_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new MenuMerma());
         }
     }
 }

@@ -156,5 +156,28 @@ namespace AccesoADatos.ControladoresDeDatos
 
             return true;
         }
+
+        public TipoUsuario ObtenerTipoUsuario(string nombre)
+        {
+            if (String.IsNullOrWhiteSpace(nombre))
+                return null;
+
+            TipoUsuario tipoUsuario;
+
+            try
+            {
+                tipoUsuario = conexion.TipoUsuario.FirstOrDefault(tipo => tipo.Nombre.Equals(nombre));
+            }
+            catch (EntityException ex)
+            {
+                throw new ConexionFallidaException(ex);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+
+            return tipoUsuario;
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using AccesoADatos.ControladoresDeDatos;
 using Dominio.Entidades;
+using Dominio.Enumeraciones;
+using Dominio.Utilerias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +13,102 @@ namespace Dominio.Logica
     public class ArticuloVentaController
     {
         public const string CLAVE_PLATILLO = "PLAT-";
-        public bool GuardarPlatilloVenta(ArticuloVenta articuloVenta)
+        public ResultadoRegistro GuardarPlatilloVenta(ArticuloVenta articuloVenta)
         {
             ArticuloVentaDAO articuloVentaDAO = new ArticuloVentaDAO();
+            if (articuloVenta == null)
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
 
-            return articuloVentaDAO.RegistrarArticuloVenta(CloneArticuloPlatillo(articuloVenta));
+            if (articuloVenta.Platillo.Consume == null || articuloVenta.Platillo.Consume.Count == 0)
+            {
+                return ResultadoRegistro.ProductosNoEspecificados;
+            }
+
+            if (!EstaInformacionCorrecta(articuloVenta))
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
+            if (articuloVentaDAO.ChecarArticuloNombre(articuloVenta.Nombre) != null)
+            {
+                return ResultadoRegistro.YaExiste;
+            }
+
+
+            bool seRegistro;
+            try
+            {
+                seRegistro =articuloVentaDAO.RegistrarArticuloVenta(CloneArticuloPlatillo(articuloVenta));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (!seRegistro)
+            {
+                return ResultadoRegistro.RegistroFallido;
+
+            }
+            else
+            {
+                return ResultadoRegistro.RegistroExitoso;
+            }
         }
 
-        public bool ActualizarPlatilloVenta(ArticuloVenta articuloVenta)
+        private bool EstaInformacionCorrecta(ArticuloVenta articuloVenta)
+        {
+            ValidadorArticuloVenta validadorArticulo = new ValidadorArticuloVenta();
+
+            return validadorArticulo.Validar(articuloVenta);
+        }
+
+        public ResultadoRegistro ActualizarPlatilloVenta(ArticuloVenta articuloVenta,bool nuevoNombre)
         {
             ArticuloVentaDAO articuloVentaDAO = new ArticuloVentaDAO();
+            if (articuloVenta == null)
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
 
-            return articuloVentaDAO.ActualizarArticuloVenta(CloneActualizarArticuloPlatillo(articuloVenta));
+            if (articuloVenta.Platillo.Consume == null || articuloVenta.Platillo.Consume.Count == 0)
+            {
+                return ResultadoRegistro.ProductosNoEspecificados;
+            }
 
+            if (!EstaInformacionCorrecta(articuloVenta))
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
+            if (nuevoNombre == true)
+            {
+                if (articuloVentaDAO.ChecarArticuloNombre(articuloVenta.Nombre) != null)
+                {
+                    return ResultadoRegistro.YaExiste;
+                }
+            }
+            bool seRegistro;
+            try 
+            {
+                seRegistro = articuloVentaDAO.ActualizarArticuloVenta(CloneActualizarArticuloPlatillo(articuloVenta));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (!seRegistro)
+            {
+                return ResultadoRegistro.RegistroFallido;
+
+            }
+            else
+            {
+                return ResultadoRegistro.RegistroExitoso;
+            }
         }
 
         private AccesoADatos.ArticuloVenta CloneActualizarArticuloPlatillo(ArticuloVenta articuloVenta)

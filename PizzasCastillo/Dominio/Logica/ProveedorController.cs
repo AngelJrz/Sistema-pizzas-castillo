@@ -1,5 +1,7 @@
 ﻿using AccesoADatos.ControladoresDeDatos;
 using Dominio.Entidades;
+using Dominio.Enumeraciones;
+using Dominio.Utilerias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,59 @@ namespace Dominio.Logica
 {
     public class ProveedorController
     {
-        public bool GuardarProveedor(Proveedor proveedor)
+
+        public ResultadoRegistro GuardarProveedor(Proveedor proveedor)
         {
+            if (proveedor == null)
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
+            if (proveedor.Direccion == null)
+            {
+                return ResultadoRegistro.DireccionNoEspecificada;
+            }
+
+            if (!EstaInformacionCorrecta(proveedor))
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
             ProveedorDAO proveedorDAO = new ProveedorDAO();
 
-            return proveedorDAO.RegistrarProveedor(CloneProveedorRegister(proveedor));
+            if (proveedorDAO.ObtenerProveedorDNI(proveedor.Dni) != null)
+            {
+                return ResultadoRegistro.UsuarioYaExiste;
+            }
+
+            bool seRegistro;
+            try
+            {
+                seRegistro = proveedorDAO.RegistrarProveedor(CloneProveedorRegister(proveedor));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (!seRegistro)
+            {
+                return ResultadoRegistro.RegistroFallido;
+
+            }
+            else
+            {
+                return ResultadoRegistro.RegistroExitoso;
+            }
+        }
+
+        private bool EstaInformacionCorrecta(Proveedor proveedor)
+        {
+            ValidadorProveedor validadorProveedor = new ValidadorProveedor();
+            ValidadorDireccionProveedor validadorDireccion = new ValidadorDireccionProveedor();
+
+            return validadorProveedor.Validar(proveedor) &&
+                validadorDireccion.Validar(proveedor.Direccion);
         }
 
         private AccesoADatos.Proveedor CloneProveedorRegister(Proveedor proveedor)
@@ -49,13 +99,57 @@ namespace Dominio.Logica
             return proveedores;
         }
 
-        public bool ActualizarProovedor(Proveedor proveedor)
+        public ResultadoRegistro ActualizarProovedor(Proveedor proveedor, bool dniNew)
         {
+            
+
+            if (proveedor == null)
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
+            if (proveedor.Direccion == null)
+            {
+                return ResultadoRegistro.DireccionNoEspecificada;
+            }
+
+            if (!EstaInformacionCorrecta(proveedor))
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
             ProveedorDAO proveedorDAO = new ProveedorDAO();
+            if (dniNew == true)
+            {
+                if (proveedorDAO.ObtenerProveedorDNI(proveedor.Dni) != null)
+                {
+                    return ResultadoRegistro.UsuarioYaExiste;
+                }
+            }
+            
+
+            bool seRegistro;
             AccesoADatos.Proveedor proveedorDA = new AccesoADatos.Proveedor();
-            proveedorDA = CloneProveedorRegister(proveedor);
-            proveedorDA.Id = proveedor.Id;
-            return proveedorDAO.ActualizarProovedor(proveedorDA);
+            try
+            {
+                proveedorDA = CloneProveedorRegister(proveedor);
+                proveedorDA.Id = proveedor.Id;
+                seRegistro = proveedorDAO.ActualizarProovedor(proveedorDA);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (!seRegistro)
+            {
+                return ResultadoRegistro.RegistroFallido;
+
+            }
+            else
+            {
+                return ResultadoRegistro.RegistroExitoso;
+            }
 
         }
     }

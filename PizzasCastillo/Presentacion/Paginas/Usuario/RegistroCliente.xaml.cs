@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Entidades;
+using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
 using Presentacion.Ventanas;
@@ -97,15 +98,24 @@ namespace Presentacion.Paginas.Usuario
             {
                 ClienteController clienteController = new ClienteController();
                 DireccionController direccionController = new DireccionController();
-                bool guardado = clienteController.GuardarCliente(persona);
-                bool guardado1 = direccionController.GuardarDireccionCliente(direccion,persona.Telefono);
-                if (guardado && guardado1)
-                {
-                    InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el cliente y su direccion con exito");
-                    ventana.Show();
-                    //REGRESA PAGINA
-                }
+                ResultadoRegistro guardado = clienteController.RegistrarCliente(persona);
 
+                switch (guardado)
+                {
+                    case ResultadoRegistro.UsuarioYaExiste:
+                        InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Este cliente ya se encuentra registrado");
+                        ventana.Show();
+                        break;
+                    case ResultadoRegistro.RegistroFallido:
+                        InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
+                        ventana1.Show();
+                        break;
+                    case ResultadoRegistro.RegistroExitoso:
+                        InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el cliente y su direccion con exito");
+                        ventana2.Show();
+                        NavigationService.GoBack();
+                        break;
+                }
             }
             else
             {

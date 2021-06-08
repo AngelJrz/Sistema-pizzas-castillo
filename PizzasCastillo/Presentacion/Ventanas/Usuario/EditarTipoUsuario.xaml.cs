@@ -21,20 +21,27 @@ namespace Presentacion.Ventanas.Usuario
     /// </summary>
     public partial class EditarTipoUsuario : Window
     {
-        public Tipo TipoUsuario { get; set; }
+        private Tipo _tipoUsuario;
         public event EventHandler ActualizacionExitosa;
-        public bool SeActualizo { get; set; }
+        private ResultadoRegistro _resultado;
+        private bool _seActualizoNombre = false;
+
         public EditarTipoUsuario(Tipo tipoUsuario)
         {
             InitializeComponent();
-            TipoUsuario = tipoUsuario;
+            _tipoUsuario = tipoUsuario;
+            DataContext = tipoUsuario;
         }
 
         private void ActualizarClic(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(NombreText.Text))
             {
-                MessageBox.Show("Por favor ingresa el nombre del nuevo tipo");
+                new Dialog
+                {
+                    Titulo = "Información faltante",
+                    Mensaje = "Por favor ingrese el nombre del tipo usuario."
+                }.ShowDialog();
                 return;
             }
 
@@ -42,7 +49,7 @@ namespace Presentacion.Ventanas.Usuario
 
             Tipo tipoUsuarioAActualizar = new Tipo
             {
-                Id = TipoUsuario.Id,
+                Id = _tipoUsuario.Id,
                 Nombre = NombreText.Text,
                 Estatus = ListaEstatus.Text == "Activo"? 1 : 0
             };
@@ -50,28 +57,56 @@ namespace Presentacion.Ventanas.Usuario
 
             try
             {
-                SeActualizo = tipoUsuarioController.RegistrarNuevoTipoUsuario(tipoUsuarioAActualizar);
+                _resultado = tipoUsuarioController.EditarTipoUsuario(tipoUsuarioAActualizar, _seActualizoNombre);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió un error al registrar el nuevo tipo. Intente más tarde");
+                new Dialog
+                {
+                    Titulo = "Error",
+                    Mensaje = "Por el momento no pudimos realizar la operación. Intente más tarde."
+                }.ShowDialog();
                 return;
             }
 
-            if (SeActualizo)
+            if (_resultado == ResultadoRegistro.RegistroExitoso)
             {
-                MessageBox.Show("Tipo usuario actualizado exitosamente");
-                NombreText.Text = "";
-                TipoUsuario = tipoUsuarioAActualizar;
-                ActualizacionExitosa?.Invoke(this, new EventArgs());
+                new Dialog
+                {
+                    Titulo = "Actualización exitosa",
+                    Mensaje = "Tipo usuario actualizado exitosamente"
+                }.ShowDialog();
+                
+                //if(ActualizacionExitosa != null)
+                //{
+                //    TipoUsuario = tipoUsuarioAActualizar;
+                //    ActualizacionExitosa(this, new EventArgs());
+                //}
                 this.DialogResult = true;
-                return;
             }
-            else
+            else if(_resultado == ResultadoRegistro.TipoUsuarioYaExiste)
             {
-                MessageBox.Show("No se pudo registrar el nuevo tipo. Intente más tarde");
-                return;
+                new Dialog
+                {
+                    Titulo = "Tipo usuario existente",
+                    Mensaje = "El nombre del tipo usuario ya existe. Por favor verifique la información."
+                }.ShowDialog();
             }
+            else if (_resultado == ResultadoRegistro.RegistroFallido)
+            {
+                new Dialog
+                {
+                    Titulo = "Error con la información",
+                    Mensaje = "Por el momento no pudimos no pudimos acceder a la información del tipo usuario. Intente más tarde."
+                }.ShowDialog();
+                
+            }
+        }
+
+        private void NombreText_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if(!NombreText.Text.Equals(_tipoUsuario.Nombre))
+                _seActualizoNombre = true;
         }
     }
 }

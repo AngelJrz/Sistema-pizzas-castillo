@@ -26,14 +26,10 @@ namespace AccesoADatos.ControladoresDeDatos
             _resultado = 0;
         }
 
-
-
-
         public bool RegistrarPedido(Pedido pedido)
         {
-
-
-            try { 
+            try 
+            { 
                 using (PizzasBDEntities connection = new PizzasBDEntities()) 
                 {
                     connection.Entry(pedido).State = EntityState.Added;
@@ -51,25 +47,23 @@ namespace AccesoADatos.ControladoresDeDatos
 
         public bool ActualizarPedidoEstatus(Pedido pedido)
         {
-
             try
             {
-                     Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
-
-                    pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
-                   connection.Entry(pedidoDB).State = EntityState.Modified;
-                    connection.SaveChanges();
-
-                    _resultado = connection.SaveChanges();
-                
+                Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
+                pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
+                connection.Entry(pedidoDB).State = EntityState.Modified;
+                connection.SaveChanges();
+                _resultado = connection.SaveChanges();
+          
             }
             catch (DbUpdateException)
             {
-
+                throw;
+            }
+            if (_resultado == SIN_CAMBIOS)
+            {
                 return false;
             }
-
-
             return true;
         }
 
@@ -78,25 +72,17 @@ namespace AccesoADatos.ControladoresDeDatos
 
             try
             {
+                Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
+                pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
 
-              
-                    Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
-
-                    pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
                 for (int x = 0; x > pedidoDB.Contiene.Count(); x++) 
-                    {
+                {
                     pedidoDB.Contiene.Remove(pedidoDB.Contiene.Last());
-                    }
-                    pedidoDB.Contiene = pedido.Contiene;
-                    pedidoDB.Total = pedido.Total;
+                }
 
-                    connection.Entry(pedidoDB).State = EntityState.Modified;
-
-                    _resultado = connection.SaveChanges();
-
-             
-
-
+                pedidoDB.Contiene = pedido.Contiene;
+                connection.Entry(pedidoDB).State = EntityState.Modified;
+                _resultado = connection.SaveChanges();
             }
             catch (DbUpdateException)
             {
@@ -111,22 +97,14 @@ namespace AccesoADatos.ControladoresDeDatos
             return true;
         }
 
-
-
-     
-
-
-
         public bool ActualizarPedidoContiene(Pedido pedido)
         {
 
             try
             {
-
                 connection.Entry(pedido).State = EntityState.Modified;
 
                 _resultado = connection.SaveChanges();
-
 
             }
             catch (DbUpdateException)
@@ -163,8 +141,6 @@ namespace AccesoADatos.ControladoresDeDatos
 
         }
 
-
-
         public List<Pedido> ObtenerPedidos() {
             try
             {
@@ -185,8 +161,6 @@ namespace AccesoADatos.ControladoresDeDatos
         {
             try
             {
-
-
                 _pedidos = connection.Pedido.Where(x => x.Persona.Nombres.Contains
                 (nombre) && x.EstatusPedido.Nombre.Equals("En Preparacion"))
                 .ToList();
@@ -198,8 +172,6 @@ namespace AccesoADatos.ControladoresDeDatos
                 return _pedidos;
             }
         }
-
-
 
 
         public List<Pedido> ObtenerPedidosDelDia() {
@@ -214,7 +186,19 @@ namespace AccesoADatos.ControladoresDeDatos
                     _pedidos = connection.Pedido.Where(x => x.Fecha.Day == dia && x.Fecha.Month==mes && x.Fecha.Year == anio)
                     .ToList();
                     return _pedidos;
-               
+               }
+            catch (Exception e)
+            {
+                return _pedidos;
+            }
+        }
+    
+        public List<Pedido> ObtenerPedidosEnPreparacion() 
+        {
+            try
+            {
+                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Preparacion")).ToList();
+                return _pedidos;
             }
             catch (Exception e)
             {
@@ -222,13 +206,34 @@ namespace AccesoADatos.ControladoresDeDatos
             }
         }
 
+        public List<Pedido> ObtenerPedidosHoy()
+        {
+            try
+            {
+                _pedidos = connection.Pedido.ToList();
+                List<Pedido> pedidos = new List<Pedido>();
+                foreach (Pedido pedido in _pedidos)
+                {
+                    if (pedido.Fecha.ToShortDateString().Equals(DateTime.Today.ToShortDateString()))
+                    {
+                        pedidos.Add(pedido);
+                    }
+                }
+                return pedidos;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return _pedidos;
+            }
+        }
+         
         public List<Pedido> ObtenerPedidosEnEspera()
         {
             try
             {
                 using (PizzasBDEntities connection = new PizzasBDEntities())
                 {
-
                     _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Espera")).ToList();
                     return _pedidos;
                 }
@@ -244,8 +249,6 @@ namespace AccesoADatos.ControladoresDeDatos
         {
             try
             {
-
-
                 _pedidoEncontrado = connection.Pedido.Where(x=>x.Id==id).FirstOrDefault();
                 return _pedidoEncontrado;
             }

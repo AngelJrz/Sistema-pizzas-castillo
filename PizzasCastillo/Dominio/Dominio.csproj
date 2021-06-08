@@ -122,6 +122,7 @@
     <Compile Include="Enumeraciones\Efectivo.cs" />
     <Compile Include="Enumeraciones\PedidosResult.cs" />
     <Compile Include="Enumeraciones\ResultadoRegistroProducto.cs" />
+    <Compile Include="Enumeraciones\ResultadoRegistro.cs" />
     <Compile Include="Enumeraciones\Tipo.cs" />
     <Compile Include="Logica\ArticuloVentaController.cs" />
     <Compile Include="Logica\ClienteController.cs" />

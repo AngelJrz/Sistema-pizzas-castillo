@@ -16,13 +16,23 @@ using System.Windows.Shapes;
 namespace Presentacion.Paginas.Cocina
 {
     /// <summary>
-    /// Lógica de interacción para ListaPedidoMermas.xaml
+    /// Lógica de interacción para MenuMerma.xaml
     /// </summary>
-    public partial class ListaPedidoMermas : Page
+    public partial class MenuMerma : Page
     {
-        public ListaPedidoMermas()
+        public MenuMerma()
         {
             InitializeComponent();
+        }
+
+        private void MermaPedido(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new GeneracionMermaPedido());
+        }
+
+        private void MermaInsumo(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new GeneracionMermaIngredientes());
         }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Dominio.Utilerias
@@ -13,11 +14,18 @@ namespace Dominio.Utilerias
     {
         public ValidadorPersonas()
         {
-            RuleFor(x => x.Nombres).NotEmpty().MaximumLength(50).NotNull();
-            RuleFor(x => x.Apellidos).NotEmpty().MaximumLength(50).NotNull();
-            RuleFor(x => x.Email).NotEmpty().MaximumLength(100).NotNull();
-            RuleFor(x => x.Telefono).NotNull().NotEmpty().MaximumLength(10);
+            RuleFor(x => x.Nombres).NotEmpty().MinimumLength(2).MaximumLength(150).NotNull();
+            RuleFor(x => x.Apellidos).NotEmpty().MinimumLength(2).MaximumLength(150).NotNull();
+            RuleFor(x => x.Email).NotEmpty().MinimumLength(10).MaximumLength(80).NotNull().EmailAddress();
+            RuleFor(x => x.Telefono).NotNull().NotEmpty().MinimumLength(10).MaximumLength(10).Must(EsNumero);
             RuleFor(x => x.Direcciones.Count).NotEmpty().NotNull().NotEqual(0);
+        }
+
+        private bool EsNumero(string numero)
+        {
+            Regex numeroExpresionRegular = new Regex(@"\d");
+
+            return numeroExpresionRegular.IsMatch(numero);
         }
 
         public bool Validar(Persona persona)

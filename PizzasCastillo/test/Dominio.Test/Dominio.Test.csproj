@@ -88,6 +88,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="WindowsBase" />
@@ -102,7 +103,18 @@
     <Compile Include="CU-MPE-03\RegistrarEntrega.cs" />
     <Compile Include="CU-MPE-06\RegistroDePagoDePedidoTest.cs" />
     <Compile Include="CU-MPR-05\ValidarExistenciasTest.cs" />
+    <Compile Include="CU-MC-01\RegistrarPlatilloTest.cs" />
+    <Compile Include="CU-MC-02\EditarPlatilloTest.cs" />
+    <Compile Include="CU-MC-03\PedidoPreparadoTest.cs" />
+    <Compile Include="CU-MC-04\GenerarMermaTest.cs" />
+    <Compile Include="CU-MF-03\RegistroProveedorTest.cs" />
+    <Compile Include="CU-MF-04\ActualizarProveedorTest.cs" />
     <Compile Include="CU-MU-01\RegistrarUsuarioTest.cs" />
+    <Compile Include="CU-MU-02\EditarUsuarioTest.cs" />
+    <Compile Include="CU-MU-03\EliminarUsuarioTest.cs" />
+    <Compile Include="CU-MU-04\IniciarSesionTest.cs" />
+    <Compile Include="CU-MU-05\GestionarTiposUsuariosTest.cs" />
+    <Compile Include="CU-MU-06\RegistroClienteTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

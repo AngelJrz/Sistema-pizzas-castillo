@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades;
+using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
 using Microsoft.Win32;
@@ -31,6 +32,7 @@ namespace Presentacion.Paginas.Cocina
         byte[] foto;
         string nombreFoto;
         string codigoBarra;
+        string nombrePlatillo;
         ObservableCollection<ArticuloVenta> productos;
         private ProductoPopUp productoPopUP;
         private List<ArticuloVenta> insumosList;
@@ -38,6 +40,7 @@ namespace Presentacion.Paginas.Cocina
         public EditarPlatillo(ArticuloVenta platilloEdicion)
         {
             InitializeComponent();
+            nombrePlatillo = platilloEdicion.Nombre;
             ArticuloVentaController ventaController = new ArticuloVentaController();
             productos = new ObservableCollection<ArticuloVenta>();
             insumosList = ventaController.ObtenerProductos();
@@ -104,9 +107,16 @@ namespace Presentacion.Paginas.Cocina
 
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            ListBoxItem selectedItem = (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
-            selectedItem.IsSelected = true;
-            productos.Remove((ArticuloVenta)productoList.SelectedItem);
+            Confirmacion dialogoConfirmacion = new Confirmacion("Regresar",
+               "Seguro que desea borrar el ingrediente");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                ListBoxItem selectedItem = (ListBoxItem)productoList.ItemContainerGenerator.ContainerFromItem(((Button)sender).DataContext);
+                selectedItem.IsSelected = true;
+                productos.Remove((ArticuloVenta)productoList.SelectedItem);
+            }
+            
         }
 
         private void Agregar(object sender, RoutedEventArgs e)
@@ -136,7 +146,13 @@ namespace Presentacion.Paginas.Cocina
         }
         private void Cancelar(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            Confirmacion dialogoConfirmacion = new Confirmacion("Regresar",
+               "Seguro que desea cancelar la actualizacion");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                NavigationService.GoBack();
+            }
         }
 
         private void IsTelephoneNumber(object sender, TextCompositionEventArgs e)
@@ -186,8 +202,8 @@ namespace Presentacion.Paginas.Cocina
             }
             else
             {
-                //try
-                //{
+                try
+                {
                     List<Consume> consumePlatillo = new List<Consume>();
                     Consume consumeNew;
 
@@ -222,17 +238,30 @@ namespace Presentacion.Paginas.Cocina
                     if (validadorArticulo.Validar(nuevoPlatillo))
                     {
                         ArticuloVentaController articuloVentaController = new ArticuloVentaController();
-                        bool guardado = articuloVentaController.ActualizarPlatilloVenta(nuevoPlatillo);
-                        if (guardado)
+                        ResultadoRegistro guardado;
+                        if (NombreText.Text == nombrePlatillo)
                         {
-                            InteraccionUsuario ventana = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo con exito");
-                            ventana.Show();
-                            //REGRESA PAGINA
+                            guardado = articuloVentaController.ActualizarPlatilloVenta(nuevoPlatillo,false);
                         }
                         else
                         {
-                            InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "A ocurrido un error de registro");
-                            ventana.Show();
+                            guardado = articuloVentaController.ActualizarPlatilloVenta(nuevoPlatillo,true);
+                        }
+                        switch (guardado)
+                        {
+                            case ResultadoRegistro.YaExiste:
+                                InteraccionUsuario ventana = new InteraccionUsuario("Error de actualizacion", "Este Nombre de platilo ya se encuentra registrado, de preferencia editelo mejor");
+                                ventana.Show();
+                                break;
+                            case ResultadoRegistro.RegistroFallido:
+                                InteraccionUsuario ventana1 = new InteraccionUsuario("Error de actualizacion", "Hubo un error a la hora del registro, Intente mas tarde");
+                                ventana1.Show();
+                                break;
+                            case ResultadoRegistro.RegistroExitoso:
+                                InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en actualizacion", "Se ha guardado el platillo y sus ingredientes con exito");
+                                ventana2.Show();
+                                NavigationService.GoBack();
+                                break;
                         }
 
                     }
@@ -242,12 +271,12 @@ namespace Presentacion.Paginas.Cocina
                         ventana.Show();
 
                     }
-                /*}
+                }
                 catch (Exception ex)
                 {
-                    InteraccionUsuario ventana = new InteraccionUsuario("Error de Campos", "Uno o mas campos estan vacios, verificar porfavor");
+                    InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "A ocurrido un error de registro");
                     ventana.Show();
-                }*/
+                }
             }
         }
 

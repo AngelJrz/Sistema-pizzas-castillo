@@ -13,8 +13,8 @@ namespace Dominio.Utilerias
     {
         public ValidadorDireccionProveedor()
         {
-            RuleFor(x => x.Calle).NotEmpty().MaximumLength(30).MinimumLength(5);
-            RuleFor(x => x.Numero).NotEmpty().MaximumLength(30);
+            RuleFor(x => x.Calle).NotEmpty().MaximumLength(50).MinimumLength(5);
+            RuleFor(x => x.Numero).NotEmpty().MaximumLength(5);
             RuleFor(x => x.Ciudad).NotEmpty().MaximumLength(20).MinimumLength(4);
             RuleFor(x => x.CodigoPostal).NotNull().NotEmpty();
             RuleFor(x => x.EntidadFederativa).NotEmpty().NotNull().MaximumLength(20).MinimumLength(3);

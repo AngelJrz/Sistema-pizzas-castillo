@@ -39,6 +39,32 @@ namespace AccesoADatos.ControladoresDeDatos
             return articulosVenta;
         }
 
+        public ArticuloVenta ObtenerPlatillo(string codigoBarra)
+        {
+            try
+            {
+                articuloVenta = connection.ArticuloVenta.Find(codigoBarra);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            return articuloVenta;
+        }
+
+        public ArticuloVenta ObtenerPlatilloNombre(string nombrePlatillo)
+        {
+            try
+            {
+                articuloVenta = connection.ArticuloVenta.Where(id => id.Nombre == nombrePlatillo).FirstOrDefault();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            return articuloVenta;
+        }
+
         public List<ArticuloVenta> ObtenerProductos()
         {
             try
@@ -134,6 +160,20 @@ namespace AccesoADatos.ControladoresDeDatos
                 throw;
             }
             return articulosVenta;
+        }
+
+        public ArticuloVenta ChecarArticuloNombre(string nombre)
+        {
+            try
+            {
+                return connection.ArticuloVenta.Where(lista => lista.Nombre.Equals(nombre)).FirstOrDefault();
+
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            return articuloVenta;
         }
 
     }

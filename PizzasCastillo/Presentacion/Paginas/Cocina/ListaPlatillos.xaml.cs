@@ -54,5 +54,10 @@ namespace Presentacion.Paginas.Cocina
             selectedItem.IsSelected = true;
             NavigationService.Navigate(new EditarPlatillo(platilloList.SelectedItem as ArticuloVenta));
         }
+
+        private void Regresar(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

@@ -43,5 +43,27 @@ namespace AccesoADatos.ControladoresDeDatos
             return true;
 
         }
+
+        public bool RegistrarMermaPedido(Merma merma)
+        {
+            try
+            {
+                connection.Entry(merma).State = EntityState.Added;
+                resultado = connection.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+
+                throw;
+            }
+
+            if (resultado == SIN_CAMBIOS)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
     }
 }

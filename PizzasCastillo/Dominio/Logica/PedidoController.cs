@@ -51,7 +51,6 @@ namespace Dominio.Logica
             return resultado;
         }
 
-
         public ResultsPedidos ActualizarPedidoEstatus(Pedido pedido)
         {
             PedidosDAO dao = new PedidosDAO();
@@ -84,6 +83,37 @@ namespace Dominio.Logica
             }
             return resultado;
 
+        }
+
+         public bool ActualizarPedidoEstatusPreparado(Pedido pedido)
+        {
+            PedidosDAO dao = new PedidosDAO();
+            if(dao.ObtenerPedidoPorID(pedido.Id) == null)
+            {
+                return false;
+            }
+            if (pedido.Tipo.Id == 1)
+            {
+                return dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
+            }
+            else
+            {
+                return dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+            }
+
+            if (!pedido.Estatus.Nombre.Equals("Entregado"))
+            {
+                return false;
+            }
+
+            PedidosDAO dao = new PedidosDAO();
+            EstatusPedidoController estatusController = new EstatusPedidoController();
+            List<Dominio.Enumeraciones.Tipo> listaTipos = estatusController.ObtenerEstatusPedido();
+            pedido.Estatus = listaTipos.Find(t => t.Nombre.Equals("Pagado"));
+            bool resultado = false;
+            resultado = dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+
+            return resultado;
         }
 
         public bool ActualizarAPagado(Pedido pedido, decimal pago)
@@ -198,10 +228,6 @@ namespace Dominio.Logica
             };
         }
 
-
-
-
-
         public AccesoADatos.Pedido CloneDominioADatosLocal(Pedido pedidoAClonar)
         {
             return new AccesoADatos.Pedido()
@@ -217,7 +243,6 @@ namespace Dominio.Logica
 
             };
         }
-
 
         public List<AccesoADatos.Contiene> CloneDominioADatosContiene(List<Contiene> listaDeSolicitud)
         {
@@ -236,10 +261,6 @@ namespace Dominio.Logica
             return listaRetorno;
         }
 
-
-
-
-
         public List<Pedido> ObtenerPedidos() 
         {
             List<Pedido> listaARetornar = new List<Pedido>();
@@ -255,19 +276,21 @@ namespace Dominio.Logica
                 }
                 else
                 {
-
                     listaARetornar.Add(Pedido.CloneParaLocal(pedido));
-
                 }
-
-                
-            
             }
 
             return listaARetornar;
         
         }
 
+        public List<Pedido> ObtenerPedidosHoy()
+        {
+            List<Pedido> pedidoList = new List<Pedido>();
+            PedidosDAO pedidosDAO = new PedidosDAO();
+            List<AccesoADatos.Pedido> pedidosEncontrados = pedidosDAO.ObtenerPedidosHoy();
+            return pedidosEncontrados;
+        }
 
 
         public List<Pedido> ObtenerPedidosCliente(string pedidoBuscarNombre)
@@ -286,19 +309,10 @@ namespace Dominio.Logica
                 }
                 else
                 {
-
                     listaARetornar.Add(Pedido.CloneParaLocal(pedido));
-
                 }
-
-
-
             }
-
             return listaARetornar;
-
         }
-
-
     }
-    }
+}

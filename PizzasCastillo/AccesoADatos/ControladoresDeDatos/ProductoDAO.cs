@@ -90,7 +90,25 @@ namespace AccesoADatos.ControladoresDeDatos
             return articuloProducto;
         }
 
+        public List<Consume> ConsumePlatillo(string codigoBarra)
+        {
+            List<Consume> consume;
 
+            try
+            {
+                consume = conexion.Consume.Where(c => c.PlatilloCodigoBarra == codigoBarra).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (EntityException ex)
+            {
+                throw new ConexionFallidaException(ex);
+            }
+
+            return consume;
+        }
 
         public bool RegistrarArticulo(ArticuloVenta articuloProducto)
         {

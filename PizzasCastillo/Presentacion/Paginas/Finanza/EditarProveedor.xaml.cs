@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades;
+using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Dominio.Utilerias;
 using Microsoft.Win32;
@@ -22,6 +23,7 @@ namespace Presentacion.Paginas.Finanza
         private byte[] archivo;
         private const string MENSAJE_ARCHIVO = "Ya se tiene guardado un archivo si desea actualizarlo seleecione la opcion";
         private int idP;
+        private string oldDNI;
         public EditarProveedor(Proveedor proveedorSeleccionado)
         {
             InitializeComponent();
@@ -71,6 +73,7 @@ namespace Presentacion.Paginas.Finanza
             CiudadText.Text = proveedorSeleccionado.Direccion.Ciudad;
             CodigoPostalText.Text = proveedorSeleccionado.Direccion.CodigoPostal;
             DNIText.Text = proveedorSeleccionado.Dni;
+            oldDNI = proveedorSeleccionado.Dni;
             EmailText.Text = proveedorSeleccionado.Email;
             rutaArchivo.Text = MENSAJE_ARCHIVO;
             idP = proveedorSeleccionado.Id;
@@ -172,13 +175,31 @@ namespace Presentacion.Paginas.Finanza
                 if (ValidarCampos(proveedor, direccion))
                 {
                     ProveedorController proveedorController = new ProveedorController();
-                    bool guardado = proveedorController.ActualizarProovedor(proveedor);
-
-                    if (guardado)
+                    ResultadoRegistro guardado;
+                    if (oldDNI == DNIText.Text)
                     {
-                        InteraccionUsuario ventana = new InteraccionUsuario("Exito en Actualizacion", "Se ha actualizado el proveedor y su direccion con exito");
-                        ventana.Show();
-                        //REGRESA PAGINA
+                        guardado = proveedorController.ActualizarProovedor(proveedor,false);
+                    }
+                    else
+                    {
+                        guardado = proveedorController.ActualizarProovedor(proveedor,true);
+                    }
+
+                    switch (guardado)
+                    {
+                        case ResultadoRegistro.UsuarioYaExiste:
+                            InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Ya se encuentra un proveedor registrado con el mismo DNI, este debe ser unico por empresa");
+                            ventana.Show();
+                            break;
+                        case ResultadoRegistro.RegistroFallido:
+                            InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
+                            ventana1.Show();
+                            break;
+                        case ResultadoRegistro.RegistroExitoso:
+                            InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el proveedor y su direccion con exito");
+                            ventana2.Show();
+                            NavigationService.GoBack();
+                            break;
                     }
                 }
                 else
