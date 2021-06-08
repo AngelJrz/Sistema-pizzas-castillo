@@ -37,10 +37,16 @@ namespace Presentacion.Paginas.Cocina
 
             productos = new ObservableCollection<ArticuloVenta>();
             productoList.ItemsSource = productos;
-
-            foreach (ArticuloVenta p in productosList)
+            try
             {
-                File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
+                foreach (ArticuloVenta p in productosList)
+                {
+                    File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
+                }
+            }
+            catch (Exception)
+            {
+                
             }
         }
         private void Eliminar(object sender, RoutedEventArgs e)
