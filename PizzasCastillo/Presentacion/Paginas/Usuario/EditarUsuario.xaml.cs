@@ -6,6 +6,7 @@ using Dominio.Utilerias;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,11 +31,12 @@ namespace Presentacion.Paginas.Usuario
         public List<Tipo> TiposUsuario { get; set; }
         private bool _seActualizoUsername = false;
         private bool _seActualizoPassword = false;
+        private readonly Empleado _empleadoRespaldo;
+        private Process _teclado;
 
         public EditarUsuario(Empleado empleado)
         {
             InitializeComponent();
-
             estadosLista = new List<string>
             {
                 "Aguascalientes",
@@ -76,7 +78,13 @@ namespace Presentacion.Paginas.Usuario
             TiposUsuario = tipoUsuarioController.ObtenerTiposUsuario();
 
             ListaTiposUsuario.ItemsSource = TiposUsuario;
+            _empleadoRespaldo = new Empleado
+            {
+                Username = empleado.Username,
+                TipoUsuario = empleado.TipoUsuario
+            };
             DataContext = empleado;
+            
 
             foreach (var tipoUsuario in ListaTiposUsuario.ItemsSource as List<Tipo>)
             {
@@ -93,54 +101,23 @@ namespace Presentacion.Paginas.Usuario
             NavigationService.Navigate(new ListaDeUsuarios());
         }
 
-        private void PasswordText_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            _seActualizoPassword = true;
-            ActualizarBoton.IsEnabled = true;
-        }
-
-        private void Actualizar_Clic(object sender, RoutedEventArgs e)
+        private void ActualizarEmpleado()
         {
             Empleado empleadoAActualizar = DataContext as Empleado;
 
-            empleadoAActualizar.Nombres = NombresText.Text;
-            empleadoAActualizar.Apellidos = ApellidosText.Text;
-            empleadoAActualizar.Telefono = TelefonoText.Text;
-            empleadoAActualizar.Email = EmailText.Text;
-            empleadoAActualizar.TipoUsuario = ListaTiposUsuario.SelectedItem as Tipo;
-            empleadoAActualizar.Username = UsernameText.Text;
-            if(_seActualizoPassword)
-                empleadoAActualizar.Contrasenia = PasswordText.Password;
 
-            decimal.TryParse(SalarioText.Text, out decimal salario);
-            empleadoAActualizar.SalarioQuincenal = salario;
-
-            if(empleadoAActualizar.Direcciones != null && empleadoAActualizar.Direcciones.Count > 0)
+            if (!_empleadoRespaldo.Username.Equals(empleadoAActualizar.Username))
             {
-                empleadoAActualizar.Direcciones[0].Calle = CalleText.Text;
-                empleadoAActualizar.Direcciones[0].Colonia = ColoniaText.Text;
-                empleadoAActualizar.Direcciones[0].Ciudad = CiudadText.Text;
-                empleadoAActualizar.Direcciones[0].CodigoPostal = CodigoPostalText.Text;
-                empleadoAActualizar.Direcciones[0].NumeroInterior = NoInteriorText.Text;
-                empleadoAActualizar.Direcciones[0].Referencias = ReferenciasText.Text;
-                empleadoAActualizar.Direcciones[0].NumeroExterior = NoExteriorText.Text;
-                empleadoAActualizar.Direcciones[0].EntidadFederativa = ListaEstidadesFederativas.Text;
+                _seActualizoUsername = true;
             }
-            else
-            {
-                Direccion direccion = new Direccion
-                {
-                    Calle = CalleText.Text,
-                    Colonia = ColoniaText.Text,
-                    Ciudad = CiudadText.Text,
-                    CodigoPostal = CodigoPostalText.Text,
-                    NumeroInterior = NoInteriorText.Text,
-                    Referencias = ReferenciasText.Text,
-                    NumeroExterior = NoExteriorText.Text,
-                    EntidadFederativa = ListaEstidadesFederativas.Text
-                };
 
-                empleadoAActualizar.Direcciones?.Add(direccion);
+            if (!_empleadoRespaldo.TipoUsuario.Nombre.Equals(ListaTiposUsuario.Text))
+                empleadoAActualizar.TipoUsuario = ListaTiposUsuario.SelectedItem as Tipo;
+
+            if (!string.IsNullOrWhiteSpace(PasswordText.Password))
+            {
+                empleadoAActualizar.Contrasenia = PasswordText.Password;
+                _seActualizoPassword = true;
             }
 
             Dialog ventanaDialog = new Dialog();
@@ -201,12 +178,9 @@ namespace Presentacion.Paginas.Usuario
             }
         }
 
-        private void CamposText_TextInput(object sender, TextCompositionEventArgs e)
+        private void Actualizar_Clic(object sender, RoutedEventArgs e)
         {
-            TextBox campo = (TextBox)sender;
-
-            if (campo.Name.Equals(UsernameText.Name))
-                _seActualizoUsername = true;
+            ActualizarEmpleado();
         }
 
         private bool EstaInformacionCorrecta(Empleado empleado)
@@ -217,6 +191,36 @@ namespace Presentacion.Paginas.Usuario
 
             return validadorDireccion.Validar(empleado.Direcciones[0]) && validadorPersona.Validar(empleado) &&
                 validadorEmpleado.Validar(empleado);
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+                _teclado.Kill();
+        }
+
+        private void Cancelar_Touch(object sender, TouchEventArgs e)
+        {
+            NavigationService.Navigate(new ListaDeUsuarios());
+        }
+
+        private void Actualizar_Touch(object sender, TouchEventArgs e)
+        {
+            ActualizarEmpleado();
         }
     }
 }

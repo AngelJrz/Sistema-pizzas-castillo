@@ -371,43 +371,6 @@ namespace Dominio.Test.CU_MU_01
             Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
         }
 
-        [TestMethod]
-        public void RegistrarEmpleadoX()
-        {
-            TipoUsuarioController tipoUsuarioController = new TipoUsuarioController();
-
-            List<Tipo> tiposUsuario = tipoUsuarioController.ObtenerTiposUsuario();
-
-            Direccion direccion = new Direccion
-            {
-                Calle = "Av Avila Camacho",
-                NumeroExterior = "21",
-                CodigoPostal = "91025",
-                Colonia = "Centro",
-                EntidadFederativa = "Veracruz",
-                Ciudad = "Xalapa",
-                Referencias = "Enfrente del Oxxo rojo",
-                NumeroInterior = ""
-            };
-
-            Tipo tipoUsuario = tiposUsuario.Find(tipo => tipo.Nombre.Equals("Cocinero"));
-
-            Empleado empleadoARegistrar = new Empleado
-            {
-                Nombres = "Alejandro",
-                Apellidos = "Lopez",
-                Email = "alelop@gmail.com",
-                Telefono = "2281152322",
-                Direcciones = new List<Direccion>() { direccion },
-                Username = "alelopez",
-                Contrasenia = "alelopez",
-                TipoUsuario = tipoUsuario,
-                SalarioQuincenal = new decimal(1500.50)
-            };
-
-            ResultadoRegistro resultado = _empleadoController.RegistrarEmpleado(empleadoARegistrar);
-
-            Assert.AreEqual(resultado, ResultadoRegistro.RegistroFallido);
-        }
+        
     }
 }

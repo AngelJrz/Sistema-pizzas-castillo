@@ -163,6 +163,7 @@
     <Compile Include="Utilerias\ValidadorProducto.cs" />
     <Compile Include="Utilerias\ValidadorReporta.cs" />
     <Compile Include="Utilerias\ValidadorReporteInventario.cs" />
+    <Compile Include="Utilerias\ValidadorTipoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoADatos\AccesoADatos.csproj">

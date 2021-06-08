@@ -46,7 +46,8 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=usuarioText}">
                             <TextBox x:Name="usuarioText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30" KeyDown="ControlarTeclaEnter" GotTouchCapture="AbrirTeclado_Touch"
-                                     LostFocus="CerrarTeclado"/>
+                                     LostFocus="CerrarTeclado"
+                                     AutomationProperties.AutomationId="usuarioText"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -66,7 +67,8 @@
                         <StackPanel Grid.Column="1">
                             <PasswordBox x:Name="passwordText" Template="{StaticResource PasswordControlTemplate}"
                                          MaxLength="255" GotTouchCapture="AbrirTeclado_Touch"
-                                         LostFocus="CerrarTeclado" KeyDown="ControlarTeclaEnter"/>
+                                         LostFocus="CerrarTeclado" KeyDown="ControlarTeclaEnter"
+                                         AutomationProperties.AutomationId="passwordText"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -76,6 +78,7 @@
 
                 <Button Content="Iniciar sesión" Style="{StaticResource BotonSecundarioStyle}" Margin="0,40,0,0" 
                         Click="IniciarSesionBoton" TouchEnter="IniciarSesionTouch"
+                        AutomationProperties.AutomationId="iniciarSesionBoton"
                         />
 
             </StackPanel>

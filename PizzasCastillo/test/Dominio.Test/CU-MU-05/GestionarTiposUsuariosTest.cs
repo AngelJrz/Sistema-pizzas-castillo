@@ -25,7 +25,7 @@ namespace Dominio.Test.CU_MU_05
         ///Obtiene o establece el contexto de las pruebas que proporciona
         ///información y funcionalidad para la serie de pruebas actual.
         ///</summary>
-        /*public TestContext TestContext
+        public TestContext TestContext
         {
             get
             {
@@ -64,12 +64,12 @@ namespace Dominio.Test.CU_MU_05
         {
             Tipo nuevoTipoUsuario = new Tipo
             {
-                Nombre = "Tipo usuario prueba"
+                Nombre = "Repartidor"
             };
 
-            bool resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
+            ResultadoRegistro resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
 
-            Assert.IsTrue(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.RegistroExitoso);
         }
 
         [TestMethod]
@@ -80,9 +80,9 @@ namespace Dominio.Test.CU_MU_05
                 Nombre = ""
             };
 
-            bool resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
+            ResultadoRegistro resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
 
-            Assert.IsFalse(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
         }
 
         [TestMethod]
@@ -90,12 +90,12 @@ namespace Dominio.Test.CU_MU_05
         {
             Tipo nuevoTipoUsuario = new Tipo
             {
-                Nombre = "Tipo usuario prueba"
+                Nombre = "Repartidor"
             };
 
-            bool resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
+            ResultadoRegistro resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
 
-            Assert.IsFalse(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.TipoUsuarioYaExiste);
         }
 
         [TestMethod]
@@ -106,9 +106,9 @@ namespace Dominio.Test.CU_MU_05
                 Nombre = "Tipo usuario prueba con un nombre largo que superar el limite permitido"
             };
 
-            bool resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
+            ResultadoRegistro resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
 
-            Assert.IsFalse(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
         }
 
         [TestMethod]
@@ -119,35 +119,99 @@ namespace Dominio.Test.CU_MU_05
                 Nombre = "Tipo"
             };
 
-            bool resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
+            ResultadoRegistro resultado = _tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
 
-            Assert.IsFalse(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
         }
 
         [TestMethod]
         public void GestionarTiposUsuarios06()
         {
             List<Tipo> tiposUsuarios = _tipoUsuarioController.ObtenerTiposUsuario();
-            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Tipo usuario prueba"));
+            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Repartidor"));
 
-            tipoUsuarioActualizado.Nombre = "Tipo usuario prueba 2";
+            tipoUsuarioActualizado.Nombre = "Repartidor principal";
 
-            bool resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado);
+            ResultadoRegistro resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado,
+                                                                                   seActualizoNombre: true);
 
-            Assert.IsTrue(resultado);
+            Assert.AreEqual(resultado, ResultadoRegistro.RegistroExitoso);
         }
 
         [TestMethod]
         public void GestionarTiposUsuarios07()
         {
             List<Tipo> tiposUsuarios = _tipoUsuarioController.ObtenerTiposUsuario();
-            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Tipo usuario prueba"));
+            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Repartidor principal"));
 
             tipoUsuarioActualizado.Nombre = "";
 
-            bool resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado);
+            ResultadoRegistro resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado,
+                                                                                   seActualizoNombre: true);
 
-            Assert.IsTrue(resultado);
-        }*/
+            Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
+        }
+
+        [TestMethod]
+        public void GestionarTiposUsuarios08()
+        {
+            List<Tipo> tiposUsuarios = _tipoUsuarioController.ObtenerTiposUsuario();
+            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Repartidor principal"));
+
+            tipoUsuarioActualizado.Nombre = "Mesero";
+
+            ResultadoRegistro resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado,
+                                                                                   seActualizoNombre: true);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.TipoUsuarioYaExiste);
+        }
+
+        [TestMethod]
+        public void GestionarTiposUsuarios09()
+        {
+            List<Tipo> tiposUsuarios = _tipoUsuarioController.ObtenerTiposUsuario();
+            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Repartidor principal"));
+
+            tipoUsuarioActualizado.Estatus = 0;
+
+            ResultadoRegistro resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.RegistroExitoso);
+        }
+
+        [TestMethod]
+        public void GestionarTiposUsuarios10()
+        {
+            List<Tipo> tiposUsuarios = _tipoUsuarioController.ObtenerTiposUsuario();
+            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Repartidor principal"));
+
+            tipoUsuarioActualizado.Estatus = 1;
+
+            ResultadoRegistro resultado = _tipoUsuarioController.EditarTipoUsuario(tipoUsuarioActualizado);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.RegistroExitoso);
+        }
+
+        [TestMethod]
+        public void GestionarTiposUsuarios11()
+        {
+            List<Tipo> tiposUsuarios = _tipoUsuarioController.ObtenerTiposUsuario();
+            Tipo tipoUsuarioActualizado = tiposUsuarios.Find(tipo => tipo.Nombre.Equals("Repartidor principal"));
+
+            ResultadoRegistro resultado = _tipoUsuarioController.DarDeBajaTipoUsuario(tipoUsuarioActualizado);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.RegistroExitoso);
+        }
+
+        [TestMethod]
+        public void GestionarTiposUsuarios12()
+        {
+
+            Tipo tipoUsuarioActualizado = null;
+
+            ResultadoRegistro resultado = _tipoUsuarioController.DarDeBajaTipoUsuario(tipoUsuarioActualizado);
+
+            Assert.AreEqual(resultado, ResultadoRegistro.InformacionIncorrecta);
+        }
     }
 }

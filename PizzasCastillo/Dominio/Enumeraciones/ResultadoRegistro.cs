@@ -16,5 +16,6 @@ namespace Dominio.Enumeraciones
         TipoUsuarioYaExiste = 5,
         YaExiste = 6,
         ProductosNoEspecificados = 7
+        ExistenUsuariosVinculados = 8
     }
 }

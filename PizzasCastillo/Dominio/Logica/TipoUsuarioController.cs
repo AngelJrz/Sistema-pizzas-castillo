@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Dominio.Enumeraciones;
 using AccesoADatos.ControladoresDeDatos;
 using AccesoADatos.Excepciones;
+using Dominio.Utilerias;
 
 namespace Dominio.Logica
 {
     public class TipoUsuarioController
     {
         private TipoUsuarioDAO _tipoUsuarioDAO;
+        private ValidadorTipoUsuario _validador;
 
         public TipoUsuarioController()
         {
             _tipoUsuarioDAO = new TipoUsuarioDAO();
+            _validador = new ValidadorTipoUsuario();
         }
 
         public List<Tipo> ObtenerTiposUsuario()
@@ -30,7 +33,7 @@ namespace Dominio.Logica
 
         public ResultadoRegistro RegistrarNuevoTipoUsuario(Tipo nuevoTipoUsuario)
         {
-            if (nuevoTipoUsuario == null || String.IsNullOrWhiteSpace(nuevoTipoUsuario.Nombre))
+            if (nuevoTipoUsuario == null || _validador.Validar(nuevoTipoUsuario) == false)
                 return ResultadoRegistro.InformacionIncorrecta;
 
             if (_tipoUsuarioDAO.ObtenerTipoUsuario(nuevoTipoUsuario.Nombre) != null)
@@ -62,8 +65,19 @@ namespace Dominio.Logica
         public ResultadoRegistro DarDeBajaTipoUsuario(Tipo tipoUsuario)
         {
             int VALOR_MINIMO_ID = 1;
-            if (tipoUsuario == null || tipoUsuario.Id < VALOR_MINIMO_ID)
+            if (tipoUsuario == null
+                || _validador.Validar(tipoUsuario) == false
+                || tipoUsuario.Id < VALOR_MINIMO_ID)
                 return ResultadoRegistro.InformacionIncorrecta;
+
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+            int numeroDeUsuariosPorTipo = usuarioDAO.ObtenerNumeroUsuariosPorTipo(tipoUsuario.Nombre);
+
+            if (numeroDeUsuariosPorTipo > 0)
+                return ResultadoRegistro.ExistenUsuariosVinculados;
+            else if (numeroDeUsuariosPorTipo == -1)
+                return ResultadoRegistro.RegistroFallido;
 
             AccesoADatos.TipoUsuario tipoUsuarioADarDeBaja = Tipo.CloneToEntityDB(tipoUsuario);
 
@@ -100,9 +114,7 @@ namespace Dominio.Logica
         public ResultadoRegistro EditarTipoUsuario(Tipo tipoUsuario, bool seActualizoNombre = false)
         {
             if (tipoUsuario == null
-                || String.IsNullOrWhiteSpace(tipoUsuario.Nombre)
-                || tipoUsuario.Estatus < 0
-                || tipoUsuario.Estatus > 1)
+                || _validador.Validar(tipoUsuario) == false)
                 return ResultadoRegistro.InformacionIncorrecta;
 
             if (seActualizoNombre)

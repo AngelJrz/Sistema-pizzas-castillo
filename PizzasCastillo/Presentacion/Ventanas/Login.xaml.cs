@@ -2,20 +2,11 @@
 using Dominio.Logica;
 using Presentacion.Recursos;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Presentacion.Ventanas
 {
@@ -26,7 +17,7 @@ namespace Presentacion.Ventanas
     {
         private readonly Thread verificadorDeBloqueoDeAcceso;
         private Process _teclado;
-        private Singleton _sesion;
+        private readonly Singleton _sesion;
 
         public Login()
         {
@@ -78,19 +69,31 @@ namespace Presentacion.Ventanas
         {
             if (EstanCamposVacios())
             {
-                MessageBox.Show("Ingrese todos los datos");
+                new Dialog
+                {
+                    Titulo = "Información incompleta",
+                    Mensaje = "Por favor ingrese el usuario y contraseña."
+                }.ShowDialog();
                 return;
             }
 
             if (ExisteBloqueoDeAcceso())
             {
-                MessageBox.Show("Ha superado los intentos de iniciar sesión. Por favor espero 5 minutos.");
+                new Dialog
+                {
+                    Titulo = "Bloqueo de acceso",
+                    Mensaje = "Ha superado los intentos de iniciar sesión. Por favor espero 5 minutos."
+                }.ShowDialog();
                 return;
             }
 
             if (AlcanzoLimiteDeIntentos())
             {
-                MessageBox.Show("Ha alcanzado el límite intentos de iniciar sesión. Por favor espere 5 minutos.");
+                new Dialog
+                {
+                    Titulo = "Límite de intentos",
+                    Mensaje = "Ha alcanzado el límite intentos de iniciar sesión. Por favor espere 5 minutos."
+                }.ShowDialog();
                 BloquearAcceso();
                 return;
             }
@@ -107,14 +110,22 @@ namespace Presentacion.Ventanas
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió un error, por favor intente más tarde.");
+                new Dialog
+                {
+                    Titulo = "Error",
+                    Mensaje = "Ocurrió un error, por favor intente más tarde."
+                }.ShowDialog();
                 return;
             }
 
             if (empleado == null)
             {
                 AumentarIntentosDeInicioDeSesion();
-                MessageBox.Show("La información ingresada es incorrecta.");
+                new Dialog
+                {
+                    Titulo = "Información incorrecta",
+                    Mensaje = "El usuario y/o contraseña son incorrectos. Por favor verifiquelos e intente de nuevo."
+                }.ShowDialog();
                 return;
             }
 
@@ -167,7 +178,7 @@ namespace Presentacion.Ventanas
 
         private void IniciarSesionTouch(object sender, TouchEventArgs e)
         {
-            
+            IniciarSesion();
         }
 
         private void ControlarTeclaEnter(object sender, KeyEventArgs e)
