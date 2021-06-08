@@ -23,8 +23,8 @@
             <Image Grid.Row="0" Source="/Imagenes/logo.png" Cursor="Hand" PreviewMouseDown="IrAInicio_PrewiewMouseDown"/>
 
             <StackPanel Grid.Row="1">
-                <TextBlock Text="{Binding NombreCompleto}" Style="{StaticResource NombreUsuarioStyle}"/>
-                <TextBlock x:Name="TipoUsuarioText" Text="{Binding TipoUsuario.Nombre}" Style="{StaticResource TipoUsuarioStyle}"/>
+                <TextBlock AutomationProperties.AutomationId="NombreUsuarioText" Text="{Binding NombreCompleto}" Style="{StaticResource NombreUsuarioStyle}"/>
+                <TextBlock AutomationProperties.AutomationId="TipoUsuarioText" x:Name="TipoUsuarioText" Text="{Binding TipoUsuario.Nombre}" Style="{StaticResource TipoUsuarioStyle}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2">
@@ -51,7 +51,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Usuarios" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
-                              PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                              PreviewMouseDown="Usuarios_PreviewMouseDown" AutomationProperties.AutomationId="Usuarios"/>
                 <TextBlock Text="Productos" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"
                            />
                 <TextBlock Text="Proveedores" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>

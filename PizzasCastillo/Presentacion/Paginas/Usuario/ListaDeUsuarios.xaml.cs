@@ -60,7 +60,11 @@ namespace Presentacion.Paginas.Usuario
 
             if (empleadoSeleccionado.NumeroEmpleado.Equals((empleadoEnSesion as Empleado).NumeroEmpleado))
             {
-                MessageBox.Show("El usuario que intenta dar de baja es el que está en sesión ahora mismo. Está operación no puede ser realizada.");
+                new Dialog
+                {
+                    Titulo = "Error",
+                    Mensaje = "El usuario que intenta dar de baja es el que está en sesión ahora mismo. Está operación no puede ser realizada."
+                }.ShowDialog();
                 return;
             }
 
@@ -78,18 +82,30 @@ namespace Presentacion.Paginas.Usuario
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Ocurrio un error. Intente más tarde");
+                    new Dialog
+                    {
+                        Titulo = "Error",
+                        Mensaje = "Ocurrio un error. Intente más tarde"
+                    }.ShowDialog();
                     return;
                 }
 
                 if (seDioDeBaja)
                 {
-                    MessageBox.Show("El empleado fue dado de baja exitosamente.");
+                    new Dialog
+                    {
+                        Titulo = "Empleado dado de baja",
+                        Mensaje = "El empleado fue dado de baja exitosamente."
+                    }.ShowDialog();
                     _empleados.Remove(empleadoSeleccionado);
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo eliminar el tipo usuario seleccionado.");
+                    new Dialog
+                    {
+                        Titulo = "Error",
+                        Mensaje = "No se pudo eliminar el tipo usuario seleccionado."
+                    }.ShowDialog();
                 }
             }
         }
@@ -108,7 +124,11 @@ namespace Presentacion.Paginas.Usuario
 
             if(String.IsNullOrWhiteSpace(busqueda))
             {
-                MessageBox.Show("Por favor ingresa algo en el campo busqueda");
+                new Dialog
+                {
+                    Titulo = "Información incompleta",
+                    Mensaje = "Por favor ingresa información en el campo de búsqueda."
+                }.ShowDialog();
                 return;
             }
 

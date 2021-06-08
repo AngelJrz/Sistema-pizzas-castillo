@@ -153,7 +153,7 @@ namespace Presentacion.Paginas.Usuario
                         break;
                     case ResultadoRegistro.InformacionIncorrecta:
                         ventanaDialog.Titulo = "Error de actualización";
-                        ventanaDialog.Mensaje = "La información ingresada es incorrecta, por favor verifiquela.";
+                        ventanaDialog.Mensaje = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
                         ventanaDialog.ShowDialog();
                         break;
                 }

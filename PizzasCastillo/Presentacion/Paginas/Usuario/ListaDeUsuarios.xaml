@@ -59,7 +59,7 @@
             </Grid>
 
             <Button Content="Registrar usuario" HorizontalAlignment="Center" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" Margin="0,30,0,0" Click="IrARegistrarUsuario"/>
+                    Width="150" Margin="0,30,0,0" Click="IrARegistrarUsuario" AutomationProperties.AutomationId="RegistrarUsuarioBoton"/>
 
             <TextBlock Text="Lista de usuarios" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
@@ -69,7 +69,8 @@
                       AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       Margin="0,20,0,20" CanUserSortColumns="True" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}"
-                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      AutomationProperties.AutomationId="ListaUsuarios">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="No. Empleado" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
@@ -213,7 +214,8 @@
 
                                     <Button Style="{StaticResource IconoBoton}" Click="EditarUsuario" Grid.Column="1">
                                         <materialDesign:PackIcon Kind="UserEdit" Foreground="{StaticResource Gris}" 
-                                                                 Width="25" Height="25"/>
+                                                                 Width="25" Height="25"
+                                                                 AutomationProperties.AutomationId="{Binding Username}"/>
                                     </Button>
 
                                     <Button Style="{StaticResource IconoBoton}" Click="EliminarUsuario" Grid.Column="2">
