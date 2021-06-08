@@ -133,8 +133,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CU-MPR-01\ImagenPrueba.png" />
-    <Content Include="CU-MPR-02\ImagenPrueba2.png" />
+    <Content Include="CU-MPR-01\ImagenPrueba.png"/>
+    <Content Include="CU-MPR-02\ImagenPrueba2.png"/>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
