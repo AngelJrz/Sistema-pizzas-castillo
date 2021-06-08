@@ -183,9 +183,9 @@ namespace AccesoADatos.ControladoresDeDatos
                 int mes = hoy.Month;
                 int anio = hoy.Year;
                
-                    _pedidos = connection.Pedido.Where(x => x.Fecha.Day == dia && x.Fecha.Month==mes && x.Fecha.Year == anio)
-                    .ToList();
-                    return _pedidos;
+                _pedidos = connection.Pedido.Where(x => x.Fecha.Day == dia && x.Fecha.Month==mes && x.Fecha.Year == anio && x.EstatusPedido.Nombre == "pagado")
+                .ToList();
+                return _pedidos;
                }
             catch (Exception e)
             {

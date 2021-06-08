@@ -33,5 +33,27 @@ namespace AccesoADatos.ControladoresDeDatos
 
             return registrado;
         }
+
+        public List<GastoExtra> ObtenerPedidosDelDia()
+        {
+            List<GastoExtra> listaRetorno = new List<GastoExtra>();
+
+            try
+            {
+                DateTime hoy = DateTime.Now;
+                int dia = hoy.Day;
+                int mes = hoy.Month;
+                int anio = hoy.Year;
+
+                listaRetorno = conexion.GastoExtra.Where(x => x.Fecha.Day == dia && x.Fecha.Month == mes && x.Fecha.Year == anio)
+                .ToList();
+                return listaRetorno;
+
+            }
+            catch (Exception)
+            {
+                return listaRetorno;
+            }
+        }
     }
 }

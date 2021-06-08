@@ -20,12 +20,20 @@ namespace Presentacion.Paginas.Finanza
         private List<TextBox> listaDeCampos;
         private List<Efectivo> listaDeTiposEfectivo;
         private Empleado empleado;
+        private GastoExtraController controladorGastos;
+        private PedidoController controladorPedidos;
+        private ReporteDeCajaController controladorReportes;
 
         public CorteDeCaja(Empleado empleadoEnSesion)
         {
             empleado = empleadoEnSesion;
 
             InitializeComponent();
+            controladorGastos = new GastoExtraController();
+            controladorPedidos = new PedidoController();
+            controladorReportes = new ReporteDeCajaController();
+
+            ColocarIngresosYEgresos();
 
             listaDeCampos = new List<TextBox>();
             listaDeCampos.Add(campoBilleteMil);
@@ -45,22 +53,39 @@ namespace Presentacion.Paginas.Finanza
             listaDeTiposEfectivo = efectivocontroller.ObtenerTiposDeEfectivo();
         }
 
+        public void ColocarIngresosYEgresos()
+        {
+            double dineroDejado = controladorReportes.ObtenerEfectivoDejado();
+            double ingresos = controladorPedidos.ObtenerIngresosDelDia();
+            double gastos = controladorGastos.ObtenerSumaDeGastosDelDia();
+            double totalIngresos = ingresos + dineroDejado;
+
+            inicioDeCaja.Text = dineroDejado.ToString();
+            ingresosDelDia.Text = totalIngresos.ToString();
+            egresosDelDia.Text = gastos.ToString();
+            balanceDiario.Text = (totalIngresos - gastos).ToString();
+        }
+
         private void ClickGuardarCorte(object sender, RoutedEventArgs e)
         {
             if (CamposCorrectos())
             {
-                if (ObtenerEfectivoParaDiaSiguiente())
+                if (VerificarEfectivoEnCaja())
                 {
-                    ReporteCaja nuevoReporte = CrearReporteDeCaja();
-                    ReporteDeCajaController controlador = new ReporteDeCajaController();
+                    if (ObtenerEfectivoParaDiaSiguiente())
+                    {
+                        ReporteCaja nuevoReporte = CrearReporteDeCaja();
+                        ReporteDeCajaController controlador = new ReporteDeCajaController();
 
-                    if (controlador.RegistrarNuevoReporteDeCaja(nuevoReporte))
-                    {
-                        MessageBox.Show("El corte de caja se registro con exito");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ocurrio un error durante el registro");
+                        if (controlador.RegistrarNuevoReporteDeCaja(nuevoReporte))
+                        {
+                            MessageBox.Show("El corte de caja se registro con exito");
+                            ResetListaDeCampos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ocurrio un error durante el registro");
+                        }
                     }
                 }
             }
@@ -121,10 +146,12 @@ namespace Presentacion.Paginas.Finanza
         {
             double ingresos = double.Parse(ingresosDelDia.Text);
             double egresos = double.Parse(egresosDelDia.Text);
+            double balance = double.Parse(balanceDiario.Text);
+
 
             return new ReporteCaja()
             {
-                BalanceDiario = new Decimal(ingresos - egresos),
+                BalanceDiario = new Decimal(balance),
                 Fecha = DateTime.Now,
                 TotalEntrada = new Decimal(ingresos),
                 TotalSalida = new Decimal(egresos),
@@ -179,6 +206,38 @@ namespace Presentacion.Paginas.Finanza
             }
 
             return sumaTotalEfectivo;
+        }
+
+        private bool VerificarEfectivoEnCaja()
+        {
+            double balanceDelDia = double.Parse(balanceDiario.Text);
+            double dineroEnCaja = ObtenerSumaTotalDeEfectivo();
+
+            if (balanceDelDia == dineroEnCaja)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBoxResult opscionSeleccionada = MessageBox.Show($"El efectivo en caja es ${dineroEnCaja} y no corresponde con el balance ¿Deseas continuar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (opscionSeleccionada == MessageBoxResult.Yes)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private void ResetListaDeCampos()
+        {
+            comentariosInput.Text = "Sin comentarios";
+            foreach (TextBox campo in listaDeCampos)
+            {
+                campo.Text = "0";
+            }
         }
     }
 }

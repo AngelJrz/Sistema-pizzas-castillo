@@ -32,11 +32,16 @@ namespace AccesoADatos.ControladoresDeDatos
 
             try
             {
-                TipoGasto tipoGasto = conexion.TipoGasto.FirstOrDefault(tipo => tipo.Id == id);
-                tipoGasto.Nombre = nuevoNombre;
-                conexion.Entry(tipoGasto).State = EntityState.Modified;
-                conexion.SaveChangesAsync();
-                modificado = true;
+                TipoGasto tipoGastoExistente = conexion.TipoGasto.FirstOrDefault(tipo => tipo.Nombre == nuevoNombre);
+
+                if (tipoGastoExistente == null)
+                {
+                    TipoGasto tipoGasto = conexion.TipoGasto.FirstOrDefault(tipo => tipo.Id == id);
+                    tipoGasto.Nombre = nuevoNombre;
+                    conexion.Entry(tipoGasto).State = EntityState.Modified;
+                    conexion.SaveChangesAsync();
+                    modificado = true;
+                }
             }
             catch (Exception)
             {
@@ -52,9 +57,14 @@ namespace AccesoADatos.ControladoresDeDatos
 
             try
             {
-                conexion.Entry(nuevoGasto).State = System.Data.Entity.EntityState.Added;
-                conexion.SaveChanges();
-                registrado = true;
+                TipoGasto tipoGastoExistente = conexion.TipoGasto.FirstOrDefault(tipo => tipo.Nombre == nuevoGasto.Nombre);
+
+                if (tipoGastoExistente == null)
+                {
+                    conexion.Entry(nuevoGasto).State = EntityState.Added;
+                    conexion.SaveChanges();
+                    registrado = true;
+                }
             }
             catch (DbUpdateException)
             {
