@@ -27,7 +27,6 @@ namespace Presentacion.Paginas.Usuario
     {
         private ObservableCollection<Tipo> _tiposUsuario;
         private TipoUsuarioController _tipoUsuarioController;
-        private List<Tipo> tiposUsuariosConsultados;
         private RegistroTipoUsuario ventanaRegistroTipoUsuario;
         private EditarTipoUsuario ventanaEditar;
 
@@ -35,10 +34,17 @@ namespace Presentacion.Paginas.Usuario
         {
             InitializeComponent();
 
+            //_tipoUsuarioController = new TipoUsuarioController();
+            CargarTiposUsuarios();
+        }
+
+        private void CargarTiposUsuarios()
+        {
             _tipoUsuarioController = new TipoUsuarioController();
-            tiposUsuariosConsultados = _tipoUsuarioController.ObtenerTiposUsuario();
+            List<Tipo> tiposUsuariosConsultados = _tipoUsuarioController.ObtenerTiposUsuario();
             _tiposUsuario = new ObservableCollection<Tipo>(tiposUsuariosConsultados);
             ListaTiposUsuario.ItemsSource = _tiposUsuario;
+            ListaTiposUsuario.ItemsSource = tiposUsuariosConsultados;
         }
 
         private void BuscarEnter(object sender, KeyEventArgs e)
@@ -57,32 +63,30 @@ namespace Presentacion.Paginas.Usuario
 
         private void EditarTipoUsuario(object sender, RoutedEventArgs e)
         {
-            Tipo tipoUsuarioAEditar = ListaTiposUsuario.SelectedItem as Tipo;
+            Tipo tipoSeleccionado = ListaTiposUsuario.SelectedItem as Tipo;
+            Tipo tipoUsuarioAEditar = new Tipo
+            {
+                Id = tipoSeleccionado.Id,
+                Nombre = tipoSeleccionado.Nombre,
+                Estatus = tipoSeleccionado.Estatus
+            };
 
             if (tipoUsuarioAEditar != null)
             {
                 ventanaEditar = new EditarTipoUsuario(tipoUsuarioAEditar);
-                ventanaEditar.ActualizacionExitosa += new EventHandler(TipoUsuarioEditado);
+                //ventanaEditar.ActualizacionExitosa += new EventHandler(TipoUsuarioEditado);
 
-                ventanaEditar.ShowDialog();
+                //ventanaEditar.ShowDialog();
+
+                if (ventanaEditar.ShowDialog() == true)
+                    CargarTiposUsuarios();
             }
         }
 
-        private void TipoUsuarioEditado(object sender, EventArgs e)
-        {
-            if(ventanaEditar.DialogResult == true)
-            {
-                Tipo tipoUsuarioActualizado = _tiposUsuario.FirstOrDefault(tipo =>
-                    tipo.Id == ventanaEditar.TipoUsuario.Id || tipo.Nombre.Equals(ventanaEditar.TipoUsuario.Nombre));
-
-                if (tipoUsuarioActualizado != null)
-                {
-                    tipoUsuarioActualizado.Id = ventanaEditar.TipoUsuario.Id;
-                    tipoUsuarioActualizado.Nombre = ventanaEditar.TipoUsuario.Nombre;
-                    tipoUsuarioActualizado.Estatus = ventanaEditar.TipoUsuario.Estatus;
-                }
-            }
-        }
+        //private void TipoUsuarioEditado(object sender, EventArgs e)
+        //{
+        //    CargarTiposUsuarios();
+        //}
 
         private void EliminarTipoUsuario(object sender, RoutedEventArgs e)
         {
@@ -90,7 +94,7 @@ namespace Presentacion.Paginas.Usuario
 
             if (tipoUsuarioAEliminar != null)
             {
-                string mensaje = $"¿Está seguro que desea eliminar el tipo usuairio {tipoUsuarioAEliminar.Nombre}?";
+                string mensaje = $"¿Está seguro que desea dar de baja el tipo usuairio {tipoUsuarioAEliminar.Nombre}?";
 
                 Confirmacion ventanaConfirmacion = new Confirmacion
                 {
@@ -100,31 +104,49 @@ namespace Presentacion.Paginas.Usuario
 
                 if (ventanaConfirmacion.ShowDialog() == true)
                 {
-                    bool seDioDeBaja;
+                    ResultadoRegistro resultado;
+                    _tipoUsuarioController = new TipoUsuarioController();
 
                     try
                     {
-                        seDioDeBaja = _tipoUsuarioController.DarDeBajaTipoUsuario(tipoUsuarioAEliminar);
+                        resultado = _tipoUsuarioController.DarDeBajaTipoUsuario(tipoUsuarioAEliminar);
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Ocurrio un error. Intente más tarde");
+                        new Dialog
+                        {
+                            Titulo = "Error",
+                            Mensaje = "Por el momento no pudimos realizar la operación. Intente más tarde."
+                        }.ShowDialog();
                         return;
                     }
 
-                    if (seDioDeBaja)
+                    if (resultado == ResultadoRegistro.RegistroExitoso)
                     {
-                        MessageBox.Show("Tipo usuario eliminado exitosamente.");
-                        _tiposUsuario.Remove(tipoUsuarioAEliminar);
+                        new Dialog
+                        {
+                            Titulo = "Operación exitosa",
+                            Mensaje = "El tipo usuario fue dado de baja exitosamente."
+                        }.ShowDialog();
 
-                        return;
+                        CargarTiposUsuarios();
+                    }
+                    else if(resultado == ResultadoRegistro.RegistroFallido)
+                    {
+                        new Dialog
+                        {
+                            Titulo = "Error en la operación",
+                            Mensaje = "Por el momento no pudimos realizar la operación. Intente más tarde."
+                        }.ShowDialog();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo eliminar el tipo usuario seleccionado.");
-                        return;
+                        new Dialog
+                        {
+                            Titulo = "Error en la operación",
+                            Mensaje = "Ocurrió un error al intentar acceder a la información del tipo usuario. Intente más tarde."
+                        }.ShowDialog();
                     }
-                    
                 }
             }
         }
@@ -139,7 +161,8 @@ namespace Presentacion.Paginas.Usuario
 
         private void NuevoTipoRegistrado(object sender, EventArgs e)
         {
-            _tiposUsuario.Add(ventanaRegistroTipoUsuario.TipoUsuarioRegistrado);
+            //_tiposUsuario.Add(ventanaRegistroTipoUsuario.TipoUsuarioRegistrado);
+            CargarTiposUsuarios();
         }
 
         private void Regresar_Clic(object sender, RoutedEventArgs e)

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AccesoADatos.ControladoresDeDatos;
 using Dominio.Entidades;
 using Dominio.Enumeraciones;
+using Dominio.Utilerias;
 
 namespace Dominio.Logica
 {
@@ -22,41 +21,86 @@ namespace Dominio.Logica
 
         public ResultadoRegistroProducto GuardarProducto(Producto producto)
         {
-            if (productoDAO.ObtenerProducto(producto.CodigoBarra) != null)
+            ValidadorArticuloVenta validadorArticulo = new ValidadorArticuloVenta();
+            ValidadorProducto validadorProducto = new ValidadorProducto();
+
+            bool esCorrecto = validadorArticulo.Validar(producto) && validadorProducto.Validar(producto);
+
+            if (esCorrecto)
             {
-                return ResultadoRegistroProducto.CodigoBarraDuplicado;
+                if (productoDAO.ObtenerProducto(producto.CodigoBarra) != null)
+                {
+                    return ResultadoRegistroProducto.CodigoBarraDuplicado;
+                }
+
+                if (producto.CodigoBarra == null)
+                {
+                    producto.CodigoBarra = AutogenerarCodigoBarra(producto.Nombre, producto.Tipo);
+                }
+
+                producto.EsPlatillo = false;
+                producto.Estatus = DISPONIBLE;
+
+                if (producto.Tipo.Nombre.Equals("Final") && producto.Precio == new decimal() )
+                {
+                    return ResultadoRegistroProducto.RegistroFallido;
+                }
+
+                AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
+                productoNuevo.Producto = Producto.CloneToDBEntity(producto);
+
+                bool seGuardo;
+
+                try
+                {
+                    seGuardo = productoDAO.RegistrarArticulo(productoNuevo);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                if (seGuardo == true)
+                { 
+                    return ResultadoRegistroProducto.RegistroExitoso;
+                }  
             }
 
-            if (producto.CodigoBarra == null)
-            {
-                producto.CodigoBarra = AutogenerarCodigoBarra(producto.Nombre, producto.Tipo);
-            }
-
-            producto.EsPlatillo = false;
-            producto.Estatus = DISPONIBLE;
-
-            AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
-            productoNuevo.Producto = Producto.CloneToDBEntity(producto);
-
-            bool seGuardo;
-
-            try
-            {
-                seGuardo = productoDAO.RegistrarArticulo(productoNuevo);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            if (seGuardo == false)
-                return ResultadoRegistroProducto.RegistroFallido;
-
-            return ResultadoRegistroProducto.RegistroExitoso;
+            return ResultadoRegistroProducto.RegistroFallido;
         }
 
         public bool ActualizarProducto(Producto producto)
         {
+            if(producto.EsPlatillo == true)
+            {
+                return false;
+            }
+
+            ValidadorArticuloVenta validadorArticulo = new ValidadorArticuloVenta();
+            ValidadorProducto validadorProducto = new ValidadorProducto();
+
+            bool esValido = validadorArticulo.Validar(producto) && validadorProducto.Validar(producto);
+
+            if (!esValido)
+            {
+                return false;
+            }
+
+                if (producto.Estatus == NO_DISPONIBLE)
+            {
+                return false;
+            }
+
+            List<Producto> listaProductos = ObtenerProductosActivos();
+            if(listaProductos.Any(p => p.CodigoBarra.Equals(producto.CodigoBarra)) == false)
+            {
+                return false;
+            }
+
+            if(listaProductos.Find(p => p.CodigoBarra.Equals(producto.CodigoBarra)).Cantidad != producto.Cantidad)
+            {
+                return false;
+            }
 
             AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
             productoNuevo.Producto = Producto.CloneToDBEntity(producto);
@@ -97,7 +141,12 @@ namespace Dominio.Logica
 
         public bool EliminarProducto(Producto producto)
         {
-            producto.Estatus = NO_DISPONIBLE;
+
+            if (producto.Estatus == NO_DISPONIBLE)
+            {
+                return false;
+            }
+            
             AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
             productoNuevo.Producto = Producto.CloneToDBEntity(producto);
 

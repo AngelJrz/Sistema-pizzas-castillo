@@ -32,14 +32,18 @@ namespace Presentacion.Ventanas.Usuario
         {
             if (String.IsNullOrWhiteSpace(NombreText.Text))
             {
-                MessageBox.Show("Por favor ingresa el nombre del nuevo tipo");
+                new Dialog
+                {
+                    Titulo = "Información incompleta.",
+                    Mensaje = "Por favor ingresa el nombre del nuevo tipo"
+                }.ShowDialog();
                 return;
             }
 
             TipoUsuarioController tipoUsuarioController = new TipoUsuarioController();
             
 
-            bool seRegistro;
+            ResultadoRegistro resultado;
             Tipo nuevoTipoUsuario = new Tipo
             {
                 Nombre = NombreText.Text
@@ -47,17 +51,26 @@ namespace Presentacion.Ventanas.Usuario
 
             try
             {
-                seRegistro = tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
+                resultado = tipoUsuarioController.RegistrarNuevoTipoUsuario(nuevoTipoUsuario);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió un error al registrar el nuevo tipo. Intente más tarde");
+                new Dialog
+                {
+                    Titulo = "Error",
+                    Mensaje = "Por el momento no pudimos registrar el nuevo tipo. Intente más tarde."
+                }.ShowDialog();
                 return;
             }
 
-            if (seRegistro)
+            if (resultado == ResultadoRegistro.RegistroExitoso)
             {
-                MessageBox.Show("Nuevo tipo registrado exitosamente");
+                new Dialog
+                {
+                    Titulo = "Registro exitoso",
+                    Mensaje = "Nuevo tipo registrado exitosamente."
+                }.ShowDialog();
+
                 NombreText.Text = "";
                 if (RegistroExitoso != null)
                 {
@@ -65,12 +78,14 @@ namespace Presentacion.Ventanas.Usuario
                     RegistroExitoso(this, new EventArgs());
                 }
                 this.DialogResult = true;
-                return;
             }
-            else
+            else if (resultado == ResultadoRegistro.TipoUsuarioYaExiste)
             {
-                MessageBox.Show("No se pudo registrar el nuevo tipo. Intente más tarde");
-                return;
+                new Dialog
+                {
+                    Titulo = "Tipo usuario existente",
+                    Mensaje = "El tipo usuario ya se encuentra registrado. Por favor verifique la información."
+                }.ShowDialog();
             }
         }
     }

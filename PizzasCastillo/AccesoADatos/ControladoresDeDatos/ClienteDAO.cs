@@ -57,21 +57,29 @@ namespace AccesoADatos.ControladoresDeDatos
             return true;
         }
 
-
         public List<Persona> ObtenerClienteNombre(string nombre)
         {
             try
             {
-
-
                 return _connection.Persona.Where(p => p.Nombres.Contains(nombre)).ToList();
             }
-            catch(Exception) {
+            catch(Exception) 
+            {
                 return _clientes;
-            
-            
             }
+        }
+
+        public Persona ObtenerClienteTelefono(string telefono)
+        {
+            try
+            {
+                return _connection.Persona.Where(p => p.Telefono.Equals(telefono)).FirstOrDefault();
             }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
     }
 }

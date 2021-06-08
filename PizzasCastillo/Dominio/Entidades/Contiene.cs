@@ -8,17 +8,18 @@ namespace Dominio.Entidades
 {
     public class Contiene
     {
+        public int IdPedido { get; set; }
         public int Cantidad { get; set; }
         public decimal Total { get; set; }
         public ArticuloVenta ArticuloVenta { get; set; }
 
-        public static Contiene Clone(AccesoADatos.Contiene contiene)
+        public static Contiene CloneMermaPedido(AccesoADatos.Contiene contiene)
         {
             return new Contiene
             {
+                IdPedido = contiene.IdPedido,
                 Cantidad = contiene.Cantidad,
                 Total = contiene.Total,
-                ArticuloVenta = ArticuloVenta.CloneProducto(contiene.ArticuloVenta)
             };
         }
 

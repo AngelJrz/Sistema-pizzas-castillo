@@ -13,7 +13,7 @@ namespace Dominio.Utilerias
     {
         public ValidadorEmpleado()
         {
-            RuleFor(empleado => empleado.Username).NotNull().NotEmpty().MaximumLength(30);
+            RuleFor(empleado => empleado.Username).NotNull().NotEmpty().MaximumLength(30).MinimumLength(5);
             RuleFor(empleado => empleado.Contrasenia).NotNull().NotEmpty();
             RuleFor(empleado => empleado.SalarioQuincenal).NotNull().NotEmpty().GreaterThan(0);
             RuleFor(empleado => empleado.TipoUsuario).NotNull().NotEmpty();

@@ -1,5 +1,7 @@
 ﻿using AccesoADatos.ControladoresDeDatos;
 using Dominio.Entidades;
+using Dominio.Enumeraciones;
+using Dominio.Utilerias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,59 @@ namespace Dominio.Logica
     {
      
         private List<AccesoADatos.Persona> clientesSinclone;
-        public bool GuardarCliente(Persona persona)
+
+        public ResultadoRegistro RegistrarCliente(Persona persona)
         {
+            if (persona == null)
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
+            if (persona.Direcciones == null || persona.Direcciones.Count == 0)
+            {
+                return ResultadoRegistro.DireccionNoEspecificada;
+            }
+
+            if (!EstaInformacionCorrecta(persona))
+            {
+                return ResultadoRegistro.InformacionIncorrecta;
+            }
+
             ClienteDAO clienteDAO = new ClienteDAO();
 
-            return clienteDAO.RegistrarCliente(CloneRegister(persona));
+            if (clienteDAO.ObtenerClienteTelefono(persona.Telefono) != null)
+            {
+                return ResultadoRegistro.UsuarioYaExiste;
+            }
+
+            bool seRegistro;
+            try
+            {
+                seRegistro = clienteDAO.RegistrarCliente(CloneRegister(persona));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (!seRegistro)
+            {
+                return ResultadoRegistro.RegistroFallido;
+
+            }
+            else
+            {
+                return ResultadoRegistro.RegistroExitoso;
+            }
+        }
+
+        private bool EstaInformacionCorrecta(Persona persona)
+        {
+            ValidadorPersonas validadorPersona = new ValidadorPersonas();
+            ValidadorDireccion validadorDireccion = new ValidadorDireccion();
+
+            return validadorPersona.Validar(persona) &&
+                validadorDireccion.Validar(persona.Direcciones[0]);
         }
 
         private AccesoADatos.Persona CloneRegister(Persona persona)
@@ -29,6 +79,7 @@ namespace Dominio.Logica
                 Telefono = persona.Telefono,
                 Email = persona.Email,
                 Estatus = 1,
+                Direccion = Direccion.CloneToEntityDBList(persona.Direcciones),
             };
 
         }

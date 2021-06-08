@@ -57,6 +57,18 @@ namespace AccesoADatos.ControladoresDeDatos
             return true;
         }
 
+        public Proveedor ObtenerProveedorDNI(string dni)
+        {
+            try
+            {
+                return connection.Proveedor.Where(p => p.Dni.Equals(dni)).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool ActualizarProovedor(Proveedor proveedor)
         {
             try

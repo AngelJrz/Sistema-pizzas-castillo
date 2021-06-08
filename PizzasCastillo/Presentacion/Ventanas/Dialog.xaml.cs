@@ -10,19 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Presentacion.Paginas.Cocina
+namespace Presentacion.Ventanas
 {
     /// <summary>
-    /// Lógica de interacción para Lista_Pedidos.xaml
+    /// Lógica de interacción para Dialog.xaml
     /// </summary>
-    public partial class Lista_Pedidos : Page
+    public partial class Dialog : Window
     {
-        public Lista_Pedidos()
+        public string Titulo { get; set; }
+        public string Mensaje { get; set; }
+
+        public Dialog()
         {
             InitializeComponent();
+        }
+
+        public Dialog(string titulo, string mensaje)
+        {
+            InitializeComponent();
+            Titulo = titulo;
+            Mensaje = mensaje;
         }
     }
 }

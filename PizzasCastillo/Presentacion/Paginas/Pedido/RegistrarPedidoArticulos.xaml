@@ -15,8 +15,7 @@
     </Page.Resources>  
   
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
-        <StackPanel Height="1000
-                    ">
+        <StackPanel>
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 
@@ -34,7 +33,7 @@
                                        HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
                              Width="500"
-                             HorizontalAlignment="Center" FontSize="14" DragEnter ="BuscarEnter"/>
+                             HorizontalAlignment="Center" FontSize="14" DragEnter ="BuscarEnter" MaxLength="20"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"

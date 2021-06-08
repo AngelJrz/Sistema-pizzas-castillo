@@ -11,37 +11,42 @@
         <local:ByteToImageConverter x:Name="convertidorImagen" x:Key="convertidorRutaImagen"/>
     </Page.Resources>
 
-    <Grid>
-        <TextBlock  Style="{StaticResource TituloStyle}" Margin="-700,20,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Lista de Platillos" VerticalAlignment="Top" 
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}" >
+        <StackPanel Margin="80,0,0,0">
+            <TextBlock  Style="{StaticResource TituloStyle}" Margin="-700,20,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Lista de Platillos" VerticalAlignment="Top" 
                     FontSize="40" />
-        <ListBox x:Name="platilloList"  Margin="300,100,0,0" Background="White" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1.5" CornerRadius="10" Height="200" Background="White">
-                        <Grid Width="600" Margin="50,0,0,0"  HorizontalAlignment="Left"  >
-                            <StackPanel Orientation="Horizontal" >
-                                <Image Source="{Binding NombreFoto,Converter={StaticResource convertidorRutaImagen}}" Width="150" Height="150" Margin="-30,0,0,0"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="150,-50,0,0">
-                                <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"  Margin="00,0,10,0" />
-                                <TextBox x:Name="nombresBox" Text="{Binding Nombre}" Style="{StaticResource InputDefaultStyle}"  Width="300" IsEnabled="False"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="150,40,0,0" >
-                                <TextBlock Text="Precio Venta:" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
-                                <TextBox Style="{StaticResource InputDefaultStyle}" Text="{Binding Precio}" TextWrapping="Wrap" IsEnabled="False" Width="100" />
-                                <TextBlock Text=" $ MXN" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
-                                <Button Style="{StaticResource BotonSecundarioStyle}" Height="30" Content="Editar" Click="EditarPlatillo"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
 
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" Orientation="Vertical"  />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-    </Grid>
+            <ListBox x:Name="platilloList"  Margin="200,50,0,0" Background="White" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1.5" CornerRadius="10" Height="200" Background="White">
+                            <Grid Width="600" Margin="50,0,0,0"  HorizontalAlignment="Left"  >
+                                <StackPanel Orientation="Horizontal" >
+                                    <Image Source="{Binding NombreFoto,Converter={StaticResource convertidorRutaImagen}}" Width="150" Height="150" Margin="-30,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="150,-50,0,0">
+                                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"  Margin="00,0,10,0" />
+                                    <TextBox x:Name="nombresBox" Text="{Binding Nombre}" Style="{StaticResource InputDefaultStyle}"  Width="300" IsEnabled="False"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="150,40,0,0" >
+                                    <TextBlock Text="Precio Venta:" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
+                                    <TextBox Style="{StaticResource InputDefaultStyle}" Text="{Binding Precio}" TextWrapping="Wrap" IsEnabled="False" Width="100" />
+                                    <TextBlock Text=" $ MXN" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
+                                    <Button Style="{StaticResource BotonSecundarioStyle}" Height="30" Content="Editar" Click="EditarPlatillo"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Vertical"  />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+
+            <Button Style="{StaticResource BotonPrincipalStyle}" Content="Regresar" Width="200" Margin="-150,50,0,0" Click="Regresar" />
+        </StackPanel>
+    </ScrollViewer>
 </Page>

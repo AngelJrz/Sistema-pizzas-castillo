@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Presentacion.Ventanas;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -23,14 +24,28 @@ namespace Presentacion.Paginas.Pedido
         public BuscarPedidoParaEditarProductos()
         {
             InitializeComponent();
-            /*Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
-            ListaPedidos.ItemsSource = controller.ObtenerPedidos();*/
-            AccesoADatos.ControladoresDeDatos.PedidosDAO dao = new AccesoADatos.ControladoresDeDatos.PedidosDAO();
-            ListaPedidos.ItemsSource = dao.ObtenerPedidosDelDia();
+            Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+            ListaPedidos.ItemsSource = controller.ObtenerPedidos();
+            
         }
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(BusquedaText.Text))
+            {
+                Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+                ListaPedidos.ItemsSource = controller.ObtenerPedidos();
+                InteraccionUsuario interaccion = new InteraccionUsuario("Error", "Los campos de busqueda no pueden estar vacios");
+                interaccion.Show();
+            }
+            else 
+            {
+                Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+                ListaPedidos.ItemsSource = controller.ObtenerPedidosCliente(BusquedaText.Text);
+                InteraccionUsuario interaccion = new InteraccionUsuario("Busqueda Realizada","Estos son los Resultados de su busqueda");
+                interaccion.Show();
+            }
+         
 
         }
         private void EditarPedido(object sender, RoutedEventArgs e)
@@ -51,5 +66,9 @@ namespace Presentacion.Paginas.Pedido
 
         }
 
+        private void RegistrarPago(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pedido.RegistroDePagoDePedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+        }
     }
 }

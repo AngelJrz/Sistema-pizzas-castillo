@@ -90,7 +90,25 @@ namespace AccesoADatos.ControladoresDeDatos
             return articuloProducto;
         }
 
+        public List<Consume> ConsumePlatillo(string codigoBarra)
+        {
+            List<Consume> consume;
 
+            try
+            {
+                consume = conexion.Consume.Where(c => c.PlatilloCodigoBarra == codigoBarra).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (EntityException ex)
+            {
+                throw new ConexionFallidaException(ex);
+            }
+
+            return consume;
+        }
 
         public bool RegistrarArticulo(ArticuloVenta articuloProducto)
         {
@@ -114,6 +132,8 @@ namespace AccesoADatos.ControladoresDeDatos
 
         public bool ActualizarArticulo(ArticuloVenta articuloProducto)
         {
+            conexion = new PizzasBDEntities();
+
             try
             {
                 conexion.Entry(articuloProducto).State = EntityState.Modified;
@@ -123,7 +143,10 @@ namespace AccesoADatos.ControladoresDeDatos
             {
                 throw;
             }
-
+            catch (InvalidOperationException ex)
+            {
+                resultado = SIN_CAMBIOS;
+            }
             if (resultado == SIN_CAMBIOS)
             {
                 return false;

@@ -65,9 +65,11 @@
                        Margin="100,30,0,0"/>
 
             <DataGrid x:Name="ListaUsuarios" HorizontalAlignment="Center" Width="1000"
+                      Height="Auto" MaxHeight="500"
                       AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       Margin="0,20,0,20" CanUserSortColumns="True" AlternatingRowBackground="{StaticResource ColorSecundario}"
-                      GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
+                      GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}"
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="No. Empleado" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
@@ -226,7 +228,7 @@
             </DataGrid>
 
             <Button Content="Administrar tipos de usuario" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="IrATiposUsuarios"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,50" Click="IrATiposUsuarios"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

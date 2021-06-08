@@ -15,8 +15,8 @@
 
     </Page.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
-        <StackPanel Height="473">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
+        <StackPanel>
             <TextBlock Text="Realizar Búsqueda" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 
@@ -34,7 +34,7 @@
                                        HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
                              Width="500"
-                             HorizontalAlignment="Center" FontSize="14"/>
+                             HorizontalAlignment="Center" FontSize="14" MaxLength="20"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
@@ -43,12 +43,15 @@
             </Grid>
             <TextBlock Text="Pedidos" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
+        
             <DataGrid x:Name="ListaPedidos" HorizontalAlignment="Center" Width="1000"
-                      AutoGenerateColumns="False" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                      AutoGenerateColumns="False" CanUserAddRows="false" 
+                      ScrollViewer.CanContentScroll="False"
+                    
                       Margin="0,20,0,20" CanUserSortColumns="true" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Id" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
+                    <DataGridTemplateColumn Header="Cliente" Width="140" MinWidth="140" MaxWidth="140" CanUserResize="False"
                                         IsReadOnly="True" CanUserReorder="False">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -65,7 +68,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Id}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding SolicitadoPor.Nombres}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -186,8 +189,9 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="30"/>
                                       
 
                                     </Grid.ColumnDefinitions>
@@ -198,7 +202,7 @@
 
                                     </Button>
                                     <Button Style="{StaticResource IconoBoton}" Click="RegistrarEntrega" Grid.Column="1">
-                                        <materialDesign:PackIcon Kind="DeliveryDining" Foreground="{StaticResource Gris}" 
+                                        <materialDesign:PackIcon Kind="LorryDelivery" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
 
 
@@ -210,7 +214,10 @@
 
                                     </Button>
 
-
+                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarPago" Grid.Column="3">
+                                        <materialDesign:PackIcon Kind="Cash" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25"/>
+                                    </Button>
 
                                 </Grid>
                             </DataTemplate>
@@ -221,6 +228,7 @@
 
                 </DataGrid.Columns>
             </DataGrid>
+          
 
         </StackPanel>
 

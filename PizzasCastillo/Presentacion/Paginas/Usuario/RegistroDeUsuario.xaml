@@ -34,8 +34,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="NombresText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="150" Width="400" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="NombresText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="150" Width="400" HorizontalAlignment="Left"
+                             ToolTip="El nombre debe ser mínimo de 2 caracteres y máximo de 50."/>
                 </StackPanel>
             </Grid>
 
@@ -51,8 +52,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="ApellidosText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="200" Width="400" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="ApellidosText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="200" Width="400" HorizontalAlignment="Left"
+                             ToolTip="Los apellidos deben ser mínimo de 2 caracteres y máximo de 150."/>
                 </StackPanel>
             </Grid>
 
@@ -68,8 +70,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="80" Width="400" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="EmailText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="80" Width="400" HorizontalAlignment="Left"
+                             ToolTip="La estructura del correo es usuario@dominio y debe ser mínimo de 10 caracteres y máximo de 80."/>
                 </StackPanel>
             </Grid>
 
@@ -85,8 +88,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="TelefonoText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="10" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="TelefonoText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="10" Width="200" HorizontalAlignment="Left"
+                             ToolTip="El teléfono solo puede contener números, con un mínimo y máximo de 10 digitos."/>
                 </StackPanel>
             </Grid>
 
@@ -117,11 +121,10 @@
                             <TextBlock Text="Calle:" Style="{StaticResource TituloCamposStyle}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
-                            <TextBox x:Name="CalleText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="150" Width="400" 
-                                 HorizontalAlignment="Left"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox x:Name="CalleText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="150" Width="400" HorizontalAlignment="Left"
+                                     ToolTip="La calle debe ser mínimo de 8 caracteres y máximo de 150."/>
                         </StackPanel>
                     </Grid>
 
@@ -137,11 +140,10 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
-                            <TextBox x:Name="NoExteriorText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="5" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox x:Name="NoExteriorText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="5" Width="200" HorizontalAlignment="Left"
+                                     ToolTip="El número exterior debe ser mínimo de 1 digito y máximo de 4"/>
                         </StackPanel>
                     </Grid>
 
@@ -157,11 +159,10 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
-                            <TextBox x:Name="CodigoPostalText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="5" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox x:Name="CodigoPostalText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="5" Width="200" HorizontalAlignment="Left"
+                                     ToolTip="El código postal debe tener un mínimo y máximo de 5 digitos"/>
                         </StackPanel>
                     </Grid>
 
@@ -177,11 +178,10 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
-                            <TextBox x:Name="CiudadText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="60" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox x:Name="CiudadText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="60" Width="200" HorizontalAlignment="Left"
+                                     ToolTip="La ciudad debe ser mínimo de 4 caracteres y un máximo de 60."/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -199,11 +199,10 @@
                             <TextBlock Text="Colonia:" Style="{StaticResource TituloCamposStyle}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
-                            <TextBox x:Name="ColoniaText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="150" Width="400" 
-                                 HorizontalAlignment="Left"/>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox x:Name="ColoniaText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="150" Width="400" HorizontalAlignment="Left"
+                                     ToolTip="La colonia debe tener un mínimo de 4 caracteres y un máximo de 150."/>
                         </StackPanel>
                     </Grid>
 
@@ -221,9 +220,9 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="NoInteriorText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="5" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                            <TextBox x:Name="NoInteriorText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="5" Width="200" HorizontalAlignment="Left"
+                                     ToolTip="El número interior debe ser mínimo de 1 digito y máximo de 4."/>
                         </StackPanel>
                     </Grid>
 
@@ -239,10 +238,10 @@
                                        TextWrapping="WrapWithOverflow"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <ComboBox x:Name="ListaEstidadesFederativas" Style="{StaticResource ComboboxStyle}"
-                                      Width="200" HorizontalAlignment="Left"/>
+                                      Width="200" HorizontalAlignment="Left"
+                                      ToolTip="Seleccione un estado."/>
                         </StackPanel>
                     </Grid>
 
@@ -260,9 +259,9 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="ReferenciasText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="200" Width="400" Height="80"
-                                 HorizontalAlignment="Left"/>
+                            <TextBox x:Name="ReferenciasText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="200" Width="400" Height="80" HorizontalAlignment="Left"
+                                     ToolTip="Las referencias deben ser mínimo de 10 caracteres y máximo de 200."/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -289,10 +288,10 @@
                                        TextWrapping="WrapWithOverflow"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
-                                VerticalAlignment="Center">
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <ComboBox x:Name="ListaTiposUsuario" Style="{StaticResource ComboboxStyle}"
-                                      Width="200" HorizontalAlignment="Left" DisplayMemberPath="Nombre"/>
+                                      Width="200" HorizontalAlignment="Left" DisplayMemberPath="Nombre"
+                              ToolTip="Seleccione un tipo de usuario."/>
                 </StackPanel>
             </Grid>
 
@@ -308,8 +307,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBox x:Name="UsernameText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="UsernameText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="30" Width="200" HorizontalAlignment="Left"
+                             ToolTip="El username debe ser mínimo de 5 caracteres y máximo de 30."/>
                 </StackPanel>
             </Grid>
 
@@ -342,8 +342,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBox x:Name="SalarioText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="8" Width="200" HorizontalAlignment="Left" ToolTip="Hola"/>
+                    <TextBox x:Name="SalarioText" Style="{StaticResource InputDefaultStyle}"
+                                     MaxLength="8" Width="200" HorizontalAlignment="Left" 
+                             ToolTip="El salario debe ser mayor a 0 y puede contener 3 números después del punto."/>
                 </StackPanel>
             </Grid>
 

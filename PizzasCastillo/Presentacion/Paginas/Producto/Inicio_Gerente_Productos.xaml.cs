@@ -1,5 +1,6 @@
 ﻿using AccesoADatos.ControladoresDeDatos;
 using Dominio.Logica;
+using Presentacion.Recursos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,10 +27,13 @@ namespace Presentacion.Paginas.Producto
         private ObservableCollection<Dominio.Entidades.Producto> productos = null;
         private Dominio.Entidades.Producto productoSeleccionado;
         private readonly List<string> filtrosLista;
+        private readonly Singleton _sesion;
 
-        public Inicio_Gerente_Productos()
+        public Inicio_Gerente_Productos(Singleton sesion)
         {
             InitializeComponent();
+
+            _sesion = sesion;
 
             filtrosLista = new List<string>
             {
@@ -91,7 +95,7 @@ namespace Presentacion.Paginas.Producto
         private void EditarProducto(object sender, RoutedEventArgs e)
         {
             productoSeleccionado = (Dominio.Entidades.Producto)tablaDeProductos.SelectedItem;
-            NavigationService.Navigate(new ActualizacionDeProducto(productoSeleccionado));
+            NavigationService.Navigate(new ActualizacionDeProducto(productoSeleccionado, _sesion));
         }
 
         private void EliminarProducto(object sender, RoutedEventArgs e)
@@ -115,17 +119,17 @@ namespace Presentacion.Paginas.Producto
 
         private void VerificarExistencia(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new ValidarExistenciaProducto());
+            NavigationService.Navigate(new ValidarExistenciaProducto());
         }
 
         private void RegistrarProducto(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RegistroDeProducto());
+            NavigationService.Navigate(new RegistroDeProducto(_sesion));
         }
 
         private void GenerarReporteInventario(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new GeneraciónDeReporteInventario());
+            NavigationService.Navigate(new GeneraciónDeReporteInventario(_sesion));
         }
     }
 }
