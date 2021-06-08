@@ -119,7 +119,7 @@
             </Grid>
 
 
-            <Grid x:Name="MenuSuperiorMsesero" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Visible">
+            <!--<Grid x:Name="MenuSuperiorMsesero" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Visible">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="110"/>
@@ -130,7 +130,7 @@
                 <TextBlock Text="Pedidos" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Pedidos"/>
                 <TextBlock Text="Crear Pedido" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="RegistrarPedidos"/>
                 
-            </Grid>
+            </Grid>-->
 
 
             <Frame x:Name="PaginaFrame"  Grid.Row="1" NavigationUIVisibility="Hidden" 

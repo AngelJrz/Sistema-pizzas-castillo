@@ -366,29 +366,5 @@ namespace Dominio.Logica
             }
             return listaARetornar;
         }
-
-        public List<Pedido> ObtenerPedidosPreparar()
-        {
-            List<Pedido> pedidoList = new List<Pedido>();
-            PedidosDAO pedidosDAO = new PedidosDAO();
-            List<AccesoADatos.Pedido> pedidosEncontrados = pedidosDAO.ObtenerPedidosEnPreparacion();
-
-            foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
-            {
-                if (pedido.Mesa == null)
-                {
-
-                    pedidoList.Add(Pedido.CloneParaLlevar(pedido));
-                }
-                else
-                {
-
-                    pedidoList.Add(Pedido.CloneParaLocal(pedido));
-
-                }
-            }
-
-            return pedidoList;
-        }
     }
 }
