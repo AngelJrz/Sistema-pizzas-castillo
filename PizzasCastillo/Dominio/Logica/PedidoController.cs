@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Dominio.Entidades.Contiene;
+using static Dominio.Enumeraciones.PedidosResult;
+
 
 using Dominio.Entidades;
 namespace Dominio.Logica
@@ -13,53 +15,131 @@ namespace Dominio.Logica
     {
       
 
-        public void AgregarPedido(Pedido pedido)
+        public ResultsPedidos AgregarPedido(Pedido pedido)
         {
+            ResultsPedidos resultado = ResultsPedidos.NoSePudoregistrar;
+            bool resultadoDao = false;
             PedidosDAO dao = new PedidosDAO();
+
 
             if (pedido.Tipo.Id == 1)
             {
-                dao.RegistrarPedido(CloneDominioADatosParaLlevar(pedido));
+               resultadoDao= dao.RegistrarPedido(CloneDominioADatosParaLlevar(pedido));
+                if (resultadoDao)
+                {
+                    resultado = ResultsPedidos.RegistradoConExito;
+                }
+                else {
+                    resultado = ResultsPedidos.NoSePudoregistrar;
+                }
+          
             }
             else 
             {
-                dao.RegistrarPedido(CloneDominioADatosLocal(pedido));
+                resultadoDao =dao.RegistrarPedido(CloneDominioADatosLocal(pedido));
+                if (resultadoDao)
+                {
+                    resultado = ResultsPedidos.RegistradoConExito;
+                }
+                else
+                {
+                    resultado = ResultsPedidos.NoSePudoregistrar;
+                }
+           
             }
 
-
+            return resultado;
         }
 
 
-        public void ActualizarPedidoEstatus(Pedido pedido)
+        public ResultsPedidos ActualizarPedidoEstatus(Pedido pedido)
         {
             PedidosDAO dao = new PedidosDAO();
+            bool resultadoActualizacion = false;
+            ResultsPedidos resultado = ResultsPedidos.NoSePudoActualizar;
 
             if (pedido.Tipo.Id == 1)
             {
-                dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
+                resultadoActualizacion= dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
+                if (resultadoActualizacion)
+                {
+                    resultado = ResultsPedidos.ActualizadoConExito;
+                }
+                else
+                {
+                    resultado = ResultsPedidos.NoSePudoActualizar;
+                }
             }
             else
             {
-                dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+                resultadoActualizacion= dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+                if (resultadoActualizacion)
+                {
+                    resultado = ResultsPedidos.ActualizadoConExito;
+                }
+                else
+                {
+                    resultado = ResultsPedidos.NoSePudoActualizar;
+                }
             }
-
+            return resultado;
 
         }
 
-        public void ActualizarPedidoArticulos(Pedido pedido)
+        public bool ActualizarAPagado(Pedido pedido, decimal pago)
+        {
+
+            if (pedido.Total > pago)
+            {
+                return false;
+            }
+
+            if (!pedido.Estatus.Nombre.Equals("Entregado"))
+            {
+                return false;
+            }
+
+            PedidosDAO dao = new PedidosDAO();
+            EstatusPedidoController estatusController = new EstatusPedidoController();
+            List<Dominio.Enumeraciones.Tipo> listaTipos = estatusController.ObtenerEstatusPedido();
+            pedido.Estatus = listaTipos.Find(t => t.Nombre.Equals("Pagado"));
+            bool resultado = false;
+            resultado = dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+
+            return resultado;
+        }
+
+        public ResultsPedidos ActualizarPedidoArticulos(Pedido pedido)
         {
             PedidosDAO dao = new PedidosDAO();
-
+            bool resultadoActualizacion = false;
+            ResultsPedidos resultado = ResultsPedidos.NoSePudoActualizar;
             if (pedido.Tipo.Id == 1)
             {
-                dao.ActualizarPedidoDatos(CloneDominioADatosParaLlevarEditar(pedido));
+                resultadoActualizacion =dao.ActualizarPedidoDatos(CloneDominioADatosParaLlevarEditar(pedido));
+                if (resultadoActualizacion)
+                {
+                    resultado = ResultsPedidos.ActualizadoConExito;
+                }
+                else {
+                    resultado = ResultsPedidos.NoSePudoActualizar;
+                }
+              
             }
             else
             {
-                dao.ActualizarPedidoDatos(CloneDominioADatosLocalEditar(pedido));
+                resultadoActualizacion=dao.ActualizarPedidoDatos(CloneDominioADatosLocalEditar(pedido));
+                if (resultadoActualizacion) 
+                {
+                    resultado = ResultsPedidos.ActualizadoConExito;
+                }
+                else
+                {
+                    resultado = ResultsPedidos.NoSePudoActualizar;
+                }
             }
 
-
+            return resultado;
         }
 
 
@@ -164,8 +244,8 @@ namespace Dominio.Logica
         {
             List<Pedido> listaARetornar = new List<Pedido>();
             PedidosDAO dao = new PedidosDAO();
-            List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidosEnPreparacion();
-
+            List < AccesoADatos.Pedido > pedidosEncontrados = dao.ObtenerPedidos();
+            
             foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
             {
                 if (pedido.Mesa == null)
@@ -186,6 +266,37 @@ namespace Dominio.Logica
 
             return listaARetornar;
         
+        }
+
+
+
+        public List<Pedido> ObtenerPedidosCliente(string pedidoBuscarNombre)
+        {
+            List<Pedido> listaARetornar = new List<Pedido>();
+            PedidosDAO dao = new PedidosDAO();
+           
+            List<AccesoADatos.Pedido> pedidosEncontrados = dao.ObtenerPedidoPorNombre(pedidoBuscarNombre);
+
+            foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
+            {
+                if (pedido.Mesa == null)
+                {
+                    
+                    listaARetornar.Add(Pedido.CloneParaLlevar(pedido));
+                }
+                else
+                {
+
+                    listaARetornar.Add(Pedido.CloneParaLocal(pedido));
+
+                }
+
+
+
+            }
+
+            return listaARetornar;
+
         }
 
 

@@ -2,6 +2,7 @@
 using Presentacion.Paginas;
 using Presentacion.Paginas.Finanza;
 using Presentacion.Paginas.Usuario;
+using Presentacion.Paginas.Pedido;
 using Presentacion.Recursos;
 using System;
 using System.Collections.Generic;
@@ -115,6 +116,25 @@ namespace Presentacion.Ventanas
         private void Click_ConfirmarEntrega(object sender, MouseButtonEventArgs e)
         {
             PaginaFrame.Navigate(new ListaPedidosPendientes());
+        }
+
+
+
+
+        private void Pedidos(object sender, MouseButtonEventArgs e)
+        {
+           /*_sesion.Recursos.TryGetValue("Empleado", out object empleado);
+            Empleado empleadoEnSesion = empleado as Empleado;*/
+
+            PaginaFrame.Navigate(new BuscarPedidoParaEditarProductos());
+        }
+
+        private void RegistrarPedidos(object sender, MouseButtonEventArgs e)
+        {
+            /*_sesion.Recursos.TryGetValue("Empleado", out object empleado);
+            Empleado empleadoEnSesion = empleado as Empleado;*/
+
+            PaginaFrame.Navigate(new RegistrarPedidoBuscarUsuario());
         }
     }
 }
