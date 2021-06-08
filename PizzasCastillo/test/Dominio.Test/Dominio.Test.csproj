@@ -97,6 +97,11 @@
     <Compile Include="CU-MPR-02\ActualizarProductoTest.cs" />
     <Compile Include="CU-MPR-03\GestionarProductoTest.cs" />
     <Compile Include="CU-MPR-04\GenerarReporteInventarioTest.cs" />
+    <Compile Include="CU-MPE-01\RegistrarPedidoPrueba.cs" />
+    <Compile Include="CU-MPE-02\EditarPedidoTest.cs" />
+    <Compile Include="CU-MPE-03\RegistrarEntrega.cs" />
+    <Compile Include="CU-MPE-06\RegistroDePagoDePedidoTest.cs" />
+    <Compile Include="CU-MPR-05\ValidarExistenciasTest.cs" />
     <Compile Include="CU-MU-01\RegistrarUsuarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -113,7 +118,7 @@
   <ItemGroup>
     <Content Include="CU-MPR-01\ImagenPrueba.png" />
     <Content Include="CU-MPR-02\ImagenPrueba2.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

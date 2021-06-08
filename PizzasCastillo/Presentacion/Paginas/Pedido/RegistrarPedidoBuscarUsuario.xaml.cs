@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dominio.Logica;
+using Presentacion.Ventanas;
 using static Dominio.Entidades.Persona;
 
 namespace Presentacion.Paginas.Pedido
@@ -23,7 +24,7 @@ namespace Presentacion.Paginas.Pedido
     public partial class RegistrarPedidoBuscarUsuario : Page
     {
         private Dominio.Entidades.Empleado _empleadoEnSesion;
-        public RegistrarPedidoBuscarUsuario()
+        public RegistrarPedidoBuscarUsuario(/*Dominio.Entidades.Empleado empleado*/)
         {
 
             //Arreglar la sesion con la clase singleton
@@ -31,16 +32,30 @@ namespace Presentacion.Paginas.Pedido
             ClienteController controller = new ClienteController();
 
             ListaUsuarios.ItemsSource = controller.ObtenerPersonas();
+            //_empleadoEnSesion = empleado;
             _empleadoEnSesion = new Dominio.Entidades.Empleado { NumeroEmpleado = "1", Username = "jajas", Contrasenia = "123", SalarioQuincenal = (decimal)120.50, FechaRegistro = DateTime.Now, TipoUsuario = new Dominio.Enumeraciones.Tipo {Id=2,Nombre = "Empleado",Estatus=1 } };
 
         }
 
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
-            ClienteController controller = new ClienteController();
+            if (!BusquedaText.Text.Equals(string.Empty))
+            {
 
-            ListaUsuarios.ItemsSource = controller.ObtenerClientesNombre(BusquedaText.Text);
+                ClienteController controller = new ClienteController();
 
+                ListaUsuarios.ItemsSource = controller.ObtenerClientesNombre(BusquedaText.Text);
+                InteraccionUsuario error = new InteraccionUsuario("Exito", "BusquedaCompletada");
+                error.Show();
+
+            }
+            else {
+                ClienteController controller = new ClienteController();
+
+                ListaUsuarios.ItemsSource = controller.ObtenerPersonas();
+                InteraccionUsuario error = new InteraccionUsuario("Error de busqueda", "no puede buscar con un texto vacio");
+                error.Show();
+            }
 
         }
         private void UsarClienteSinRegistro(object sender, RoutedEventArgs e)
