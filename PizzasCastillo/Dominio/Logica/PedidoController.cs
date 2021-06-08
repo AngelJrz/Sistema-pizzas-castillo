@@ -106,7 +106,6 @@ namespace Dominio.Logica
                 return false;
             }
 
-            PedidosDAO dao = new PedidosDAO();
             EstatusPedidoController estatusController = new EstatusPedidoController();
             List<Dominio.Enumeraciones.Tipo> listaTipos = estatusController.ObtenerEstatusPedido();
             pedido.Estatus = listaTipos.Find(t => t.Nombre.Equals("Pagado"));
@@ -289,7 +288,19 @@ namespace Dominio.Logica
             List<Pedido> pedidoList = new List<Pedido>();
             PedidosDAO pedidosDAO = new PedidosDAO();
             List<AccesoADatos.Pedido> pedidosEncontrados = pedidosDAO.ObtenerPedidosHoy();
-            return pedidosEncontrados;
+            foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
+            {
+                if (pedido.Mesa == null)
+                {
+
+                    pedidoList.Add(Pedido.CloneParaLlevar(pedido));
+                }
+                else
+                {
+                    pedidoList.Add(Pedido.CloneParaLocal(pedido));
+                }
+            }
+            return pedidoList;
         }
 
 
@@ -313,6 +324,30 @@ namespace Dominio.Logica
                 }
             }
             return listaARetornar;
+        }
+
+        public List<Pedido> ObtenerPedidosPreparar()
+        {
+            List<Pedido> pedidoList = new List<Pedido>();
+            PedidosDAO pedidosDAO = new PedidosDAO();
+            List<AccesoADatos.Pedido> pedidosEncontrados = pedidosDAO.ObtenerPedidosEnPreparacion();
+
+            foreach (AccesoADatos.Pedido pedido in pedidosEncontrados)
+            {
+                if (pedido.Mesa == null)
+                {
+
+                    pedidoList.Add(Pedido.CloneParaLlevar(pedido));
+                }
+                else
+                {
+
+                    pedidoList.Add(Pedido.CloneParaLocal(pedido));
+
+                }
+            }
+
+            return pedidoList;
         }
     }
 }

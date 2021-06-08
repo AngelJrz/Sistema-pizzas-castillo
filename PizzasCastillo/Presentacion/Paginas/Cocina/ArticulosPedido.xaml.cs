@@ -72,8 +72,8 @@ namespace Presentacion.Paginas.Cocina
                 {
                     PedidoController pedidoController = new PedidoController();
                     localPedido.Estatus.Id = PEDIDO_PREPARADO_ESTATUS;
-                    bool guardado = pedidoController.ActualizarPedidoEstatus(localPedido);
-                    if (guardado == true)
+                     //guardado = pedidoController.ActualizarPedidoEstatus(localPedido);
+                    /*if (guardado == true)
                     {
                         InteraccionUsuario interaccionUsuario = new InteraccionUsuario("Exito de actualizacion", "Se ha actualizado el estado del pedido");
                         interaccionUsuario.Show();
@@ -83,7 +83,7 @@ namespace Presentacion.Paginas.Cocina
                     {
                         InteraccionUsuario error = new InteraccionUsuario("Error De Actualizacion", "Hubo un problema de comunicacion con la Base de datos, intentar mas tarde");
                         error.Show();
-                    }
+                    }*/
                     
                 }
                 catch (Exception ex)
