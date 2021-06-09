@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Presentacion.Ventanas.Producto
 {
@@ -20,6 +12,7 @@ namespace Presentacion.Ventanas.Producto
     /// </summary>
     public partial class RegistroCodigoBarra : Window
     {
+        private Process _teclado;
         public string codigoIngresado { get; set; }
         public RegistroCodigoBarra()
         {
@@ -72,6 +65,29 @@ namespace Presentacion.Ventanas.Producto
             CodigoText.Text = "";
             this.DialogResult = true;
             return;
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
         }
     }
 }

@@ -33,8 +33,8 @@
                     <TextBlock Text="Búsqueda:" Style="{StaticResource TituloCamposStyle}"
                                HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
-                                 Width="500" 
-                                 HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"/>
+                                 Width="500" KeyDown="BuscarEnter" GotTouchCapture="AbrirTeclado_Touch"
+                                 LostFocus="CerrarTeclado" HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
@@ -208,7 +208,7 @@
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarProducto" Grid.Column="2">
+                                    <Button Style="{StaticResource IconoBoton}" Click="ConfirmarEliminar" Grid.Column="2">
                                         <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>

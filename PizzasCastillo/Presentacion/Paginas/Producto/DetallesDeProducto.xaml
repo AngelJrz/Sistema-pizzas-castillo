@@ -10,7 +10,7 @@
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
         <StackPanel Width="1100">
-            <TextBlock Text="Detalles de roducto" Style="{StaticResource TituloPaginasStyle}"
+            <TextBlock Text="Detalles de Producto" Style="{StaticResource TituloPaginasStyle}"
                        Margin="80,30,630,0"/>
 
             <!--DATOS DE PRODUCTO-->
@@ -191,7 +191,7 @@
             </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Regresar"/>
+                <Button Content="Regresar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Regresar"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

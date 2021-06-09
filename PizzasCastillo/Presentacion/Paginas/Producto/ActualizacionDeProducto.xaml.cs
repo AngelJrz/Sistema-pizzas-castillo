@@ -6,6 +6,7 @@ using Presentacion.Recursos;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace Presentacion.Paginas.Producto
     public partial class ActualizacionDeProducto : Page
     {
         private readonly Singleton _sesion;
+        private Process _teclado;
         private const int DISPONIBLE = 1;
         private readonly List<Tipo> listaTipoProducto;
         private ValidadorProducto validadorProducto;
@@ -72,7 +74,17 @@ namespace Presentacion.Paginas.Producto
             NavigationService.GoBack();
         }
 
-        private void ActualizarProducto(object sender, RoutedEventArgs e)
+        private void ConfirmarAccion(object sender, RoutedEventArgs e)
+        {
+            Confirmacion dialogoConfirmacion = new Confirmacion("Confirmar Actualización", "¿Estas seguro que deseas actualizar este producto?");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                ActualizarProducto();
+            }
+        }
+
+        private void ActualizarProducto()
         {
             if(producto.Estatus == DISPONIBLE)
             {
@@ -107,18 +119,21 @@ namespace Presentacion.Paginas.Producto
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Ocurrió un error al intentar actualizar el producto. Por favor intente más tarde.");
+                        InteraccionUsuario error = new InteraccionUsuario("Error", "Ocurrió un error al intentar actualizar el producto. Por favor intente más tarde.");
+                        error.Show();
                         return;
                     }
 
                     if (resultado)
                     {
-                        MessageBox.Show("Se actualizo el producto");
+                        InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se actualizó el producto");
+                        exito.Show();
                         NavigationService.Navigate(new Inicio_Gerente_Productos(_sesion));
                     }
                     else
                     {
-                        MessageBox.Show("Ocurrió un error, intenté más tarde");
+                        InteraccionUsuario error = new InteraccionUsuario("Error", "Ocurrió un error, intenté más tarde");
+                        error.Show();
                     }
                 }
                 else
@@ -132,14 +147,15 @@ namespace Presentacion.Paginas.Producto
 
                     mensaje += "por favor verifique la información.";
 
-                    MessageBox.Show(mensaje);
+                    InteraccionUsuario error = new InteraccionUsuario("Error", mensaje);
+                    error.Show();
                 }
             }
             else
             {
-                MessageBox.Show("ERROR: No se puede actualizar un producto con estatus :No Disponible");
-            }
-            
+                InteraccionUsuario error = new InteraccionUsuario("ERROR", "No se puede actualizar un producto con estatus: Inactivo");
+                error.Show();
+            } 
         }
 
         private bool EstaInformacionCorrecta(Dominio.Entidades.Producto producto)
@@ -207,6 +223,29 @@ namespace Presentacion.Paginas.Producto
             public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             {
                 return null;
+            }
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
             }
         }
     }

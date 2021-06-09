@@ -8,6 +8,8 @@ using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -33,6 +35,7 @@ namespace Presentacion.Paginas.Producto
         private ValidadorReporteInventario validadorReporteInventario;
         private Dominio.Entidades.Reporta productoSeleccionado;
         private readonly Singleton _sesion;
+        private Process _teclado;
 
         public GeneraciónDeReporteInventario(Singleton sesion)
         {
@@ -73,11 +76,18 @@ namespace Presentacion.Paginas.Producto
             NavigationService.GoBack();
         }
 
-        private void GuardarReporte(object sender, RoutedEventArgs e)
+        private void ConfirmarAccion(object sender, RoutedEventArgs e)
+        {
+            Confirmacion dialogoConfirmacion = new Confirmacion("Confirmar Guardar Reporte", "¿Estas seguro que deseas registrar este reporte?");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                GuardarReporte();
+            }
+        }
+        private void GuardarReporte()
         {
             Dominio.Entidades.ReporteInventario reporteNuevo = ObtenerReporte();
-
-
 
             if (EstaInformacionCorrecta(reporteNuevo))
             {
@@ -91,7 +101,8 @@ namespace Presentacion.Paginas.Producto
                     bool seActualizo = productoController.ActualizarCantidad(actualizacion);
                     if (!seActualizo)
                     {
-                        MessageBox.Show("No se actualizo un producto del reporte");
+                        InteraccionUsuario error = new InteraccionUsuario("Error", "No se actualizó un producto del reporte");
+                        error.Show();
                     }
                 }
 
@@ -103,18 +114,21 @@ namespace Presentacion.Paginas.Producto
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Ocurrió un error al intentar guardar el reporte. Por favor intente más tarde.");
+                    InteraccionUsuario error = new InteraccionUsuario("Error", "Ocurrió un error al intentar guardar el reporte. Por favor intente más tarde.");
+                    error.Show();
                     return;
                 }
 
                 if (resultado)
                 {
-                    MessageBox.Show("Se registró el reporte");
+                    InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se registró el reporte");
+                    exito.Show();
                     NavigationService.Navigate(new Inicio_Gerente_Productos(_sesion));
                 }
                 else
                 {
-                    MessageBox.Show("No se guardo el reporte. Intente mas tarde.");
+                    InteraccionUsuario error = new InteraccionUsuario("Error", "No se guardó el reporte. Intente mas tarde.");
+                    error.Show();
                 }
             }
             else
@@ -127,8 +141,8 @@ namespace Presentacion.Paginas.Producto
                 }
 
                 mensaje += "por favor verifique la información.";
-
-                MessageBox.Show(mensaje);
+                InteraccionUsuario error = new InteraccionUsuario("Error", mensaje);
+                error.Show();
             }
         }
 
@@ -162,7 +176,6 @@ namespace Presentacion.Paginas.Producto
                     productoSeleccionado.CantidadReal = Decimal.Parse(cantidad.ResponseText);
                     productosReportados = new ObservableCollection<Dominio.Entidades.Reporta>(listaReportados);
                     TablaDeProductos.ItemsSource = productosReportados;
-
                 }
             }
         }
@@ -184,11 +197,13 @@ namespace Presentacion.Paginas.Producto
         {
             if (GuardarPDF())
             {
-                MessageBox.Show("Se genero el PDF de reporte de inventario.");
+                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se genero el PDF de reporte de inventario.");
+                exito.Show();
             }
             else
             {
-                MessageBox.Show("No se logro generar el PDF.");
+                InteraccionUsuario error = new InteraccionUsuario("Error", "No se logró generar el PDF.");
+                error.Show();
             }
         }
 
@@ -200,7 +215,8 @@ namespace Presentacion.Paginas.Producto
             {
                 ReporteInventarioController reporteController = new ReporteInventarioController();
                 Dominio.Entidades.ReporteInventario reporte = ObtenerReporte();
-
+                reporte.Nombre = Path.GetFileNameWithoutExtension(rutaGuardado);
+                NombreText.Text = reporte.Nombre;
                 seGuardo = reporteController.GenerarPDF(reporte, rutaGuardado);
             }
             
@@ -227,6 +243,7 @@ namespace Presentacion.Paginas.Producto
         private String ObtenerRutaDeGuardado()
         {
             SaveFileDialog saveWindow = new SaveFileDialog();
+
             saveWindow.Filter = "PDF Document|*.pdf";
             saveWindow.Title = "Selecciona ruta de guardado";
             saveWindow.ShowDialog();
@@ -251,6 +268,29 @@ namespace Presentacion.Paginas.Producto
             }
 
             return false;
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
         }
     }
 }

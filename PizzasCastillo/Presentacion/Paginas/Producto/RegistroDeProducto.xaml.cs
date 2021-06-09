@@ -13,20 +13,14 @@ using System.Windows.Data;
 using System.IO;
 using Dominio.Entidades;
 using Presentacion.Ventanas;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Presentacion.Ventanas.Usuario;
 using Dominio.Utilerias;
 using Presentacion.Ventanas.Producto;
 using Presentacion.Recursos;
+using System.Diagnostics;
 
 namespace Presentacion.Paginas.Producto
 {
@@ -36,6 +30,7 @@ namespace Presentacion.Paginas.Producto
     public partial class RegistroDeProducto : Page
     {
         private readonly Singleton _sesion;
+        private Process _teclado;
         private const int DISPONIBLE = 1;
         private readonly List<Tipo> listaTipoProducto;
         private ValidadorProducto validadorProducto;
@@ -59,11 +54,22 @@ namespace Presentacion.Paginas.Producto
             NavigationService.GoBack();
         }
 
-        private void RegistrarProducto(object sender, RoutedEventArgs e)
+        private void ConfirmarAccion(object sender, RoutedEventArgs e)
+        {
+            Confirmacion dialogoConfirmacion = new Confirmacion("Confirmar Registro", "¿Estas seguro que deseas registrar este producto?");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                RegistrarProducto();
+            }
+        }
+
+        private void RegistrarProducto()
         {
             if (tieneImagen == false)
             {
-                MessageBox.Show("Debe de subir una foto para el producto.");
+                InteraccionUsuario errorImagen = new InteraccionUsuario("ERROR","Debe de subir una foto para el producto.");
+                errorImagen.Show();
                 return;
             }
             else
@@ -131,8 +137,8 @@ namespace Presentacion.Paginas.Producto
                     }
 
                     mensaje += "por favor verifique la información.";
-
-                    MessageBox.Show(mensaje);
+                    InteraccionUsuario error = new InteraccionUsuario("Error", mensaje);
+                    error.Show();
                 }
             }
         }
@@ -199,7 +205,6 @@ namespace Presentacion.Paginas.Producto
                 return Recursos.RecursosGlobales.RUTA_IMAGENES + nombreArchivo;
             }
 
-
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {
                 string img = "";
@@ -213,6 +218,29 @@ namespace Presentacion.Paginas.Producto
             public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             {
                 return null;
+            }
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
             }
         }
     }

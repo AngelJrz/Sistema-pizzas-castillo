@@ -79,7 +79,8 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="NombreText" Template="{StaticResource InputControlTemplate}"
-                             Text="{Binding Nombre}" MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             Text="{Binding Nombre}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" 
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -96,7 +97,8 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="precioVentaText" Template="{StaticResource InputControlTemplate}"
-                             Text="{Binding Precio}" MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             Text="{Binding Precio}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" 
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -113,7 +115,8 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="precioUnitarioText" Template="{StaticResource InputControlTemplate}"
-                             Text="{Binding PrecioCompra}" MaxLength="255" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
+                             Text="{Binding PrecioCompra}" MaxLength="255"
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -146,7 +149,8 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="unidadMedidaText" Template="{StaticResource InputControlTemplate}"
-                             Text="{Binding UnidadDeMedida}" MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             Text="{Binding UnidadDeMedida}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" 
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
@@ -179,7 +183,8 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="descripcionText" Text="{Binding Descripcion}" Template="{StaticResource InputControlTemplate}"
-                             Height="100" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"/>
+                             Height="100" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" 
+                             Width="500" HorizontalAlignment="Left" AcceptsReturn="True"/>
                 </StackPanel>
             </Grid>
 
@@ -196,7 +201,8 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="restriccionesText" Text="{Binding Restricciones}" Template="{StaticResource InputControlTemplate}"
-                             Height="100" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"/>
+                             Height="100" Width="500" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" 
+                             HorizontalAlignment="Left" AcceptsReturn="True"/>
                 </StackPanel>
             </Grid>
 
@@ -205,7 +211,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
                 <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar"/>
-                <Button Content="Actualizar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="ActualizarProducto"/>
+                <Button Content="Actualizar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="ConfirmarAccion"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
