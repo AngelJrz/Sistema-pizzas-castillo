@@ -197,7 +197,7 @@ namespace AccesoADatos.ControladoresDeDatos
         {
             try
             {
-                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Preparacion")).ToList();
+                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Proceso")).ToList();
                 return _pedidos;
             }
             catch (Exception e)

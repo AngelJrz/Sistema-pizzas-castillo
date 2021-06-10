@@ -260,7 +260,7 @@ namespace Presentacion.Paginas.Cocina
                             case ResultadoRegistro.RegistroExitoso:
                                 InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en actualizacion", "Se ha guardado el platillo y sus ingredientes con exito");
                                 ventana2.Show();
-                                NavigationService.GoBack();
+                                NavigationService.Navigate(new ListaPlatillos());
                                 break;
                         }
 
