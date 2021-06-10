@@ -28,7 +28,7 @@
                     VerticalAlignment="Center" Margin="0,0,30,0"/>
 
             <Button Content="Aceptar" IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
-                    Margin="30,0,0,0" Click="AceptarClic"/>
+                    Margin="30,0,0,0" Click="AceptarClic" AutomationProperties.AutomationId="AceptarBoton"/>
         </StackPanel>
     </Grid>
 </Window>

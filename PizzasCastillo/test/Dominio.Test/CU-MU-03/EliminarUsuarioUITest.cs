@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Dominio.Test.CU_MU_02
+namespace Dominio.Test.CU_MU_03
 {
     /// <summary>
-    /// Descripción resumida de EditarUsuarioUITest
+    /// Descripción resumida de EliminarUsuarioUITest
     /// </summary>
     [TestClass]
-    public class EditarUsuarioUITest
+    public class EliminarUsuarioUITest
     {
-        public EditarUsuarioUITest()
+        public EliminarUsuarioUITest()
         {
             //
             // TODO: Agregar aquí la lógica del constructor
@@ -90,104 +90,36 @@ namespace Dominio.Test.CU_MU_02
         #endregion
 
         [TestMethod]
-        public void EditarEmpleadoUI01()
+        public void EliminarUsuarioUI01()
         {
-            var botonEditar = sesion.FindElementByAccessibilityId("usuarioPrueba");
-            botonEditar.Click();
-
-            var email = sesion.FindElementByAccessibilityId("EmailText");
-            email.Clear();
-            email.SendKeys("cesar_mp@hotmail.com");
-
-            var telefono = sesion.FindElementByAccessibilityId("TelefonoText");
-            telefono.Clear();
-            telefono.SendKeys("2281102131");
-
-            var salario = sesion.FindElementByAccessibilityId("SalarioText");
-            salario.Clear();
-            salario.SendKeys("1850");
-
-            var botonActualizar = sesion.FindElementByAccessibilityId("ActualizarBoton");
-            botonActualizar.Click();
-
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            sesion.SwitchTo().Window(sesion.WindowHandles.First());
-
-            var mensaje = sesion.FindElementByAccessibilityId("Mensaje");
-            string mensajeEsperado = "El empleado fue actualizado correctamente.";
-            Assert.AreEqual(mensaje.Text, mensajeEsperado);
-        }
-
-        [TestMethod]
-        public void EditarEmpleadoUI02()
-        {
-            var botonEditar = sesion.FindElementByAccessibilityId("usuarioPrueba");
-            botonEditar.Click();
-
-            var username = sesion.FindElementByAccessibilityId("UsernameText");
-            username.Clear();
-            username.SendKeys("usuarioPrueba1");
-
-            var botonActualizar = sesion.FindElementByAccessibilityId("ActualizarBoton");
-            botonActualizar.Click();
-
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            sesion.SwitchTo().Window(sesion.WindowHandles.First());
-
-            var mensaje = sesion.FindElementByAccessibilityId("Mensaje");
-            string mensajeEsperado = "El empleado fue actualizado correctamente.";
-            Assert.AreEqual(mensaje.Text, mensajeEsperado);
-        }
-
-        [TestMethod]
-        public void EditarEmpleadoUI03()
-        {
-            var botonEditar = sesion.FindElementByAccessibilityId("usuarioPrueba1");
-            botonEditar.Click();
-
-            var username = sesion.FindElementByAccessibilityId("UsernameText");
-            username.Clear();
-            username.SendKeys("rodrigol");
+            var botonEliminar = sesion.FindElementByAccessibilityId("8");
+            botonEliminar.Click();
 
             sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+            sesion.SwitchTo().Window(sesion.WindowHandles.First());
 
-            var botonActualizar = sesion.FindElementByAccessibilityId("ActualizarBoton");
-            botonActualizar.Click();
+            var botonAceptar = sesion.FindElementByAccessibilityId("AceptarBoton");
+            botonAceptar.Click();
 
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
 
             var mensaje = sesion.FindElementByAccessibilityId("Mensaje");
-            string mensajeEsperado = $"El usuario {username.Text} ya pertenece a otro empleado. Por favor ingrese uno diferente.";
+            string mensajeEsperado = "El empleado fue dado de baja exitosamente.";
             Assert.AreEqual(mensaje.Text, mensajeEsperado);
         }
 
         [TestMethod]
-        public void EditarEmpleadoUI04()
+        public void EliminarUsuarioUI02()
         {
-            var botonEditar = sesion.FindElementByAccessibilityId("usuarioPrueba1");
-            botonEditar.Click();
+            var botonEliminar = sesion.FindElementByAccessibilityId("2");
+            botonEliminar.Click();
 
-            var nombre = sesion.FindElementByAccessibilityId("NombreText");
-            nombre.Clear();
-
-            var apellidos = sesion.FindElementByAccessibilityId("ApellidosText");
-            apellidos.Clear();
-
-            var salario = sesion.FindElementByAccessibilityId("SalarioText");
-            salario.Clear();
-            salario.SendKeys("0");
-
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
-
-            var botonActualizar = sesion.FindElementByAccessibilityId("ActualizarBoton");
-            botonActualizar.Click();
-
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
 
             var mensaje = sesion.FindElementByAccessibilityId("Mensaje");
-            string mensajeEsperado = "La información ingresada en uno o varios campos es incorrecta. Por favor verifiquela e intente de nuevo.";
+            string mensajeEsperado = "El usuario que intenta dar de baja es el que está en sesión ahora mismo. Está operación no puede ser realizada.";
             Assert.AreEqual(mensaje.Text, mensajeEsperado);
         }
     }
