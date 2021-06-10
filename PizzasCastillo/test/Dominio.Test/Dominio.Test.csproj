@@ -141,9 +141,11 @@
     <Compile Include="CU-MU-02\EditarUsuarioTest.cs" />
     <Compile Include="CU-MU-02\EditarUsuarioUITest.cs" />
     <Compile Include="CU-MU-03\EliminarUsuarioTest.cs" />
+    <Compile Include="CU-MU-03\EliminarUsuarioUITest.cs" />
     <Compile Include="CU-MU-04\IniciarSesionTest.cs" />
     <Compile Include="CU-MU-04\IniciarSesionUITest.cs" />
     <Compile Include="CU-MU-05\GestionarTiposUsuariosTest.cs" />
+    <Compile Include="CU-MU-05\GestionarTiposUsuariosUITest.cs" />
     <Compile Include="CU-MU-06\RegistroClienteTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -158,8 +160,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CU-MPR-01\ImagenPrueba.png"/>
-    <Content Include="CU-MPR-02\ImagenPrueba2.png"/>
+    <Content Include="CU-MPR-01\ImagenPrueba.png" />
+    <Content Include="CU-MPR-02\ImagenPrueba2.png" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
