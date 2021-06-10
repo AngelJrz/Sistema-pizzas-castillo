@@ -155,7 +155,13 @@ namespace Dominio.Test.CU_MPR_01
             Producto productoObtenido = new Producto();
             productoObtenido = listaProductos.Find(p => p.Estatus == DISPONIBLE);
 
-            bool seElimino = productoController.EliminarProducto(productoObtenido);
+            ResultadoEliminarProducto resultado = productoController.EliminarProducto(productoObtenido);
+            bool seElimino = false;
+
+            if(resultado == ResultadoEliminarProducto.BajaExitosa)
+            {
+                seElimino = true;
+            }
 
             Assert.IsTrue(seElimino);
         }
@@ -169,7 +175,13 @@ namespace Dominio.Test.CU_MPR_01
             Producto productoObtenido = new Producto();
             productoObtenido = listaProductos.Find(p => p.Estatus == NO_DISPONIBLE);
 
-            bool seElimino = productoController.EliminarProducto(productoObtenido);
+            ResultadoEliminarProducto resultado = productoController.EliminarProducto(productoObtenido);
+            bool seElimino = true;
+
+            if (resultado == ResultadoEliminarProducto.BajaExitosa)
+            {
+                seElimino = false;
+            }
 
             Assert.IsFalse(seElimino);
         }
