@@ -155,5 +155,15 @@ namespace Presentacion.Ventanas
         {
             PaginaFrame.Navigate(new MenuMerma());
         }
+
+        private void RegistroClientes_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new RegistroCliente());
+        }
+        private void Proveedores_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PaginaFrame.Navigate(new MenuProveedores());
+        }
+        
     }
 }

@@ -21,7 +21,7 @@
 
         <TextBlock Text="{Binding Path=Mensaje, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Grid.Row="1"
                    VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"
-                   Style="{StaticResource ContenidoDialogoMensaje}"/>
+                   Style="{StaticResource ContenidoDialogoMensaje}" AutomationProperties.AutomationId="Mensaje"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Content="Aceptar" IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"

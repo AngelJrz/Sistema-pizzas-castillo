@@ -32,7 +32,7 @@
                                     <TextBlock Text="Precio Venta:" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
                                     <TextBox Style="{StaticResource InputDefaultStyle}" Text="{Binding Precio}" TextWrapping="Wrap" IsEnabled="False" Width="100" />
                                     <TextBlock Text=" $ MXN" Style="{StaticResource TituloCamposStyle}"  Margin="0,0,10,0"/>
-                                    <Button Style="{StaticResource BotonSecundarioStyle}" Height="30" Content="Editar" Click="EditarPlatillo"/>
+                                    <Button Style="{StaticResource BotonSecundarioStyle}" Height="30" Content="Editar" Click="EditarPlatillo" AutomationProperties.AutomationId="EditarPlatillo"/>
                                 </StackPanel>
                             </Grid>
                         </Border>

@@ -74,7 +74,7 @@ namespace Presentacion.Paginas.Cocina
                 {
                     PedidoController pedidoController = new PedidoController();
                     localPedido.Estatus.Id = PEDIDO_PREPARADO_ESTATUS;
-                    ResultsPedidos guardado = pedidoController.ActualizarPedidoEstatus(localPedido);
+                    ResultsPedidos guardado = pedidoController.ActualizarPedidoEstatusPreparado(localPedido);
                     if (guardado == ResultsPedidos.ActualizadoConExito)
                     {
                         InteraccionUsuario interaccionUsuario = new InteraccionUsuario("Exito de actualizacion", "Se ha actualizado el estado del pedido");

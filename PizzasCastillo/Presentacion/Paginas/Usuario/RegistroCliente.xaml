@@ -34,8 +34,8 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="NombresText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="NombresText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                                     MaxLength="30" Width="400" HorizontalAlignment="Left" AutomationProperties.AutomationId="NombresText"/>
                 </StackPanel>
             </Grid>
 
@@ -51,8 +51,8 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="ApellidosText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="50" Width="400" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="ApellidosText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                                     MaxLength="50" Width="400" HorizontalAlignment="Left" AutomationProperties.AutomationId="ApellidosText"/>
                 </StackPanel>
             </Grid>
 
@@ -68,8 +68,8 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}"
-                     MaxLength="40" Width="400" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                     MaxLength="40" Width="400" HorizontalAlignment="Left" AutomationProperties.AutomationId="EmailText"/>
                 </StackPanel>
             </Grid>
 
@@ -85,8 +85,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="TelefonoText" Template="{StaticResource InputControlTemplate}"
-                           TextCompositionManager.PreviewTextInput="IsTelephoneNumber"  MaxLength="10" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="TelefonoText" Template="{StaticResource InputControlTemplate}" AutomationProperties.AutomationId="TelefonoText"
+                           TextCompositionManager.PreviewTextInput="IsTelephoneNumber"  MaxLength="10" Width="200" HorizontalAlignment="Left"
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
                 </StackPanel>
             </Grid>
 
@@ -119,9 +120,8 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="CalleText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" 
-                                 HorizontalAlignment="Left"/>
+                            <TextBox x:Name="CalleText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                                     MaxLength="30" Width="400"  HorizontalAlignment="Left" AutomationProperties.AutomationId="CalleText"/>
                         </StackPanel>
                     </Grid>
 
@@ -139,8 +139,9 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="NoExteriorText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="3" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="NoExteriorText" Template="{StaticResource InputControlTemplate}" AutomationProperties.AutomationId="NoExteriorText"
+                                     MaxLength="3" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
                         </StackPanel>
                     </Grid>
 
@@ -158,8 +159,9 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="CodigoPostalText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="5" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="CodigoPostalText" Template="{StaticResource InputControlTemplate}" AutomationProperties.AutomationId="CodigoPostalText"
+                                     MaxLength="5" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"
+                                     GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
                         </StackPanel>
                     </Grid>
 
@@ -177,9 +179,8 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="CiudadText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="20" Width="200" 
-                                 HorizontalAlignment="Left"/>
+                            <TextBox x:Name="CiudadText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                                     MaxLength="20" Width="200" AutomationProperties.AutomationId="CiudadText" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
 
@@ -198,7 +199,8 @@
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                             <ComboBox x:Name="ListaEstados" Style="{StaticResource ComboboxStyle}" ItemsSource="{Binding estadosLista}"
-                                      Width="200" HorizontalAlignment="Left"/>
+                                      AutomationProperties.AutomationId="ListaEstados" Width="200" HorizontalAlignment="Left"
+                                      GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
                         </StackPanel>
                     </Grid>
                     
@@ -219,9 +221,8 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="ColoniaText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="30" Width="400" 
-                                 HorizontalAlignment="Left"/>
+                            <TextBox x:Name="ColoniaText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                                     MaxLength="30" Width="400" AutomationProperties.AutomationId="ColoniaText" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
 
@@ -237,7 +238,7 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="NoInteriorText" Template="{StaticResource InputControlTemplate}"
+                            <TextBox x:Name="NoInteriorText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
                                      MaxLength="3" Width="200" TextChanged="ValidateNumber" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Grid>
@@ -258,16 +259,16 @@
 
                         <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="ReferenciasText" Style="{StaticResource InputDefaultStyle}"
+                            <TextBox x:Name="ReferenciasText" Style="{StaticResource InputDefaultStyle}" AutomationProperties.AutomationId="ReferenciasText"
                                      MaxLength="400" Width="400" Height="100" VerticalAlignment="Top" TextWrapping="Wrap" 
-                                 HorizontalAlignment="Left"/>
+                                 HorizontalAlignment="Left" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,30">
                 <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0"/>
-                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="RegistrarCliente"/>
+                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="RegistrarCliente" AutomationProperties.AutomationId="RegistrarCliente"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -44,7 +44,7 @@ namespace Dominio.Logica
         public bool GuardarMermaPedido(Merma nuevaMerma)
         {
             PedidosDAO pedidosDAO = new PedidosDAO();
-            if(pedidosDAO.ObtenerPedidoPorID(nuevaMerma.Id) == null)
+            if(pedidosDAO.ObtenerPedidoPorID(nuevaMerma.Pedido.Id) == null)
             {
                 return false;
             }

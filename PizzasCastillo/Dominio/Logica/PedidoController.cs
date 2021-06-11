@@ -57,7 +57,7 @@ namespace Dominio.Logica
             bool resultadoActualizacion = false;
             ResultsPedidos resultado = ResultsPedidos.NoSePudoActualizar;
 
-            if (pedido.Tipo.Id == 1)
+            if (pedido.Tipo.Id == 2)
             {
                 resultadoActualizacion= dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
                 if (resultadoActualizacion)
@@ -85,33 +85,21 @@ namespace Dominio.Logica
 
         }
 
-         public bool ActualizarPedidoEstatusPreparado(Pedido pedido)
+        public ResultsPedidos ActualizarPedidoEstatusPreparado(Pedido pedido)
         {
             PedidosDAO dao = new PedidosDAO();
-            if(dao.ObtenerPedidoPorID(pedido.Id) == null)
+            bool resultadoActualizacion = false;
+            ResultsPedidos resultado = ResultsPedidos.NoSePudoActualizar;
+            resultadoActualizacion = dao.ActualizarPedidoEstatus(ClonePedidoActualizarEstatus(pedido));
+            if (resultadoActualizacion)
             {
-                return false;
-            }
-            if (pedido.Tipo.Id == 1)
-            {
-                return dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
+                resultado = ResultsPedidos.ActualizadoConExito;
             }
             else
             {
-                return dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+               resultado = ResultsPedidos.NoSePudoActualizar;
             }
-
-            if (!pedido.Estatus.Nombre.Equals("Entregado"))
-            {
-                return false;
-            }
-
-            EstatusPedidoController estatusController = new EstatusPedidoController();
-            List<Dominio.Enumeraciones.Tipo> listaTipos = estatusController.ObtenerEstatusPedido();
-            pedido.Estatus = listaTipos.Find(t => t.Nombre.Equals("Pagado"));
-            bool resultado = false;
-            resultado = dao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
-
+            
             return resultado;
         }
 
@@ -191,6 +179,15 @@ namespace Dominio.Logica
             };
         }
 
+        public AccesoADatos.Pedido ClonePedidoActualizarEstatus(Pedido pedidoAClonar)
+        {
+            return new AccesoADatos.Pedido()
+            {
+                Id = pedidoAClonar.Id,
+                IdEstatusPedido = pedidoAClonar.Estatus.Id,
+                IdTipoPedido = pedidoAClonar.Tipo.Id,
+            };
+        }
 
         public AccesoADatos.Pedido CloneDominioADatosParaLlevarEditar(Pedido pedidoAClonar)
         {

@@ -116,8 +116,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CU-MC-01\RegistrarPlatilloUITest.cs" />
+    <Compile Include="CU-MC-02\EditarPlatilloUITest.cs" />
+    <Compile Include="CU-MC-03\PedidoPreparadoUITest.cs" />
+    <Compile Include="CU-MC-04\GenerarMermaUITest.cs" />
     <Compile Include="CU-MF-01\RegistrarGastoExtraTest.cs" />
     <Compile Include="CU-MF-02\GenerarCorteDeCajaTest.cs" />
+    <Compile Include="CU-MF-03\RegistroProveedorUITest.cs" />
+    <Compile Include="CU-MF-04\ActualizarProveedorUITest.cs" />
     <Compile Include="CU-MF-05\RegistrarPedidoAProveedorTest.cs" />
     <Compile Include="CU-MF-06\GestionarTiposDeSalidasTest.cs" />
     <Compile Include="CU-MF-07\ConfirmarEntregaDePedidoTest.cs" />
@@ -145,6 +151,7 @@
     <Compile Include="CU-MU-04\IniciarSesionUITest.cs" />
     <Compile Include="CU-MU-05\GestionarTiposUsuariosTest.cs" />
     <Compile Include="CU-MU-06\RegistroClienteTest.cs" />
+    <Compile Include="CU-MU-06\RegistroClienteUITest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,10 +163,14 @@
       <Project>{a299bd87-2998-4aa0-8adc-192b97a4643d}</Project>
       <Name>Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Presentacion\Presentacion.csproj">
+      <Project>{86074C3F-B472-4537-B456-131517DA9665}</Project>
+      <Name>Presentacion</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CU-MPR-01\ImagenPrueba.png"/>
-    <Content Include="CU-MPR-02\ImagenPrueba2.png"/>
+    <Content Include="CU-MPR-01\ImagenPrueba.png" />
+    <Content Include="CU-MPR-02\ImagenPrueba2.png" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

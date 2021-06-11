@@ -77,7 +77,7 @@ namespace Dominio.Test.CU_MU_01
             var iniciarSesionBoton = sesion.FindElementByAccessibilityId("iniciarSesionBoton");
             iniciarSesionBoton.Click();
 
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
 
             var seccionUsuarios = sesion.FindElementByAccessibilityId("Usuarios");

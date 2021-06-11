@@ -8,19 +8,13 @@ using Presentacion.Ventanas.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Presentacion.Paginas.Cocina
 {
@@ -29,6 +23,7 @@ namespace Presentacion.Paginas.Cocina
     /// </summary>
     public partial class EditarPlatillo : Page
     {
+        private Process _teclado;
         byte[] foto;
         string nombreFoto;
         string codigoBarra;
@@ -193,7 +188,7 @@ namespace Presentacion.Paginas.Cocina
             productoPopUP.ShowDialog();
         }
 
-        private void Registrar(object sender, RoutedEventArgs e)
+        private void Actualizar(object sender, RoutedEventArgs e)
         {
             if (nombreFoto == null || foto == null)
             {
@@ -258,7 +253,7 @@ namespace Presentacion.Paginas.Cocina
                                 ventana1.Show();
                                 break;
                             case ResultadoRegistro.RegistroExitoso:
-                                InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en actualizacion", "Se ha guardado el platillo y sus ingredientes con exito");
+                                InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en actualizacion", "Se ha actualizado el platillo y sus ingredientes con exito");
                                 ventana2.Show();
                                 NavigationService.Navigate(new ListaPlatillos());
                                 break;
@@ -278,7 +273,29 @@ namespace Presentacion.Paginas.Cocina
                     ventana.Show();
                 }
             }
+
+        }
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
         }
 
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
+        }
     }
 }
