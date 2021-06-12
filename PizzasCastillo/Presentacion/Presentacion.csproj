@@ -183,8 +183,14 @@
     <Compile Include="Paginas\Pedido\RegistrarPedidoDatos.xaml.cs">
       <DependentUpon>RegistrarPedidoDatos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Pedido\RegistrarPedidoDatosMesa.xaml.cs">
+      <DependentUpon>RegistrarPedidoDatosMesa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Pedido\RegistroDePagoDePedido.xaml.cs">
       <DependentUpon>RegistroDePagoDePedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pedido\SeleccionarTipoPedido.xaml.cs">
+      <DependentUpon>SeleccionarTipoPedido.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Producto\ActualizacionDeProducto.xaml.cs">
       <DependentUpon>ActualizacionDeProducto.xaml</DependentUpon>
@@ -390,9 +396,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Paginas\Pedido\RegistrarPedidoDatosMesa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Pedido\RegistroDePagoDePedido.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Paginas\Pedido\SeleccionarTipoPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Producto\ActualizacionDeProducto.xaml">
       <SubType>Designer</SubType>

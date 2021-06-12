@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AccesoADatos;
+using Dominio.Enumeraciones;
+using Dominio.Logica;
+using Presentacion.Ventanas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,76 +16,63 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Dominio.Entidades;
-using Dominio.Enumeraciones;
-using Dominio.Logica;
-using Presentacion.Ventanas;
-using static Presentacion.Recursos.PedidosResults;
-using static Presentacion.Recursos.PedidosResults.ResultsPedidos;
+using static Dominio.Enumeraciones.PedidosResult;
+
 
 namespace Presentacion.Paginas.Pedido
 {
     /// <summary>
-    /// Lógica de interacción para RegistrarPedidoDatos.xaml
+    /// Lógica de interacción para RegistrarPedidoDatosMesa.xaml
     /// </summary>
-    public partial class RegistrarPedidoDatos : Page
+    public partial class RegistrarPedidoDatosMesa : Page
     {
         private Dominio.Entidades.Pedido _pedidoNuevo;
         private List<Tipo> _tipoPedido;
         private List<Mesa> _mesas;
 
         private Decimal totalPedido;
-        Tipo tipoLlevar = new Tipo { Id = 1,Nombre = "Para Llevar",Estatus = 1};
+        Tipo tipoLlevar = new Tipo { Id = 1, Nombre = "Para Llevar", Estatus = 1 };
         Tipo tipoLocal = new Tipo { Id = 2, Nombre = "Local", Estatus = 1 };
         Tipo estatusEnEspera = new Tipo { Id = 2, Nombre = "En Preparacion", Estatus = 1 };
-    
-
-        public RegistrarPedidoDatos(Dominio.Entidades.Pedido pedidoNuevo)
+        public RegistrarPedidoDatosMesa(Dominio.Entidades.Pedido pedidoNuevo)
         {
-
-            
             InitializeComponent();
             _pedidoNuevo = pedidoNuevo;
-            
+
 
             SumarTotal();
-           
+
             txtEstatus.Text = estatusEnEspera.Nombre;
-            RepartidorController repartidorcontroller = new RepartidorController();
-            comboRepartidor.ItemsSource  = repartidorcontroller.ObtenerRepartidor(); ;
-
-
-
+            MesaController controller = new MesaController();
+           ComboMesa.ItemsSource = controller.ObtenetMesas(); ;
         }
-       
-       
+
         private void CancelarPedido(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Paginas.Inicio());
         }
 
-            private void GuardarPedido(object sender, RoutedEventArgs e)
+        private void GuardarPedido(object sender, RoutedEventArgs e)
+        {
+            if (ComboMesa.SelectedIndex == -1)
             {
-            if (comboRepartidor.SelectedIndex == -1)
-            {
+
 
                 InteraccionUsuario err = new InteraccionUsuario("error", "Faltan campos por llenar");
-                err.Show(); 
+                err.Show();
             }
-
             else
-            { 
-               
-             
-                _pedidoNuevo.RepartidoPor = (Repartidor)comboRepartidor.SelectedItem;
+            {
+
+                _pedidoNuevo.Tipo = tipoLocal;
+                _pedidoNuevo.Mesa = (Dominio.Entidades.Mesa)ComboMesa.SelectedItem;
                 _pedidoNuevo.Total = totalPedido;
                 _pedidoNuevo.Estatus = estatusEnEspera;
-                PedidoController pedidoController = new PedidoController();
 
                 ResultsPedidos resultado;
+
+                PedidoController pedidoController = new PedidoController();
                 resultado = (ResultsPedidos)pedidoController.AgregarPedido(_pedidoNuevo);
-
-
 
 
                 if (resultado == ResultsPedidos.RegistradoConExito)
@@ -96,27 +87,36 @@ namespace Presentacion.Paginas.Pedido
                     InteraccionUsuario err = new InteraccionUsuario("error", "El pedido no se resgistro");
                     err.Show();
 
+
+
                 }
 
-            }
 
 
             }
+        }
 
 
 
 
-         
 
-           
 
-        private void SumarTotal() {
-            foreach (Dominio.Entidades.Contiene articulo in _pedidoNuevo.Contiene) {
+
+
+        private void SumarTotal()
+        {
+            foreach (Dominio.Entidades.Contiene articulo in _pedidoNuevo.Contiene)
+            {
                 totalPedido += articulo.Total;
                 TotalText.Text = totalPedido.ToString();
-            
+
             }
-        
+
         }
+
+
+
+
+
     }
 }

@@ -18,5 +18,18 @@ namespace Dominio.Logica
             return repartidorencontrado;
         
         }
+
+
+        public List<Repartidor> ObtenerRepartidor()
+        {
+
+
+            AccesoADatos.ControladoresDeDatos.RepartidorDao repartidorDAO = new AccesoADatos.ControladoresDeDatos.RepartidorDao();
+            List<Repartidor> repartidorencontrado = Repartidor.CloneList(repartidorDAO.ObtenerRepartidor());
+            return repartidorencontrado;
+
+        }
+
+
     }
 }

@@ -198,7 +198,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Content="Usar un cliente sin registrar" Style="{StaticResource BotonSecundarioStyle}"
+            <Button Content="Cancelar" Style="{StaticResource BotonSecundarioStyle}"
                     Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="UsarClienteSinRegistro"/>
         </StackPanel>
     </ScrollViewer>

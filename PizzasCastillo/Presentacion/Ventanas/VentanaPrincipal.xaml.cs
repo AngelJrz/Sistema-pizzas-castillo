@@ -137,18 +137,17 @@ namespace Presentacion.Ventanas
         }
         private void Pedidos(object sender, MouseButtonEventArgs e)
         {
-           /*_sesion.Recursos.TryGetValue("Empleado", out object empleado);
-            Empleado empleadoEnSesion = empleado as Empleado;*/
+        
 
             PaginaFrame.Navigate(new BuscarPedidoParaEditarProductos());
         }
 
         private void RegistrarPedidos(object sender, MouseButtonEventArgs e)
         {
-            /*_sesion.Recursos.TryGetValue("Empleado", out object empleado);
-            Empleado empleadoEnSesion = empleado as Empleado;*/
+            _sesion.Recursos.TryGetValue("Empleado", out object empleado);
+            Empleado empleadoEnSesion = empleado as Empleado;
 
-            PaginaFrame.Navigate(new RegistrarPedidoBuscarUsuario());
+            PaginaFrame.Navigate(new RegistrarPedidoBuscarUsuario(empleadoEnSesion));
         }
         
         private void Merma_PreviewMouseDown(object sender, MouseButtonEventArgs e)

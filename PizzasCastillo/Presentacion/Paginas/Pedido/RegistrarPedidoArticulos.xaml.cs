@@ -111,6 +111,17 @@ namespace Presentacion.Paginas.Pedido
                 agregado.Show();
             }
             else {
+
+                if (_pedidoNuevo.Tipo.Nombre.Equals("A Mesa"))
+                {
+
+
+
+                }
+                else { 
+                
+                
+                }
                 NavigationService.Navigate(new Pedido.RegistrarPedidoDatos(_pedidoNuevo));
 
             }

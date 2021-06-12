@@ -93,10 +93,11 @@ namespace Dominio.Logica
 
             return clientes;
         }
-        public List<AccesoADatos.Persona> ObtenerClientesNombre(string nombre)
+        public List<Persona> ObtenerClientesNombre(string nombre)
         {
             ClienteDAO clienteDAO = new ClienteDAO();
-            return clienteDAO.ObtenerClienteNombre(nombre);
+            List<Persona> clientes= Persona.CloneListPersona(clienteDAO.ObtenerClienteNombre(nombre));
+            return clientes;
 
         }
     }

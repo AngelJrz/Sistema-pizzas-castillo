@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Dominio.Logica;
 using Presentacion.Ventanas;
 using static Dominio.Entidades.Persona;
+using  Dominio.Entidades;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -24,16 +25,18 @@ namespace Presentacion.Paginas.Pedido
     public partial class RegistrarPedidoBuscarUsuario : Page
     {
         private Dominio.Entidades.Empleado _empleadoEnSesion;
-        public RegistrarPedidoBuscarUsuario(/*Dominio.Entidades.Empleado empleado*/)
+        private Dominio.Entidades.Pedido _pedido;
+        public RegistrarPedidoBuscarUsuario(Dominio.Entidades.Empleado empleado, Dominio.Entidades.Pedido pedidoNuevo)
         {
 
             //Arreglar la sesion con la clase singleton
+            _pedido = pedidoNuevo;
             InitializeComponent();
             ClienteController controller = new ClienteController();
 
             ListaUsuarios.ItemsSource = controller.ObtenerPersonas();
-            //_empleadoEnSesion = empleado;
-            _empleadoEnSesion = new Dominio.Entidades.Empleado { NumeroEmpleado = "1", Username = "jajas", Contrasenia = "123", SalarioQuincenal = (decimal)120.50, FechaRegistro = DateTime.Now, TipoUsuario = new Dominio.Enumeraciones.Tipo {Id=2,Nombre = "Empleado",Estatus=1 } };
+            _empleadoEnSesion = empleado;
+            //_empleadoEnSesion = new Dominio.Entidades.Empleado { NumeroEmpleado = "1", Username = "jajas", Contrasenia = "123", SalarioQuincenal = (decimal)120.50, FechaRegistro = DateTime.Now, TipoUsuario = new Dominio.Enumeraciones.Tipo {Id=2,Nombre = "Empleado",Estatus=1 } };
 
         }
 
@@ -58,21 +61,21 @@ namespace Presentacion.Paginas.Pedido
             }
 
         }
-        private void UsarClienteSinRegistro(object sender, RoutedEventArgs e)
+        private void Cancelar(object sender, RoutedEventArgs e)
         {
             
-            NavigationService.Navigate(new Usuario.RegistroCliente());
+            NavigationService.Navigate(new Paginas.Inicio());
         }
         private void UsarUsuarioPedido(object sender, RoutedEventArgs e)
         {
-            Dominio.Entidades.Pedido nuevoPedido = new Dominio.Entidades.Pedido();
+            
           
 
             Dominio.Entidades.Persona clienteseleccionado = (Dominio.Entidades.Persona)ListaUsuarios.SelectedItem;
-            nuevoPedido.SolicitadoPor = clienteseleccionado;
-            nuevoPedido.RegistradoPor = _empleadoEnSesion;
-            nuevoPedido.Fecha = DateTime.Now;
-            NavigationService.Navigate(new Pedido.RegistrarPedidoArticulos(nuevoPedido));
+            _pedido.SolicitadoPor = clienteseleccionado;
+            _pedido.RegistradoPor = _empleadoEnSesion;
+            _pedido.Fecha = DateTime.Now;
+            NavigationService.Navigate(new Pedido.RegistrarPedidoArticulos(_pedido));
 
 
         }

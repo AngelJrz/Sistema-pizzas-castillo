@@ -85,10 +85,10 @@ namespace Dominio.Logica
 
         }
 
-         public bool ActualizarPedidoEstatusPreparado(Pedido pedido)
+        public bool ActualizarPedidoEstatusPreparado(Pedido pedido)
         {
             PedidosDAO dao = new PedidosDAO();
-            if(dao.ObtenerPedidoPorID(pedido.Id) == null)
+            if (dao.ObtenerPedidoPorID(pedido.Id) == null)
             {
                 return false;
             }
@@ -105,7 +105,7 @@ namespace Dominio.Logica
             {
                 return false;
             }
-
+        
             EstatusPedidoController estatusController = new EstatusPedidoController();
             List<Dominio.Enumeraciones.Tipo> listaTipos = estatusController.ObtenerEstatusPedido();
             pedido.Estatus = listaTipos.Find(t => t.Nombre.Equals("Pagado"));

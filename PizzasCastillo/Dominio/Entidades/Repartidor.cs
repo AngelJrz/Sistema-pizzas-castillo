@@ -1,4 +1,7 @@
-﻿namespace Dominio.Entidades
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Dominio.Entidades
 {
     public class Repartidor
     {
@@ -19,5 +22,26 @@
                 EmpresaRepartidora = repartidor.EmpresaRepartidora
             };
         }
+
+
+        public static List<Repartidor> CloneList(List<AccesoADatos.Repartidor> repartidores)
+        {
+            List<Repartidor> list = new List<Repartidor>();
+
+
+            repartidores.ToList().ForEach(repartidor => list.Add(
+             new Repartidor
+             {
+                 Id = repartidor.Id,
+                 Nombre = repartidor.Nombre,
+                 Telefono = repartidor.Telefono,
+                 Estatus = repartidor.Estatus,
+                 EmpresaRepartidora = repartidor.EmpresaRepartidora
+             }
+            ));
+            return list;
+        }
+
+
     }
 }
