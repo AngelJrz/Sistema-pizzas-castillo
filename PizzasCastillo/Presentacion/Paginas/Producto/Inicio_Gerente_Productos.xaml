@@ -25,7 +25,8 @@
                     <TextBlock Text="Tipo de búsqueda:" Style="{StaticResource TituloCamposStyle}"
                                HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <ComboBox x:Name="TipoBusqueda" Style="{StaticResource ComboboxStyle}"
-                                     HorizontalAlignment="Center" Width="180">
+                              HorizontalAlignment="Center" Width="180"
+                              AutomationProperties.AutomationId="FiltroBusqueda">
                     </ComboBox>
                 </StackPanel>
 
@@ -34,19 +35,30 @@
                                HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <TextBox x:Name="BusquedaText" Template="{StaticResource InputControlTemplate}"
                                  Width="500" KeyDown="BuscarEnter" GotTouchCapture="AbrirTeclado_Touch"
-                                 LostFocus="CerrarTeclado" HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"/>
+                                 LostFocus="CerrarTeclado" HorizontalAlignment="Center" FontSize="14" KeyUp="BuscarEnter"
+                             AutomationProperties.AutomationId="BusquedaText"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
                     <Button Content="Buscar" Style="{StaticResource BotonSecundarioStyle}"
-                            VerticalAlignment="Center" HorizontalAlignment="Center" Click="BuscarEnter" Margin="0,10,0,0"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Click="BuscarEnter" Margin="0,10,0,0"
+                            AutomationProperties.AutomationId="BuscarBoton"/>
                 </StackPanel>
             </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
+                <Button Content="Registrar Producto Nuevo" Style="{StaticResource BotonSecundarioStyle}"
+                    Width="250" HorizontalAlignment="Center" Margin="0,0,40,0" Click="RegistrarProducto"
+                        AutomationProperties.AutomationId="RegistrarProductoNuevo"/>
+                <Button Content="Generar Reporte de Inventario" Style="{StaticResource BotonSecundarioStyle}"
+                    Width="250" HorizontalAlignment="Center" Margin="40,0,0,0" Click="GenerarReporteInventario"
+                        AutomationProperties.AutomationId="GenerarReporte"/>
+            </StackPanel>
 
             <TextBlock Text="Lista de Productos" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
 
-            <DataGrid x:Name="tablaDeProductos" HorizontalAlignment="Center" Width="1000"
+            <DataGrid x:Name="tablaDeProductos" HorizontalAlignment="Center" Width="1000" AutomationProperties.AutomationId="ListaProductos"
                       AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       Margin="0,20,0,20" CanUserSortColumns="True" AlternatingRowBackground="{StaticResource ColorSecundario}"
                       GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource Gris}">
@@ -198,17 +210,20 @@
                                         <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource IconoBoton}" Click="ConsultarProducto"  Grid.Column="0">
+                                    <Button Style="{StaticResource IconoBoton}" Click="ConsultarProducto" Grid.Column="0"
+                                            AutomationProperties.AutomationId="{Binding Nombre}">
                                         <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EditarProducto" Grid.Column="1">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EditarProducto" Grid.Column="1"
+                                            AutomationProperties.AutomationId="{Binding CodigoBarra}">
                                         <materialDesign:PackIcon Kind="UserEdit" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="ConfirmarEliminar" Grid.Column="2">
+                                    <Button Style="{StaticResource IconoBoton}" Click="ConfirmarEliminar" Grid.Column="2"
+                                            AutomationProperties.AutomationId="{Binding Estatus}">
                                         <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
@@ -223,15 +238,6 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Registrar Producto Nuevo" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,0,40,0" Click="RegistrarProducto">
-                </Button>
-                <Button Content="Generar Reporte de Inventario" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="40,0,0,0" Click="GenerarReporteInventario">
-                </Button>
-            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>

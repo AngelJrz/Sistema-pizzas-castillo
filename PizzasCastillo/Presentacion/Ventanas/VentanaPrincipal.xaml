@@ -53,7 +53,7 @@
                 <TextBlock Text="Usuarios" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
                               PreviewMouseDown="Usuarios_PreviewMouseDown" AutomationProperties.AutomationId="Usuarios"/>
                 <TextBlock Text="Productos" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Productos_PreviewMouseDown"
-                           />
+                           AutomationProperties.AutomationId="Productos"/>
                 <TextBlock Text="Proveedores" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
                 <TextBlock Text="Estadísticas" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
                 <TextBlock Text="Gastos" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>

@@ -124,8 +124,23 @@ namespace Presentacion.Paginas.Producto
         }
         private void EliminarProducto()
         {
-            ResultadoEliminarProducto resultado;
             productoSeleccionado = (Dominio.Entidades.Producto)tablaDeProductos.SelectedItem;
+
+            if (productoSeleccionado.Estatus == NO_DISPONIBLE)
+            {
+                InteraccionUsuario error = new InteraccionUsuario("Error", "Ya se dio de baja este producto.");
+                error.Show();
+                return;
+            }
+
+            if (productoSeleccionado.Cantidad > 0)
+            {
+                InteraccionUsuario error = new InteraccionUsuario("Error", "No se puede eliminar un Producto hasta que su cantidad sea 0.");
+                error.Show();
+                return;
+            }
+
+            ResultadoEliminarProducto resultado;
             resultado = productoController.EliminarProducto(productoSeleccionado);
 
             if (resultado == ResultadoEliminarProducto.BajaExitosa)
@@ -136,7 +151,7 @@ namespace Presentacion.Paginas.Producto
             }
             else
             {
-                if(resultado == ResultadoEliminarProducto.BajaInvalida)
+                if (resultado == ResultadoEliminarProducto.BajaInvalida)
                 {
                     InteraccionUsuario error = new InteraccionUsuario("Error", "Ya se dio de baja este producto.");
                     error.Show();

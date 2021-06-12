@@ -44,16 +44,19 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
                     <TextBox x:Name="CodigoText" Style="{StaticResource InputDefaultStyle}"
                              GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
-                             MaxLength="11" Width="300" HorizontalAlignment="Left" KeyDown="OnKeyDownHandler"/>
+                             MaxLength="11" Width="300" HorizontalAlignment="Left" KeyDown="OnKeyDownHandler"
+                             AutomationProperties.AutomationId="CodigoBarraText"/>
                 </StackPanel>
             </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
                 <Button Content="Cancelar" IsCancel="True" Style="{StaticResource BotonPrincipalStyle}"
-                    VerticalAlignment="Center" Margin="0,0,30,0"/>
+                        VerticalAlignment="Center" Margin="0,0,30,0"
+                        AutomationProperties.AutomationId="CancelarBoton"/>
 
                 <Button Content="Registrar" IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
-                    Margin="30,0,0,0" Click="RegistrarClic"/>
+                        Margin="30,0,0,0" Click="RegistrarClic"
+                        AutomationProperties.AutomationId="RegistrarBoton"/>
             </StackPanel>
         </Grid>
     </Grid>

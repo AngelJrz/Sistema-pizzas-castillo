@@ -118,7 +118,7 @@ namespace Presentacion.Paginas.Producto
                     }
                     else if (resultado == ResultadoRegistroProducto.CodigoBarraDuplicado)
                     {
-                        InteraccionUsuario error = new InteraccionUsuario("Error", "El codigo de barra ingresado ya pertenece a otro producti. Verifique la información e intente de nuevo");
+                        InteraccionUsuario error = new InteraccionUsuario("Error", "El codigo de barra ingresado ya pertenece a otro producto. Verifique la información e intente de nuevo");
                         error.Show();
                     }
                     else
@@ -130,7 +130,7 @@ namespace Presentacion.Paginas.Producto
                 else
                 {
                     List<string> camposIncorecctos = validadorProducto.ObtenerPropiedadesIncorrectas();
-                    string mensaje = "Los siguientes campos están incorrectos: ";
+                    string mensaje = "Existen campos incorrectos: ";
                     foreach (var campos in camposIncorecctos)
                     {
                         mensaje += campos + ", ";

@@ -8,7 +8,7 @@ using Dominio.Enumeraciones;
 using System.Windows.Media.Imaging;
 using System.IO;
 
-namespace Dominio.Test.CU_MPR_01
+namespace Dominio.Test.CU_MPR_02
 {
     /// <summary>
     /// Summary description for ActualizarProductoTest

@@ -134,7 +134,7 @@ namespace Presentacion.Paginas.Producto
             else
             {
                 List<string> camposIncorecctos = validadorReporteInventario.ObtenerPropiedadesIncorrectas();
-                string mensaje = "Los siguientes campos están incorrectos: ";
+                string mensaje = "Hay campos incorrectos: ";
                 foreach (var campos in camposIncorecctos)
                 {
                     mensaje += campos + ", ";
@@ -197,7 +197,7 @@ namespace Presentacion.Paginas.Producto
         {
             if (GuardarPDF())
             {
-                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se genero el PDF de reporte de inventario.");
+                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se generó el PDF de reporte de inventario.");
                 exito.Show();
             }
             else

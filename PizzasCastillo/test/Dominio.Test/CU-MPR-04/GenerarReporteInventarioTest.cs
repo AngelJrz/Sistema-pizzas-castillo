@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using Dominio.Utilerias;
 
-namespace Dominio.Test.CU_MPR_01
+namespace Dominio.Test.CU_MPR_04
 {
     /// <summary>
     /// Summary description for ReporteInventarioController

@@ -133,8 +133,8 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="pagoText" Template="{StaticResource InputControlTemplate}"
-                             KeyDown="BuscarEnter" GotTouchCapture="AbrirTeclado_Touch"
-                             MaxLength="255" Width="255" HorizontalAlignment="Left" KeyUp="IngresarPago"
+                             GotTouchCapture="AbrirTeclado_Touch" KeyUp="IngresarPago"
+                             MaxLength="255" Width="255" HorizontalAlignment="Left" 
                              TextCompositionManager.PreviewTextInput="PermitirNumero">
                     </TextBox>
                 </StackPanel>

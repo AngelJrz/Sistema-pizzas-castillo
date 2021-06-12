@@ -122,13 +122,17 @@
     <Compile Include="CU-MF-06\GestionarTiposDeSalidasTest.cs" />
     <Compile Include="CU-MF-07\ConfirmarEntregaDePedidoTest.cs" />
     <Compile Include="CU-MPR-01\RegistrarProductoTest.cs" />
+    <Compile Include="CU-MPR-01\RegistrarProductoUITest.cs" />
     <Compile Include="CU-MPR-02\ActualizarProductoTest.cs" />
+    <Compile Include="CU-MPR-02\ActualizarProductoUITest.cs" />
     <Compile Include="CU-MPR-03\GestionarProductoTest.cs" />
+    <Compile Include="CU-MPR-03\GestionarProductoUITest.cs" />
     <Compile Include="CU-MPR-04\GenerarReporteInventarioTest.cs" />
     <Compile Include="CU-MPE-01\RegistrarPedidoPrueba.cs" />
     <Compile Include="CU-MPE-02\EditarPedidoTest.cs" />
     <Compile Include="CU-MPE-03\RegistrarEntrega.cs" />
     <Compile Include="CU-MPE-06\RegistroDePagoDePedidoTest.cs" />
+    <Compile Include="CU-MPR-04\GenerarReporteInventarioUITest.cs" />
     <Compile Include="CU-MPR-05\ValidarExistenciasTest.cs" />
     <Compile Include="CU-MC-01\RegistrarPlatilloTest.cs" />
     <Compile Include="CU-MC-02\EditarPlatilloTest.cs" />

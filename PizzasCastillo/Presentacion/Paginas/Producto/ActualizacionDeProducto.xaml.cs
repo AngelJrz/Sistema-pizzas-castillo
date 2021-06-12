@@ -44,6 +44,8 @@ namespace Presentacion.Paginas.Producto
             InitializeComponent();
 
             _sesion = sesion;
+            foto = productoSeleccionado.Foto;
+            nombreFoto = productoSeleccionado.NombreFoto;
             TipoProductoController tipoProductoController = new TipoProductoController();
             listaTipoProducto = tipoProductoController.ObtenerTipoProducto();
             ListaTiposProducto.ItemsSource = listaTipoProducto;
