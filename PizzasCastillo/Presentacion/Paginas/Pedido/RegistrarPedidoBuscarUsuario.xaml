@@ -199,7 +199,7 @@
             </DataGrid>
 
             <Button Content="Cancelar" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="UsarClienteSinRegistro"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="Cancelar"/>
         </StackPanel>
     </ScrollViewer>
 

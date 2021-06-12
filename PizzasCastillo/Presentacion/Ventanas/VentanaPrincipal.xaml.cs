@@ -147,7 +147,7 @@ namespace Presentacion.Ventanas
             _sesion.Recursos.TryGetValue("Empleado", out object empleado);
             Empleado empleadoEnSesion = empleado as Empleado;
 
-            PaginaFrame.Navigate(new RegistrarPedidoBuscarUsuario(empleadoEnSesion));
+            PaginaFrame.Navigate(new SeleccionarTipoPedido(empleadoEnSesion));
         }
         
         private void Merma_PreviewMouseDown(object sender, MouseButtonEventArgs e)
