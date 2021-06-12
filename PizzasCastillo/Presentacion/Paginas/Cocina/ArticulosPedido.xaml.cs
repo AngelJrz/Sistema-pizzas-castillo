@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Dominio.Enumeraciones.PedidosResult;
 
 namespace Presentacion.Paginas.Cocina
 {
@@ -66,14 +67,15 @@ namespace Presentacion.Paginas.Cocina
             Confirmacion dialogoConfirmacion = new Confirmacion("Confirmacion",
                "¿Seguro que desea marcar este pedido como preparado?");
 
+
             if (dialogoConfirmacion.ShowDialog() == true)
             {
                 try
                 {
                     PedidoController pedidoController = new PedidoController();
                     localPedido.Estatus.Id = PEDIDO_PREPARADO_ESTATUS;
-                     //guardado = pedidoController.ActualizarPedidoEstatus(localPedido);
-                    /*if (guardado == true)
+                    ResultsPedidos guardado = pedidoController.ActualizarPedidoEstatus(localPedido);
+                    if (guardado == ResultsPedidos.ActualizadoConExito)
                     {
                         InteraccionUsuario interaccionUsuario = new InteraccionUsuario("Exito de actualizacion", "Se ha actualizado el estado del pedido");
                         interaccionUsuario.Show();
@@ -83,7 +85,7 @@ namespace Presentacion.Paginas.Cocina
                     {
                         InteraccionUsuario error = new InteraccionUsuario("Error De Actualizacion", "Hubo un problema de comunicacion con la Base de datos, intentar mas tarde");
                         error.Show();
-                    }*/
+                    }
                     
                 }
                 catch (Exception ex)
