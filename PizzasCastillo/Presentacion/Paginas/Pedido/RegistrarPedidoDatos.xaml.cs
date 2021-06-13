@@ -33,7 +33,7 @@ namespace Presentacion.Paginas.Pedido
         private Decimal totalPedido;
         Tipo tipoLlevar = new Tipo { Id = 1,Nombre = "Para Llevar",Estatus = 1};
         Tipo tipoLocal = new Tipo { Id = 2, Nombre = "Local", Estatus = 1 };
-        Tipo estatusEnEspera = new Tipo { Id = 2, Nombre = "En Preparacion", Estatus = 1 };
+        Tipo estatusEnEspera = new Tipo { Id = 1, Nombre = "En Proceso", Estatus = 1 };
     
 
         public RegistrarPedidoDatos(Dominio.Entidades.Pedido pedidoNuevo)
@@ -89,6 +89,7 @@ namespace Presentacion.Paginas.Pedido
                 {
                     InteraccionUsuario err = new InteraccionUsuario("Exito", "El pedido se resgistro correctamente");
                     err.Show();
+                    NavigationService.Navigate(new Inicio());
 
                 }
                 else

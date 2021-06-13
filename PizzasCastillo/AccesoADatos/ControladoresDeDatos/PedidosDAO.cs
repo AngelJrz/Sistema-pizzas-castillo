@@ -81,6 +81,7 @@ namespace AccesoADatos.ControladoresDeDatos
                 }
 
                 pedidoDB.Contiene = pedido.Contiene;
+                pedidoDB.Total = pedido.Total;
                 connection.Entry(pedidoDB).State = EntityState.Modified;
                 _resultado = connection.SaveChanges();
             }
@@ -144,7 +145,7 @@ namespace AccesoADatos.ControladoresDeDatos
         public List<Pedido> ObtenerPedidos() {
             try
             {
-                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Preparacion"))
+                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Proceso"))
                 .ToList();
                 return _pedidos;
 

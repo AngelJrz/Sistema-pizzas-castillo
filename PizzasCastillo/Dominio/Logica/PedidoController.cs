@@ -22,7 +22,7 @@ namespace Dominio.Logica
             PedidosDAO dao = new PedidosDAO();
 
 
-            if (pedido.Tipo.Id == 1)
+            if (pedido.Tipo.Nombre.Equals("Domicilio"))
             {
                resultadoDao= dao.RegistrarPedido(CloneDominioADatosParaLlevar(pedido));
                 if (resultadoDao)
@@ -143,7 +143,7 @@ namespace Dominio.Logica
             PedidosDAO dao = new PedidosDAO();
             bool resultadoActualizacion = false;
             ResultsPedidos resultado = ResultsPedidos.NoSePudoActualizar;
-            if (pedido.Tipo.Id == 1)
+            if (pedido.Tipo.Nombre.Equals("Domicilio"))
             {
                 resultadoActualizacion =dao.ActualizarPedidoDatos(CloneDominioADatosParaLlevarEditar(pedido));
                 if (resultadoActualizacion)

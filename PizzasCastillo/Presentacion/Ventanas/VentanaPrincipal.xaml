@@ -67,13 +67,16 @@
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
                               PreviewMouseDown="Pedidos"/>
-                <TextBlock Text="Clientes" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"
+                <TextBlock Text="Generar Pedido" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" 
+                              PreviewMouseDown="RegistrarPedidos"/>
+                <TextBlock Text="Clientes" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"
                            />
-                <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Merma" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
             </Grid>
 
             <Grid x:Name="MenuSuperiorMeseroCocina" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">

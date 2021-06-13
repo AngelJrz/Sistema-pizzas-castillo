@@ -115,14 +115,14 @@ namespace Presentacion.Paginas.Pedido
                 if (_pedidoNuevo.Tipo.Nombre.Equals("A Mesa"))
                 {
 
-
+                    NavigationService.Navigate(new Pedido.RegistrarPedidoDatosMesa(_pedidoNuevo));
 
                 }
-                else { 
-                
-                
+                else {
+                    NavigationService.Navigate(new Pedido.RegistrarPedidoDatos(_pedidoNuevo));
+
                 }
-                NavigationService.Navigate(new Pedido.RegistrarPedidoDatos(_pedidoNuevo));
+               
 
             }
         

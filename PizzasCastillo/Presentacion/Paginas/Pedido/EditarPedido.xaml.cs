@@ -95,6 +95,7 @@ namespace Presentacion.Paginas.Pedido
             {
                 InteraccionUsuario err = new InteraccionUsuario("Exito", "Pedido Actualizado con Exito");
                 err.Show();
+                NavigationService.Navigate(new Inicio());
 
 
             }
