@@ -58,12 +58,9 @@ namespace AccesoADatos.ControladoresDeDatos
             }
             catch (DbUpdateException)
             {
-                throw;
-            }
-            if (_resultado == SIN_CAMBIOS)
-            {
                 return false;
             }
+          
             return true;
         }
 

@@ -57,7 +57,7 @@ namespace Dominio.Logica
             bool resultadoActualizacion = false;
             ResultsPedidos resultado = ResultsPedidos.NoSePudoActualizar;
 
-            if (pedido.Tipo.Id == 1)
+            if (pedido.Tipo.Nombre.Equals("Domicilio"))
             {
                 resultadoActualizacion= dao.ActualizarPedidoEstatus(CloneDominioADatosParaLlevarEditar(pedido));
                 if (resultadoActualizacion)

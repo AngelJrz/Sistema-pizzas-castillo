@@ -31,8 +31,7 @@ namespace Presentacion.Paginas.Pedido
         private List<Mesa> _mesas;
 
         private Decimal totalPedido;
-        Tipo tipoLlevar = new Tipo { Id = 1, Nombre = "Para Llevar", Estatus = 1 };
-        Tipo tipoLocal = new Tipo { Id = 2, Nombre = "Local", Estatus = 1 };
+     
         Tipo estatusEnEspera = new Tipo { Id = 1, Nombre = "En Proceso", Estatus = 1 };
         public RegistrarPedidoDatosMesa(Dominio.Entidades.Pedido pedidoNuevo)
         {
@@ -64,7 +63,7 @@ namespace Presentacion.Paginas.Pedido
             else
             {
 
-                _pedidoNuevo.Tipo = tipoLocal;
+               
                 _pedidoNuevo.Mesa = (Dominio.Entidades.Mesa)ComboMesa.SelectedItem;
                 _pedidoNuevo.Total = totalPedido;
                 _pedidoNuevo.Estatus = estatusEnEspera;
