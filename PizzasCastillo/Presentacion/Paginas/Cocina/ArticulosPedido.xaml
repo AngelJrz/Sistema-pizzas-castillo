@@ -52,7 +52,7 @@
             </ListBox>
             <StackPanel Margin="-600,40,0,0">
                 <Button Style="{StaticResource BotonPrincipalStyle}" Content="Regresar" Width="300" Margin="0,0,0,0" Click="Regresar" />
-                <Button Style="{StaticResource BotonSecundarioStyle}" Content="Marcar pedido como preparado" Width="300" Margin="900,-50,0,0" Click="PrepararPedido" />
+                <Button Style="{StaticResource BotonSecundarioStyle}" Content="Marcar pedido como preparado" Width="300" Margin="900,-50,0,0" Click="PrepararPedido" AutomationProperties.AutomationId="PrepararPedido"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

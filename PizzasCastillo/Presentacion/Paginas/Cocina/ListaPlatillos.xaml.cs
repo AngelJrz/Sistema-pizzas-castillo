@@ -1,7 +1,6 @@
 ﻿using Dominio.Entidades;
 using Dominio.Logica;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +13,6 @@ namespace Presentacion.Paginas.Cocina
     /// </summary>
     public partial class ListaPlatillos : Page
     {
-        ObservableCollection<ArticuloVenta> productos;
         private List<ArticuloVenta> platillosList;
 
         public ListaPlatillos()

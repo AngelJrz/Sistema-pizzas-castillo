@@ -4,26 +4,19 @@ using Microsoft.Win32;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using Presentacion.Ventanas.Usuario;
 using Dominio.Utilerias;
 using Dominio.Enumeraciones;
+using System.Diagnostics;
 
 namespace Presentacion.Paginas.Cocina
 {
@@ -34,6 +27,7 @@ namespace Presentacion.Paginas.Cocina
     {
         byte[] foto;
         string nombreFoto;
+        private Process _teclado;
         ObservableCollection<ArticuloVenta> productos;
         private ProductoPopUp productoPopUP;
         private List<ArticuloVenta> productosList;
@@ -187,73 +181,104 @@ namespace Presentacion.Paginas.Cocina
             }
             else
             {
-                try
+                if (productos.Count != 0)
                 {
-                    List<Consume> consumePlatillo = new List<Consume>();
-                    Consume consumeNew;
 
-                    ArticuloVenta nuevoPlatillo = new ArticuloVenta
+                    try
                     {
-                        Nombre = NombreText.Text,
-                        Precio = Convert.ToDecimal(PrecioText.Text),
-                        Foto = foto,
-                        Estatus = 1,
-                        EsPlatillo = true,
-                        NombreFoto = nombreFoto,
-                        Platillo = new Platillo
-                        {
-                            FechaRegisto = DateTime.Now,
-                            Receta = recetaText.Text,
-                        }
-                    };
+                        List<Consume> consumePlatillo = new List<Consume>();
+                        Consume consumeNew;
 
-                    foreach (ArticuloVenta p in productos)
-                    {
-                        consumeNew = new Consume
+                        ArticuloVenta nuevoPlatillo = new ArticuloVenta
                         {
-                            Platillo = nuevoPlatillo.Platillo,
-                            Producto = p.Producto,
-                            Cantidad = p.CantidadLocal,
+                            Nombre = NombreText.Text,
+                            Precio = Convert.ToDecimal(PrecioText.Text),
+                            Foto = foto,
+                            Estatus = 1,
+                            EsPlatillo = true,
+                            NombreFoto = nombreFoto,
+                            Platillo = new Platillo
+                            {
+                                FechaRegisto = DateTime.Now,
+                                Receta = recetaText.Text,
+                            }
                         };
-                        consumePlatillo.Add(consumeNew);
-                    }
-                    nuevoPlatillo.Platillo.Consume = consumePlatillo;
-                    ValidadorArticuloVenta validadorArticulo = new ValidadorArticuloVenta();
-                    if (validadorArticulo.Validar(nuevoPlatillo))
-                    {
-                        ArticuloVentaController articuloVentaController = new ArticuloVentaController();
-                        ResultadoRegistro guardado = articuloVentaController.GuardarPlatilloVenta(nuevoPlatillo);
 
-                        switch (guardado)
+                        foreach (ArticuloVenta p in productos)
                         {
-                            case ResultadoRegistro.YaExiste:
-                                InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Este Platilo ya se encuentra registrado, de preferencia editelo mejor");
-                                ventana.Show();
-                                break;
-                            case ResultadoRegistro.RegistroFallido:
-                                InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
-                                ventana1.Show();
-                                break;
-                            case ResultadoRegistro.RegistroExitoso:
-                                InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo y sus ingredientes con exito");
-                                ventana2.Show();
-                                NavigationService.GoBack();
-                                break;
+                            consumeNew = new Consume
+                            {
+                                Platillo = nuevoPlatillo.Platillo,
+                                Producto = p.Producto,
+                                Cantidad = p.CantidadLocal,
+                            };
+                            consumePlatillo.Add(consumeNew);
                         }
+                        nuevoPlatillo.Platillo.Consume = consumePlatillo;
+                        ValidadorArticuloVenta validadorArticulo = new ValidadorArticuloVenta();
+                        if (validadorArticulo.Validar(nuevoPlatillo))
+                        {
+                            ArticuloVentaController articuloVentaController = new ArticuloVentaController();
+                            ResultadoRegistro guardado = articuloVentaController.GuardarPlatilloVenta(nuevoPlatillo);
 
+                            switch (guardado)
+                            {
+                                case ResultadoRegistro.YaExiste:
+                                    InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Este Platilo ya se encuentra registrado, de preferencia editelo mejor");
+                                    ventana.Show();
+                                    break;
+                                case ResultadoRegistro.RegistroFallido:
+                                    InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
+                                    ventana1.Show();
+                                    break;
+                                case ResultadoRegistro.RegistroExitoso:
+                                    InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el platillo y sus ingredientes con exito");
+                                    ventana2.Show();
+                                    NavigationService.GoBack();
+                                    break;
+                            }
+
+                        }
+                        else
+                        {
+                            InteraccionUsuario ventana = new InteraccionUsuario("Error de Campos", "Uno o mas campos estan vacios y/o incorrectos, verificar porfavor");
+                            ventana.Show();
+
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
                         InteraccionUsuario ventana = new InteraccionUsuario("Error de Campos", "Uno o mas campos estan vacios y/o incorrectos, verificar porfavor");
                         ventana.Show();
-
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    InteraccionUsuario ventana = new InteraccionUsuario("Error de Campos", "Uno o mas campos estan vacios, verificar porfavor");
+                    InteraccionUsuario ventana = new InteraccionUsuario("Error de Campos", "Uno o mas campos estan vacios y/o incorrectos, verificar porfavor");
                     ventana.Show();
                 }
+            }
+        }
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
             }
         }
     }
@@ -285,4 +310,5 @@ namespace Presentacion.Paginas.Cocina
             return null;
         }
     }
+
 }

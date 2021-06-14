@@ -52,7 +52,6 @@ namespace AccesoADatos.ControladoresDeDatos
                 Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
                 pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
                 connection.Entry(pedidoDB).State = EntityState.Modified;
-                connection.SaveChanges();
                 _resultado = connection.SaveChanges();
           
             }

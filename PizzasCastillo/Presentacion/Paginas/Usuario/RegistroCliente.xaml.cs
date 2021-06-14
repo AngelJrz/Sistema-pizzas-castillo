@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Dominio.Entidades;
 using Dominio.Enumeraciones;
 using Dominio.Logica;
@@ -25,6 +17,7 @@ namespace Presentacion.Paginas.Usuario
     /// </summary>
     public partial class RegistroCliente : Page
     {
+        private Process _teclado;
         private readonly List<string> estadosLista;
         public RegistroCliente()
         {
@@ -163,5 +156,28 @@ namespace Presentacion.Paginas.Usuario
                 e.Handled = false;
             }
         }
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
+        }
     }
+
 }
