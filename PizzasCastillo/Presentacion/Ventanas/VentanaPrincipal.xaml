@@ -70,7 +70,7 @@
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
+                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" AutomationProperties.AutomationId="Pedidos"
                               PreviewMouseDown="Pedidos"/>
                 <TextBlock Text="Generar Pedido" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" 
                               PreviewMouseDown="RegistrarPedidos"/>

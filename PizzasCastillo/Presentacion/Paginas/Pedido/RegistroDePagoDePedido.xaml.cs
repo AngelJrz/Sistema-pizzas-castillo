@@ -51,7 +51,7 @@ namespace Presentacion.Paginas.Pedido
                 mensaje = "Debe ser Estatus tipo Entregado el pedido para cambiarlo a Registrado";
             }
 
-            if (_pedido.Total > entregaCalculada)
+            if (entregaCalculada < 0)
             {
                 mensaje = "Debe ser mayor o igual al total del Pedido la Cantidad a Recibir";
             }
@@ -63,11 +63,12 @@ namespace Presentacion.Paginas.Pedido
 
             PedidoController pedidoController = new PedidoController();
             bool resultado;
-            resultado = pedidoController.ActualizarAPagado(_pedido, entregaCalculada);
+            string pago = pagoText.Text;
+            resultado = pedidoController.ActualizarAPagado(_pedido, Convert.ToDecimal(pago));
 
             if (resultado)
             {
-                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se actualizo a Pagado el Pedido. El cambio a retornar es: " + entregaCalculada);
+                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se actualizó a Pagado el Pedido. El cambio a retornar es: " + entregaCalculada);
                 exito.Show();
                 NavigationService.GoBack();
             }
