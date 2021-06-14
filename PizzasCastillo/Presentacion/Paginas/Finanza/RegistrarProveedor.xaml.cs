@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,7 @@ namespace Presentacion.Paginas.Finanza
     public partial class RegistrarProveedor : Page
     {
 
+        private Process _teclado;
         private OpenFileDialog openFileDialog = new OpenFileDialog();
         private readonly List<string> estadosLista;
         public RegistrarProveedor()
@@ -113,70 +115,78 @@ namespace Presentacion.Paginas.Finanza
 
         private void RegistrarProveedorAccion(object sender, RoutedEventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(rutaArchivo.Text) == false)
             {
-                DireccionProveedor direccion = new DireccionProveedor
+                try
                 {
-                    Calle = CalleText.Text,
-                    Ciudad = CiudadText.Text,
-                    CodigoPostal = CodigoPostalText.Text,
-                    EntidadFederativa = ListaEstados.Text,
-                    Numero = NoInteriorText.Text,
-                };
-
-                byte[] archivo = null;
-                Stream stream = openFileDialog.OpenFile();
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    stream.CopyTo(ms);
-                    archivo = ms.ToArray();
-                }
-
-
-                Proveedor proveedor = new Proveedor
-                {
-                    Nombre = NombresText.Text,
-                    Dni = DNIText.Text,
-                    Email = EmailText.Text,
-                    Telefono = TelefonoText.Text,
-                    NombreEncargado = ApellidosText.Text,
-                    ListaDeProductos = archivo,
-                    Direccion = direccion,
-                    NombreArchivo = openFileDialog.SafeFileName
-                };
-
-                if (ValidarCampos(proveedor, direccion))
-                {
-                    ProveedorController proveedorController = new ProveedorController();
-                    ResultadoRegistro guardado = proveedorController.GuardarProveedor(proveedor);
-
-                    switch (guardado)
+                    DireccionProveedor direccion = new DireccionProveedor
                     {
-                        case ResultadoRegistro.UsuarioYaExiste:
-                            InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Este proveedor ya se encuentra registrado");
-                            ventana.Show();
-                            break;
-                        case ResultadoRegistro.RegistroFallido:
-                            InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
-                            ventana1.Show();
-                            break;
-                        case ResultadoRegistro.RegistroExitoso:
-                            InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el proveedor y su direccion con exito");
-                            ventana2.Show();
-                            NavigationService.GoBack();
-                            break;
+                        Calle = CalleText.Text,
+                        Ciudad = CiudadText.Text,
+                        CodigoPostal = CodigoPostalText.Text,
+                        EntidadFederativa = ListaEstados.Text,
+                        Numero = NoInteriorText.Text,
+                    };
+
+                    byte[] archivo = null;
+                    Stream stream = openFileDialog.OpenFile();
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        stream.CopyTo(ms);
+                        archivo = ms.ToArray();
+                    }
+
+
+                    Proveedor proveedor = new Proveedor
+                    {
+                        Nombre = NombresText.Text,
+                        Dni = DNIText.Text,
+                        Email = EmailText.Text,
+                        Telefono = TelefonoText.Text,
+                        NombreEncargado = ApellidosText.Text,
+                        ListaDeProductos = archivo,
+                        Direccion = direccion,
+                        NombreArchivo = openFileDialog.SafeFileName
+                    };
+
+                    if (ValidarCampos(proveedor, direccion))
+                    {
+                        ProveedorController proveedorController = new ProveedorController();
+                        ResultadoRegistro guardado = proveedorController.GuardarProveedor(proveedor);
+
+                        switch (guardado)
+                        {
+                            case ResultadoRegistro.UsuarioYaExiste:
+                                InteraccionUsuario ventana = new InteraccionUsuario("Error de registro", "Este proveedor ya se encuentra registrado");
+                                ventana.Show();
+                                break;
+                            case ResultadoRegistro.RegistroFallido:
+                                InteraccionUsuario ventana1 = new InteraccionUsuario("Error de registro", "Hubo un error a la hora del registro, Intente mas tarde");
+                                ventana1.Show();
+                                break;
+                            case ResultadoRegistro.RegistroExitoso:
+                                InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el proveedor y su direccion con exito");
+                                ventana2.Show();
+                                NavigationService.GoBack();
+                                break;
+                        }
+                    }
+                    else
+                    {
+
+                        InteraccionUsuario ventana = new InteraccionUsuario("Error de campos", "Uno o mas campos estan incorrectos y/o vacios,verificar bien");
+                        ventana.Show();
                     }
                 }
-                else
+                catch (InvalidOperationException ex)
                 {
-
-                    InteraccionUsuario ventana = new InteraccionUsuario("Error de campos", "Uno o mas campos estan incorrectos y/o vacios,verificar bien");
+                    InteraccionUsuario ventana = new InteraccionUsuario("Error de campos", "No se ha agredado ningun archivo");
                     ventana.Show();
                 }
             }
-            catch (InvalidOperationException ex)
+            else
             {
-                InteraccionUsuario ventana = new InteraccionUsuario("Error de campos", "No se ha agredado ningun archivo");
+                InteraccionUsuario ventana = new InteraccionUsuario("Error de campos", "Aun no ha agregado un archivo");
                 ventana.Show();
             }
         }
@@ -184,6 +194,29 @@ namespace Presentacion.Paginas.Finanza
         private void Cancelar(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
         }
     }
 }

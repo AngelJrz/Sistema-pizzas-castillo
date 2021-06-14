@@ -54,7 +54,7 @@
                               PreviewMouseDown="Usuarios_PreviewMouseDown" AutomationProperties.AutomationId="Usuarios"/>
                 <TextBlock Text="Productos" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Productos_PreviewMouseDown"
                            AutomationProperties.AutomationId="Productos"/>
-                <TextBlock Text="Proveedores" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Proveedores" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Proveedores_PreviewMouseDown" AutomationProperties.AutomationId="Proveedores"/>
                 <TextBlock Text="Estadísticas" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
                 <TextBlock Text="Gastos" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
                 <TextBlock Text="Clientes" Grid.Column="5" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
@@ -65,18 +65,17 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" AutomationProperties.AutomationId="Pedidos"
-                              PreviewMouseDown="Pedidos"/>
-                <TextBlock Text="Generar Pedido" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" 
-                              PreviewMouseDown="RegistrarPedidos"/>
-                <TextBlock Text="Clientes" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"
-                           />
+                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Pedidos"/>
+                <TextBlock Text="Generar Pedido" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="RegistrarPedidos"/>
+                <TextBlock Text="Clientes" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
                 <TextBlock Text="Merma" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Registrar Cliente" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="RegistroClientes_PreviewMouseDown"
+                           AutomationProperties.AutomationId="RegistroCliente" />
             </Grid>
 
             <Grid x:Name="MenuSuperiorMeseroCocina" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
@@ -99,9 +98,9 @@
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="CocineroPedidos_PreviewMouseDown"/>
-                <TextBlock Text="Merma" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Merma_PreviewMouseDown"/>
-                <TextBlock Text="Platillos" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="CocineroPlatillos_PreviewMouseDown"/>
+                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="CocineroPedidos_PreviewMouseDown" AutomationProperties.AutomationId="Pedidos"/>
+                <TextBlock Text="Merma" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Merma_PreviewMouseDown" AutomationProperties.AutomationId="Merma"/>
+                <TextBlock Text="Platillos" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="CocineroPlatillos_PreviewMouseDown" AutomationProperties.AutomationId="Platillos"/>
             </Grid>
 
             <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">

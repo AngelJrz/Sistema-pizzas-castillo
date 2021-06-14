@@ -18,7 +18,7 @@
 
             <TextBlock Text="Justificacion de la merma:" Style="{StaticResource TituloPaginasStyle}" Margin="50,30,00,30" FontSize="20"/>
             <TextBox x:Name="justificacionText" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="200" Width="800"  VerticalAlignment="Top"
-                         AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="-200,0,0,0"/>
+                         AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="-200,0,0,0" AutomationProperties.AutomationId="justificacionText" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
             <TextBlock  Style="{StaticResource TituloStyle}" Margin="-820,50,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Lista de articulos del pedido" VerticalAlignment="Top" 
                     FontSize="20" />
 
@@ -43,7 +43,7 @@
                                     <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}"  Margin="00,0,10,0" />
                                 </StackPanel>
                                 <StackPanel>
-                                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="MermarArticulo" Width="300" Click="MermarArticulo" Height="40"  Margin="80,130,0,50"/>
+                                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="MermarArticulo" Width="300" Click="MermarArticulo" Height="40"  Margin="80,130,0,50" AutomationProperties.AutomationId="MermarArticulo"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -58,7 +58,7 @@
            <Grid Margin="170,00,0,0">
                 <StackPanel Orientation="Horizontal" Margin="-50,0,0,0">
                     <Button Style="{StaticResource BotonPrincipalStyle}" Content="Cancelar" Width="250" Click="Cancelar"  Margin="0,50,0,50"/>
-                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Mermar pedido completo" Width="250" Margin="300,50,0,50" Click="Registrar" />
+                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Mermar pedido completo" Width="250" Margin="300,50,0,50" Click="Registrar" AutomationProperties.AutomationId="MermarPedido"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

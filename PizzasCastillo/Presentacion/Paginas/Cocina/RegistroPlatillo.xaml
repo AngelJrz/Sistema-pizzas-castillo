@@ -28,7 +28,8 @@
                     <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}" Margin="0,0,10,0"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" >
-                    <TextBox x:Name="NombreText" Style="{StaticResource InputDefaultStyle}" MaxLength="60" Width="400" HorizontalAlignment="Left" />
+                    <TextBox x:Name="NombreText" Style="{StaticResource InputDefaultStyle}" MaxLength="60" Width="400" HorizontalAlignment="Left" 
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"  AutomationProperties.AutomationId="NombreText" />
                 </StackPanel>
             </Grid>
 
@@ -45,7 +46,8 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBox x:Name="PrecioText" Style="{StaticResource InputDefaultStyle}" MaxLength="3" Width="100" HorizontalAlignment="Left" 
-                             TextCompositionManager.PreviewTextInput="IsTelephoneNumber"/>
+                             TextCompositionManager.PreviewTextInput="IsTelephoneNumber" AutomationProperties.AutomationId="PrecioText"
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" />
                     <TextBlock Text="$ MXN" Style="{StaticResource TituloCamposStyle}" Margin="10,0,0,0" />
                 </StackPanel>
             </Grid>
@@ -60,7 +62,7 @@
                     <Label Content="*" Foreground="{StaticResource Alert}" />
                     <TextBlock Text="Imagen:" Style="{StaticResource TituloCamposStyle}" />
                     <Button Height="40" HorizontalAlignment="Left"  Name="botonImagen" VerticalAlignment="Bottom" Style="{StaticResource BotonSecundarioStyle}"
-                       Width="175" Click="agregarImagen" Content="Agregar Foto" Margin="30,0,0,0"/>
+                       Width="175" Click="agregarImagen" Content="Agregar Foto" Margin="30,0,0,0" AutomationProperties.AutomationId="FotoBoton"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="-200,38,0,0">
                     <Image Name="imgPhoto" Stretch="Fill" Grid.Column="3" MinWidth="500" MaxWidth="500" MaxHeight="300" MinHeight="300"/>
@@ -72,7 +74,7 @@
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,10">
                 <TextBox x:Name="recetaText" Style="{StaticResource InputDefaultStyle}" TextWrapping="Wrap" Height="300" Width="1000"  VerticalAlignment="Top"
-                         AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                         AcceptsReturn="True" VerticalScrollBarVisibility="Auto" AutomationProperties.AutomationId="recetaText" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" />
             </StackPanel>
 
 
@@ -116,11 +118,11 @@
 
             </StackPanel>
 
-            <Button Style="{StaticResource BotonSecundarioStyle}" Margin="-130,30,0,0" Content="Agregar ingrediente" Width="200"  Click="Agregar"/>
+            <Button Style="{StaticResource BotonSecundarioStyle}" Margin="-130,30,0,0" Content="Agregar ingrediente" Width="200"  Click="Agregar" AutomationProperties.AutomationId="AgregarIngrediente"/>
             <Grid Margin="180,100,0,0">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                     <Button Style="{StaticResource BotonPrincipalStyle}" Content="Cancelar" Width="200"  Click="Cancelar"  Margin="0,50,0,50"/>
-                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Registrar" Width="200"  Margin="300,50,0,50" Click="Registrar" />
+                    <Button Style="{StaticResource BotonSecundarioStyle}" Content="Registrar" Width="200"  Margin="300,50,0,50" Click="Registrar" AutomationProperties.AutomationId="RegistrarPlatillo"/>
                 </StackPanel>
             </Grid>
 

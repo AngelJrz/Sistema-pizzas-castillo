@@ -169,6 +169,9 @@
     <Compile Include="Paginas\Finanza\ListaProveedores.xaml.cs">
       <DependentUpon>ListaProveedores.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Finanza\MenuProveedores.xaml.cs">
+      <DependentUpon>MenuProveedores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Finanza\RegistrarGastoExtra.xaml.cs">
       <DependentUpon>RegistrarGastoExtra.xaml</DependentUpon>
     </Compile>
@@ -373,6 +376,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Finanza\ListaProveedores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Finanza\MenuProveedores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

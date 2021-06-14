@@ -154,7 +154,7 @@
                             <DataTemplate>
                                 <Grid>
                                     <Button Style="{StaticResource BotonSecundarioStyle}" Click="ChecarPedido" Grid.Column="0" 
-                                            Content="Revisar Pedido" Width="200" Height="40"/>
+                                            Content="Revisar Pedido" Width="200" Height="40" AutomationProperties.AutomationId="ChecarPedido"/>
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
