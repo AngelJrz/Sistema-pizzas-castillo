@@ -214,7 +214,8 @@
 
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarPago" Grid.Column="3">
+                                    <Button Style="{StaticResource IconoBoton}" Click="RegistrarPago" Grid.Column="3"
+                                            AutomationProperties.AutomationId="{Binding Estatus.Nombre}">
                                         <materialDesign:PackIcon Kind="Cash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>

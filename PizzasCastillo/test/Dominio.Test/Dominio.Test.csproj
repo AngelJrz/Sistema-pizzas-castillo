@@ -127,6 +127,7 @@
     <Compile Include="CU-MF-05\RegistrarPedidoAProveedorTest.cs" />
     <Compile Include="CU-MF-06\GestionarTiposDeSalidasTest.cs" />
     <Compile Include="CU-MF-07\ConfirmarEntregaDePedidoTest.cs" />
+    <Compile Include="CU-MPE-06\RegistroDePagoDePedidoUITest.cs" />
     <Compile Include="CU-MPR-01\RegistrarProductoTest.cs" />
     <Compile Include="CU-MPR-01\RegistrarProductoUITest.cs" />
     <Compile Include="CU-MPR-02\ActualizarProductoTest.cs" />
