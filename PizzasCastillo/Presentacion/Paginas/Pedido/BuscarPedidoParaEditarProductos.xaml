@@ -192,7 +192,7 @@
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition Width="30"/>
-                                      
+                                        <ColumnDefinition Width="30"/>
 
                                     </Grid.ColumnDefinitions>
                                     <Button Style="{StaticResource IconoBoton}" Click="EditarPedido" Grid.Column="0">
@@ -218,6 +218,11 @@
                                             AutomationProperties.AutomationId="{Binding Estatus.Nombre}">
                                         <materialDesign:PackIcon Kind="Cash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
+                                    </Button>
+
+                                    <Button Style="{StaticResource IconoBoton}" Grid.Column="4" Click="CancelarPedido_Clic">
+                                        <materialDesign:PackIcon Kind="CancelBox" Foreground="{StaticResource Gris}" 
+                                                                 Width="25" Height="25" ToolTip="Cancelar pedido"/>
                                     </Button>
 
                                 </Grid>

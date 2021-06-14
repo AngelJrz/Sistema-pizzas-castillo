@@ -160,7 +160,28 @@ namespace Dominio.Logica
         }
 
 
+        public ResultsPedidos CancelarPedido(Pedido pedido)
+        {
 
+            if (!pedido.Estatus.Nombre.Equals("En Proceso") && !pedido.Estatus.Nombre.Equals("Preparado"))
+            {
+                return ResultsPedidos.CancelacionNoPermitida;
+            }
+
+
+            EstatusPedidoController estatusController = new EstatusPedidoController();
+            List<Dominio.Enumeraciones.Tipo> listaTipos = estatusController.ObtenerEstatusPedido();
+            pedido.Estatus = listaTipos.Find(t => t.Nombre.Equals("Cancelado"));
+            PedidosDAO pedidoDao = new PedidosDAO();
+            bool resultado;
+
+            resultado = pedidoDao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+
+            if (!resultado)
+                return ResultsPedidos.NoSePudoActualizar;
+
+            return ResultsPedidos.ActualizadoConExito;
+        }
 
         public AccesoADatos.Pedido CloneDominioADatosParaLlevar(Pedido pedidoAClonar)
         {
