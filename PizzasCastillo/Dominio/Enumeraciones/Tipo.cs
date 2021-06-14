@@ -191,5 +191,15 @@ namespace Dominio.Enumeraciones
             ));
             return list;
         }
+
+        public static AccesoADatos.EstatusPedido CloneEstatusToEntityDB(Tipo estatus)
+        {
+            return new AccesoADatos.EstatusPedido
+            {
+                Nombre = estatus.Nombre,
+                Estatus = estatus.Estatus,
+                Id = estatus.Id
+            };
+        }
     }
 }

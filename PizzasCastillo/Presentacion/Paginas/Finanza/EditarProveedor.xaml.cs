@@ -163,7 +163,7 @@ namespace Presentacion.Paginas.Finanza
                     using (MemoryStream ms = new MemoryStream())
                     {
                         stream.CopyTo(ms);
-                        archivo = ms.ToArray();
+                        archivoNuevo = ms.ToArray();
                     }
 
                     proveedor.ListaDeProductos = archivoNuevo;

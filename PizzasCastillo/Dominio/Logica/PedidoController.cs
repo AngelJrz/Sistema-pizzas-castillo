@@ -9,6 +9,8 @@ using static Dominio.Enumeraciones.PedidosResult;
 
 
 using Dominio.Entidades;
+using Dominio.Enumeraciones;
+
 namespace Dominio.Logica
 {
     public class PedidoController
@@ -175,7 +177,7 @@ namespace Dominio.Logica
             PedidosDAO pedidoDao = new PedidosDAO();
             bool resultado;
 
-            resultado = pedidoDao.ActualizarPedidoEstatus(CloneDominioADatosLocalEditar(pedido));
+            resultado = pedidoDao.ActualizarPedidoEstatus(PartialClonePedido(pedido));
 
             if (!resultado)
                 return ResultsPedidos.NoSePudoActualizar;
@@ -242,6 +244,16 @@ namespace Dominio.Logica
                 IdMesa = pedidoAClonar.Mesa.Id,
                 Contiene = CloneDominioADatosContiene(pedidoAClonar.Contiene)
 
+            };
+        }
+
+        public AccesoADatos.Pedido PartialClonePedido(Pedido pedidoAClonar)
+        {
+            return new AccesoADatos.Pedido()
+            {
+                Id = pedidoAClonar.Id,
+                IdEstatusPedido = pedidoAClonar.Estatus.Id,
+                EstatusPedido = Tipo.CloneEstatusToEntityDB(pedidoAClonar.Estatus)
             };
         }
 
