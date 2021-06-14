@@ -29,7 +29,7 @@ namespace Presentacion.Paginas.Finanza
             if (listaDeTipos.Count == 0)
             {
                 MessageBox.Show("No existen tipos de gastos, intente mas tarde");
-                NavigationService.GoBack();
+                
             }
             else
             {

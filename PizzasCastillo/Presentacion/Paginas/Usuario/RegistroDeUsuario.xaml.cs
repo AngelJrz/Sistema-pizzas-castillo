@@ -224,9 +224,9 @@ namespace Presentacion.Paginas.Usuario
 
         private void CerrarTeclado_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!_teclado.HasExited)
+            if (_teclado != null)
             {
-                if (_teclado != null)
+                if (!_teclado.HasExited)
                     _teclado.Kill();
             }
         }
