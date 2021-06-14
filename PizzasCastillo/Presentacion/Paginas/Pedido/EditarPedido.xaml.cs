@@ -105,10 +105,15 @@ namespace Presentacion.Paginas.Pedido
 
             }
         }
+        private void CancelarEdicion(object sender, RoutedEventArgs e)
+        {
+
+            NavigationService.GoBack();
+        }
 
 
-        
-    }
+
+        }
     public class ByteToImageConverte : IValueConverter
     {
         public String ConvertidorRutaImagen(string nombreArchivo)

@@ -195,8 +195,10 @@
 
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonSecundarioStyle}"
+            <Button Content="Guardar Acticulos Del Pedido" Style="{StaticResource BotonPrincipalStyle}"
                     Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="GuardarEdicionProducto"/>
+            <Button Content="Cancelar Edicion" Style="{StaticResource BotonSecundarioStyle}"
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,0" Click="CancelarEdicion"/>
         </StackPanel>
 
 

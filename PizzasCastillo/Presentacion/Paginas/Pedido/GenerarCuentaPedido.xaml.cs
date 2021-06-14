@@ -94,23 +94,31 @@ namespace Presentacion.Paginas.Pedido
 
                 String filename = dialog.FileName;
 
-
+                
                
                 PdfWriter pw = new PdfWriter(filename);
                 PdfDocument pdfDocument = new PdfDocument(pw);
                 Document doc = new Document(pdfDocument, PageSize.B6);
                 doc.SetMargins(0, 35, 70, 35);
-                doc.Add(new iText.Layout.Element.Paragraph("Pizzas Castillo").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
-                doc.Add(new iText.Layout.Element.Paragraph("Direccion: " + "Calle misterios #15"));
-                doc.Add(new iText.Layout.Element.Paragraph("Numero de pedido: " + _pedido.Id.ToString()));
-                doc.Add(new iText.Layout.Element.Paragraph("Articulos: "));
-                doc.Add(new iText.Layout.Element.Paragraph("Descripcion: "+"----------"+"Cantiddad: "+ "----------"+"Precio: " + "----------"+ "total"));
+                doc.Add(new iText.Layout.Element.Paragraph("Pizzas Castillo").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph("Direccion: ").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph("Calle Misterios #15").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph("Numero de pedido:").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph(_pedido.Id.ToString()).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph("Articulos: ").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph("Descripcion: "+"-------"+"Cantiddad: "+ "-------"+"Precio: " + "-------"+ "total").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
                 foreach (Contiene x in _pedido.Contiene) 
                 {
-                    doc.Add(new iText.Layout.Element.Paragraph(x.ArticuloVenta.Nombre.ToString() + "----------"+ x.Cantidad.ToString() + "----------"+x.ArticuloVenta.Precio + "----------" + x.Total.ToString()));
+                    doc.Add(new iText.Layout.Element.Paragraph(x.ArticuloVenta.Nombre.ToString() + "-------"+ x.Cantidad.ToString() + "-------"+x.ArticuloVenta.Precio + "----------" + x.Total.ToString()).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
                 }
-                doc.Add(new iText.Layout.Element.Paragraph("Fecha y hora en la que se generó: " + DateTime.Now.ToString()));
-                doc.Add(new iText.Layout.Element.Paragraph("Empleado:" + _pedido.RegistradoPor.NombreCompleto));
+               
+                doc.Add(new iText.Layout.Element.Paragraph("Fecha y hora en la que se generó: ").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph(DateTime.Now.ToString()).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+
+                doc.Add(new iText.Layout.Element.Paragraph("Empleado:").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                doc.Add(new iText.Layout.Element.Paragraph(_pedido.RegistradoPor.NombreCompleto).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph("Numero de Empleado").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph(_pedido.RegistradoPor.NumeroEmpleado).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
 
                 doc.Close();
                 bandera = true;

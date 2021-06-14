@@ -25,17 +25,20 @@ namespace Presentacion.Paginas.Producto
     /// </summary>
     public partial class ValidarExistenciaProducto : Page
     {
-        
+
         public ValidarExistenciaProducto()
         {
             InitializeComponent();
             ArticuloVentaController controller = new ArticuloVentaController();
             ListaProductos.ItemsSource = controller.ObtenerProductos();
-           
-            foreach (ArticuloVenta p in ListaProductos.Items)
+            try
             {
-                File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
+                foreach (ArticuloVenta p in ListaProductos.Items)
+                {
+                    File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
+                }
             }
+            catch(Exception) { }
         }
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {

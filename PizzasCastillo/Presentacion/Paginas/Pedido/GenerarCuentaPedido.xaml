@@ -16,7 +16,7 @@
 
     <ScrollViewer Background="{StaticResource AzulCastilloLight}">
         <StackPanel>
-            <TextBlock Text="Registrar Pago de Pedido" Style="{StaticResource TituloPaginasStyle}"
+            <TextBlock Text="Imprimir ticket" Style="{StaticResource TituloPaginasStyle}"
                        Margin="80,30,506,0"/>
 
             <!--DATOS DE PEDIDO-->

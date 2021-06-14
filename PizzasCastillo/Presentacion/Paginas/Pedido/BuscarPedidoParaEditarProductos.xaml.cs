@@ -50,13 +50,30 @@ namespace Presentacion.Paginas.Pedido
         }
         private void EditarPedido(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pedido.EditarPedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
-
+            Dominio.Entidades.Pedido pedido = (Dominio.Entidades.Pedido)ListaPedidos.SelectedItem;
+            if (pedido.Estatus.Nombre.Equals("En Proceso"))
+            {
+                NavigationService.Navigate(new Pedido.EditarPedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+            }
+            else {
+                InteraccionUsuario interaccion = new InteraccionUsuario("Error", "No se puede editar un pedido en este estado");
+                interaccion.Show();
+            }
         }
 
         private void RegistrarEntrega(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pedido.RegistrarEntrega((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+            Dominio.Entidades.Pedido pedido = (Dominio.Entidades.Pedido)ListaPedidos.SelectedItem;
+            if (pedido.Estatus.Nombre.Equals("Preparado"))
+            {
+                NavigationService.Navigate(new Pedido.RegistrarEntrega((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+            }
+            else
+            {
+                InteraccionUsuario interaccion = new InteraccionUsuario("Error", "No se puede registrar la entrega de un pedido en este estado");
+                interaccion.Show();
+            }
+          
 
         }
 

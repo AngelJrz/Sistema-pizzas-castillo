@@ -142,7 +142,7 @@ namespace AccesoADatos.ControladoresDeDatos
         public List<Pedido> ObtenerPedidos() {
             try
             {
-                _pedidos = connection.Pedido.Where(x => x.EstatusPedido.Nombre.Equals("En Proceso"))
+                _pedidos = connection.Pedido
                 .ToList();
                 return _pedidos;
 
@@ -160,7 +160,7 @@ namespace AccesoADatos.ControladoresDeDatos
             try
             {
                 _pedidos = connection.Pedido.Where(x => x.Persona.Nombres.Contains
-                (nombre) && x.EstatusPedido.Nombre.Equals("En Preparacion"))
+                (nombre))
                 .ToList();
                 return _pedidos;
 
