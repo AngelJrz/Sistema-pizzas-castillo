@@ -57,7 +57,8 @@
             </Grid>
 
             <Button Content="Agregar nuevo tipo" HorizontalAlignment="Center" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="170" Margin="0,30,0,0" Click="AgregarNuevoTipo"/>
+                    Width="170" Margin="0,30,0,0" Click="AgregarNuevoTipo"
+                    AutomationProperties.AutomationId="AgregarBoton"/>
 
             <TextBlock Text="Lista de tipos de usuario" Style="{StaticResource TituloStyle}"
                        Margin="100,30,0,0"/>
@@ -142,12 +143,14 @@
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EditarTipoUsuario" Grid.Column="1">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EditarTipoUsuario" Grid.Column="1"
+                                            AutomationProperties.AutomationId="{Binding Nombre}">
                                         <materialDesign:PackIcon Kind="UserEdit" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarTipoUsuario" Grid.Column="2">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarTipoUsuario" Grid.Column="2"
+                                            AutomationProperties.AutomationId="{Binding Id}">
                                         <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>

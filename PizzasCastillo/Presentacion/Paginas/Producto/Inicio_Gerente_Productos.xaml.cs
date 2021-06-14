@@ -1,9 +1,12 @@
 ﻿using AccesoADatos.ControladoresDeDatos;
+using Dominio.Enumeraciones;
 using Dominio.Logica;
 using Presentacion.Recursos;
+using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +28,12 @@ namespace Presentacion.Paginas.Producto
     public partial class Inicio_Gerente_Productos : Page
     {
         private ObservableCollection<Dominio.Entidades.Producto> productos = null;
+        private ProductoController productoController = new ProductoController();
         private Dominio.Entidades.Producto productoSeleccionado;
         private readonly List<string> filtrosLista;
         private readonly Singleton _sesion;
+        private Process _teclado;
+        private const int NO_DISPONIBLE = 2;
 
         public Inicio_Gerente_Productos(Singleton sesion)
         {
@@ -42,8 +48,7 @@ namespace Presentacion.Paginas.Producto
             };
 
             TipoBusqueda.ItemsSource = filtrosLista;
-
-            ProductoController productoController = new ProductoController();
+            TipoBusqueda.SelectedItem = filtrosLista.Find(f => f.Contains("Nombre"));
             List<Dominio.Entidades.Producto> listaDeProductos = productoController.ObtenerProductos();
 
             if (listaDeProductos.Count == 0)
@@ -60,7 +65,6 @@ namespace Presentacion.Paginas.Producto
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
             string busqueda = BusquedaText.Text;
-            ProductoController productoController = new ProductoController();
             List<Dominio.Entidades.Producto> listaDeProductos = new List<Dominio.Entidades.Producto>();
             string filtroSeleccionado = (string)TipoBusqueda.SelectedItem;
 
@@ -78,10 +82,19 @@ namespace Presentacion.Paginas.Producto
                 {
                     if (filtroSeleccionado.Equals("Nombre"))
                     {
-                        listaDeProductos = productoController.BuscarProductosPorNombre(busqueda);                    }
+                        listaDeProductos = productoController.BuscarProductosPorNombre(busqueda);    
+                    }
                 }
             }
 
+            productos = new ObservableCollection<Dominio.Entidades.Producto>(listaDeProductos);
+            tablaDeProductos.ItemsSource = productos;
+        }
+
+        private void RefrescarTabla()
+        {
+            List<Dominio.Entidades.Producto> listaDeProductos = new List<Dominio.Entidades.Producto>();
+            listaDeProductos = productoController.ObtenerProductos();
             productos = new ObservableCollection<Dominio.Entidades.Producto>(listaDeProductos);
             tablaDeProductos.ItemsSource = productos;
         }
@@ -98,22 +111,56 @@ namespace Presentacion.Paginas.Producto
             NavigationService.Navigate(new ActualizacionDeProducto(productoSeleccionado, _sesion));
         }
 
-        private void EliminarProducto(object sender, RoutedEventArgs e)
+        private void ConfirmarEliminar(object sender, RoutedEventArgs e)
         {
-            bool seElimino = false;
-
             productoSeleccionado = (Dominio.Entidades.Producto)tablaDeProductos.SelectedItem;
-            ProductoController productoController = new ProductoController();
+            Confirmacion dialogoConfirmacion = new Confirmacion("Confirmar Eliminación",
+                "¿Estas seguro que deseas eliminar este producto: " + productoSeleccionado.Nombre + "?");
 
-            seElimino = productoController.EliminarProducto(productoSeleccionado);
-
-            if (seElimino)
+            if (dialogoConfirmacion.ShowDialog() == true)
             {
-                MessageBox.Show("Eliminación Exitosa");
+                EliminarProducto();
+            }
+        }
+        private void EliminarProducto()
+        {
+            productoSeleccionado = (Dominio.Entidades.Producto)tablaDeProductos.SelectedItem;
+
+            if (productoSeleccionado.Estatus == NO_DISPONIBLE)
+            {
+                InteraccionUsuario error = new InteraccionUsuario("Error", "Ya se dio de baja este producto.");
+                error.Show();
+                return;
+            }
+
+            if (productoSeleccionado.Cantidad > 0)
+            {
+                InteraccionUsuario error = new InteraccionUsuario("Error", "No se puede eliminar un Producto hasta que su cantidad sea 0.");
+                error.Show();
+                return;
+            }
+
+            ResultadoEliminarProducto resultado;
+            resultado = productoController.EliminarProducto(productoSeleccionado);
+
+            if (resultado == ResultadoEliminarProducto.BajaExitosa)
+            {
+                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Baja exitosa.");
+                exito.Show();
+                RefrescarTabla();
             }
             else
             {
-                MessageBox.Show("Ocurrió un error, intenté más tarde");
+                if (resultado == ResultadoEliminarProducto.BajaInvalida)
+                {
+                    InteraccionUsuario error = new InteraccionUsuario("Error", "Ya se dio de baja este producto.");
+                    error.Show();
+                }
+                else
+                {
+                    InteraccionUsuario error = new InteraccionUsuario("Error", "No se pudo eliminar el producto. Intente de nuevo más tarde.");
+                    error.Show();
+                }
             }
         }
 
@@ -130,6 +177,29 @@ namespace Presentacion.Paginas.Producto
         private void GenerarReporteInventario(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new GeneraciónDeReporteInventario(_sesion));
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
         }
     }
 }

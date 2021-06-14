@@ -212,13 +212,15 @@
                                                                  Width="25" Height="25"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EditarUsuario" Grid.Column="1">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EditarUsuario" Grid.Column="1"
+                                            AutomationProperties.AutomationId="{Binding Username}">
                                         <materialDesign:PackIcon Kind="UserEdit" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"
-                                                                 AutomationProperties.AutomationId="{Binding Username}"/>
+                                                                 />
                                     </Button>
 
-                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarUsuario" Grid.Column="2">
+                                    <Button Style="{StaticResource IconoBoton}" Click="EliminarUsuario" Grid.Column="2"
+                                            AutomationProperties.AutomationId="{Binding Id}">
                                         <materialDesign:PackIcon Kind="Trash" Foreground="{StaticResource Gris}" 
                                                                  Width="25" Height="25"/>
                                     </Button>
@@ -230,7 +232,8 @@
             </DataGrid>
 
             <Button Content="Administrar tipos de usuario" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,50" Click="IrATiposUsuarios"/>
+                    Width="250" HorizontalAlignment="Center" Margin="0,50,0,50" Click="IrATiposUsuarios"
+                    AutomationProperties.AutomationId="TiposUsuarioBoton"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

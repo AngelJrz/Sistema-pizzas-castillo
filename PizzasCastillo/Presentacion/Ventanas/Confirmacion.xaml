@@ -25,10 +25,10 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Content="Cancelar" IsCancel="True" Style="{StaticResource BotonPrincipalStyle}"
-                    VerticalAlignment="Center" Margin="0,0,30,0"/>
+                    VerticalAlignment="Center" Margin="0,0,30,0" AutomationProperties.AutomationId="CancelarBoton"/>
 
             <Button Content="Aceptar" IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
-                    Margin="30,0,0,0" Click="AceptarClic"/>
+                    Margin="30,0,0,0" Click="AceptarClic" AutomationProperties.AutomationId="AceptarBoton"/>
         </StackPanel>
     </Grid>
 </Window>

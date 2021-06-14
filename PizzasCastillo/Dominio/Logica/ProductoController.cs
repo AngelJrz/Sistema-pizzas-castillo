@@ -139,29 +139,37 @@ namespace Dominio.Logica
         }
 
 
-        public bool EliminarProducto(Producto producto)
+        public ResultadoEliminarProducto EliminarProducto(Producto producto)
         {
 
             if (producto.Estatus == NO_DISPONIBLE)
             {
-                return false;
+                return ResultadoEliminarProducto.BajaInvalida;
             }
-            
-            AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
-            productoNuevo.Producto = Producto.CloneToDBEntity(producto);
-
-            bool seGuardo;
-
-            try
+            else
             {
-                seGuardo = productoDAO.ActualizarArticulo(productoNuevo);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                producto.Estatus = NO_DISPONIBLE;
 
-            return seGuardo;
+                AccesoADatos.ArticuloVenta productoNuevo = ArticuloVenta.CloneToDBEntity(producto);
+                productoNuevo.Producto = Producto.CloneToDBEntity(producto);
+
+                bool seElimino;
+
+                try
+                {
+                    seElimino = productoDAO.ActualizarArticulo(productoNuevo);
+                    if (seElimino)
+                    {
+                        return ResultadoEliminarProducto.BajaExitosa;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                return ResultadoEliminarProducto.BajaFallida;
+            }
         }
 
         public List<Producto> ObtenerProductos()

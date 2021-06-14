@@ -41,7 +41,8 @@
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombreText}">
                     <TextBox x:Name="NombreText" Style="{StaticResource InputDefaultStyle}"
-                                     MaxLength="30" Width="300" HorizontalAlignment="Left"/>
+                                     MaxLength="30" Width="300" HorizontalAlignment="Left"
+                             AutomationProperties.AutomationId="NombreText"/>
                 </StackPanel>
             </Grid>
 
@@ -50,7 +51,8 @@
                     VerticalAlignment="Center" Margin="0,0,30,0"/>
 
                 <Button Content="Registrar" IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
-                    Margin="30,0,0,0" Click="RegistrarClic"/>
+                    Margin="30,0,0,0" Click="RegistrarClic"
+                        AutomationProperties.AutomationId="RegistrarBoton"/>
             </StackPanel>
         </Grid>
     </Grid>

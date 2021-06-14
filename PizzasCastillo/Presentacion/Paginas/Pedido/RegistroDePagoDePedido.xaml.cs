@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ namespace Presentacion.Paginas.Pedido
     /// </summary>
     public partial class RegistroDePagoDePedido : Page
     {
+        private Process _teclado;
         private Dominio.Entidades.Pedido _pedido;
         private decimal entregaCalculada;
 
@@ -30,7 +32,17 @@ namespace Presentacion.Paginas.Pedido
             this.DataContext = _pedido;
         }
 
-        private void RegistrarPago(object sender, RoutedEventArgs e)
+        private void ConfirmarAccion(object sender, RoutedEventArgs e)
+        {
+            Confirmacion dialogoConfirmacion = new Confirmacion("Confirmar Actualización", "¿Estas seguro que deseas actualizar este pedido a Pagado?");
+
+            if (dialogoConfirmacion.ShowDialog() == true)
+            {
+                RegistrarPago();
+            }
+        }
+
+        private void RegistrarPago()
         {
             string mensaje = "";
 
@@ -94,6 +106,29 @@ namespace Presentacion.Paginas.Pedido
             else
             {
                 e.Handled = false;
+            }
+        }
+
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
             }
         }
 
