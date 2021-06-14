@@ -132,11 +132,11 @@ namespace Dominio.Test.CU_MPE_06
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
             var botonConfirmar = sesion.FindElementByAccessibilityId("ConfirmarBoton");
             botonConfirmar.Click();
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
+            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
             var botonAceptar = sesion.FindElementByAccessibilityId("AceptarBoton");
             botonAceptar.Click();
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
+            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
             var mensaje = sesion.FindElementByAccessibilityId("Mensaje");
             string mensajeEsperado = "Debe ser mayor o igual al total del Pedido la Cantidad a Recibir";
@@ -156,7 +156,7 @@ namespace Dominio.Test.CU_MPE_06
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
             var botonConfirmar = sesion.FindElementByAccessibilityId("ConfirmarBoton");
             botonConfirmar.Click();
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
+            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
             var botonAceptar = sesion.FindElementByAccessibilityId("AceptarBoton");
             botonAceptar.Click();

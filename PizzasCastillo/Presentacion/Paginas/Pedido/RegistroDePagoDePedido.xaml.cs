@@ -68,7 +68,8 @@ namespace Presentacion.Paginas.Pedido
 
             if (resultado)
             {
-                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se actualizó a Pagado el Pedido. El cambio a retornar es: " + entregaCalculada);
+                //InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se actualizó a Pagado el Pedido. El cambio a retornar es: " + entregaCalculada);
+                InteraccionUsuario exito = new InteraccionUsuario("Exito", "Se actualizó a Pagado el Pedido.");
                 exito.Show();
                 NavigationService.GoBack();
             }
