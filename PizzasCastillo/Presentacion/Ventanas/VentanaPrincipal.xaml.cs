@@ -78,7 +78,23 @@ namespace Presentacion.Ventanas
         {
             base.OnClosed(e);
             IsClosed = true;
-            Directory.Delete(Recursos.RecursosGlobales.RUTA_IMAGENES);
+            
+            string[] files = Directory.GetFiles(Recursos.RecursosGlobales.RUTA_IMAGENES);
+            foreach (string file in files)
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (IOException){}
+                
+            }
+
+            try
+            {
+                Directory.Delete(Recursos.RecursosGlobales.RUTA_IMAGENES);
+            }
+            catch (IOException) { }
         }
 
         private void Usuarios_PreviewMouseDown(object sender, MouseButtonEventArgs e)
