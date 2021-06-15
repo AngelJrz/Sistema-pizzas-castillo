@@ -218,9 +218,18 @@ namespace Dominio.Logica
         public List<ArticuloVenta> ObtenerProductos()
         {
             ArticuloVentaDAO articuloDAO = new ArticuloVentaDAO();
+           
             List<AccesoADatos.ArticuloVenta> productosBD = articuloDAO.ObtenerProductos();
+            List<AccesoADatos.ArticuloVenta> platillosbd = articuloDAO.ObtenerPlatillos();
 
             List<ArticuloVenta> articulos = ArticuloVenta.CloneListProducto(productosBD);
+            List<ArticuloVenta> articulosPlatillos = ArticuloVenta.CloneListPlatillo(platillosbd);
+
+            foreach (ArticuloVenta p in articulosPlatillos) {
+
+                articulos.Add(p);
+            
+            }
 
             return articulos;
         }
