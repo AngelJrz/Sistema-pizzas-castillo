@@ -28,7 +28,8 @@ namespace Presentacion.Paginas.Pedido
     public partial class RegistrarPedidoArticulos : Page
     {
         private Dominio.Entidades.Pedido _pedidoNuevo;
-       
+        public string EstatusActivo = "Activo";
+
         public RegistrarPedidoArticulos(Dominio.Entidades.Pedido pedidoNuevo)
         {
             _pedidoNuevo = pedidoNuevo;
@@ -41,7 +42,8 @@ namespace Presentacion.Paginas.Pedido
                 foreach (ArticuloVenta p in ListaProductos.Items)
                 {
                     File.WriteAllBytes(Recursos.RecursosGlobales.RUTA_IMAGENES + p.NombreFoto, p.Foto);
-                }
+        
+            }
             }
             catch(IOException) 
             { 

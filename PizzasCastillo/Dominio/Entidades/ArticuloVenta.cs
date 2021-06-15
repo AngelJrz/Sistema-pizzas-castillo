@@ -18,6 +18,10 @@ namespace Dominio.Entidades
         public decimal CantidadLocal { get; set; }
         public Producto Producto { get; set; }
         public Platillo Platillo { get; set; }
+        public string Status {
+            get { return Estatus == 1 ? "Activo" : "No Activo"; }
+            set { }
+        }
 
         public static ArticuloVenta CloneProductoPartial(AccesoADatos.ArticuloVenta articuloVenta)
         {

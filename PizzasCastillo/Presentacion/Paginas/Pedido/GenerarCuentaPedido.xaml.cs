@@ -111,7 +111,9 @@ namespace Presentacion.Paginas.Pedido
                 {
                     doc.Add(new iText.Layout.Element.Paragraph(x.ArticuloVenta.Nombre.ToString() + "-------"+ x.Cantidad.ToString() + "-------"+x.ArticuloVenta.Precio + "----------" + x.Total.ToString()).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
                 }
-               
+                doc.Add(new iText.Layout.Element.Paragraph("Total: ").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+                doc.Add(new iText.Layout.Element.Paragraph(_pedido.Total.ToString()+" Pesos").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
+
                 doc.Add(new iText.Layout.Element.Paragraph("Fecha y hora en la que se generó: ").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
                 doc.Add(new iText.Layout.Element.Paragraph(DateTime.Now.ToString()).SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(11));
 

@@ -66,7 +66,7 @@ namespace Presentacion.Paginas.Pedido
         private void RegistrarEntrega(object sender, RoutedEventArgs e)
         {
             Dominio.Entidades.Pedido pedido = (Dominio.Entidades.Pedido)ListaPedidos.SelectedItem;
-            if (pedido.Estatus.Nombre.Equals("Preparado"))
+            if (pedido.Estatus.Nombre.Equals("Preparado") || pedido.Estatus.Nombre.Equals("Enviado"))
             {
                 NavigationService.Navigate(new Pedido.RegistrarEntrega((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
             }

@@ -136,7 +136,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding Estatus}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                                <TextBlock Text="{Binding Status}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
                                            FontSize="14"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
