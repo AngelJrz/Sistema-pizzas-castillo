@@ -19,10 +19,12 @@ namespace Presentacion.Paginas.Finanza
         private ObservableCollection<Solicita> listaObservable;
         private List<Dominio.Entidades.Producto> listaDeProductosEntregados;
         private PedidoAProveedor pedidoRevisado;
+        private Empleado empleado;
 
-        public ConfirmarEntrega(PedidoAProveedor pedido)
+        public ConfirmarEntrega(PedidoAProveedor pedido, Empleado empleado)
         {
             InitializeComponent();
+            this.empleado = empleado;
             listaDeProductosEntregados = new List<Dominio.Entidades.Producto>();
             listaSolicitadaOriginal = pedido.Solicita;
             pedidoRevisado = pedido;
@@ -46,6 +48,10 @@ namespace Presentacion.Paginas.Finanza
                         if (controllerPedido.PedidoAProveedorEntregado(pedidoRevisado.Id))
                         {
                             MessageBox.Show("En registro del pedido se realizo correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                            GastoExtraController controlador = new GastoExtraController();
+                            GastoExtra nuevoGasto = ObtenerGastoExtra();
+                            controlador.RegistrarGastoExtra(nuevoGasto);
+
                             NavigationService.Navigate(new Inicio());
                         }
                         else
@@ -120,6 +126,22 @@ namespace Presentacion.Paginas.Finanza
             listaObservable = new ObservableCollection<Solicita>(listaSolicitadaOriginal);
 
             tablaDeProductos.ItemsSource = listaObservable;
+        }
+
+        private GastoExtra ObtenerGastoExtra()
+        {
+            GastoExtra nuevoGasto = new GastoExtra()
+            {
+                RegistradoPor = empleado,
+                Total = pedidoRevisado.CostoTotal,
+                Fecha = DateTime.Now,
+                Tipo = new Dominio.Enumeraciones.Tipo()
+                {
+                    Id = 1
+                }
+            };
+
+            return nuevoGasto;
         }
     }
 }

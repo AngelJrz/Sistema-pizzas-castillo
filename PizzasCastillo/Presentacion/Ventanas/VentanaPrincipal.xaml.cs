@@ -164,7 +164,10 @@ namespace Presentacion.Ventanas
 
         private void Click_ConfirmarEntrega(object sender, MouseButtonEventArgs e)
         {
-            PaginaFrame.Navigate(new ListaPedidosPendientes());
+            _sesion.Recursos.TryGetValue("Empleado", out object empleado);
+            Empleado empleadoEnSesion = empleado as Empleado;
+
+            PaginaFrame.Navigate(new ListaPedidosPendientes(empleadoEnSesion));
         }
         private void Pedidos(object sender, MouseButtonEventArgs e)
         {
