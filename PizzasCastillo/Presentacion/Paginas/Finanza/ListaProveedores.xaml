@@ -10,7 +10,8 @@
     <StackPanel HorizontalAlignment="Center">
         <TextBlock  Style="{StaticResource TituloStyle}" Margin="0,20,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Lista de Proveedores" VerticalAlignment="Top" />
 
-        <DataGrid Margin="0,20,0,0" Height="500" Name="tablaDeProveedores" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false"  FontFamily="Se">
+        <DataGrid Margin="0,20,0,0" Height="500" Name="tablaDeProveedores" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="false" 
+                  CanUserAddRows="false" FontFamily="Se">
             <DataGrid.Columns>
 
                 <DataGridTextColumn MinWidth="200" IsReadOnly="True" Header="Proveedor" Binding="{Binding Nombre}"/>
@@ -20,7 +21,7 @@
                 <DataGridTemplateColumn  Header="" Width ="142" MinWidth="100" CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Editar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickEditar"/>
+                            <Button Content="Editar" Name="update" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="ClickEditar" AutomationProperties.AutomationId="EditarProveedor"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

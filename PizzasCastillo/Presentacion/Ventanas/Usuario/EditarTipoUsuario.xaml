@@ -45,7 +45,7 @@
                     <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombreText}">
                         <TextBox x:Name="NombreText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="30" Width="300" HorizontalAlignment="Left" PreviewTextInput="NombreText_PreviewTextInput"
-                                 Text="{Binding Nombre}"/>
+                                 Text="{Binding Nombre}" AutomationProperties.AutomationId="NombreText"/>
                     </StackPanel>
                 </Grid>
 
@@ -78,7 +78,7 @@
                     VerticalAlignment="Center" Margin="0,0,30,0"/>
 
                 <Button Content="Actualizar" IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
-                    Margin="30,0,0,0" Click="ActualizarClic"/>
+                    Margin="30,0,0,0" Click="ActualizarClic" AutomationProperties.AutomationId="ActualizarBoton"/>
             </StackPanel>
         </Grid>
     </Grid>

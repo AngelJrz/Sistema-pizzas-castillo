@@ -1,17 +1,10 @@
 ﻿using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Presentacion.Ventanas.Usuario
 {
@@ -22,6 +15,7 @@ namespace Presentacion.Ventanas.Usuario
     {
         public ArticuloVenta productoAgregado { get; set; }
         public event EventHandler RegistroExitoso;
+        private Process _teclado;
 
         public ProductoPopUp(bool accion, List<ArticuloVenta> productosVentas,ArticuloVenta producto)
         {
@@ -64,6 +58,28 @@ namespace Presentacion.Ventanas.Usuario
                     error.Show();
 
                 }
+            }
+        }
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
             }
         }
     }

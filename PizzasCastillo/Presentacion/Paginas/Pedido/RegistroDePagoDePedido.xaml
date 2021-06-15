@@ -133,8 +133,10 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="pagoText" Template="{StaticResource InputControlTemplate}"
-                             MaxLength="255" Width="255" HorizontalAlignment="Left" KeyUp="IngresarPago" ToolTip="Hola"
-                             TextCompositionManager.PreviewTextInput="PermitirNumero">
+                             GotTouchCapture="AbrirTeclado_Touch" KeyUp="IngresarPago"
+                             MaxLength="255" Width="255" HorizontalAlignment="Left" 
+                             TextCompositionManager.PreviewTextInput="PermitirNumero"
+                             AutomationProperties.AutomationId="PagoText">
                     </TextBox>
                 </StackPanel>
             </Grid>
@@ -159,8 +161,10 @@
                        Foreground="{StaticResource Alert}" Width="1100" Margin="0,20,0,0"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar"/>
-                <Button Content="Registrar Pago" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="RegistrarPago"/>
+                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar"
+                        AutomationProperties.AutomationId="CancelarBoton"/>
+                <Button Content="Registrar Pago" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="ConfirmarAccion"
+                        AutomationProperties.AutomationId="ConfirmarBoton"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

@@ -2,12 +2,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using static Dominio.Enumeraciones.PedidosResult;
 
 namespace Dominio.Test.CU_MC_03
 {
     [TestClass]
     public class PedidoPreparadoTest
     {
+        /*
         private readonly int PEDIDO_PREPARADO_ESTATUS = 2;
         [TestMethod]
         public void ActualizarPedidoAPreparado()
@@ -38,9 +40,10 @@ namespace Dominio.Test.CU_MC_03
             PedidoController pedidoController = new PedidoController();
             Entidades.Pedido localPedido = new Entidades.Pedido();
             localPedido.Id = 0;
-            bool actualizado = pedidoController.ActualizarPedidoEstatus(localPedido);
-            Assert.AreEqual(actualizado,false);
+            ResultsPedidos actualizado = pedidoController.ActualizarPedidoEstatus(localPedido);
+            Assert.AreEqual(actualizado,ResultsPedidos.ActualizadoConExito);
             
         }
+        */
     }
 }

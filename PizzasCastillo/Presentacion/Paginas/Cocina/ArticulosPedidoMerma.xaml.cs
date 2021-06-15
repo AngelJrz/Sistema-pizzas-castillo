@@ -3,6 +3,7 @@ using Dominio.Logica;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace Presentacion.Paginas.Cocina
     /// </summary>
     public partial class ArticulosPedidoMerma : Page
     {
+        private Process _teclado;
         private int IdPedido;
         private bool pedidoCompleto = false;
         ArticuloVenta articuloVenta;
@@ -130,6 +132,31 @@ namespace Presentacion.Paginas.Cocina
                 InteraccionUsuario interaccionUsuario = new InteraccionUsuario("Error de Campos", "Primero agrege una justificacion a la merma");
                 interaccionUsuario.Show();
             }
+
+
+        }
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
+
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
         }
     }
+
 }

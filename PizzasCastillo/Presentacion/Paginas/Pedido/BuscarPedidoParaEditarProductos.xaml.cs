@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Presentacion.Ventanas;
+using Dominio.Logica;
+using static Dominio.Enumeraciones.PedidosResult;
 
 namespace Presentacion.Paginas.Pedido
 {
@@ -86,6 +88,54 @@ namespace Presentacion.Paginas.Pedido
         private void RegistrarPago(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Pedido.RegistroDePagoDePedido((Dominio.Entidades.Pedido)ListaPedidos.SelectedItem));
+        }
+
+        private void CancelarPedido_Clic(object sender, RoutedEventArgs e)
+        {
+            Dominio.Entidades.Pedido pedidoACancelar = ListaPedidos.SelectedItem as Dominio.Entidades.Pedido;
+
+            Confirmacion ventanaConfirmacion = new Confirmacion
+            {
+                Mensaje = $"¿Seguro desea cancelar el pedido con folio {pedidoACancelar.Id}?",
+                Titulo = "Cancelación de pedido"
+            };
+
+            if(ventanaConfirmacion.ShowDialog() == true)
+            {
+                PedidoController pedidoController = new PedidoController();
+
+                ResultsPedidos resultado;
+
+                resultado = pedidoController.CancelarPedido(pedidoACancelar);
+
+                switch (resultado)
+                {
+                    case ResultsPedidos.ActualizadoConExito:
+                        new Dialog
+                        {
+                            Mensaje = "El pedido fue cancelado exitosamente.",
+                            Titulo = "Cancelación exitosa"
+                        }.ShowDialog();
+                        Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
+                        ListaPedidos.ItemsSource = controller.ObtenerPedidos();
+
+                        break;
+                    case ResultsPedidos.NoSePudoActualizar:
+                        new Dialog
+                        {
+                            Mensaje = "Por el momento no se pudo cancelar el pedido. Por favor intente más tarde.",
+                            Titulo = "Error de cancelación"
+                        }.ShowDialog();
+                        break;
+                    case ResultsPedidos.CancelacionNoPermitida:
+                        new Dialog
+                        {
+                            Mensaje = "Solo se pueden cancelar los pedidos en estado \"En Proceso\" y \"Preparado\"",
+                            Titulo = "Error de cancelación"
+                        }.ShowDialog();
+                        break;
+                }
+            }
         }
     }
 }

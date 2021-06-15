@@ -13,8 +13,8 @@ namespace Dominio.Enumeraciones
             RegistradoConExito,
             NoSePudoregistrar,
             ActualizadoConExito,
-            NoSePudoActualizar
-
+            NoSePudoActualizar,
+            CancelacionNoPermitida
         }
     }
 }

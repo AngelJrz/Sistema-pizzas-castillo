@@ -225,7 +225,10 @@ namespace Presentacion.Paginas.Usuario
         private void CerrarTeclado_LostFocus(object sender, RoutedEventArgs e)
         {
             if (_teclado != null)
-                _teclado.Kill();
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
         }
 
         private void Cancelar_Touch(object sender, TouchEventArgs e)

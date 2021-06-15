@@ -214,8 +214,11 @@ namespace Presentacion.Ventanas
 
         private void CerrarTeclado(object sender, RoutedEventArgs e)
         {
-            if(_teclado != null)
-                _teclado.Kill();
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
         }
     }
 }

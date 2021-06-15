@@ -6,31 +6,32 @@
       xmlns:local="clr-namespace:Presentacion.Paginas.Producto"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1100"
+      d:DesignHeight="900" d:DesignWidth="1100"
       Title="RegistroDeProducto">
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" AutomationProperties.AutomationId="scroller"
+        HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
         <StackPanel Width="1100">
             <TextBlock Text="Registrar Producto" Style="{StaticResource TituloPaginasStyle}"
-                       Margin="80,30,630,0"/>
+                       Margin="80,0,630,0"/>
 
             <!--DATOS DE PRODUCTO-->
             <TextBlock Text="Datos de Producto:" Style="{StaticResource TituloStyle}"
-                       Margin="110,30,0,0"/>
+                       Margin="110,5,0,0"/>
             <Canvas Margin="60,0,0,10">
                 <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
                       StrokeThickness="0.5"/>
             </Canvas>
             <Button Content="Capturar código" HorizontalAlignment="Center" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" Margin="10,0,700,0" Click="CapturarCodigo" RenderTransformOrigin="1.573,0.44"/>
-            <StackPanel Margin="750,-200,0,0" Height="270">
+                    Width="150" Margin="10,0,700,0" Click="CapturarCodigo" RenderTransformOrigin="1.573,0.44"
+                    AutomationProperties.AutomationId="capturarCodigoBoton"/>
+            <StackPanel Margin="750,-150,0,0" Height="270">
                 <TextBlock Text="Imagen Subida:" TextAlignment="Center" Style="{StaticResource TituloCamposStyle}" Margin="0,5,10,0" Height="25"/>
                 <Image x:Name="imagenProducto" Height="188" Width="200" Margin="75,0"/>
                 <Button Name="botonImagen" Content="Agregar Foto" HorizontalAlignment="Right" Style="{StaticResource BotonSecundarioStyle}"
-                    Width="150" Margin="0,0,100,0" Click="SubirFoto"/>
+                    Width="150" Margin="0,0,100,0" Click="SubirFoto" AutomationProperties.AutomationId="agregarFotoBoton"/>
             </StackPanel>
-
-
+            
             <Grid Margin="130,-50,350,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
@@ -45,7 +46,8 @@
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                     <TextBlock x:Name="codigoText" Style="{StaticResource TituloCamposStyle}"
-                               Text="{Binding CodigoBarra}" TextWrapping="WrapWithOverflow"/>
+                               Text="{Binding CodigoBarra}" TextWrapping="WrapWithOverflow"
+                               AutomationProperties.AutomationId="codigoText"/>
                 </StackPanel>
             </Grid>
 
@@ -57,14 +59,15 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
                     <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Tipo de Prodcuto:" Style="{StaticResource TituloCamposStyle}"
+                    <TextBlock Text="Tipo de Producto:" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
                     <ComboBox x:Name="ListaTiposProducto" Style="{StaticResource ComboboxStyle}"
-                                      Width="255" HorizontalAlignment="Left" DisplayMemberPath="Nombre"/>
+                              Width="255" HorizontalAlignment="Left" DisplayMemberPath="Nombre"
+                              AutomationProperties.AutomationId="ListaTiposProducto"/>
                 </StackPanel>
             </Grid>
 
@@ -81,7 +84,9 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="NombreText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" 
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"
+                             AutomationProperties.AutomationId="NombreText"/>
                 </StackPanel>
             </Grid>
 
@@ -98,7 +103,9 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="precioVentaText" Template="{StaticResource InputControlTemplate}"
-                                         MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"
+                             AutomationProperties.AutomationId="precioVentaText"/>
                 </StackPanel>
             </Grid>
 
@@ -115,7 +122,9 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="precioUnitarioText" Template="{StaticResource InputControlTemplate}"
-                                     MaxLength="255" Width="255" HorizontalAlignment="Left" ToolTip="Hola"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"
+                             AutomationProperties.AutomationId="precioUnitarioText"/>
                 </StackPanel>
             </Grid>
 
@@ -132,7 +141,9 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="cantidadText" Template="{StaticResource InputControlTemplate}"
-                                         MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"
+                             AutomationProperties.AutomationId="cantidadText"/>
                 </StackPanel>
             </Grid>
 
@@ -149,7 +160,9 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="unidadMedidaText" Template="{StaticResource InputControlTemplate}"
-                                         MaxLength="255" Width="255" HorizontalAlignment="Left"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                             MaxLength="255" Width="255" HorizontalAlignment="Left"
+                             AutomationProperties.AutomationId="unidadMedidaText"/>
                 </StackPanel>
             </Grid>
 
@@ -166,7 +179,10 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="descripcionText" Template="{StaticResource InputControlTemplate}"
-                             Height="100" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                             Height="65" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"
+                             TextWrapping="WrapWithOverflow"
+                             AutomationProperties.AutomationId="descripcionText"/>
                 </StackPanel>
             </Grid>
 
@@ -183,7 +199,10 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="restriccionesText" Template="{StaticResource InputControlTemplate}"
-                             Height="100" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                             TextWrapping="WrapWithOverflow"
+                             Height="65" Width="500" HorizontalAlignment="Left" AcceptsReturn="True"
+                             AutomationProperties.AutomationId="restriccionesText"/>
                 </StackPanel>
             </Grid>
 
@@ -191,8 +210,8 @@
                        Foreground="{StaticResource Alert}" Width="1100" Margin="0,20,0,0"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,30">
-                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar"/>
-                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="RegistrarProducto"/>
+                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" Click="Cancelar" AutomationProperties.AutomationId="CancelarBoton"/>
+                <Button Content="Registrar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" Click="ConfirmarAccion" AutomationProperties.AutomationId="RegistrarBoton"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

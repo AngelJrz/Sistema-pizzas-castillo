@@ -14,8 +14,8 @@
         </StackPanel>
         <Grid Margin="340,200,0,0">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                <Button Style="{StaticResource BotonSecundarioStyle}" Content="Merma de Pedido" Width="200" Click="MermaPedido"  Margin="0,0,0,0"/>
-                <Button Style="{StaticResource BotonSecundarioStyle}" Content="Merma de Insumos" Width="200" Margin="200,0,0,0" Click="MermaInsumo" />
+                <Button Style="{StaticResource BotonSecundarioStyle}" Content="Merma de Pedido" Width="200" Click="MermaPedido"  Margin="0,0,0,0" AutomationProperties.AutomationId="MermaPedido"/>
+                <Button Style="{StaticResource BotonSecundarioStyle}" Content="Merma de Insumos" Width="200" Margin="200,0,0,0" Click="MermaInsumo" AutomationProperties.AutomationId="MermaInsumo"/>
             </StackPanel>
         </Grid>
     </Grid>

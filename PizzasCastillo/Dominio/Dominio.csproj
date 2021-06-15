@@ -121,6 +121,7 @@
     <Compile Include="Entidades\Solicita.cs" />
     <Compile Include="Enumeraciones\Efectivo.cs" />
     <Compile Include="Enumeraciones\PedidosResult.cs" />
+    <Compile Include="Enumeraciones\ResultadoEliminarProducto.cs" />
     <Compile Include="Enumeraciones\ResultadoRegistroProducto.cs" />
     <Compile Include="Enumeraciones\ResultadoRegistro.cs" />
     <Compile Include="Enumeraciones\Tipo.cs" />

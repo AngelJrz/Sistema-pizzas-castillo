@@ -143,7 +143,7 @@ namespace AccesoADatos.ControladoresDeDatos
             {
                 throw;
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 resultado = SIN_CAMBIOS;
             }

@@ -8,7 +8,7 @@
       d:DesignHeight="1050" d:DesignWidth="1200"
       Title="EditarUsuario">
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}" AutomationProperties.AutomationId="ScrollViewer">
         <StackPanel>
             <TextBlock Text="Editar usuario" Style="{StaticResource TituloPaginasStyle}"
                        Margin="80,30,0,0"/>
@@ -36,7 +36,8 @@
                     <TextBox x:Name="NombresText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="150" Width="400" HorizontalAlignment="Left" Text="{Binding Nombres}"
                              ToolTip="El nombre debe ser mínimo de 2 caracteres y máximo de 50."
-                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"
+                             AutomationProperties.AutomationId="NombreText"/>
                 </StackPanel>
             </Grid>
 
@@ -55,7 +56,8 @@
                     <TextBox x:Name="ApellidosText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="200" Width="400" HorizontalAlignment="Left" Text="{Binding Apellidos}"
                              ToolTip="Los apellidos deben ser mínimo de 2 caracteres y máximo de 150."
-                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"
+                             AutomationProperties.AutomationId="ApellidosText"/>
                 </StackPanel>
             </Grid>
 
@@ -74,7 +76,8 @@
                     <TextBox x:Name="EmailText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="80" Width="400" HorizontalAlignment="Left" Text="{Binding Email}"
                              ToolTip="La estructura del correo es usuario@dominio y debe ser mínimo de 10 caracteres y máximo de 80."
-                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"
+                             AutomationProperties.AutomationId="EmailText"/>
                 </StackPanel>
             </Grid>
 
@@ -93,7 +96,8 @@
                     <TextBox x:Name="TelefonoText" Style="{StaticResource InputDefaultStyle}"
                                      MaxLength="10" Width="200" HorizontalAlignment="Left" Text="{Binding Telefono}"
                              ToolTip="El teléfono solo puede contener números, con un mínimo y máximo de 10 digitos."
-                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"
+                             AutomationProperties.AutomationId="TelefonoText"/>
                 </StackPanel>
             </Grid>
 
@@ -334,7 +338,8 @@
                                      MaxLength="30" Width="200" HorizontalAlignment="Left"
                              Text="{Binding Username}" 
                              ToolTip="El username debe ser mínimo de 5 caracteres y máximo de 30."
-                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"
+                             AutomationProperties.AutomationId="UsernameText"/>
                 </StackPanel>
             </Grid>
 
@@ -372,7 +377,8 @@
                              MaxLength="8" Width="200" HorizontalAlignment="Left"
                              Text="{Binding SalarioQuincenal}"
                              ToolTip="El salario debe ser mayor a 0 y puede contener 3 números después del punto."
-                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"/>
+                             GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado_LostFocus"
+                             AutomationProperties.AutomationId="SalarioText"/>
                 </StackPanel>
             </Grid>
 
@@ -383,7 +389,8 @@
                 <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,40,0" 
                         Click="Cancelar_Clic" PreviewTouchDown="Cancelar_Touch"/>
                 <Button x:Name="ActualizarBoton" Content="Actualizar" Style="{StaticResource BotonSecundarioStyle}" Margin="40,0,0,0" 
-                        Click="Actualizar_Clic" PreviewTouchDown="Actualizar_Touch"/>
+                        Click="Actualizar_Clic" PreviewTouchDown="Actualizar_Touch"
+                        AutomationProperties.AutomationId="ActualizarBoton"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

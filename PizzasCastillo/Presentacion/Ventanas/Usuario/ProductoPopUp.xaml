@@ -38,15 +38,16 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="0,-45,0,0">
-                    <ComboBox x:Name="productBox" Style="{StaticResource ComboboxStyle}" DisplayMemberPath="Nombre" Width="300"/>
+                    <ComboBox x:Name="productBox" Style="{StaticResource ComboboxStyle}" DisplayMemberPath="Nombre" Width="300" AutomationProperties.AutomationId="ProductosBox"/>
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
 
                 <Label Content="*" Foreground="{StaticResource Alert}" Margin="0,48,0,0"/>
-                <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}" Margin="10,50,0,0"/>
-                <TextBox  Style="{StaticResource InputDefaultStyle}" Width="100" x:Name="cantidadText" Margin="-90,50,0,0"  MaxLength="10"/>
+                <TextBlock Text="Cantidad:" Style="{StaticResource TituloCamposStyle}" Margin="10,50,0,0" />
+                <TextBox  Style="{StaticResource InputDefaultStyle}" Width="100" x:Name="cantidadText" Margin="-90,50,0,0"  MaxLength="10" 
+                          GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado" AutomationProperties.AutomationId="CantidadText"/>
                 <TextBlock Text="Medida:" Style="{StaticResource TituloCamposStyle}" Margin="230,50,0,0"/>
                 <TextBox  Style="{StaticResource InputDefaultStyle}" Text="{Binding ElementName=productBox,Path=SelectedValue.Producto.UnidadDeMedida}" Width="100" Margin="300,50,0,0" IsEnabled="False"/>
 
@@ -57,7 +58,7 @@
                     VerticalAlignment="Center" Margin="0,-100,30,0"/>
 
                 <Button IsDefault="True" Style="{StaticResource BotonSecundarioStyle}"
-                    Margin="30,-100,0,0" Click="RegistrarClic" x:Name="accionBoton"/>
+                    Margin="30,-100,0,0" Click="RegistrarClic" x:Name="accionBoton" AutomationProperties.AutomationId="IngredienteBoton"/>
             </StackPanel>
         </Grid>
     </Grid>

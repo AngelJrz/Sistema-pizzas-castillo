@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using Presentacion.Ventanas;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,7 @@ namespace Presentacion.Paginas.Finanza
     /// </summary>
     public partial class EditarProveedor : Page
     {
+        private Process _teclado;
         private OpenFileDialog openFileDialog = new OpenFileDialog();
         private readonly List<string> estadosLista;
         private byte[] archivo;
@@ -196,9 +198,9 @@ namespace Presentacion.Paginas.Finanza
                             ventana1.Show();
                             break;
                         case ResultadoRegistro.RegistroExitoso:
-                            InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha guardado el proveedor y su direccion con exito");
+                            InteraccionUsuario ventana2 = new InteraccionUsuario("Exito en registro", "Se ha actualizado el proveedor y su direccion con exito");
                             ventana2.Show();
-                            NavigationService.GoBack();
+                            NavigationService.Navigate(new ListaProveedores());
                             break;
                     }
                 }
@@ -215,6 +217,27 @@ namespace Presentacion.Paginas.Finanza
                 ventana.Show();
             }
         }
+        private void AbrirTeclado_Touch(object sender, TouchEventArgs e)
+        {
+            _teclado = Process.Start("osk.exe");
 
+            if (sender.GetType() == typeof(TextBox))
+            {
+                ((TextBox)sender).Focus();
+            }
+            else
+            {
+                ((PasswordBox)sender).Focus();
+            }
+        }
+
+        private void CerrarTeclado(object sender, RoutedEventArgs e)
+        {
+            if (_teclado != null)
+            {
+                if (!_teclado.HasExited)
+                    _teclado.Kill();
+            }
+        }
     }
 }

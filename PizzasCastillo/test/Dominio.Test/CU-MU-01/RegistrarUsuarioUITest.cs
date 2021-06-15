@@ -24,7 +24,7 @@ namespace Dominio.Test.CU_MU_01
         private TestContext testContextInstance;
         protected static WindowsDriver<WindowsElement> sesion;
         protected const string DRIVER_URL = "http://127.0.0.1:4723";
-        private const string APP_ID = @"D:\pizzas-castillo\PizzasCastillo\Presentacion\bin\Debug\Presentacion.exe";
+        private const string APP_ID = @"C:\Users\parke\Desktop\SPP\Sistema-pizzas-castillo\PizzasCastillo\Presentacion\bin\Debug\Presentacion.exe";
 
         /// <summary>
         ///Obtiene o establece el contexto de las pruebas que proporciona
@@ -77,7 +77,7 @@ namespace Dominio.Test.CU_MU_01
             var iniciarSesionBoton = sesion.FindElementByAccessibilityId("iniciarSesionBoton");
             iniciarSesionBoton.Click();
 
-            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+            sesion.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
 
             var seccionUsuarios = sesion.FindElementByAccessibilityId("Usuarios");
