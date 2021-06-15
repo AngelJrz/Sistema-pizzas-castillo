@@ -1,8 +1,11 @@
-﻿using Dominio.Logica;
+﻿using Dominio.Entidades;
+using Dominio.Enumeraciones;
+using Dominio.Logica;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static Dominio.Enumeraciones.PedidosResult;
 
 namespace Dominio.Test.CU_MPE_03
 {
@@ -65,5 +68,19 @@ namespace Dominio.Test.CU_MPE_03
             EstatusPedidoController controller = new EstatusPedidoController();
              Assert.IsNotNull(controller.ObtenerEstatusPedido());
         }
+
+        [TestMethod]
+        public void ActualizarEstatus()
+        {
+            PedidoController controller = new PedidoController();
+            EstatusPedidoController controller2 = new EstatusPedidoController();
+            List<Tipo> estatus = controller2.ObtenerEstatusPedido();
+            List<Pedido> lista = controller.ObtenerPedidos();
+
+            Pedido PedidoEditar = lista.Find(x => x.Id == 20);
+            PedidoEditar.Estatus = estatus.Find(x => x.Id == 4);
+            Assert.AreEqual(ResultsPedidos.ActualizadoConExito, controller.ActualizarPedidoArticulos(PedidoEditar));
+        }
+
     }
 }

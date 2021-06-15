@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Dominio.Entidades;
 using Dominio.Logica;
-using Dominio.Enumeraciones;
+using static Presentacion.Recursos.PedidosResults;
 
 namespace Dominio.Test.CU_MPE_01
 {
@@ -65,10 +65,10 @@ namespace Dominio.Test.CU_MPE_01
         [TestMethod]
         public void ObtenerClientesTest()
         {
-            
+
             ClienteController controller = new ClienteController();
 
-           
+
             Assert.IsNotNull(controller.ObtenerPersonas());
         }
 
@@ -78,7 +78,7 @@ namespace Dominio.Test.CU_MPE_01
         {
 
             ArticuloVentaController controller = new ArticuloVentaController();
-            
+
 
 
             Assert.IsNotNull(controller.ObtenerProductos());
@@ -104,7 +104,56 @@ namespace Dominio.Test.CU_MPE_01
         }
 
 
-   
+        [TestMethod]
+        public void RegistrarPedido()
+        {
+            /*-------------------*///Crear controller Para generar pedidos.
+            TipoPedidoController controller = new TipoPedidoController();
+            MesaController controllerMesa = new MesaController();
+            ClienteController controllerCliente = new ClienteController();
+            EmpleadoController controllerEmpleado = new EmpleadoController();
+            ArticuloVentaController articuloController = new ArticuloVentaController();
+            PedidoController pedidocontroller = new PedidoController();
+            EstatusPedidoController estatusController = new EstatusPedidoController();
+           
+            DateTime fecha = DateTime.Now;
+
+            /*-------------------------------*///Armar¨Pedido
+            List<Tipo> listaTipos = controller.ObtenerTipoPedido();
+            List <Mesa> listMesa = controllerMesa.ObtenetMesas();
+            List<Tipo> ListaEstatus = estatusController.ObtenerEstatusPedido();
+            List<Empleado> empleados = controllerEmpleado.ObtenerEmpleadosActivos();
+            List<Persona> cliente = controllerCliente.ObtenerPersonas();
+            List<ArticuloVenta> articulos = articuloController.ObtenerProductos();
+            List<Contiene> listaPedido = new List<Contiene>(); 
+            Contiene cosa = new Contiene();
+            List<ArticuloVenta> listaCosa = articuloController.ObtenerProductos();
+            cosa.ArticuloVenta = listaCosa.Find(x => x.Nombre.Equals("Sprite"));
+            cosa.Cantidad = 1;
+            cosa.Total = listaCosa.Find(x => x.Nombre.Equals("Sprite")).Precio;
+
+
+
+
+            Pedido pedidoGuardar = new Pedido();
+            listaPedido.Add(cosa);
+            pedidoGuardar.Contiene =listaPedido ;
+            pedidoGuardar.Estatus = ListaEstatus.Find(x => x.Nombre.Equals("En Proceso"));
+            pedidoGuardar.Fecha = fecha;
+            pedidoGuardar.Mesa = listMesa.Find(x => x.Id == 1);
+            pedidoGuardar.RegistradoPor = empleados.Find(x => x.Id == 2);
+            pedidoGuardar.RepartidoPor = null;
+            pedidoGuardar.SolicitadoPor = cliente.Find(x => x.Nombres.Equals("UsuarioL"));
+            pedidoGuardar.Tipo = listaTipos.Find(x => x.Nombre.Equals("A Mesa"));
+            pedidoGuardar.Total = cosa.Total;
+         
+            Assert.AreEqual(PedidosResult.ResultsPedidos.RegistradoConExito,pedidocontroller.AgregarPedido(pedidoGuardar));
+
+        }
+
+
+
+
 
 
 

@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Dominio.Logica;
+using Dominio.Entidades;
+using static Presentacion.Recursos.PedidosResults;
 
 namespace Dominio.Test.CU_MPE_02
 {
@@ -71,5 +74,20 @@ namespace Dominio.Test.CU_MPE_02
             Dominio.Logica.PedidoController controller = new Dominio.Logica.PedidoController();
             Assert.IsNotNull(controller.ObtenerPedidosCliente("jonathan"));
         }
+
+
+        [TestMethod]
+        public void EditarPedido1Test()
+        {
+            PedidoController controller = new PedidoController();
+           List<Pedido> lista =  controller.ObtenerPedidos();
+
+            Pedido PedidoEditar = lista.Find(x => x.Id == 20);
+            PedidoEditar.Total = 20;
+            Assert.AreEqual(ResultsPedidos.ActualizadoConExito, controller.ActualizarPedidoArticulos(PedidoEditar)) ;
+           
+        }
+
+
     }
 }
