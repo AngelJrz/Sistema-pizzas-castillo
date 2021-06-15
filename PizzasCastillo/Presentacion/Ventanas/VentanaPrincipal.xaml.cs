@@ -32,7 +32,6 @@ namespace Presentacion.Ventanas
             MostrarMenuSuperior(empleadoEnSesion.TipoUsuario.Nombre);
             try
             {
-                // Determine whether the directory exists.
                 if (Directory.Exists(Recursos.RecursosGlobales.RUTA_IMAGENES))
                 {
                     return;
