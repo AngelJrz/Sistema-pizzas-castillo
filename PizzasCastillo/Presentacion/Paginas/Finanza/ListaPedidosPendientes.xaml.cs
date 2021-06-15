@@ -14,10 +14,12 @@ namespace Presentacion.Paginas.Finanza
     {
         PedidoAProveedorController accesoAPedidos = new PedidoAProveedorController();
         ObservableCollection<PedidoAProveedor> listaObservable;
+        Empleado empleado;
 
-        public ListaPedidosPendientes()
+        public ListaPedidosPendientes(Empleado empleado)
         {
             InitializeComponent();
+            this.empleado = empleado;
             listaObservable = new ObservableCollection<PedidoAProveedor>(accesoAPedidos.ObtenerPedidosAProveedores());
 
             if (listaObservable.Count == 0)
@@ -33,7 +35,7 @@ namespace Presentacion.Paginas.Finanza
         private void ClickConfirmar(object sender, RoutedEventArgs e)
         {
             PedidoAProveedor pedidoSeleccioado = (PedidoAProveedor)tablaDePedidos.SelectedItem;
-            NavigationService.Navigate(new ConfirmarEntrega(pedidoSeleccioado));
+            NavigationService.Navigate(new ConfirmarEntrega(pedidoSeleccioado, empleado));
         }
 
         private void CancelarPedido(object sender, RoutedEventArgs e)

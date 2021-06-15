@@ -106,17 +106,16 @@
             <Grid x:Name="MenuSuperiorContador" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Corte de caja" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_CorteDeCaja"/>
                 <TextBlock Text="Tipos de gasto" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_TiposDeGasto"/>
-                <TextBlock Text="Confirmar entrega" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_ConfirmarEntrega"/>
-                <TextBlock Text="Registrar gasto extra" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_RegistrarGastoExtra"/>
+                <TextBlock Text="Confirmar entrega" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_ConfirmarEntrega"/>
+                <TextBlock Text="Registrar gasto extra" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_RegistrarGastoExtra"/>
             </Grid>
 
 
