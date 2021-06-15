@@ -15,7 +15,7 @@
     </Page.Resources>
     
     <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}"  >
-        <StackPanel Height="473">
+        <StackPanel>
             <TextBlock Text="Editar Pedido" Style="{StaticResource TituloPaginasStyle}"
                                 Margin="80,30,0,0"/>
 

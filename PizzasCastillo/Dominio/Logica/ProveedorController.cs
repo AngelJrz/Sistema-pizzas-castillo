@@ -136,7 +136,7 @@ namespace Dominio.Logica
                 proveedorDA.Id = proveedor.Id;
                 seRegistro = proveedorDAO.ActualizarProovedor(proveedorDA);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

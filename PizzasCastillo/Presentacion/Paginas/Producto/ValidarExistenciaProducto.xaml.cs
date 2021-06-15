@@ -43,7 +43,7 @@ namespace Presentacion.Paginas.Producto
         private void BuscarEnter(object sender, RoutedEventArgs e)
         {
             ArticuloVentaController controller = new ArticuloVentaController();
-            //ListaProductos.ItemsSource=controller.BuscarProductosNombre(BusquedaText.Text);
+          
 
         }
 
