@@ -46,23 +46,31 @@ namespace Presentacion.Paginas.Pedido
         }
         private void GuardarPedido(object sender, RoutedEventArgs e)
         {
-            PedidoController controller = new PedidoController();
-            _pedido.Estatus = (Dominio.Enumeraciones.Tipo)ComboEstatus.SelectedItem;
-            ResultsPedidos resultado;
-            resultado= (ResultsPedidos)controller.ActualizarPedidoEstatus(_pedido);
-
-
-            if (resultado == ResultsPedidos.ActualizadoConExito)
-
+            if (ComboEstatus.SelectedIndex != -1)
             {
-                InteraccionUsuario err = new InteraccionUsuario("Exito", "El pedido se actualizó correctamente");
-                err.Show();
+                PedidoController controller = new PedidoController();
+                _pedido.Estatus = (Dominio.Enumeraciones.Tipo)ComboEstatus.SelectedItem;
+                ResultsPedidos resultado;
+                resultado = (ResultsPedidos)controller.ActualizarPedidoEstatus(_pedido);
 
 
+                if (resultado == ResultsPedidos.ActualizadoConExito)
+
+                {
+                    InteraccionUsuario err = new InteraccionUsuario("Exito", "El pedido se actualizó correctamente");
+                    err.Show();
+
+
+                }
+                else
+                {
+                    InteraccionUsuario err = new InteraccionUsuario("error", "El pedido no se Actualizó");
+                    err.Show();
+
+                }
             }
-            else
-            {
-                InteraccionUsuario err = new InteraccionUsuario("error", "El pedido no se Actualizó");
+            else {
+                InteraccionUsuario err = new InteraccionUsuario("error", "Seleccione un estado antes");
                 err.Show();
 
             }
