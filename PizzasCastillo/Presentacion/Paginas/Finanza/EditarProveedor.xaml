@@ -8,244 +8,246 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditarProveedor">
 
-    <Grid Background="White">
-        <StackPanel>
-            <TextBlock Text="Editar Proveedor" Style="{StaticResource TituloStyle}"
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="{StaticResource AzulCastilloLight}">
+        <Grid Background="White">
+            <StackPanel>
+                <TextBlock Text="Editar Proveedor" Style="{StaticResource TituloStyle}"
                        Margin="80,10,0,0"/>
 
-            <!--DATOS PERSONALES-->
-            <Canvas Margin="60,0,0,10">
-                <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
+                <!--DATOS PERSONALES-->
+                <Canvas Margin="60,0,0,10">
+                    <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
                       StrokeThickness="0.5"/>
-            </Canvas>
+                </Canvas>
 
-            <Grid Margin="130,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Margin="130,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Label Content="*" Foreground="{StaticResource Alert}"/>
+                        <TextBlock Text="Nombre:" Style="{StaticResource TituloCamposStyle}"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="NombresText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                    <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                        <TextBox x:Name="NombresText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
                     AutomationProperties.AutomationId="NombresText" MaxLength="30" Width="400" HorizontalAlignment="Left"/>
-                </StackPanel>
-            </Grid>
+                    </StackPanel>
+                </Grid>
 
-            <Grid Margin="130,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Margin="130,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Encargado:" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Label Content="*" Foreground="{StaticResource Alert}"/>
+                        <TextBlock Text="Encargado:" Style="{StaticResource TituloCamposStyle}"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="ApellidosText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                    <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                        <TextBox x:Name="ApellidosText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
                     AutomationProperties.AutomationId="ApellidosText" MaxLength="30" Width="400" HorizontalAlignment="Left"/>
-                </StackPanel>
-            </Grid>
+                    </StackPanel>
+                </Grid>
 
-            <Grid Margin="130,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Margin="130,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Email:" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Label Content="*" Foreground="{StaticResource Alert}"/>
+                        <TextBlock Text="Email:" Style="{StaticResource TituloCamposStyle}"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                    <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                        <TextBox x:Name="EmailText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
                     MaxLength="50" Width="400" HorizontalAlignment="Left" AutomationProperties.AutomationId="EmailText"/>
-                </StackPanel>
-            </Grid>
+                    </StackPanel>
+                </Grid>
 
-            <Grid Margin="130,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Margin="130,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="Teléfono:" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Label Content="*" Foreground="{StaticResource Alert}"/>
+                        <TextBlock Text="Teléfono:" Style="{StaticResource TituloCamposStyle}"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="TelefonoText" Template="{StaticResource InputControlTemplate}" AutomationProperties.AutomationId="TelefonoText"
+                    <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                        <TextBox x:Name="TelefonoText" Template="{StaticResource InputControlTemplate}" AutomationProperties.AutomationId="TelefonoText"
                              TextCompositionManager.PreviewTextInput="IsTelephoneNumber"  MaxLength="10" Width="200" HorizontalAlignment="Left"
                              GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
-                </StackPanel>
-            </Grid>
+                    </StackPanel>
+                </Grid>
 
-            <Grid Margin="130,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Margin="130,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Label Content="*" Foreground="{StaticResource Alert}"/>
-                    <TextBlock Text="DNI:" Style="{StaticResource TituloCamposStyle}"/>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Label Content="*" Foreground="{StaticResource Alert}"/>
+                        <TextBlock Text="DNI:" Style="{StaticResource TituloCamposStyle}"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
-                    <TextBox x:Name="DNIText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                    <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}">
+                        <TextBox x:Name="DNIText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
                      AutomationProperties.AutomationId="DniText" MaxLength="10" Width="200" HorizontalAlignment="Left"/>
-                </StackPanel>
-            </Grid>
+                    </StackPanel>
+                </Grid>
 
-            <!--DIRECCIÓN-->
-            <TextBlock Text="Dirección:" Style="{StaticResource TituloStyle}"
+                <!--DIRECCIÓN-->
+                <TextBlock Text="Dirección:" Style="{StaticResource TituloStyle}"
                        Margin="110,15,0,0"/>
-            <Canvas Margin="60,0,0,10">
-                <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
+                <Canvas Margin="60,0,0,10">
+                    <Line X1="300" Y1="10" X2="50" Y2="10" Stroke="{StaticResource Gris}"
                       StrokeThickness="0.5"/>
-            </Canvas>
+                </Canvas>
 
-            <!--LADO IZQUIERDO-->
-            <Grid Width="1070" Margin="0,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
-                </Grid.ColumnDefinitions>
+                <!--LADO IZQUIERDO-->
+                <Grid Width="1070" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Margin="10,0,0,0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="10,0,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Calle:" Style="{StaticResource TituloCamposStyle}"/>
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                                <Label Content="*" Foreground="{StaticResource Alert}"/>
+                                <TextBlock Text="Calle:" Style="{StaticResource TituloCamposStyle}"/>
+                            </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                            <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="CalleText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                                <TextBox x:Name="CalleText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
                                      MaxLength="30" Width="400" AutomationProperties.AutomationId="CalleText" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                    </Grid>
+                            </StackPanel>
+                        </Grid>
 
 
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="C.P. :" Style="{StaticResource TituloCamposStyle}"
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                                <Label Content="*" Foreground="{StaticResource Alert}"/>
+                                <TextBlock Text="C.P. :" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                            <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="CodigoPostalText" Template="{StaticResource InputControlTemplate}" TextCompositionManager.PreviewTextInput="IsTelephoneNumber"
+                                <TextBox x:Name="CodigoPostalText" Template="{StaticResource InputControlTemplate}" TextCompositionManager.PreviewTextInput="IsTelephoneNumber"
                                      MaxLength="5" Width="200" HorizontalAlignment="Left" AutomationProperties.AutomationId="CodigoPostalText"
                                      GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
-                        </StackPanel>
-                    </Grid>
+                            </StackPanel>
+                        </Grid>
 
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Ciudad:" Style="{StaticResource TituloCamposStyle}"
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                                <Label Content="*" Foreground="{StaticResource Alert}"/>
+                                <TextBlock Text="Ciudad:" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                            <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <TextBox x:Name="CiudadText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
+                                <TextBox x:Name="CiudadText" Template="{StaticResource InputControlTemplate}" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"
                                      MaxLength="20" Width="200" AutomationProperties.AutomationId="CiudadText" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
 
-                <!--LADO DERECHO-->
-                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                    <!--LADO DERECHO-->
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
 
-                    <Grid Margin="0,40,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,40,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Numero:" Style="{StaticResource TituloCamposStyle}" TextWrapping="WrapWithOverflow" Margin="0,0,0,0"/>
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                                <Label Content="*" Foreground="{StaticResource Alert}"/>
+                                <TextBlock Text="Numero:" Style="{StaticResource TituloCamposStyle}" TextWrapping="WrapWithOverflow" Margin="0,0,0,0"/>
+                            </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                            <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
 
-                            <TextBox x:Name="NoInteriorText" Template="{StaticResource InputControlTemplate}" TextChanged="ValidateNumber"
+                                <TextBox x:Name="NoInteriorText" Template="{StaticResource InputControlTemplate}" TextChanged="ValidateNumber" TextCompositionManager.PreviewTextInput="IsTelephoneNumber"
                                      MaxLength="3" Width="200" HorizontalAlignment="Left" AutomationProperties.AutomationId="NoExteriorText" GotTouchCapture="AbrirTeclado_Touch" LostFocus="CerrarTeclado"/>
-                        </StackPanel>
-                    </Grid>
+                            </StackPanel>
+                        </Grid>
 
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Estado:" Style="{StaticResource TituloCamposStyle}"
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                                <Label Content="*" Foreground="{StaticResource Alert}"/>
+                                <TextBlock Text="Estado:" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                            <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center">
-                            <ComboBox x:Name="ListaEstados" AutomationProperties.AutomationId="ListaEstados"
+                                <ComboBox x:Name="ListaEstados" AutomationProperties.AutomationId="ListaEstados"
                                       Width="200" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                    </Grid>
+                            </StackPanel>
+                        </Grid>
 
-                    <Grid Margin="-350,30,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="-350,30,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center" Margin="-185,0,0,0">
-                            <Label Content="*" Foreground="{StaticResource Alert}"/>
-                            <TextBlock Text="Lista de productos:" Style="{StaticResource TituloCamposStyle}"
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center" Margin="-185,0,0,0">
+                                <Label Content="*" Foreground="{StaticResource Alert}"/>
+                                <TextBlock Text="Lista de productos:" Style="{StaticResource TituloCamposStyle}"
                                        TextWrapping="WrapWithOverflow"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" FocusManager.FocusedElement="{Binding ElementName=NombresText}"
                                 VerticalAlignment="Center" Orientation="Horizontal" Margin="-450,0,0,0" >
 
-                            <TextBox Template="{StaticResource InputControlTemplate}" x:Name="rutaArchivo" Width="600" Height="30" IsEnabled="False"/>
-                            <Button Content="Cambiar archivo" Style="{StaticResource BotonPrincipalStyle}" Width="200" Height="30" Margin="10,0,0,0" Click="AbrirArchivo"/>
-                        </StackPanel>
+                                <TextBox Template="{StaticResource InputControlTemplate}" x:Name="rutaArchivo" Width="600" Height="30" IsEnabled="False"/>
+                                <Button Content="Cambiar archivo" Style="{StaticResource BotonPrincipalStyle}" Width="200" Height="30" Margin="10,0,0,0" Click="AbrirArchivo"/>
+                            </StackPanel>
 
-                    </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-100,50,0,0">
+                    <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,200,0"/>
+                    <Button Content="Actualizar" Style="{StaticResource BotonSecundarioStyle}" Margin="10,0,0,0" Click="ActualizarProveedorAccion" AutomationProperties.AutomationId="ActualizarProveedor"/>
                 </StackPanel>
-            </Grid>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-100,50,0,0">
-                <Button Content="Cancelar" Style="{StaticResource BotonPrincipalStyle}" Margin="0,0,200,0"/>
-                <Button Content="Actualizar" Style="{StaticResource BotonSecundarioStyle}" Margin="10,0,0,0" Click="ActualizarProveedorAccion" AutomationProperties.AutomationId="ActualizarProveedor"/>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

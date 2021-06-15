@@ -126,7 +126,7 @@ namespace Dominio.Test.CU_MC_02
             sesion.SwitchTo().Window(sesion.WindowHandles.First());
             
             var mensaje = sesion.FindElementByAccessibilityId("Mensaje");
-            string mensajeEsperado = "Selecciona una opción";
+            string mensajeEsperado = "Uno o mas campos estan vacios y/o incorrectos, verificar porfavor";
             Assert.AreEqual(mensaje.Text, mensajeEsperado);
         }
     }
