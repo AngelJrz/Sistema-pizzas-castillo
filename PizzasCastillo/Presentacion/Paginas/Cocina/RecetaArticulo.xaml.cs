@@ -17,11 +17,11 @@ namespace Presentacion.Paginas.Cocina
             InitializeComponent();
             PlatilloDAO platilloDAO = new PlatilloDAO();
             AccesoADatos.Platillo platillo = platilloDAO.ObtenerPlatillo(platilloEdicion.CodigoBarra);
-            if (recetaText.Text == null)
+            if (platillo == null)
             {
                 InteraccionUsuario ventana = new InteraccionUsuario("Error", "Este articulo no cuenta con una receta debido a que no es un platillo");
                 ventana.Show();
-                NavigationService.GoBack();
+                recetaText.Text = "Esto no es un platillo no existe receta";
             }
             else
             {
