@@ -70,7 +70,7 @@ namespace AccesoADatos.ControladoresDeDatos
             try
             {
                 articulosVenta = connection.ArticuloVenta
-                .Where(articulo => articulo.EsPlatillo == false && articulo.Estatus == 1)
+                .Where(articulo => articulo.EsPlatillo == false && articulo.Estatus == 1 && articulo.Producto.TipoProducto.Nombre.Equals("Final"))
                 .ToList();
             }
             catch (ArgumentNullException)
