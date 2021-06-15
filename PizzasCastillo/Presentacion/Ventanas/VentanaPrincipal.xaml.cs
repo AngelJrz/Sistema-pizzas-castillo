@@ -85,7 +85,9 @@ namespace Presentacion.Ventanas
                 {
                     File.Delete(file);
                 }
-                catch (IOException){}
+                catch (IOException)
+                {
+                }
                 
             }
 
