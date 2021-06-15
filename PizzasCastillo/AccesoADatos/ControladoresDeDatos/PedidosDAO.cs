@@ -52,7 +52,6 @@ namespace AccesoADatos.ControladoresDeDatos
                 Pedido pedidoDB = connection.Pedido.Where(x => x.Id == pedido.Id).SingleOrDefault();
                 pedidoDB.IdEstatusPedido = pedido.IdEstatusPedido;
                 connection.Entry(pedidoDB).State = EntityState.Modified;
-                connection.SaveChanges();
                 _resultado = connection.SaveChanges();
           
             }
@@ -181,7 +180,7 @@ namespace AccesoADatos.ControladoresDeDatos
                 int mes = hoy.Month;
                 int anio = hoy.Year;
                
-                _pedidos = connection.Pedido.Where(x => x.Fecha.Day == dia && x.Fecha.Month==mes && x.Fecha.Year == anio && x.EstatusPedido.Nombre == "pagado")
+                _pedidos = connection.Pedido.Where(x => x.Fecha.Day == dia && x.Fecha.Month==mes && x.Fecha.Year == anio && x.EstatusPedido.Nombre == "Pagado")
                 .ToList();
                 return _pedidos;
                }

@@ -42,12 +42,11 @@
             <Grid x:Name="MenuSuperiorGerente" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
                 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Usuarios" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
@@ -55,27 +54,25 @@
                 <TextBlock Text="Productos" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Productos_PreviewMouseDown"
                            AutomationProperties.AutomationId="Productos"/>
                 <TextBlock Text="Proveedores" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Proveedores_PreviewMouseDown" AutomationProperties.AutomationId="Proveedores"/>
-                <TextBlock Text="Estadísticas" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
-                <TextBlock Text="Gastos" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
-                <TextBlock Text="Clientes" Grid.Column="5" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
-                
+                <TextBlock Text="Tipos de gasto" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_TiposDeGasto"/>
+                <TextBlock Text="Pedido proveedor" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_CrearPedidoAProveedor"/>
+
             </Grid>
 
             <Grid x:Name="MenuSuperiorEncargadoCaja" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Pedidos"
                            AutomationProperties.AutomationId="Pedidos"/>
                 <TextBlock Text="Generar Pedido" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="RegistrarPedidos"/>
-                <TextBlock Text="Clientes" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
-                <TextBlock Text="Merma" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
-                <TextBlock Text="Registrar Cliente" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="RegistroClientes_PreviewMouseDown"
+                <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Merma_PreviewMouseDown" AutomationProperties.AutomationId="Merma"/>
+                <TextBlock Text="Registrar Cliente" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="RegistroClientes_PreviewMouseDown"
                            AutomationProperties.AutomationId="RegistroCliente" />
             </Grid>
 
@@ -86,9 +83,9 @@
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" 
-                              PreviewMouseDown="Usuarios_PreviewMouseDown"/>
-                <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Usuarios_PreviewMouseDown"/>
+                <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Pedidos"
+                           AutomationProperties.AutomationId="Pedidos"/>
+                <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Merma_PreviewMouseDown" AutomationProperties.AutomationId="Merma"/>
             </Grid>
 
             <Grid x:Name="MenuSuperiorCocinero" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
@@ -116,7 +113,6 @@
 
                 <TextBlock Text="Corte de caja" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_CorteDeCaja"/>
                 <TextBlock Text="Tipos de gasto" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_TiposDeGasto"/>
-                <TextBlock Text="Pedido proveedor" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_CrearPedidoAProveedor"/>
                 <TextBlock Text="Confirmar entrega" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="3" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_ConfirmarEntrega"/>
                 <TextBlock Text="Registrar gasto extra" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="4" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Click_RegistrarGastoExtra"/>
             </Grid>

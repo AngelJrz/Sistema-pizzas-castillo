@@ -27,7 +27,7 @@ namespace AccesoADatos.ControladoresDeDatos
                 conexion.SaveChanges();
                 registrado = true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
                 return registrado;
             }

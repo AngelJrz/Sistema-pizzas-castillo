@@ -12,7 +12,6 @@ namespace Dominio.Utilerias
         {
             RuleFor(x => x.Producto.CodigoBarra).NotNull().NotEmpty();
             RuleFor(x => x.CantidadEnInventario).NotNull().NotEmpty();
-            RuleFor(x => x.CantidadReal).NotNull().NotEmpty();
             RuleFor(x => x.Comentario).MaximumLength(255);
         }
 
