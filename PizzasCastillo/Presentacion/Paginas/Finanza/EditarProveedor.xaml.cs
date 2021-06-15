@@ -122,7 +122,7 @@ namespace Presentacion.Paginas.Finanza
         {
             ValidadorProveedor validadorP = new ValidadorProveedor();
             ValidadorDireccionProveedor validadorD = new ValidadorDireccionProveedor();
-            if (validadorD.Validar(direccion) == true && GenericValidatorText.IsEmail(EmailText.Text))
+            if (validadorD.Validar(direccion) == true)
             {
                 return validadorP.Validar(proveedor);
             }

@@ -1,5 +1,6 @@
 ﻿using AccesoADatos.ControladoresDeDatos;
 using Dominio.Entidades;
+using Presentacion.Ventanas;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -16,7 +17,16 @@ namespace Presentacion.Paginas.Cocina
             InitializeComponent();
             PlatilloDAO platilloDAO = new PlatilloDAO();
             AccesoADatos.Platillo platillo = platilloDAO.ObtenerPlatillo(platilloEdicion.CodigoBarra);
-            recetaText.Text = platillo.Receta;
+            if (recetaText.Text == null)
+            {
+                InteraccionUsuario ventana = new InteraccionUsuario("Error", "Este articulo no cuenta con una receta debido a que no es un platillo");
+                ventana.Show();
+                NavigationService.GoBack();
+            }
+            else
+            {
+                recetaText.Text = platillo.Receta;
+            }
         }
 
         private void Regresar(object sender, RoutedEventArgs e)

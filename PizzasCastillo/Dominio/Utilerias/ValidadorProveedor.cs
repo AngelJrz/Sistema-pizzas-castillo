@@ -16,7 +16,7 @@ namespace Dominio.Utilerias
             RuleFor(x => x.Nombre).NotEmpty().MaximumLength(50).NotNull();
             RuleFor(x => x.NombreEncargado).NotEmpty().MaximumLength(50).NotNull();
             RuleFor(x => x.Telefono).NotEmpty().MaximumLength(11).NotNull();
-            RuleFor(x => x.Email).NotEmpty().MaximumLength(50).NotNull();
+            RuleFor(x => x.Email).NotEmpty().MaximumLength(50).NotNull().EmailAddress();
             RuleFor(x => x.Dni).NotEmpty().MaximumLength(10).NotNull();
         }
 

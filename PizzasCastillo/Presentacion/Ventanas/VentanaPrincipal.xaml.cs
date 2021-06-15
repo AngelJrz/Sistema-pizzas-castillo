@@ -7,18 +7,9 @@ using Presentacion.Paginas.Cocina;
 using Presentacion.Paginas.Pedido;
 using Presentacion.Recursos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.IO;
 
 namespace Presentacion.Ventanas
 {
@@ -28,6 +19,7 @@ namespace Presentacion.Ventanas
     public partial class VentanaPrincipal : Window
     {
         private Singleton _sesion;
+        public bool IsClosed { get; private set; }
         public VentanaPrincipal(Singleton sesion)
         {
             InitializeComponent();
@@ -38,6 +30,19 @@ namespace Presentacion.Ventanas
             Empleado empleadoEnSesion = empleado as Empleado;
             DataContext = empleadoEnSesion;
             MostrarMenuSuperior(empleadoEnSesion.TipoUsuario.Nombre);
+            try
+            {
+                if (Directory.Exists(Recursos.RecursosGlobales.RUTA_IMAGENES))
+                {
+                    return;
+                }
+                DirectoryInfo di = Directory.CreateDirectory(Recursos.RecursosGlobales.RUTA_IMAGENES);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
         }
 
         private void MostrarMenuSuperior(string nombre)
@@ -65,6 +70,32 @@ namespace Presentacion.Ventanas
         public VentanaPrincipal()
         {
             InitializeComponent();
+        
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            IsClosed = true;
+            
+            string[] files = Directory.GetFiles(Recursos.RecursosGlobales.RUTA_IMAGENES);
+            foreach (string file in files)
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (IOException)
+                {
+                }
+                
+            }
+
+            try
+            {
+                Directory.Delete(Recursos.RecursosGlobales.RUTA_IMAGENES);
+            }
+            catch (IOException) { }
         }
 
         private void Usuarios_PreviewMouseDown(object sender, MouseButtonEventArgs e)
