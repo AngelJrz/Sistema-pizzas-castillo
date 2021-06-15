@@ -80,6 +80,24 @@ namespace AccesoADatos.ControladoresDeDatos
             return articulosVenta;
         }
 
+
+        public List<ArticuloVenta> ObtenerProductosInsumos()
+        {
+            try
+            {
+                articulosVenta = connection.ArticuloVenta
+                .Where(articulo => articulo.EsPlatillo == false)
+                .ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            return articulosVenta;
+        }
+
+
+
         public ArticuloVenta ObtenerProducto(string id)
         {
             try
