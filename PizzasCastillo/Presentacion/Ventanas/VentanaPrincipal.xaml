@@ -79,12 +79,14 @@
             <Grid x:Name="MenuSuperiorMeseroCocina" Grid.Row="0" Background="{StaticResource ColorSecundario}" Visibility="Collapsed">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Pedidos" Grid.Column="0" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Pedidos"
                            AutomationProperties.AutomationId="Pedidos"/>
+                <TextBlock Text="Generar Pedido" Grid.Column="1" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="RegistrarPedidos"/>
                 <TextBlock Text="Merma" Grid.Column="2" Style="{StaticResource OpcionMenuSuperior}" PreviewMouseDown="Merma_PreviewMouseDown" AutomationProperties.AutomationId="Merma"/>
             </Grid>
 
